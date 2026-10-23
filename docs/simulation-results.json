@@ -1,0 +1,39 @@
+{
+  "seed": "2026-08-01 / season-audit",
+  "moneyUnit": "céntimos",
+  "scenarios": [
+    {
+      "strategy": "base",
+      "days": 266,
+      "settledRounds": 38,
+      "minBalance": 9794019402,
+      "minFinal": 13786726638,
+      "maxFinal": 16390528094,
+      "averageFinal": 15085812177,
+      "development": 26700,
+      "violations": []
+    },
+    {
+      "strategy": "social",
+      "days": 266,
+      "settledRounds": 38,
+      "minBalance": 9787019402,
+      "minFinal": 13760548238,
+      "maxFinal": 16364349694,
+      "averageFinal": 15059633777,
+      "development": 36130,
+      "violations": []
+    },
+    {
+      "strategy": "development",
+      "days": 266,
+      "settledRounds": 38,
+      "minBalance": 9647019402,
+      "minFinal": 13623892238,
+      "maxFinal": 16227693694,
+      "averageFinal": 14922977777,
+      "development": 36030,
+      "violations": []
+    }
+  ]
+}

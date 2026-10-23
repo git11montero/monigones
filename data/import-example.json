@@ -1,0 +1,13 @@
+{
+  "version": "example-1",
+  "players": [
+    {
+      "id": "import-example-1",
+      "name": "Álex del Parque",
+      "realClubId": "madrid",
+      "position": "MED",
+      "value": 150000000,
+      "simulated": true
+    }
+  ]
+}

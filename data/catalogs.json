@@ -1,0 +1,1380 @@
+{
+  "generated": "scripts/export-catalogs.ts; no editar a mano",
+  "version": "2026-10-23.2",
+  "buildings": [
+    {
+      "id": "hq",
+      "name": "Sede central",
+      "short": "Sede",
+      "description": "El corazón del club. Su nivel limita el desarrollo de tu ciudad.",
+      "icon": "Landmark",
+      "max": 5,
+      "x": 50,
+      "y": 18,
+      "color": "#dcc98f"
+    },
+    {
+      "id": "stadium",
+      "name": "Estadio de la Corona",
+      "short": "Estadio",
+      "description": "Tu casa, tu afición y once motivos para soñar.",
+      "icon": "Stadium",
+      "max": 5,
+      "x": 52,
+      "y": 43,
+      "color": "#d2e2cf"
+    },
+    {
+      "id": "offices",
+      "name": "Oficinas del club",
+      "short": "Oficinas",
+      "description": "Contratos, negociaciones y módulos independientes. Sin nivel general.",
+      "icon": "BriefcaseBusiness",
+      "max": 0,
+      "x": 21,
+      "y": 31,
+      "color": "#e2cda5"
+    },
+    {
+      "id": "research",
+      "name": "Centro de investigación",
+      "short": "Investigación",
+      "description": "Las grandes victorias empiezan con una buena idea.",
+      "icon": "FlaskConical",
+      "max": 5,
+      "x": 84,
+      "y": 31,
+      "color": "#bddbd8"
+    },
+    {
+      "id": "marketing",
+      "name": "Departamento de marketing",
+      "short": "Marketing",
+      "description": "Convierte tu identidad en oportunidades comerciales.",
+      "icon": "Megaphone",
+      "max": 5,
+      "x": 18,
+      "y": 55,
+      "color": "#f2c78f"
+    },
+    {
+      "id": "academy",
+      "name": "Cantera",
+      "short": "Cantera",
+      "description": "Forma talento propio. Un proyecto cada semana.",
+      "icon": "Sprout",
+      "max": 5,
+      "x": 81,
+      "y": 55,
+      "color": "#c3dda4"
+    },
+    {
+      "id": "sport",
+      "name": "Dirección deportiva",
+      "short": "Dirección",
+      "description": "Planificación y conocimiento del mercado.",
+      "icon": "ClipboardList",
+      "max": 5,
+      "x": 49,
+      "y": 66,
+      "color": "#e3d7b9"
+    },
+    {
+      "id": "training",
+      "name": "Centro de entrenamiento",
+      "short": "Entrenamiento",
+      "description": "Mejora cada casilla de tu once con medallas de élite.",
+      "icon": "Dumbbell",
+      "max": 5,
+      "x": 22,
+      "y": 78,
+      "color": "#a8cdb9"
+    },
+    {
+      "id": "shop",
+      "name": "Tienda oficial",
+      "short": "Tienda",
+      "description": "Los colores de tu club, en cada rincón de la ciudad.",
+      "icon": "ShoppingBag",
+      "max": 5,
+      "x": 77,
+      "y": 78,
+      "color": "#deb898"
+    },
+    {
+      "id": "finance",
+      "name": "Centro financiero",
+      "short": "Finanzas",
+      "description": "Analiza ingresos, gastos y créditos del club.",
+      "icon": "ChartNoAxesCombined",
+      "max": 5,
+      "x": 15,
+      "y": 94,
+      "color": "#bfd6dd"
+    },
+    {
+      "id": "social",
+      "name": "Área de afición",
+      "short": "Afición",
+      "description": "La grada también juega. Cuida de tu gente.",
+      "icon": "HeartHandshake",
+      "max": 5,
+      "x": 48,
+      "y": 92,
+      "color": "#dabfb0"
+    },
+    {
+      "id": "institution",
+      "name": "Relaciones institucionales",
+      "short": "Instituciones",
+      "description": "Acuerdos, influencias y decisiones de riesgo.",
+      "icon": "Scale",
+      "max": 5,
+      "x": 81,
+      "y": 96,
+      "color": "#d7c39b"
+    },
+    {
+      "id": "press",
+      "name": "Sala de prensa",
+      "short": "Prensa",
+      "description": "La actualidad de tu liga, escrita por sus protagonistas.",
+      "icon": "Newspaper",
+      "max": 5,
+      "x": 24,
+      "y": 111,
+      "color": "#e0d9c6"
+    },
+    {
+      "id": "museum",
+      "name": "Museo del club",
+      "short": "Museo",
+      "description": "Tus temporadas terminan. La historia permanece.",
+      "icon": "Trophy",
+      "max": 5,
+      "x": 73,
+      "y": 113,
+      "color": "#d0c496"
+    },
+    {
+      "id": "competition",
+      "name": "Sede de competición",
+      "short": "Competición",
+      "description": "Jornadas, clasificaciones y la emoción del directo.",
+      "icon": "Flag",
+      "max": 0,
+      "x": 49,
+      "y": 124,
+      "color": "#b7c8e2"
+    }
+  ],
+  "facilities": [
+    {
+      "id": "stands",
+      "name": "Gradas",
+      "description": "Más aforo: 8.000 plazas adicionales por ampliación.",
+      "max": 5
+    },
+    {
+      "id": "locker",
+      "name": "Vestuarios",
+      "description": "Una plaza más de plantilla por ampliación, hasta 30.",
+      "max": 18
+    },
+    {
+      "id": "bench",
+      "name": "Banquillo",
+      "description": "Desbloquea suplentes y entradas automáticas.",
+      "max": 7
+    },
+    {
+      "id": "pitch",
+      "name": "Césped",
+      "description": "Desbloquea formaciones: 4-3-3, 3-5-2, 3-4-3 y 5-3-2.",
+      "max": 4
+    },
+    {
+      "id": "led",
+      "name": "Iluminación LED",
+      "description": "Reduce exclusivamente el gasto energético.",
+      "max": 5
+    },
+    {
+      "id": "showlights",
+      "name": "Focos de espectáculos",
+      "description": "Aumenta un 5 % los ingresos de conciertos por nivel.",
+      "max": 5
+    },
+    {
+      "id": "scoreboard",
+      "name": "Videomarcador",
+      "description": "Hasta tres espacios publicitarios y mayor comodidad.",
+      "max": 4
+    },
+    {
+      "id": "vip",
+      "name": "Palcos VIP",
+      "description": "Mejora los ingresos premium y la comodidad.",
+      "max": 5
+    },
+    {
+      "id": "roof",
+      "name": "Cubierta",
+      "description": "Protege a la afición y mejora la asistencia.",
+      "max": 5
+    },
+    {
+      "id": "security",
+      "name": "Seguridad",
+      "description": "Mayor comodidad y ocupación.",
+      "max": 5
+    },
+    {
+      "id": "services",
+      "name": "Servicios y aseos",
+      "description": "Una experiencia más cómoda para la grada.",
+      "max": 5
+    },
+    {
+      "id": "sprinklers",
+      "name": "Aspersores",
+      "description": "Reduce exclusivamente el gasto de agua.",
+      "max": 5
+    }
+  ],
+  "research": [
+    {
+      "id": "accounting",
+      "name": "Contabilidad profesional",
+      "tree": "Finanzas",
+      "branch": 0,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Contabilidad profesional: desarrolla la gestión del club.",
+      "effects": {
+        "maintenance": 200
+      }
+    },
+    {
+      "id": "salary",
+      "name": "Gestión salarial",
+      "tree": "Finanzas",
+      "branch": 0,
+      "row": 1,
+      "maxLevel": 5,
+      "requires": [
+        "accounting"
+      ],
+      "buildingLevel": 1,
+      "description": "Gestión salarial: desarrolla la gestión del club.",
+      "effects": {
+        "salary": 30
+      }
+    },
+    {
+      "id": "sale",
+      "name": "Venta inteligente",
+      "tree": "Finanzas",
+      "branch": 0,
+      "row": 2,
+      "maxLevel": 5,
+      "requires": [
+        "salary"
+      ],
+      "buildingLevel": 2,
+      "description": "Venta inteligente: desarrolla la gestión del club.",
+      "effects": {
+        "sale": 300
+      }
+    },
+    {
+      "id": "negotiator",
+      "name": "Negociador deportivo",
+      "tree": "Finanzas",
+      "branch": 0,
+      "row": 3,
+      "maxLevel": 5,
+      "requires": [
+        "sale"
+      ],
+      "buildingLevel": 2,
+      "description": "Negociador deportivo: desarrolla la gestión del club.",
+      "effects": {
+        "wish": 1,
+        "wishDiscount": 50
+      }
+    },
+    {
+      "id": "analysis",
+      "name": "Análisis financiero",
+      "tree": "Finanzas",
+      "branch": 0,
+      "row": 4,
+      "maxLevel": 1,
+      "requires": [
+        "negotiator"
+      ],
+      "buildingLevel": 3,
+      "description": "Análisis financiero: desarrolla la gestión del club.",
+      "effects": {
+        "maintenance": 200
+      }
+    },
+    {
+      "id": "bank",
+      "name": "Convenios bancarios",
+      "tree": "Finanzas",
+      "branch": 0,
+      "row": 5,
+      "maxLevel": 1,
+      "requires": [
+        "analysis"
+      ],
+      "buildingLevel": 3,
+      "description": "Convenios bancarios: desarrolla la gestión del club.",
+      "effects": {}
+    },
+    {
+      "id": "commercial",
+      "name": "Captación comercial",
+      "tree": "Finanzas",
+      "branch": 1,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Captación comercial: desarrolla la gestión del club.",
+      "effects": {
+        "sponsor": 200
+      }
+    },
+    {
+      "id": "advertising",
+      "name": "Gestión publicitaria",
+      "tree": "Finanzas",
+      "branch": 1,
+      "row": 1,
+      "maxLevel": 1,
+      "requires": [
+        "commercial"
+      ],
+      "buildingLevel": 1,
+      "description": "Gestión publicitaria: desarrolla la gestión del club.",
+      "effects": {
+        "sponsor": 200
+      }
+    },
+    {
+      "id": "productivity",
+      "name": "Productividad comercial",
+      "tree": "Finanzas",
+      "branch": 1,
+      "row": 2,
+      "maxLevel": 1,
+      "requires": [
+        "advertising"
+      ],
+      "buildingLevel": 2,
+      "description": "Productividad comercial: desarrolla la gestión del club.",
+      "effects": {
+        "sponsor": 200
+      }
+    },
+    {
+      "id": "promoter",
+      "name": "Promotor de espectáculos",
+      "tree": "Finanzas",
+      "branch": 1,
+      "row": 3,
+      "maxLevel": 1,
+      "requires": [
+        "productivity"
+      ],
+      "buildingLevel": 2,
+      "description": "Promotor de espectáculos: desarrolla la gestión del club.",
+      "effects": {
+        "concerts": 1
+      }
+    },
+    {
+      "id": "events",
+      "name": "Gestión de grandes eventos",
+      "tree": "Finanzas",
+      "branch": 1,
+      "row": 4,
+      "maxLevel": 1,
+      "requires": [
+        "promoter"
+      ],
+      "buildingLevel": 3,
+      "description": "Gestión de grandes eventos: desarrolla la gestión del club.",
+      "effects": {
+        "sponsor": 200
+      }
+    },
+    {
+      "id": "maintenance",
+      "name": "Eficiencia de mantenimiento",
+      "tree": "Finanzas",
+      "branch": 2,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Eficiencia de mantenimiento: desarrolla la gestión del club.",
+      "effects": {
+        "maintenance": 300
+      }
+    },
+    {
+      "id": "energy",
+      "name": "Plan de ahorro energético",
+      "tree": "Finanzas",
+      "branch": 2,
+      "row": 1,
+      "maxLevel": 1,
+      "requires": [
+        "maintenance"
+      ],
+      "buildingLevel": 1,
+      "description": "Plan de ahorro energético: desarrolla la gestión del club.",
+      "effects": {
+        "maintenance": 100
+      }
+    },
+    {
+      "id": "works",
+      "name": "Dirección de obras",
+      "tree": "Finanzas",
+      "branch": 2,
+      "row": 2,
+      "maxLevel": 1,
+      "requires": [
+        "energy"
+      ],
+      "buildingLevel": 2,
+      "description": "Dirección de obras: desarrolla la gestión del club.",
+      "effects": {
+        "construction": 300
+      }
+    },
+    {
+      "id": "projects",
+      "name": "Planificación de proyectos",
+      "tree": "Finanzas",
+      "branch": 2,
+      "row": 3,
+      "maxLevel": 1,
+      "requires": [
+        "works"
+      ],
+      "buildingLevel": 2,
+      "description": "Planificación de proyectos: desarrolla la gestión del club.",
+      "effects": {
+        "secondQueue": 1
+      }
+    },
+    {
+      "id": "integral",
+      "name": "Dirección económica integral",
+      "tree": "Finanzas",
+      "branch": 2,
+      "row": 4,
+      "maxLevel": 1,
+      "requires": [
+        "analysis",
+        "events",
+        "projects"
+      ],
+      "buildingLevel": 3,
+      "description": "Dirección económica integral: desarrolla la gestión del club.",
+      "effects": {
+        "maintenance": 200
+      }
+    },
+    {
+      "id": "tactics",
+      "name": "Análisis táctico",
+      "tree": "Competición",
+      "branch": 0,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Análisis táctico: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "defense",
+      "name": "Defensa organizada",
+      "tree": "Competición",
+      "branch": 0,
+      "row": 1,
+      "maxLevel": 1,
+      "requires": [
+        "tactics"
+      ],
+      "buildingLevel": 1,
+      "description": "Defensa organizada: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "midfield",
+      "name": "Control del centro del campo",
+      "tree": "Competición",
+      "branch": 0,
+      "row": 2,
+      "maxLevel": 1,
+      "requires": [
+        "defense"
+      ],
+      "buildingLevel": 2,
+      "description": "Control del centro del campo: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "goals",
+      "name": "Olfato goleador",
+      "tree": "Competición",
+      "branch": 0,
+      "row": 3,
+      "maxLevel": 1,
+      "requires": [
+        "midfield"
+      ],
+      "buildingLevel": 2,
+      "description": "Olfato goleador: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "goalkeepers",
+      "name": "Escuela de porteros",
+      "tree": "Competición",
+      "branch": 0,
+      "row": 4,
+      "maxLevel": 1,
+      "requires": [
+        "goals"
+      ],
+      "buildingLevel": 3,
+      "description": "Escuela de porteros: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "preparation",
+      "name": "Preparación integral",
+      "tree": "Competición",
+      "branch": 0,
+      "row": 5,
+      "maxLevel": 1,
+      "requires": [
+        "goalkeepers"
+      ],
+      "buildingLevel": 3,
+      "description": "Preparación integral: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "rival",
+      "name": "Estudio del rival",
+      "tree": "Competición",
+      "branch": 1,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Estudio del rival: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "motivation",
+      "name": "Motivación del vestuario",
+      "tree": "Competición",
+      "branch": 1,
+      "row": 1,
+      "maxLevel": 1,
+      "requires": [
+        "rival"
+      ],
+      "buildingLevel": 1,
+      "description": "Motivación del vestuario: desarrolla el rendimiento del club.",
+      "effects": {
+        "happiness": 1
+      }
+    },
+    {
+      "id": "subs",
+      "name": "Gestión de suplentes",
+      "tree": "Competición",
+      "branch": 1,
+      "row": 2,
+      "maxLevel": 1,
+      "requires": [
+        "motivation"
+      ],
+      "buildingLevel": 2,
+      "description": "Gestión de suplentes: desarrolla el rendimiento del club.",
+      "effects": {
+        "happiness": 1
+      }
+    },
+    {
+      "id": "smart1",
+      "name": "Cambios inteligentes I",
+      "tree": "Competición",
+      "branch": 1,
+      "row": 3,
+      "maxLevel": 1,
+      "requires": [
+        "subs"
+      ],
+      "buildingLevel": 2,
+      "description": "Cambios inteligentes I: desarrolla el rendimiento del club.",
+      "effects": {
+        "manual": 1
+      }
+    },
+    {
+      "id": "smart2",
+      "name": "Cambios inteligentes II",
+      "tree": "Competición",
+      "branch": 1,
+      "row": 4,
+      "maxLevel": 1,
+      "requires": [
+        "smart1"
+      ],
+      "buildingLevel": 3,
+      "description": "Cambios inteligentes II: desarrolla el rendimiento del club.",
+      "effects": {
+        "manual": 1
+      }
+    },
+    {
+      "id": "adaptation",
+      "name": "Adaptación táctica",
+      "tree": "Competición",
+      "branch": 1,
+      "row": 5,
+      "maxLevel": 1,
+      "requires": [
+        "smart2"
+      ],
+      "buildingLevel": 3,
+      "description": "Adaptación táctica: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "staff",
+      "name": "Cuerpo técnico especializado",
+      "tree": "Competición",
+      "branch": 2,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Cuerpo técnico especializado: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "fatigue",
+      "name": "Gestión de la fatiga",
+      "tree": "Competición",
+      "branch": 2,
+      "row": 1,
+      "maxLevel": 1,
+      "requires": [
+        "staff"
+      ],
+      "buildingLevel": 1,
+      "description": "Gestión de la fatiga: desarrolla el rendimiento del club.",
+      "effects": {
+        "happiness": 1
+      }
+    },
+    {
+      "id": "elite",
+      "name": "Preparación de élite",
+      "tree": "Competición",
+      "branch": 2,
+      "row": 2,
+      "maxLevel": 1,
+      "requires": [
+        "fatigue"
+      ],
+      "buildingLevel": 2,
+      "description": "Preparación de élite: desarrolla el rendimiento del club.",
+      "effects": {
+        "sport": 100
+      }
+    },
+    {
+      "id": "bronze",
+      "name": "Desbloqueo de calidad Bronce",
+      "tree": "Competición",
+      "branch": 2,
+      "row": 3,
+      "maxLevel": 1,
+      "requires": [
+        "elite"
+      ],
+      "buildingLevel": 2,
+      "description": "Desbloqueo de calidad Bronce: desarrolla el rendimiento del club.",
+      "effects": {
+        "quality": 1
+      }
+    },
+    {
+      "id": "silver",
+      "name": "Desbloqueo de calidad Plata",
+      "tree": "Competición",
+      "branch": 2,
+      "row": 4,
+      "maxLevel": 1,
+      "requires": [
+        "bronze"
+      ],
+      "buildingLevel": 3,
+      "description": "Desbloqueo de calidad Plata: desarrolla el rendimiento del club.",
+      "effects": {
+        "quality": 2
+      }
+    },
+    {
+      "id": "gold",
+      "name": "Desbloqueo de calidad Oro",
+      "tree": "Competición",
+      "branch": 2,
+      "row": 5,
+      "maxLevel": 1,
+      "requires": [
+        "silver"
+      ],
+      "buildingLevel": 3,
+      "description": "Desbloqueo de calidad Oro: desarrolla el rendimiento del club.",
+      "effects": {
+        "quality": 3
+      }
+    },
+    {
+      "id": "viral",
+      "name": "Viral en redes sociales",
+      "tree": "Relaciones",
+      "branch": 0,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Viral en redes sociales: desarrolla la identidad del club.",
+      "effects": {
+        "fameCap": 15
+      }
+    },
+    {
+      "id": "communication",
+      "name": "Gabinete de comunicación",
+      "tree": "Relaciones",
+      "branch": 0,
+      "row": 1,
+      "maxLevel": 1,
+      "requires": [
+        "viral"
+      ],
+      "buildingLevel": 1,
+      "description": "Gabinete de comunicación: desarrolla la identidad del club.",
+      "effects": {
+        "fameCap": 25
+      }
+    },
+    {
+      "id": "image",
+      "name": "Campañas de imagen",
+      "tree": "Relaciones",
+      "branch": 0,
+      "row": 2,
+      "maxLevel": 1,
+      "requires": [
+        "communication"
+      ],
+      "buildingLevel": 2,
+      "description": "Campañas de imagen: desarrolla la identidad del club.",
+      "effects": {
+        "fameCap": 25
+      }
+    },
+    {
+      "id": "media",
+      "name": "Expansión mediática",
+      "tree": "Relaciones",
+      "branch": 0,
+      "row": 3,
+      "maxLevel": 1,
+      "requires": [
+        "image"
+      ],
+      "buildingLevel": 2,
+      "description": "Expansión mediática: desarrolla la identidad del club.",
+      "effects": {
+        "fameCap": 25
+      }
+    },
+    {
+      "id": "identity",
+      "name": "Identidad corporativa",
+      "tree": "Relaciones",
+      "branch": 0,
+      "row": 4,
+      "maxLevel": 1,
+      "requires": [
+        "media"
+      ],
+      "buildingLevel": 3,
+      "description": "Identidad corporativa: desarrolla la identidad del club.",
+      "effects": {
+        "custom": 1
+      }
+    },
+    {
+      "id": "kits",
+      "name": "Diseño de equipaciones",
+      "tree": "Relaciones",
+      "branch": 0,
+      "row": 5,
+      "maxLevel": 1,
+      "requires": [
+        "identity"
+      ],
+      "buildingLevel": 3,
+      "description": "Diseño de equipaciones: desarrolla la identidad del club.",
+      "effects": {
+        "kits": 1
+      }
+    },
+    {
+      "id": "loyalty",
+      "name": "Fidelización de aficionados",
+      "tree": "Relaciones",
+      "branch": 1,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Fidelización de aficionados: desarrolla la identidad del club.",
+      "effects": {
+        "fans": 2
+      }
+    },
+    {
+      "id": "members",
+      "name": "Programa de socios",
+      "tree": "Relaciones",
+      "branch": 1,
+      "row": 1,
+      "maxLevel": 1,
+      "requires": [
+        "loyalty"
+      ],
+      "buildingLevel": 1,
+      "description": "Programa de socios: desarrolla la identidad del club.",
+      "effects": {
+        "fans": 2
+      }
+    },
+    {
+      "id": "supporters",
+      "name": "Relaciones con peñas",
+      "tree": "Relaciones",
+      "branch": 1,
+      "row": 2,
+      "maxLevel": 1,
+      "requires": [
+        "members"
+      ],
+      "buildingLevel": 2,
+      "description": "Relaciones con peñas: desarrolla la identidad del club.",
+      "effects": {
+        "fans": 2
+      }
+    },
+    {
+      "id": "contacts",
+      "name": "Contactos institucionales",
+      "tree": "Relaciones",
+      "branch": 2,
+      "row": 0,
+      "maxLevel": 1,
+      "requires": [],
+      "buildingLevel": 1,
+      "description": "Contactos institucionales: desarrolla la identidad del club.",
+      "effects": {
+        "prestigeCap": 25
+      }
+    },
+    {
+      "id": "influence",
+      "name": "Influencia en medios",
+      "tree": "Relaciones",
+      "branch": 2,
+      "row": 1,
+      "maxLevel": 1,
+      "requires": [
+        "contacts"
+      ],
+      "buildingLevel": 1,
+      "description": "Influencia en medios: desarrolla la identidad del club.",
+      "effects": {
+        "prestigeCap": 25
+      }
+    },
+    {
+      "id": "reputation",
+      "name": "Gestión reputacional",
+      "tree": "Relaciones",
+      "branch": 2,
+      "row": 2,
+      "maxLevel": 1,
+      "requires": [
+        "influence"
+      ],
+      "buildingLevel": 2,
+      "description": "Gestión reputacional: desarrolla la identidad del club.",
+      "effects": {
+        "luck": 2
+      }
+    },
+    {
+      "id": "opportunities",
+      "name": "Análisis de oportunidades",
+      "tree": "Relaciones",
+      "branch": 2,
+      "row": 3,
+      "maxLevel": 1,
+      "requires": [
+        "reputation"
+      ],
+      "buildingLevel": 2,
+      "description": "Análisis de oportunidades: desarrolla la identidad del club.",
+      "effects": {
+        "luck": 3
+      }
+    },
+    {
+      "id": "recovery",
+      "name": "Recuperación de imagen",
+      "tree": "Relaciones",
+      "branch": 2,
+      "row": 4,
+      "maxLevel": 1,
+      "requires": [
+        "opportunities"
+      ],
+      "buildingLevel": 3,
+      "description": "Recuperación de imagen: desarrolla la identidad del club.",
+      "effects": {
+        "fans": 2
+      }
+    },
+    {
+      "id": "international",
+      "name": "Reputación internacional",
+      "tree": "Relaciones",
+      "branch": 2,
+      "row": 5,
+      "maxLevel": 1,
+      "requires": [
+        "kits",
+        "supporters",
+        "recovery"
+      ],
+      "buildingLevel": 3,
+      "description": "Reputación internacional: desarrolla la identidad del club.",
+      "effects": {
+        "luck": 3
+      }
+    }
+  ],
+  "rules": {
+    "initialBudget": 10000000000,
+    "draftGift": 2000000000,
+    "initialCapacity": 12,
+    "maxCapacity": 30,
+    "dailyDevelopment": 100,
+    "baseSalary": 200,
+    "maxSalary": 1000,
+    "minSalary": 50,
+    "maxSalaryReduction": 150,
+    "emptyPoints": -500,
+    "maxSportBonus": 2500,
+    "qualityBonus": [
+      0,
+      500,
+      1200,
+      2500
+    ],
+    "qualitySalary": [
+      0,
+      10,
+      30,
+      75
+    ],
+    "bench": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        4
+      ]
+    ],
+    "researchMoney": [
+      10000000,
+      25000000,
+      60000000,
+      150000000,
+      400000000
+    ],
+    "researchPD": [
+      100,
+      250,
+      500,
+      1000,
+      2000
+    ],
+    "researchHours": [
+      4,
+      8,
+      24,
+      72,
+      168
+    ],
+    "buildingHours": [
+      0,
+      6,
+      24,
+      72,
+      168
+    ],
+    "buildingMoney": [
+      0,
+      30000000,
+      100000000,
+      300000000,
+      800000000
+    ],
+    "tvFundPerClub": 150000000,
+    "maxDayAdvance": 366,
+    "shieldDays": 15,
+    "clauseDay": 50,
+    "loanCap": 300000000,
+    "institutionCooldown": 172800000,
+    "marketSize": 5
+  },
+  "modules": [
+    {
+      "id": "contracts",
+      "name": "Contratos",
+      "cost": 0,
+      "day": 0,
+      "research": ""
+    },
+    {
+      "id": "trades",
+      "name": "Compra y venta",
+      "cost": 0,
+      "day": 0,
+      "research": ""
+    },
+    {
+      "id": "bidhistory",
+      "name": "Observatorio de pujas",
+      "cost": 75000000,
+      "day": 0,
+      "research": "analysis"
+    },
+    {
+      "id": "loans",
+      "name": "Cesiones",
+      "cost": 50000000,
+      "day": 0,
+      "research": "negotiator"
+    },
+    {
+      "id": "clauses",
+      "name": "Clausulazos",
+      "cost": 200000000,
+      "day": 50,
+      "research": ""
+    },
+    {
+      "id": "shield",
+      "name": "Blindajes",
+      "cost": 40000000,
+      "day": 0,
+      "research": ""
+    },
+    {
+      "id": "renegotiate",
+      "name": "Renegociaciones",
+      "cost": 35000000,
+      "day": 0,
+      "research": "salary"
+    },
+    {
+      "id": "concerts",
+      "name": "Conciertos",
+      "cost": 30000000,
+      "day": 0,
+      "research": "promoter"
+    },
+    {
+      "id": "administration",
+      "name": "Gestión administrativa",
+      "cost": 10000000,
+      "day": 0,
+      "research": "accounting"
+    }
+  ],
+  "sponsors": [
+    {
+      "id": "aurum",
+      "name": "AURUM",
+      "tag": "El valor de creer.",
+      "color": "#c39642",
+      "fame": 0,
+      "daily": 5500000,
+      "cost": 2500000
+    },
+    {
+      "id": "verde",
+      "name": "VERDE ENERGÍA",
+      "tag": "Un futuro que juega a favor.",
+      "color": "#3a8060",
+      "fame": 5,
+      "daily": 7500000,
+      "cost": 5000000
+    },
+    {
+      "id": "nexo",
+      "name": "NEXO",
+      "tag": "Tu afición, conectada.",
+      "color": "#6572a5",
+      "fame": 10,
+      "daily": 9500000,
+      "cost": 10000000
+    },
+    {
+      "id": "brava",
+      "name": "BRAVA",
+      "tag": "Para los que van a por todo.",
+      "color": "#be6445",
+      "fame": 25,
+      "daily": 15000000,
+      "cost": 25000000
+    },
+    {
+      "id": "atlas",
+      "name": "ATLAS",
+      "tag": "Más allá de la próxima victoria.",
+      "color": "#446e84",
+      "fame": 50,
+      "daily": 22000000,
+      "cost": 50000000
+    },
+    {
+      "id": "corona",
+      "name": "CORONA BANK",
+      "tag": "La confianza también se entrena.",
+      "color": "#a88a49",
+      "fame": 75,
+      "daily": 30000000,
+      "cost": 80000000
+    }
+  ],
+  "clubs": [
+    {
+      "id": "athletic",
+      "name": "Athletic Club",
+      "short": "ATH",
+      "color": "#c94443",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "atletico",
+      "name": "Atlético de Madrid",
+      "short": "ATM",
+      "color": "#c84748",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "osasuna",
+      "name": "CA Osasuna",
+      "short": "OSA",
+      "color": "#a9323c",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "celta",
+      "name": "RC Celta",
+      "short": "CEL",
+      "color": "#6caece",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "alaves",
+      "name": "Deportivo Alavés",
+      "short": "ALA",
+      "color": "#5686bc",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "elche",
+      "name": "Elche CF",
+      "short": "ELC",
+      "color": "#499269",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "barcelona",
+      "name": "FC Barcelona",
+      "short": "BAR",
+      "color": "#9a4268",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "getafe",
+      "name": "Getafe CF",
+      "short": "GET",
+      "color": "#4270b2",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "levante",
+      "name": "Levante UD",
+      "short": "LEV",
+      "color": "#9a4353",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "malaga",
+      "name": "Málaga CF",
+      "short": "MAL",
+      "color": "#70b9d2",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "racing",
+      "name": "Racing de Santander",
+      "short": "RAC",
+      "color": "#418465",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "deportivo",
+      "name": "RC Deportivo",
+      "short": "DEP",
+      "color": "#719ac5",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "espanyol",
+      "name": "RCD Espanyol",
+      "short": "ESP",
+      "color": "#5986c1",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "betis",
+      "name": "Real Betis",
+      "short": "BET",
+      "color": "#47966c",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "madrid",
+      "name": "Real Madrid",
+      "short": "RMA",
+      "color": "#9a90af",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "sociedad",
+      "name": "Real Sociedad",
+      "short": "RSO",
+      "color": "#5c8ac4",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "sevilla",
+      "name": "Sevilla FC",
+      "short": "SEV",
+      "color": "#cc5555",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "valencia",
+      "name": "Valencia CF",
+      "short": "VAL",
+      "color": "#d1844b",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "villarreal",
+      "name": "Villarreal CF",
+      "short": "VIL",
+      "color": "#cabd42",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    },
+    {
+      "id": "rayo",
+      "name": "Rayo Vallecano",
+      "short": "RAY",
+      "color": "#ce6961",
+      "source": "https://www.laliga.com/laliga-easports/clubes"
+    }
+  ]
+}
