@@ -233,7 +233,7 @@ export function ConcertsPage() {
         back
         eyebrow="CUANDO EL ESTADIO CAMBIA DE RITMO"
         title="Noches para recordar"
-        subtitle="Tres propuestas nuevas cada semana. Carteles originales, sin música ni fotos de terceros."
+        subtitle="Tres propuestas cada semana. Tu estadio, una noche inolvidable."
       />
       {!club.modules.includes('concerts') && (
         <div className="info-note">

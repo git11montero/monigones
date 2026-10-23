@@ -129,21 +129,48 @@ class AudioManager {
   }
   private crowd() {
     if (!this.context || this.voices >= 12) return;
-    const c=this.context, buffer=c.createBuffer(1, Math.ceil(c.sampleRate*1.4), c.sampleRate), samples=buffer.getChannelData(0);
-    let smooth=0;
-    for(let i=0;i<samples.length;i++){smooth=(smooth+(Math.random()*2-1)*.035)/1.035;samples[i]=smooth*3;}
-    const source=c.createBufferSource(), filter=c.createBiquadFilter(), gain=c.createGain();
-    source.buffer=buffer;filter.type='bandpass';filter.frequency.value=900;filter.Q.value=.6;
-    gain.gain.setValueAtTime(.001,c.currentTime);gain.gain.linearRampToValueAtTime(.18,c.currentTime+.35);gain.gain.exponentialRampToValueAtTime(.001,c.currentTime+1.4);
-    source.connect(filter);filter.connect(gain);gain.connect(this.effectsBus!);source.start();this.voices++;
-    source.onended=()=>{this.voices--;source.disconnect();filter.disconnect();gain.disconnect();};
+    const c = this.context,
+      buffer = c.createBuffer(1, Math.ceil(c.sampleRate * 1.4), c.sampleRate),
+      samples = buffer.getChannelData(0);
+    let smooth = 0;
+    for (let i = 0; i < samples.length; i++) {
+      smooth = (smooth + (Math.random() * 2 - 1) * 0.035) / 1.035;
+      samples[i] = smooth * 3;
+    }
+    const source = c.createBufferSource(),
+      filter = c.createBiquadFilter(),
+      gain = c.createGain();
+    source.buffer = buffer;
+    filter.type = 'bandpass';
+    filter.frequency.value = 900;
+    filter.Q.value = 0.6;
+    gain.gain.setValueAtTime(0.001, c.currentTime);
+    gain.gain.linearRampToValueAtTime(0.18, c.currentTime + 0.35);
+    gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 1.4);
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(this.effectsBus!);
+    source.start();
+    this.voices++;
+    source.onended = () => {
+      this.voices--;
+      source.disconnect();
+      filter.disconnect();
+      gain.disconnect();
+    };
   }
   play(sound: Sound) {
     const p = readPreferences();
-    if (!p.effects || p.volume <= 0 || !this.unlocked || document.hidden || performance.now() - this.last < 45)
+    if (
+      !p.effects ||
+      p.volume <= 0 ||
+      !this.unlocked ||
+      document.hidden ||
+      performance.now() - this.last < 45
+    )
       return;
     this.last = performance.now();
-    if (['goal','stadium','victory'].includes(sound)) this.crowd();
+    if (['goal', 'stadium', 'victory'].includes(sound)) this.crowd();
     motifs[sound].forEach((note, index) =>
       this.tone(
         note,
@@ -160,8 +187,12 @@ class AudioManager {
   sync() {
     const p = readPreferences();
     if (this.context) {
-      this.effectsBus?.gain.setTargetAtTime(p.effects?p.volume:0, this.context.currentTime, .015);
-      this.musicBus?.gain.setTargetAtTime(p.music?p.volume:0, this.context.currentTime, .015);
+      this.effectsBus?.gain.setTargetAtTime(
+        p.effects ? p.volume : 0,
+        this.context.currentTime,
+        0.015,
+      );
+      this.musicBus?.gain.setTargetAtTime(p.music ? p.volume : 0, this.context.currentTime, 0.015);
     }
     if (this.interval) window.clearInterval(this.interval);
     this.interval = undefined;
@@ -183,7 +214,14 @@ class AudioManager {
         t = this.context!.currentTime;
       if (this.beat % 4 === 0)
         [1, 1.5, 2].forEach((n) => this.tone(root * n, t, 2.1, 0.014, 'triangle', 'music'));
-      this.tone(root * [2, 3, 2.5, 4, 3, 2.5, 2, 3][this.beat % 8], t, 0.65, 0.025, 'sine', 'music');
+      this.tone(
+        root * [2, 3, 2.5, 4, 3, 2.5, 2, 3][this.beat % 8],
+        t,
+        0.65,
+        0.025,
+        'sine',
+        'music',
+      );
       if (this.mode !== 'city' && this.beat % 2 === 0)
         this.tone(70, t, 0.12, 0.025, 'triangle', 'music');
       this.beat++;

@@ -27,15 +27,6 @@ test('registro, creación de club, invitación y draft conectados al servidor', 
   await page.getByRole('button', { name: 'Fundar mi club' }).click();
   await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
   const game = await (await page.request.get('/api/state')).json();
-  await page.goto('/draft');
-  await page.getByRole('button', { name: 'Presentar futbolista' }).click();
-  await expect(page.getByRole('status')).toContainText('Nuevo futbolista');
-  await expect(page.locator('.auction-card .sports-card')).toHaveCount(1);
-  await page.screenshot({
-    path: 'docs/screenshots/redesign/draft-activo.png',
-    fullPage: true,
-    scale: 'css',
-  });
   const context = await browser.newContext({
     baseURL: 'http://127.0.0.1:5174',
     viewport: { width: 390, height: 844 },
@@ -60,4 +51,13 @@ test('registro, creación de club, invitación y draft conectados al servidor', 
   } finally {
     await context.close();
   }
+  await page.goto('/draft');
+  await page.getByRole('button', { name: 'Presentar futbolista' }).click();
+  await expect(page.getByRole('status')).toContainText('Nuevo futbolista');
+  await expect(page.locator('.auction-card .sports-card')).toHaveCount(1);
+  await page.screenshot({
+    path: 'docs/screenshots/redesign/draft-activo.png',
+    fullPage: true,
+    scale: 'css',
+  });
 });

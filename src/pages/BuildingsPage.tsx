@@ -121,7 +121,7 @@ export default function BuildingsPage() {
                     onClick={() =>
                       void act(
                         { type: 'build', target: b.id },
-                        'Construcción iniciada. Se completará en el servidor.',
+                        'Construcción iniciada. La obra seguirá avanzando aunque cierres el juego.',
                       )
                     }
                   >

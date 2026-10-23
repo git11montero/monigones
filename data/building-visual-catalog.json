@@ -1,0 +1,204 @@
+[
+  {
+    "id": "hq",
+    "name": "Sede central",
+    "atlas": "public/art/core-atlas.webp",
+    "row": 0,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "stadium",
+    "name": "Estadio de la Corona",
+    "atlas": "public/art/core-atlas.webp",
+    "row": 1,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "offices",
+    "name": "Oficinas del club",
+    "atlas": "public/art/commerce-atlas.webp",
+    "row": 0,
+    "levels": [
+      3
+    ],
+    "upgradable": false
+  },
+  {
+    "id": "research",
+    "name": "Centro de investigación",
+    "atlas": "public/art/core-atlas.webp",
+    "row": 2,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "marketing",
+    "name": "Departamento de marketing",
+    "atlas": "public/art/training-atlas.webp",
+    "row": 0,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "academy",
+    "name": "Cantera",
+    "atlas": "public/art/training-atlas.webp",
+    "row": 1,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "sport",
+    "name": "Dirección deportiva",
+    "atlas": "public/art/commerce-atlas.webp",
+    "row": 1,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "training",
+    "name": "Centro de entrenamiento",
+    "atlas": "public/art/training-atlas.webp",
+    "row": 2,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "shop",
+    "name": "Tienda oficial",
+    "atlas": "public/art/commerce-atlas.webp",
+    "row": 2,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "finance",
+    "name": "Centro financiero",
+    "atlas": "public/art/relations-atlas.webp",
+    "row": 0,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "social",
+    "name": "Área de afición",
+    "atlas": "public/art/relations-atlas.webp",
+    "row": 1,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "institution",
+    "name": "Relaciones institucionales",
+    "atlas": "public/art/relations-atlas.webp",
+    "row": 2,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "press",
+    "name": "Sala de prensa",
+    "atlas": "public/art/culture-atlas.webp",
+    "row": 0,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "museum",
+    "name": "Museo del club",
+    "atlas": "public/art/culture-atlas.webp",
+    "row": 1,
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "upgradable": true
+  },
+  {
+    "id": "competition",
+    "name": "Sede de competición",
+    "atlas": "public/art/culture-atlas.webp",
+    "row": 2,
+    "levels": [
+      3
+    ],
+    "upgradable": false
+  }
+]

@@ -2,15 +2,15 @@
 
 `src/game.css` contiene el sistema MONIGONES. `src/styles.css` conserva las reglas estructurales de las rutas existentes; los materiales y estados visuales nuevos las sustituyen mediante reglas explícitas. No se ha retirado una ruta para resolver un problema de estilo.
 
-| Token | Valor | Uso |
-|---|---|---|
-| Fondo | `#102540` | Mundo de interfaz y PWA |
-| Superficie | `#203854` | Paneles y contratos |
-| Metal | `#405573` | Borde y separación |
-| Oro | `#efc875` | Acción y progreso |
-| Texto | `#eaf0fb` | Lectura principal |
-| Secundario | `#a9bbd3` | Ayuda y contexto |
-| Carmesí | `#ff9891` | Coste, pérdida y error |
+| Token      | Valor     | Uso                     |
+| ---------- | --------- | ----------------------- |
+| Fondo      | `#102540` | Mundo de interfaz y PWA |
+| Superficie | `#203854` | Paneles y contratos     |
+| Metal      | `#405573` | Borde y separación      |
+| Oro        | `#efc875` | Acción y progreso       |
+| Texto      | `#eaf0fb` | Lectura principal       |
+| Secundario | `#a9bbd3` | Ayuda y contexto        |
+| Carmesí    | `#ff9891` | Coste, pérdida y error  |
 
 Los controles conservan las acciones `act()` del servidor: estado ocupado, bloqueo sin conexión, idempotencia y confirmación de respuesta. Botones con relieve y pulsación, pestañas empotradas, selects oscuros, barras con luz y cartelas numeradas. Estados disponibles, bloqueados, pendientes y completados tienen texto además de color.
 

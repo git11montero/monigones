@@ -8,11 +8,38 @@ async function login(page: Page) {
   await page.goto('/city');
   await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
 }
+async function snapshot(page: Page, options: Parameters<Page['screenshot']>[0]) {
+  await expect(page.locator('h1').first()).toBeVisible();
+  await expect(page.locator('.route-loading')).toHaveCount(0);
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await Promise.all([...document.images].map((img) => img.decode().catch(() => null)));
+    const sources = [
+      ...new Set(
+        [...document.querySelectorAll('svg image')]
+          .map((el) => el.getAttribute('href'))
+          .filter(Boolean),
+      ),
+    ];
+    await Promise.all(
+      sources.map(async (src) => {
+        const image = new Image();
+        image.src = src!;
+        await image.decode();
+      }),
+    );
+    await new Promise<void>((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+    );
+  });
+  return page.screenshot(options);
+}
 function fixture(info: TestInfo, mutate: (s: GameState) => void) {
   const path = info.config.metadata.testDatabase as string;
   if (!path.startsWith('/tmp/crown-e2e-'))
     throw Error('Se prohíbe modificar una base que no sea de pruebas.');
   const db = new DatabaseSync(path);
+  db.exec('PRAGMA busy_timeout=5000;BEGIN IMMEDIATE');
   try {
     const row = db.prepare('SELECT id,state FROM leagues LIMIT 1').get() as {
         id: string;
@@ -24,6 +51,10 @@ function fixture(info: TestInfo, mutate: (s: GameState) => void) {
       JSON.stringify(s),
       row.id,
     );
+    db.exec('COMMIT');
+  } catch (error) {
+    db.exec('ROLLBACK');
+    throw error;
   } finally {
     db.close();
   }
@@ -94,13 +125,13 @@ test('cinco niveles de arquitectura, estadio e instalaciones ilustradas', async 
       'data-level',
       String(level),
     );
-    await page.screenshot({ path: `${root}/ciudad-nivel-${level}.png`, scale: 'css' });
+    await snapshot(page, { path: `${root}/ciudad-nivel-${level}.png`, scale: 'css' });
     await page.goto('/building/stadium');
     await expect(page.locator('.building-showcase [data-building="stadium"]')).toHaveAttribute(
       'data-level',
       String(level),
     );
-    await page.screenshot({
+    await snapshot(page, {
       path: `${root}/estadio-nivel-${level}.png`,
       fullPage: true,
       scale: 'css',
@@ -109,7 +140,7 @@ test('cinco niveles de arquitectura, estadio e instalaciones ilustradas', async 
   await expect(page.locator('.facility-tile')).toHaveCount(12);
   await page.getByRole('button', { name: /Gradas Nv/ }).click();
   await expect(page.getByRole('dialog', { name: 'Gradas' })).toBeVisible();
-  await page.screenshot({ path: `${root}/instalacion-gradas.png`, fullPage: true, scale: 'css' });
+  await snapshot(page, { path: `${root}/instalacion-gradas.png`, fullPage: true, scale: 'css' });
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
@@ -126,9 +157,9 @@ test('obras reales: animación de construcción y evolución persistente', async
   await expect(page.getByText('Ampliación en curso')).toBeVisible();
   await page.goto('/city');
   await expect(page.locator('[data-building="hq"]')).toHaveClass(/constructing/);
-  await page.screenshot({ path: `${root}/construccion-ciudad.png`, scale: 'css' });
+  await snapshot(page, { path: `${root}/construccion-ciudad.png`, scale: 'css' });
   await page.goto('/building/hq');
-  await page.screenshot({ path: `${root}/detalle-construccion.png`, fullPage: true, scale: 'css' });
+  await snapshot(page, { path: `${root}/detalle-construccion.png`, fullPage: true, scale: 'css' });
   await page.goto('/settings');
   await page.getByRole('button', { name: 'Terminar obras e investigación' }).click();
   await page.goto('/city');
@@ -140,18 +171,18 @@ test('jornada: ambiente normal, inicio real, once, banquillo y cierre', async ({
   test.setTimeout(90000);
   await login(page);
   await expect(page.locator('.city-map')).toHaveAttribute('data-environment', 'normal');
-  await page.screenshot({ path: `${root}/estadio-dia-normal.png`, scale: 'css' });
+  await snapshot(page, { path: `${root}/estadio-dia-normal.png`, scale: 'css' });
   await page.goto('/settings');
   await page.getByRole('button', { name: 'Iniciar jornada', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Tiempo avanzado');
   await page.goto('/city');
   await expect(page.locator('.city-map')).toHaveAttribute('data-environment', 'matchday');
   await expect(page.locator('.building-live')).toHaveText(/EN JUEGO/);
-  await page.screenshot({ path: `${root}/estadio-dia-partido.png`, scale: 'css' });
+  await snapshot(page, { path: `${root}/estadio-dia-partido.png`, scale: 'css' });
   await page.goto('/matchday');
   await expect(page.locator('.matchday-stage')).toHaveAttribute('data-match-status', 'live');
   await expect(page.locator('.matchday-cards .sports-card')).toHaveCount(11);
-  await page.screenshot({
+  await snapshot(page, {
     path: `${root}/convocatoria-en-juego.png`,
     fullPage: true,
     scale: 'css',
@@ -167,7 +198,7 @@ test('jornada: ambiente normal, inicio real, once, banquillo y cierre', async ({
     index = options.findIndex((t) => t.includes('Liquidada'));
   await page.locator('select').first().selectOption({ index });
   await expect(page.getByRole('heading', { name: 'Los puntos, explicados' })).toBeVisible();
-  await page.screenshot({
+  await snapshot(page, {
     path: `${root}/informe-final-jornada.png`,
     fullPage: true,
     scale: 'css',
@@ -205,12 +236,12 @@ test('fotografías, emblemas asociados, cartas y alternativa ante error de red',
     );
   }
   await page.goto('/player/madrid-13');
-  await page.screenshot({ path: `${root}/ficha-mbappe.png`, fullPage: true, scale: 'css' });
-  await page.route('**/sports/madrid-13-mbappe.jpg', (route) => route.abort());
+  await snapshot(page, { path: `${root}/ficha-mbappe.png`, fullPage: true, scale: 'css' });
+  await page.route('**/sports/madrid-13-mbappe.webp', (route) => route.abort());
   await page.reload();
   await expect(page.locator('.sports-card [data-media="fallback"]')).toBeVisible();
   await expect(page.locator('.sports-card img')).toHaveCount(0);
-  await page.screenshot({ path: `${root}/retrato-alternativo.png`, fullPage: true, scale: 'css' });
+  await snapshot(page, { path: `${root}/retrato-alternativo.png`, fullPage: true, scale: 'css' });
 });
 test('investigaciones por capítulos: tres árboles, ramas y dependencias', async ({ page }) => {
   await login(page);
@@ -272,9 +303,9 @@ test('auditoría de todas las rutas, imágenes sin romper y vertical en móvil y
 }) => {
   test.setTimeout(180000);
   await page.goto('/');
-  await page.screenshot({ path: `${root}/acceso.png`, fullPage: true, scale: 'css' });
+  await snapshot(page, { path: `${root}/acceso.png`, fullPage: true, scale: 'css' });
   await page.getByRole('button', { name: 'Crear cuenta', exact: true }).click();
-  await page.screenshot({ path: `${root}/registro.png`, fullPage: true, scale: 'css' });
+  await snapshot(page, { path: `${root}/registro.png`, fullPage: true, scale: 'css' });
   await login(page);
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -325,7 +356,7 @@ test('auditoría de todas las rutas, imágenes sin romper y vertical en móvil y
       ),
       route,
     ).toEqual([]);
-    await page.screenshot({
+    await snapshot(page, {
       path: `${root}/routes/${route.replaceAll('/', '-')}.png`,
       fullPage: true,
       scale: 'css',
@@ -340,7 +371,7 @@ test('auditoría de todas las rutas, imágenes sin romper y vertical en móvil y
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto('/city');
   await expect(page.locator('.phone-shell')).toHaveCSS('max-width', '460px');
-  await page.screenshot({ path: `${root}/ciudad-desktop.png`, fullPage: true, scale: 'css' });
+  await snapshot(page, { path: `${root}/ciudad-desktop.png`, fullPage: true, scale: 'css' });
   await page.setViewportSize({ width: 320, height: 740 });
   await page.goto('/market');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -362,7 +393,7 @@ test('Safari WebKit y Chrome Android: acceso, ciudad, cámara y fotos', async ({
     expect(Number(await page.locator('.city-map').getAttribute('data-zoom'))).toBeGreaterThan(0.43);
     await page.goto('/player/madrid-13');
     await expect(page.locator('.sports-card img')).toBeVisible();
-    await page.screenshot({ path: `${root}/safari-webkit.png`, fullPage: true, scale: 'css' });
+    await snapshot(page, { path: `${root}/safari-webkit.png`, fullPage: true, scale: 'css' });
     await context.close();
   } finally {
     await engine.close();
@@ -376,11 +407,33 @@ test('Safari WebKit y Chrome Android: acceso, ciudad, cámara y fotos', async ({
     await login(page);
     await page.getByRole('button', { name: 'Vista general' }).tap();
     await expect(page.locator('.city-map')).toHaveAttribute('data-zoom', '0.27');
-    await page.screenshot({ path: `${root}/chrome-android.png`, fullPage: true, scale: 'css' });
+    await snapshot(page, { path: `${root}/chrome-android.png`, fullPage: true, scale: 'css' });
   } finally {
     await android.close();
   }
 });
-test('patrocinio y concierto conservan contratos reales y su ambiente',async({page},info)=>{
- await login(page);fixture(info,s=>{const c=s.clubs.find(c=>c.userId==='demo1')!;c.buildings.stadium=5;c.modules=[...new Set([...c.modules,'concerts'])];c.resources.money=10_000_000_000;s.sponsors=s.sponsors.filter(d=>d.clubId!==c.id);s.concerts=s.concerts.filter(d=>d.clubId!==c.id);});await page.goto('/marketing');await page.getByRole('button',{name:'Firmar acuerdo',exact:true}).first().click();await expect(page.getByRole('status')).toContainText('Contrato publicitario firmado');let data=await(await page.request.get('/api/state')).json();expect(data.state.sponsors.some((s:any)=>s.clubId===data.clubId)).toBe(true);await page.screenshot({path:`${root}/patrocinio-firmado.png`,fullPage:true,scale:'css'});await page.goto('/concerts');await page.getByRole('button',{name:'Cerrar la fecha'}).first().click();await expect(page.getByRole('status')).toContainText('Concierto contratado');data=await(await page.request.get('/api/state')).json();expect(data.state.concerts.some((s:any)=>s.clubId===data.clubId)).toBe(true);await page.screenshot({path:`${root}/concierto-contratado.png`,fullPage:true,scale:'css'});await page.goto('/city');await expect(page.locator('.city-map')).toHaveAttribute('data-environment','concert');
+test('patrocinio y concierto conservan contratos reales y su ambiente', async ({ page }, info) => {
+  await login(page);
+  fixture(info, (s) => {
+    const c = s.clubs.find((c) => c.userId === 'demo1')!;
+    c.buildings.stadium = 5;
+    c.modules = [...new Set([...c.modules, 'concerts'])];
+    c.resources.money = 10_000_000_000;
+    s.sponsors = s.sponsors.filter((d) => d.clubId !== c.id);
+    s.concerts = s.concerts.filter((d) => d.clubId !== c.id);
+  });
+  await page.goto('/marketing');
+  await page.getByRole('button', { name: 'Firmar acuerdo', exact: true }).first().click();
+  await expect(page.getByRole('status')).toContainText('Contrato publicitario firmado');
+  let data = await (await page.request.get('/api/state')).json();
+  expect(data.state.sponsors.some((s: any) => s.clubId === data.clubId)).toBe(true);
+  await snapshot(page, { path: `${root}/patrocinio-firmado.png`, fullPage: true, scale: 'css' });
+  await page.goto('/concerts');
+  await page.getByRole('button', { name: 'Cerrar la fecha' }).first().click();
+  await expect(page.getByRole('status')).toContainText('Concierto contratado');
+  data = await (await page.request.get('/api/state')).json();
+  expect(data.state.concerts.some((s: any) => s.clubId === data.clubId)).toBe(true);
+  await snapshot(page, { path: `${root}/concierto-contratado.png`, fullPage: true, scale: 'css' });
+  await page.goto('/city');
+  await expect(page.locator('.city-map')).toHaveAttribute('data-environment', 'concert');
 });

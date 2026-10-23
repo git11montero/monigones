@@ -1,0 +1,37 @@
+[
+  {
+    "route": "finance",
+    "colors": {
+      "color": "rgb(234, 240, 251)",
+      "background": "rgba(0, 0, 0, 0)",
+      "image": "linear-gradient(rgb(58, 82, 108), rgb(33, 59, 86))"
+    }
+  },
+  {
+    "route": "more",
+    "colors": {
+      "color": "rgb(243, 223, 178)",
+      "background": "rgba(0, 0, 0, 0)",
+      "image": "none"
+    }
+  },
+  {
+    "route": "newspaper",
+    "colors": {
+      "color": "rgb(227, 237, 249)",
+      "background": "rgb(23, 47, 73)",
+      "image": "none"
+    }
+  },
+  {
+    "route": "player/madrid-13",
+    "colors": {
+      "color": "rgb(248, 230, 188)",
+      "background": "rgba(0, 0, 0, 0)",
+      "image": "none"
+    }
+  },
+  {
+    "errors": []
+  }
+]

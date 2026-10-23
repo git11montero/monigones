@@ -32,8 +32,8 @@ export function NewspaperPage() {
   const editions = [...new Set(state.news.map((n) => dayKey(n.at)))].sort().reverse();
   const [edition, setEdition] = useState(editions[0]),
     [category, setCategory] = useState('Todo'),
-    [articleId,setArticleId]=useState<string|null>(null);
-  const article=state.news.find(n=>n.id===articleId);
+    [articleId, setArticleId] = useState<string | null>(null);
+  const article = state.news.find((n) => n.id === articleId);
   const stories = state.news
     .filter((n) => dayKey(n.at) === edition && (category === 'Todo' || n.category === category))
     .toReversed();
@@ -76,7 +76,11 @@ export function NewspaperPage() {
         <>
           <article className="lead-story">
             <span className="news-category">{lead.category.toUpperCase()} / LA PORTADA</span>
-            <h2><button className="article-title" onClick={()=>setArticleId(lead.id)}>{lead.title}</button></h2>
+            <h2>
+              <button className="article-title" onClick={() => setArticleId(lead.id)}>
+                {lead.title}
+              </button>
+            </h2>
             <p className="lead-subtitle">{lead.subtitle}</p>
             <div className="editorial-illustration">
               <img
@@ -100,7 +104,11 @@ export function NewspaperPage() {
           {stories.slice(1).map((n) => (
             <article className="newspaper-story" key={n.id}>
               <span className="news-category">{n.category}</span>
-              <h3><button className="article-title" onClick={()=>setArticleId(n.id)}>{n.title}</button></h3>
+              <h3>
+                <button className="article-title" onClick={() => setArticleId(n.id)}>
+                  {n.title}
+                </button>
+              </h3>
               <p>{n.subtitle}</p>
               <small>
                 {new Date(n.at).toLocaleTimeString('es-ES', {
@@ -121,8 +129,69 @@ export function NewspaperPage() {
       ) : (
         <Empty title="Esta sección aún no tiene noticias" />
       )}
-      <aside className="editorial-opinion"><svg viewBox="0 0 768 341.333" role="img" aria-label="Redacción ilustrada de El Balonazo con periodistas ficticios"><image href="/art/interiors-atlas.webp" x="0" y={-2*341.333} width="1536" height="1024"/></svg><div><span className="news-category">OPINIÓN SATÍRICA · LA REDACCIÓN</span><h3>El proyecto a largo plazo</h3><p>En el fútbol, un proyecto a largo plazo dura exactamente hasta el próximo cierre de mercado. Lo demás son ruedas de prensa.</p><small>Columna de ficción. No representa un acontecimiento de la partida.</small></div></aside>
-      {article&&<div className="modal-backdrop" onClick={()=>setArticleId(null)}><article className="modal newspaper-article" role="dialog" aria-modal="true" aria-label={article.title} onClick={e=>e.stopPropagation()}><button className="modal-close" aria-label="Cerrar artículo" onClick={()=>setArticleId(null)}><X size={20}/></button><Badge kind="gold">{article.category}</Badge><h2>{article.title}</h2><p>{article.subtitle}</p><p className="hint">La Redacción · {new Date(article.at).toLocaleString('es-ES',{timeZone:'Europe/Madrid'})}</p>{article.clubId&&<Link className="button secondary" to={`/museum/${article.clubId}`} onClick={()=>setArticleId(null)}>El club protagonista →</Link>}<p className="source-note">Esta noticia procede del registro de acontecimientos de tu liga. Las identidades institucionales y la prensa del juego son de ficción.</p></article></div>}
+      <aside className="editorial-opinion">
+        <svg
+          viewBox="0 0 768 341.333"
+          role="img"
+          aria-label="Redacción ilustrada de El Balonazo con periodistas ficticios"
+        >
+          <image
+            href="/art/interiors-atlas.webp"
+            x="0"
+            y={-2 * 341.333}
+            width="1536"
+            height="1024"
+          />
+        </svg>
+        <div>
+          <span className="news-category">OPINIÓN SATÍRICA · LA REDACCIÓN</span>
+          <h3>El proyecto a largo plazo</h3>
+          <p>
+            En el fútbol, un proyecto a largo plazo dura exactamente hasta el próximo cierre de
+            mercado. Lo demás son ruedas de prensa.
+          </p>
+          <small>Columna de ficción. No representa un acontecimiento de la partida.</small>
+        </div>
+      </aside>
+      {article && (
+        <div className="modal-backdrop" onClick={() => setArticleId(null)}>
+          <article
+            className="modal newspaper-article"
+            role="dialog"
+            aria-modal="true"
+            aria-label={article.title}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              aria-label="Cerrar artículo"
+              onClick={() => setArticleId(null)}
+            >
+              <X size={20} />
+            </button>
+            <Badge kind="gold">{article.category}</Badge>
+            <h2>{article.title}</h2>
+            <p>{article.subtitle}</p>
+            <p className="hint">
+              La Redacción ·{' '}
+              {new Date(article.at).toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
+            </p>
+            {article.clubId && (
+              <Link
+                className="button secondary"
+                to={`/museum/${article.clubId}`}
+                onClick={() => setArticleId(null)}
+              >
+                El club protagonista →
+              </Link>
+            )}
+            <p className="source-note">
+              Esta noticia procede del registro de acontecimientos de tu liga. Las identidades
+              institucionales y la prensa del juego son de ficción.
+            </p>
+          </article>
+        </div>
+      )}
       <footer className="newspaper-bottom">
         Todos los artículos nacen del registro de esta partida.
         <br />

@@ -136,7 +136,7 @@ export default function SquadPage() {
               <strong>{shortMoney(sel.locked ? sel.cost : cost)}</strong>
             </div>
             <Badge kind={sel.locked ? 'gold' : 'green'}>
-              {sel.locked ? 'CONGELADA' : 'GUARDADO EN SERVIDOR'}
+              {sel.locked ? 'CONGELADA' : 'ONCE GUARDADO'}
             </Badge>
           </div>
           <div className="info-note">

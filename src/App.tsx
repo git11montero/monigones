@@ -192,7 +192,7 @@ export default function App() {
         <div className="empty-state">
           <Crest size={60} />
           <h2>Tu club necesita conectar</h2>
-          <p>Comprueba que el servidor esté arrancado con npm run dev.</p>
+          <p>Revisa tu conexión e inténtalo de nuevo.</p>
           <button className="button" onClick={() => void session.refetch()}>
             Reconectar
           </button>

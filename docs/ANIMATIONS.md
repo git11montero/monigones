@@ -1,25 +1,25 @@
 # Animaciones y acontecimientos
 
-| Disparador | Respuesta | Fuente |
-|---|---|---|
-| Pulsar | Descenso del botón y efecto breve | Interacción real |
-| Abrir ventana | Deslizamiento desde el borde inferior y foco | Diálogo existente |
-| Cambiar ruta | Entrada lateral corta | Router |
-| Carta seleccionada | Elevación y reflejo | Foco/hover de la carta |
-| Nueva contratación | Cartela y fanfarria | Contrato nuevo recibido del servidor |
-| Comenzar obra | Grúa, barrera, herramienta y cartel de tiempo | `state.jobs` |
-| Terminar obra | Salto de recompensa y arquitectura nueva | Trabajo desaparecido + nivel aumentado |
-| Terminar investigación | Destello violeta y motivo ascendente | Investigación aumentada |
-| Recompensa | Partículas y cartela | `act()` confirmado |
-| Ganar/perder recursos | Cifra flotante positiva/negativa | Diferencia de recursos recibidos |
-| Inicio de jornada | Cartela, focos y aficionados | Estado de jornada recibido |
-| Gol | Golpe de escala y celebración | Aumento de goles del proveedor |
-| Cambio manual | Entrada lateral | Acción confirmada |
-| Final de jornada | Notificación de informe | Jornada liquidada |
-| Ganar jornada | Celebración | Nuevo trofeo de ganador del servidor |
-| Escándalo | Sacudida carmesí | Nueva noticia de Escándalos |
-| Patrocinio | Cartela de firma | Contrato confirmado |
-| Concierto | Cartela violeta y contexto musical | Contrato confirmado |
+| Disparador             | Respuesta                                     | Fuente                                 |
+| ---------------------- | --------------------------------------------- | -------------------------------------- |
+| Pulsar                 | Descenso del botón y efecto breve             | Interacción real                       |
+| Abrir ventana          | Deslizamiento desde el borde inferior y foco  | Diálogo existente                      |
+| Cambiar ruta           | Entrada lateral corta                         | Router                                 |
+| Carta seleccionada     | Elevación y reflejo                           | Foco/hover de la carta                 |
+| Nueva contratación     | Cartela y fanfarria                           | Contrato nuevo recibido del servidor   |
+| Comenzar obra          | Grúa, barrera, herramienta y cartel de tiempo | `state.jobs`                           |
+| Terminar obra          | Salto de recompensa y arquitectura nueva      | Trabajo desaparecido + nivel aumentado |
+| Terminar investigación | Destello violeta y motivo ascendente          | Investigación aumentada                |
+| Recompensa             | Partículas y cartela                          | `act()` confirmado                     |
+| Ganar/perder recursos  | Cifra flotante positiva/negativa              | Diferencia de recursos recibidos       |
+| Inicio de jornada      | Cartela, focos y aficionados                  | Estado de jornada recibido             |
+| Gol                    | Golpe de escala y celebración                 | Aumento de goles del proveedor         |
+| Cambio manual          | Entrada lateral                               | Acción confirmada                      |
+| Final de jornada       | Notificación de informe                       | Jornada liquidada                      |
+| Ganar jornada          | Celebración                                   | Nuevo trofeo de ganador del servidor   |
+| Escándalo              | Sacudida carmesí                              | Nueva noticia de Escándalos            |
+| Patrocinio             | Cartela de firma                              | Contrato confirmado                    |
+| Concierto              | Cartela violeta y contexto musical            | Contrato confirmado                    |
 
 Las animaciones ambientales incluyen caminantes, aficionados adicionales, vehículo de servicio o autobús según el nivel del estadio, balón de entrenamiento, bandera de sede, iluminación de marketing y órbita de investigación. La cantidad de trabajadores y visitantes crece con el nivel. Son ambientación visual, no agentes que generen ingresos adicionales.
 

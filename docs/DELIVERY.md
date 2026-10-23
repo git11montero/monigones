@@ -1,3 +1,5 @@
+> Documento de la entrega inicial v0.1. Para el rediseño MONIGONES consulta [REDESIGN_AUDIT.md](REDESIGN_AUDIT.md), [BUILDING_ASSETS.md](BUILDING_ASSETS.md) y [SPORTS_ASSETS.md](SPORTS_ASSETS.md).
+
 # Entrega de CROWN XI
 
 **23 de octubre de 2026 · versión 0.1.0**

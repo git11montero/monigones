@@ -26,6 +26,18 @@ export default defineConfig({
       workbox: {
         clientsClaim: true,
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        globIgnores: ['sports/**'],
+        runtimeCaching: [
+          {
+            urlPattern: /\/sports\/.*\.(?:jpg|jpeg|png|webp)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'monigones-sports-v1',
+              expiration: { maxEntries: 180, maxAgeSeconds: 14 * 24 * 3600 },
+              cacheableResponse: { statuses: [200] },
+            },
+          },
+        ],
         dontCacheBustURLsMatching: /-[a-zA-Z0-9_-]{8}\.(js|css)$/,
         navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/api\//],

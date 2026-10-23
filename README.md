@@ -1,8 +1,16 @@
-# CROWN XI
+# MONIGONES
 
-**Construye tu club. Domina la liga.**
+**Construye tu club. Conquista la liga.**
 
 Juego de gestión de fútbol con PWA vertical, ciudad deportiva, fantasy privado y servidor local persistente. Este repositorio implementa una partida multijugador local real; calendarios, resultados y economía deportiva se simulan. La integración completa de persistencia con Supabase todavía es una tarea pendiente: no basta con poner sus claves para sustituir SQLite.
+
+## Rediseño 0.2
+
+Ciudad isométrica con cámara libre, arrastre y pellizco, cinco arquitecturas para cada uno de los trece edificios mejorables, doce instalaciones ilustradas, interiores de departamentos, cartas de futbolistas, periódico deportivo y música/efectos originales. La columna sigue siendo vertical también en escritorio. En Ajustes puedes controlar audio, volumen, movimiento y calidad gráfica; la música comienza después de un gesto.
+
+[Auditoría y límites](docs/REDESIGN_AUDIT.md) · [Guía de arte](docs/ART_DIRECTION.md) · [Capturas del juego](docs/screenshots/redesign/index.html) · [Galería de edificios](docs/building-gallery.html) · [Cobertura de pantallas](docs/SCREEN_COVERAGE.md) · [Pruebas del rediseño](docs/REDESIGN_TESTING.md).
+
+Recursos deportivos: seis fotografías autorizadas de 390 identidades reales, 384 pendientes, 110 retratos ficticios y veinte emblemas alternativos ALT. Los escudos oficiales están pendientes de autorización. Créditos dentro del juego en Ajustes → Fotografías, emblemas y créditos, y en [SPORTS_ASSETS.md](docs/SPORTS_ASSETS.md). No se afirma cobertura completa ni resultados deportivos reales.
 
 ## Arrancar
 
@@ -37,6 +45,7 @@ Con Real Corona, abre **Mi club → Ajustes y administración → Laboratorio de
 ## Comandos
 
 ```sh
+npm run sports:assets
 npm run check
 npm run lint
 npm test
@@ -48,7 +57,7 @@ npm run sports:validate -- data/import-example.json
 npm run format
 ```
 
-`test:e2e` necesita Chromium de Playwright (`npx playwright install chromium` si no existe). Usa servidores aislados en 5174, 3101 y 3102 y bases de prueba en `/tmp`; no toca tu partida. Ejecuta `npm run build` antes de las pruebas PWA. `simulate` recorre 38 jornadas en tres escenarios y escribe `docs/simulation-results.json`.
+`test:e2e` necesita Chromium de Playwright (`npx playwright install chromium webkit` si no existe). Usa servidores aislados en 5174, 3101 y 3102 y bases de prueba en `/tmp`; no toca tu partida. Ejecuta `npm run build` antes de las pruebas PWA. `simulate` recorre 38 jornadas en tres escenarios y escribe `docs/simulation-results.json`.
 
 Para probar el artefacto PWA de producción local:
 

@@ -128,7 +128,10 @@ export function PhotoCredit({ player }: { player: Player }) {
       <a href={photo.licenseUrl} target="_blank" rel="noreferrer">
         {photo.license}
       </a>{' '}
-      · Archivo sin modificar; encuadre de presentación.
+      ·{' '}
+      {photo.modified
+        ? 'Copia optimizada en tamaño y formato; encuadre de presentación.'
+        : 'Archivo sin modificar; encuadre de presentación.'}
     </p>
   ) : (
     <p className="photo-credit">

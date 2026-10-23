@@ -192,7 +192,12 @@ export function Experience() {
     previous = useRef(state),
     [feedback, setFeedback] = useState<{ kind: Sound; title?: string; key: number } | null>(null),
     [preferences, setPreferences] = useState(readPreferences),
-    [deltas,setDeltas] = useState<{money:number;development:number;medals:number;key:number}|null>(null);
+    [deltas, setDeltas] = useState<{
+      money: number;
+      development: number;
+      medals: number;
+      key: number;
+    } | null>(null);
   const mode = cityEnvironment(state, club).mode;
   useEffect(() => {
     audioManager.setMode(mode === 'normal' ? 'city' : mode);
@@ -235,19 +240,44 @@ export function Experience() {
     const t = setTimeout(() => setFeedback(null), 2400);
     return () => clearTimeout(t);
   }, [feedback]);
-  useEffect(()=>{if(!deltas)return;const t=setTimeout(()=>setDeltas(null),2100);return()=>clearTimeout(t);},[deltas]);
+  useEffect(() => {
+    if (!deltas) return;
+    const t = setTimeout(() => setDeltas(null), 2100);
+    return () => clearTimeout(t);
+  }, [deltas]);
   useEffect(() => {
     const prev = previous.current;
     previous.current = state;
     if (!online || prev.id !== state.id) return;
     const prevClub = prev.clubs.find((c) => c.id === club.id);
     if (!prevClub) return;
-    const money=club.resources.money-prevClub.resources.money, development=club.resources.development-prevClub.resources.development, medals=club.resources.medals-prevClub.resources.medals;
-    if(money||development||medals)setDeltas({money,development,medals,key:Date.now()});
-    const signing=state.contracts.find(ct=>ct.clubId===club.id&&!prev.contracts.some(old=>old.playerId===ct.playerId&&old.clubId===club.id));
-    if(signing){audioManager.play('transfer');setFeedback({kind:'transfer',title:`¡${state.players.find(p=>p.id===signing.playerId)?.name} ya es de tu club!`,key:Date.now()});}
-    const scandal=state.news.find(n=>n.clubId===club.id&&n.category==='Escándalos'&&!prev.news.some(o=>o.id===n.id));
-    if(scandal){audioManager.play('scandal');setFeedback({kind:'scandal',title:scandal.title,key:Date.now()});}
+    const money = club.resources.money - prevClub.resources.money,
+      development = club.resources.development - prevClub.resources.development,
+      medals = club.resources.medals - prevClub.resources.medals;
+    if (money || development || medals) setDeltas({ money, development, medals, key: Date.now() });
+    const signing = state.contracts.find(
+      (ct) =>
+        ct.clubId === club.id &&
+        !prev.contracts.some((old) => old.playerId === ct.playerId && old.clubId === club.id),
+    );
+    if (signing) {
+      audioManager.play('transfer');
+      setFeedback({
+        kind: 'transfer',
+        title: `¡${state.players.find((p) => p.id === signing.playerId)?.name} ya es de tu club!`,
+        key: Date.now(),
+      });
+    }
+    const scandal = state.news.find(
+      (n) =>
+        n.clubId === club.id &&
+        n.category === 'Escándalos' &&
+        !prev.news.some((o) => o.id === n.id),
+    );
+    if (scandal) {
+      audioManager.play('scandal');
+      setFeedback({ kind: 'scandal', title: scandal.title, key: Date.now() });
+    }
 
     const complete = prev.jobs.filter(
       (j) =>
@@ -285,8 +315,17 @@ export function Experience() {
       (r) => r.settled && !prev.rounds.find((o) => o.number === r.number)?.settled,
     );
     if (settled) {
-      const ranking=state.clubs.toSorted((a,b)=>(settled.reports[b.id]?.points||0)-(settled.reports[a.id]?.points||0)||a.id.localeCompare(b.id));
-      const won=club.trophies.some(t=>!prevClub.trophies.some(o=>o.id===t.id)&&t.title===`Ganador de la jornada ${settled.number}`), kind:Sound=won?'victory':ranking.at(-1)?.id===club.id?'defeat':'notification';
+      const ranking = state.clubs.toSorted(
+        (a, b) =>
+          (settled.reports[b.id]?.points || 0) - (settled.reports[a.id]?.points || 0) ||
+          a.id.localeCompare(b.id),
+      );
+      const won = club.trophies.some(
+          (t) =>
+            !prevClub.trophies.some((o) => o.id === t.id) &&
+            t.title === `Ganador de la jornada ${settled.number}`,
+        ),
+        kind: Sound = won ? 'victory' : ranking.at(-1)?.id === club.id ? 'defeat' : 'notification';
       audioManager.play(kind);
       setFeedback({
         kind,
@@ -298,7 +337,28 @@ export function Experience() {
   return (
     <>
       <span className="route-announcer" key={location.pathname} />
-      {deltas&&<div key={deltas.key} className="resource-deltas" aria-live="polite">{deltas.money!==0&&<span className={deltas.money>0?'gain':'loss'}>{deltas.money>0?'+':''}{shortMoney(deltas.money)}</span>}{deltas.development!==0&&<span className={deltas.development>0?'gain':'loss'}>{deltas.development>0?'+':''}{deltas.development} PD</span>}{deltas.medals!==0&&<span className={deltas.medals>0?'gain':'loss'}>{deltas.medals>0?'+':''}{deltas.medals} medallas</span>}</div>}
+      {deltas && (
+        <div key={deltas.key} className="resource-deltas" aria-live="polite">
+          {deltas.money !== 0 && (
+            <span className={deltas.money > 0 ? 'gain' : 'loss'}>
+              {deltas.money > 0 ? '+' : ''}
+              {shortMoney(deltas.money)}
+            </span>
+          )}
+          {deltas.development !== 0 && (
+            <span className={deltas.development > 0 ? 'gain' : 'loss'}>
+              {deltas.development > 0 ? '+' : ''}
+              {deltas.development} PD
+            </span>
+          )}
+          {deltas.medals !== 0 && (
+            <span className={deltas.medals > 0 ? 'gain' : 'loss'}>
+              {deltas.medals > 0 ? '+' : ''}
+              {deltas.medals} medallas
+            </span>
+          )}
+        </div>
+      )}
       {feedback && (
         <div
           key={feedback.key}
