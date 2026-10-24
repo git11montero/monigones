@@ -1,3 +1,4 @@
+import { AttentionBadge } from '../components/Attention';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Flag, Gift, Hammer, Newspaper, Trophy, X } from 'lucide-react';
 import { useState } from 'react';
@@ -14,8 +15,8 @@ export default function CityPage() {
     <div className="city-page">
       <div className="city-command">
         <div>
-          <span className="eyebrow">TU REINO DEL FÚTBOL</span>
-          <h1>Un club. Una corona.</h1>
+          <span className="eyebrow">TU CIUDAD DEPORTIVA</span>
+          <h1>Tu club. Tu afición.</h1>
         </div>
         <Link to="/league" className="season-seal">
           <Trophy size={18} />
@@ -26,6 +27,7 @@ export default function CityPage() {
       <div className="city-shortcuts">
         <Link to="/daily" aria-label="Actividades y recompensas">
           <Gift />
+          <AttentionBadge to="/daily" />
           <span>
             Actividades<small>{club.dailyDone.length}/3</small>
           </span>
@@ -33,9 +35,11 @@ export default function CityPage() {
         <Link to="/events" aria-label="Eventos de liga">
           <Trophy />
           <span>Eventos</span>
+          <AttentionBadge to="/events" />
         </Link>
         <Link to="/newspaper" aria-label="Leer el periódico">
           <Newspaper />
+          <AttentionBadge to="/newspaper" />
           <span>El Balonazo</span>
         </Link>
         <button onClick={() => setJobs(!jobs)} aria-expanded={jobs}>

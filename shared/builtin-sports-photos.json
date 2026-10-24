@@ -88,5 +88,20 @@
     "height": 737,
     "modified": true,
     "originalFile": "assets-source/photos/madrid-14-vinicius.jpg"
+  },
+  {
+    "playerId": "barcelona-10",
+    "identity": "Pedri",
+    "season": "2026/27",
+    "file": "/sports/barcelona-10-pedri.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:Pedri_France_v_Spain_7.24.26-226.jpg",
+    "author": "Bryan Berlin / WikiPortraits",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "verifiedAt": "2026-10-23",
+    "width": 512,
+    "height": 769,
+    "modified": true,
+    "originalFile": "assets-source/photos/barcelona-10-pedri.jpg"
   }
 ]

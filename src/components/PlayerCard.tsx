@@ -34,7 +34,7 @@ export function PlayerCard({
       <div className="sports-card-info">
         <span>
           <b>{shortMoney(player.value)}</b>
-          <small>VM SIMULADO</small>
+          <small>VALOR DE MERCADO</small>
         </span>
         <span>
           <b>
@@ -44,7 +44,7 @@ export function PlayerCard({
                 : (points / 100).toFixed(2)
               : `${happiness}%`}
           </b>
-          <small>{happiness === undefined ? 'PUNTOS SIMULADOS' : 'FELICIDAD'}</small>
+          <small>{happiness === undefined ? 'PUNTOS' : 'FELICIDAD'}</small>
         </span>
       </div>
       <div className="sports-card-status">

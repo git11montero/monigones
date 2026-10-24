@@ -5,7 +5,7 @@ import {
   ArrowRight,
   Check,
   Clock3,
-  Crown,
+  Shield,
   LockKeyhole,
   type LucideIcon,
 } from 'lucide-react';
@@ -212,11 +212,6 @@ export function PlayerRow({
             <b className={`position ${player.position}`}>{player.position}</b>
             <ClubBadge clubId={player.realClubId} size={17} />
             <span>{clubById(player.realClubId).short}</span>
-            {player.simulated && (
-              <span className="sim-dot" title="Futbolista ficticio">
-                SIM
-              </span>
-            )}
           </div>
         </div>
       </Link>
@@ -232,7 +227,13 @@ export function Confirm({
   children,
   onConfirm,
   onClose,
+  confirmLabel = 'Confirmar',
+  cancelLabel = 'Volver',
+  closeOnConfirm = true,
 }: {
+  closeOnConfirm?: boolean;
+  confirmLabel?: string;
+  cancelLabel?: string;
   title: string;
   children: ReactNode;
   onConfirm: () => void;
@@ -251,16 +252,16 @@ export function Confirm({
         <h2>{title}</h2>
         {children}
         <div className="button-row">
-          <Button variant="secondary" onClick={onClose}>
-            Cancelar
+          <Button variant="secondary" className="modal-close-action" onClick={onClose}>
+            {cancelLabel}
           </Button>
           <Button
             onClick={() => {
               onConfirm();
-              onClose();
+              if (closeOnConfirm) onClose();
             }}
           >
-            Confirmar
+            {confirmLabel}
           </Button>
         </div>
       </section>
@@ -270,7 +271,7 @@ export function Confirm({
 export function Stat({
   label,
   value,
-  icon: Icon = Crown,
+  icon: Icon = Shield,
 }: {
   label: string;
   value: ReactNode;

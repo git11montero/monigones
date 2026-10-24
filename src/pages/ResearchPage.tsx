@@ -1,7 +1,12 @@
+import { EFFECT_LABELS, RESEARCH_STORIES, researchDetails } from '../../shared/research-guide';
+import { ResourceAmount } from '../components/ResourceVisibility';
+import { AttentionBadge } from '../components/Attention';
+import { effects } from '../../shared/engine';
+import { HOUR, MODULES } from '../../shared/config';
 import { BuildingArt } from '../components/City';
 import { useState } from 'react';
-import { Check, FlaskConical, LockKeyhole, X } from 'lucide-react';
-import { RESEARCH, BUILDINGS } from '../../shared/config';
+import { FlaskConical, LockKeyhole, X } from 'lucide-react';
+import { RESEARCH, BUILDINGS, RULES } from '../../shared/config';
 import { jobQuote } from '../../shared/engine';
 import { shortMoney } from '../../shared/math';
 import type { ResearchDef, Tree } from '../../shared/types';
@@ -12,27 +17,7 @@ const branches: Record<Tree, string[]> = {
   Competición: ['Rendimiento', 'Plantilla', 'Preparación'],
   Relaciones: ['Comunicación', 'Afición', 'Influencia'],
 };
-const effectText: Record<string, string> = {
-  salary: 'Reducción salarial (puntos básicos)',
-  sale: 'Mejora venta (puntos básicos)',
-  sport: 'Bonificación deportiva (puntos básicos)',
-  sponsor: 'Rendimiento comercial (puntos básicos)',
-  construction: 'Reducción de tiempo (puntos básicos)',
-  secondQueue: 'Segunda cola de construcción',
-  manual: 'Cambios manuales',
-  quality: 'Nivel de calidad',
-  fameCap: 'Ampliación de límite de fama',
-  prestigeCap: 'Ampliación de límite de prestigio',
-  luck: 'Suerte',
-  fans: 'Satisfacción',
-  happiness: 'Felicidad adicional',
-  maintenance: 'Ahorro operativo (puntos básicos)',
-  wish: 'Plazas de deseados',
-  wishDiscount: 'Devolución de VM (puntos básicos)',
-  concerts: 'Acceso a módulo de conciertos',
-  custom: 'Personalización del escudo',
-  kits: 'Equipaciones especiales',
-};
+const effectText = EFFECT_LABELS;
 export default function ResearchPage() {
   const { club, state, act } = useGame();
   const [tree, setTree] = useState<Tree>('Finanzas'),
@@ -54,6 +39,7 @@ export default function ResearchPage() {
     setBranch(r.branch);
     setSelected(r);
   };
+  const guide = selected ? researchDetails(club, selected) : undefined;
   return (
     <>
       <PageTitle
@@ -62,7 +48,8 @@ export default function ResearchPage() {
         subtitle={`${done} de ${RESEARCH.length} tecnologías desarrolladas. Una investigación simultánea.`}
       />
       <div className="research-summary">
-        <span className="icon-badge gold">
+        <span className="icon-badge gold" style={{ position: 'relative' }}>
+          <AttentionBadge to="/research" />
           <FlaskConical size={24} />
         </span>
         <div>
@@ -73,7 +60,10 @@ export default function ResearchPage() {
             {active ? (
               <Countdown to={active.endsAt} now={state.now} />
             ) : (
-              `${club.resources.development} PD · Centro Nv. ${club.buildings.research}`
+              <>
+                <ResourceAmount>{club.resources.development}</ResourceAmount> PD · Centro Nv.{' '}
+                {club.buildings.research}
+              </>
             )}
           </p>
         </div>
@@ -142,7 +132,7 @@ export default function ResearchPage() {
                   </span>
                   <span className="research-copy">
                     <b>{r.name}</b>
-                    <small>{r.description}</small>
+                    <small>{RESEARCH_STORIES[r.id]}</small>
                     <span className="research-state">
                       {isActive
                         ? 'EN CURSO'
@@ -196,17 +186,64 @@ export default function ResearchPage() {
                 level={Math.min(5, selected.row + 1)}
               />
             </div>
-            <p>{selected.description}</p>
-            <ul className="effect-list">
-              {Object.entries(selected.effects).map(([key, v]) => (
-                <li key={key}>
-                  <Check size={14} />
-                  <span>
-                    {effectText[key]}: <b>+{v}</b> por nivel
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <p>{RESEARCH_STORIES[selected.id]}</p>
+            <p>
+              Nivel {guide!.level} / {selected.maxLevel}
+            </p>
+            {guide!.pending && <Badge>EFECTO AVANZADO PENDIENTE</Badge>}
+            {guide!.entries.map((entry) => (
+              <section key={entry.key}>
+                <h3>{entry.label}</h3>
+                <div className="research-effects-grid">
+                  <div>
+                    <small>Acumulado activo del club</small>
+                    <strong>{entry.current}</strong>
+                  </div>
+                  <div>
+                    <small>Después de mejorar</small>
+                    <strong>{entry.next}</strong>
+                  </div>
+                </div>
+                <p className="hint">
+                  Aporte propio por nivel: {entry.perLevel}. Aporte investigado:{' '}
+                  {entry.contribution}. Límite global: {entry.cap}.
+                </p>
+              </section>
+            ))}
+            {!guide!.entries.length && (
+              <p>Requisito de progresión. No concede una bonificación numérica.</p>
+            )}
+            {guide!.example && <p className="research-example">{guide!.example}</p>}
+            {!quote && guide!.level < selected.maxLevel && (
+              <div className="quote">
+                <b>
+                  {shortMoney(
+                    RULES.researchMoney[
+                      Math.min(4, Math.max(guide!.level, Math.floor(selected.row / 2)))
+                    ],
+                  )}
+                </b>
+                <span>
+                  {
+                    RULES.researchPD[
+                      Math.min(4, Math.max(guide!.level, Math.floor(selected.row / 2)))
+                    ]
+                  }{' '}
+                  PD
+                </span>
+                <span>
+                  {(
+                    (RULES.researchHours[
+                      Math.min(4, Math.max(guide!.level, Math.floor(selected.row / 2)))
+                    ] *
+                      (1 - effects(club).construction / 10000) *
+                      HOUR) /
+                    3600000
+                  ).toFixed(1)}{' '}
+                  h
+                </span>
+              </div>
+            )}
             <div className="requirements">
               <b>Requisitos y dependencias</b>
               <p>Centro de investigación Nv. {selected.buildingLevel}</p>
@@ -216,6 +253,13 @@ export default function ResearchPage() {
                 </button>
               ))}
               <p>Desbloquea después:</p>
+              {MODULES.filter((m) => m.research === selected.id).map((m) => (
+                <p key={m.id}>Módulo {m.name}: compra independiente en las oficinas.</p>
+              ))}
+              {selected.id === 'works' && (
+                <p>Instalaciones del estadio de nivel 3 o superior, según el nivel del estadio.</p>
+              )}
+
               {RESEARCH.filter((r) => r.requires.includes(selected.id)).map((r) => (
                 <button className="text-link" key={r.id} onClick={() => depend(r.id)}>
                   {r.name} →

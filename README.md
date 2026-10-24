@@ -4,13 +4,21 @@
 
 Juego de gestión de fútbol con PWA vertical, ciudad deportiva, fantasy privado y servidor local persistente. Este repositorio implementa una partida multijugador local real; calendarios, resultados y economía deportiva se simulan. La integración completa de persistencia con Supabase todavía es una tarea pendiente: no basta con poner sus claves para sustituir SQLite.
 
-## Rediseño 0.2
+## Mejoras Monigones v0.2
+
+Avisos persistentes entre sesiones, selectores personalizados, actividades de 30 minutos a 8 horas con recogida manual, recursos ocultables, chat dentro del periódico, explicaciones de las 49 tecnologías y confirmaciones de cancelación. El mapa incorpora un vial conectado, plazas, campos de cantera, aparcamiento y una evolución ambiental ligada al nivel de la sede.
+
+[Entrega y estado de las mejoras](docs/MONIGONES_V02_DELIVERY.md) · [Antes/después y capturas](docs/screenshots/v02/index.html) · [Auditoría de fotografías](docs/PLAYER_PHOTOS_AUDIT.md) · [Auditoría Supabase](docs/SUPABASE_MIGRATION_AUDIT.md).
+
+La migración de Supabase supera el análisis estático; su ejecución y pruebas de RLS en PostgreSQL siguen pendientes. No se ha aplicado a ninguna base remota.
+
+## Base visual
 
 Ciudad isométrica con cámara libre, arrastre y pellizco, cinco arquitecturas para cada uno de los trece edificios mejorables, doce instalaciones ilustradas, interiores de departamentos, cartas de futbolistas, periódico deportivo y música/efectos originales. La columna sigue siendo vertical también en escritorio. En Ajustes puedes controlar audio, volumen, movimiento y calidad gráfica; la música comienza después de un gesto.
 
 [Auditoría y límites](docs/REDESIGN_AUDIT.md) · [Guía de arte](docs/ART_DIRECTION.md) · [Capturas del juego](docs/screenshots/redesign/index.html) · [Galería de edificios](docs/building-gallery.html) · [Cobertura de pantallas](docs/SCREEN_COVERAGE.md) · [Pruebas del rediseño](docs/REDESIGN_TESTING.md).
 
-Recursos deportivos: seis fotografías autorizadas de 390 identidades reales, 384 pendientes, 110 retratos ficticios y veinte emblemas alternativos ALT. Los escudos oficiales están pendientes de autorización. Créditos dentro del juego en Ajustes → Fotografías, emblemas y créditos, y en [SPORTS_ASSETS.md](docs/SPORTS_ASSETS.md). No se afirma cobertura completa ni resultados deportivos reales.
+Recursos deportivos: siete fotografías autorizadas de 390 identidades reales, 383 pendientes, 110 retratos ficticios y veinte emblemas alternativos ALT. Los escudos oficiales están pendientes de autorización. Créditos dentro del juego en Ajustes → Fotografías, emblemas y créditos, y en [PLAYER_PHOTOS_AUDIT.md](docs/PLAYER_PHOTOS_AUDIT.md). No se afirma cobertura completa ni resultados deportivos reales.
 
 ## Arrancar
 
@@ -34,13 +42,13 @@ También puedes registrar una cuenta local, fundar una liga e invitar a tus amig
 - Compra, venta, propuestas, contraofertas, intercambios, cesiones, blindajes, cláusulas y renegociación, con requisitos.
 - Once, formaciones, banquillo, convocatoria automática, sustituciones, calidad de casillas, felicidad, jornadas y liquidaciones.
 - 15 espacios de ciudad, 12 instalaciones, obras cancelables, colas y 49 tecnologías en exactamente tres árboles.
-- Decisiones diarias, patrocinios, conciertos, cantera, relaciones institucionales, préstamos y sanciones ficticias.
+- Tres propuestas de actividades temporizadas al día, patrocinios, conciertos, cantera, relaciones institucionales, préstamos y sanciones ficticias.
 - Chat compartido, periódico nacido de registros, seis tipos de eventos, entrenadores, clasificaciones, museos y archivo de temporadas.
 - 500 futbolistas de los veinte clubes de referencia: 390 altas con fuente y 110 identidades ficticias. Todos los VM y resultados son simulados.
 
 ## Probar una semana en minutos
 
-Con Real Corona, abre **Mi club → Ajustes y administración → Laboratorio de temporada**. Permite avanzar día, mercado, trabajos, partidos, jornada y semana. Cada paso reconcilia las mismas reglas de dominio que usa el servidor ordinario. El tiempo avanza para toda la liga. Estos controles se ocultan y se deniegan en servidor cuando están desactivados.
+Con Real Corona, abre **Mi club → Ajustes y administración → Laboratorio de temporada**. Permite avanzar día, mercado, trabajos, actividades, partidos, jornada y semana. Cada paso reconcilia las mismas reglas de dominio que usa el servidor ordinario. El tiempo avanza para toda la liga. Estos controles se ocultan y se deniegan en servidor cuando están desactivados.
 
 ## Comandos
 
@@ -70,7 +78,7 @@ Abre http://localhost:3001. En producción normal ambas opciones están desactiv
 
 ## Documentación
 
-El [informe de entrega](docs/DELIVERY.md) distingue implementación probada, simulación, integración externa y desarrollo pendiente. Consulta también:
+El [informe actual de entrega](docs/MONIGONES_V02_DELIVERY.md) distingue implementación probada, integración externa y desarrollo pendiente. El [informe inicial](docs/DELIVERY.md) conserva la historia de la primera versión. Consulta también:
 
 - [Diseño del juego](docs/GAME_DESIGN.md), [arquitectura](docs/ARCHITECTURE.md), [base de datos](docs/DATABASE.md).
 - [Economía](docs/ECONOMY.md), [balance](docs/BALANCING.md), [árboles](docs/RESEARCH_TREES.md), [edificios](docs/BUILDINGS.md).

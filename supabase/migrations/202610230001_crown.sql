@@ -1,7 +1,10 @@
--- CROWN XI: modelo PostgreSQL preparado para Supabase.
+-- Monigones: modelo PostgreSQL para Supabase, validación de ejecución pendiente.
+-- Migración inicial para una base nueva; no es un parche para una instalación existente.
 -- NO es el adaptador activo del modo local. Véase docs/DATABASE.md.
 begin;
 create extension if not exists pgcrypto;
+revoke create on schema public from public,anon,authenticated;
+grant usage on schema public to authenticated,service_role;
 create type public.fantasy_position as enum ('POR','DEF','MED','DEL');
 create type public.resource_kind as enum ('money','development','medals','fame','prestige','luck','fans');
 create table public.profiles(id uuid primary key references auth.users(id) on delete cascade, display_name text not null check(length(display_name) between 2 and 60),created_at timestamptz not null default now());
@@ -86,10 +89,10 @@ create table public.season_archives(season_id uuid primary key references public
 create table public.game_configuration(key text primary key,value jsonb not null);
 
 -- Predicados con propietario de confianza evitan recursión en las políticas de membresía.
-create function public.is_league_member(p_league uuid) returns boolean language sql stable security definer set search_path=public as $$select exists(select 1 from public.memberships where user_id=auth.uid() and league_id=p_league)$$;
-create function public.is_club_owner(p_club uuid) returns boolean language sql stable security definer set search_path=public as $$select exists(select 1 from public.clubs where id=p_club and user_id=auth.uid())$$;
-create function public.club_visible(p_club uuid) returns boolean language sql stable security definer set search_path=public as $$select exists(select 1 from public.clubs c join public.seasons s on s.id=c.season_id where c.id=p_club and public.is_league_member(s.league_id))$$;
-create function public.season_visible(p_season uuid) returns boolean language sql stable security definer set search_path=public as $$select exists(select 1 from public.seasons s where s.id=p_season and public.is_league_member(s.league_id))$$;
+create function public.is_league_member(p_league uuid) returns boolean language sql stable security definer set search_path=pg_catalog,pg_temp as $$select exists(select 1 from public.memberships where user_id=auth.uid() and league_id=p_league)$$;
+create function public.is_club_owner(p_club uuid) returns boolean language sql stable security definer set search_path=pg_catalog,pg_temp as $$select exists(select 1 from public.clubs where id=p_club and user_id=auth.uid())$$;
+create function public.club_visible(p_club uuid) returns boolean language sql stable security definer set search_path=pg_catalog,pg_temp as $$select exists(select 1 from public.clubs c join public.seasons s on s.id=c.season_id where c.id=p_club and public.is_league_member(s.league_id))$$;
+create function public.season_visible(p_season uuid) returns boolean language sql stable security definer set search_path=pg_catalog,pg_temp as $$select exists(select 1 from public.seasons s where s.id=p_season and public.is_league_member(s.league_id))$$;
 -- RLS por defecto cerrada; las escrituras económicas quedan reservadas al servidor.
 do $$declare t record;begin for t in select tablename from pg_tables where schemaname='public' and tablename=any(array['profiles','leagues','memberships','invitations','seasons','real_clubs','coaches','players','clubs','player_market_values','matchdays','matches','player_statistics','player_scores','ownership','contracts','shields','resources','ledger','idempotency_receipts','drafts','draft_queue','auctions','auction_bids','markets','market_entries','market_bids','wishlists','negotiations','transfers','player_loans','callups','callup_players','slot_quality','substitutions','round_reports','building_definitions','facility_definitions','buildings','facilities','office_modules','research_definitions','research_dependencies','research_progress','jobs','bonuses','sponsor_definitions','sponsor_deals','sponsor_payments','concert_definitions','concert_deals','concert_payments','merchandising_sales','daily_decisions','institutional_actions','bank_loans','news','newspaper_editions','newspaper_articles','events','event_progress','achievement_definitions','trophies','chat_messages','notifications','sports_sync_logs','process_runs','season_archives','game_configuration']) loop execute format('alter table public.%I enable row level security',t.tablename);end loop;end$$;
 create policy profiles_self on public.profiles for select to authenticated using(id=auth.uid());
@@ -98,7 +101,7 @@ create policy memberships_same_league on public.memberships for select to authen
 create policy invitations_admin on public.invitations for select to authenticated using(exists(select 1 from public.leagues l where l.id=league_id and l.admin_id=auth.uid()));
 create policy season_members on public.seasons for select to authenticated using(public.is_league_member(league_id));
 create policy clubs_members on public.clubs for select to authenticated using(public.season_visible(season_id));
-do $$declare t text;begin foreach t in array array['real_clubs','players','coaches','player_market_values','building_definitions','facility_definitions','research_definitions','research_dependencies','sponsor_definitions','concert_definitions','achievement_definitions','game_configuration'] loop execute format('create policy catalog_read on public.%I for select to authenticated using(true)',t);end loop;end$$;
+do $$declare t text;begin foreach t in array array['real_clubs','players','coaches','player_market_values','building_definitions','facility_definitions','research_definitions','research_dependencies','sponsor_definitions','concert_definitions','achievement_definitions'] loop execute format('create policy catalog_read on public.%I for select to authenticated using(true)',t);end loop;end$$;
 do $$declare t text;begin foreach t in array array['resources','ledger','jobs','callups','slot_quality','buildings','facilities','office_modules','research_progress','bonuses','sponsor_deals','concert_deals','bank_loans','daily_decisions','institutional_actions','wishlists'] loop execute format('create policy club_private on public.%I for select to authenticated using(public.is_club_owner(club_id))',t);end loop;end$$;
 do $$declare t text;begin foreach t in array array['ownership','transfers','player_loans','matchdays','drafts','auctions','markets','events'] loop execute format('create policy season_members on public.%I for select to authenticated using(public.season_visible(season_id))',t);end loop;end$$;
 create policy bids_owner_or_winner on public.market_bids for select to authenticated using(public.is_club_owner(club_id) or (status='won' and public.club_visible(club_id)));
@@ -107,38 +110,195 @@ create policy news_members on public.news for select to authenticated using(publ
 create policy newspaper_members on public.newspaper_editions for select to authenticated using(public.is_league_member(league_id));
 create policy trophies_members on public.trophies for select to authenticated using(public.is_league_member(league_id));
 create policy chat_members on public.chat_messages for select to authenticated using(public.is_league_member(league_id) and deleted_at is null);
-create policy notifications_self on public.notifications for select to authenticated using(user_id=auth.uid());
+create policy notifications_self on public.notifications for select to authenticated using(user_id=auth.uid() and public.is_league_member(league_id));
 create policy receipts_self on public.idempotency_receipts for select to authenticated using(user_id=auth.uid());
 -- Las tablas de detalle sin política permanecen inaccesibles al cliente hasta disponer de vistas seguras.
 -- RPC de ejemplo transaccional: todo importe es contrastado con el VM del servidor.
 create function public.place_market_bid(p_market uuid,p_player text,p_amount bigint,p_salary integer,p_key uuid) returns uuid
-language plpgsql security definer set search_path=public as $$
+language plpgsql security definer set search_path=pg_catalog,pg_temp as $$
 declare v_user uuid:=auth.uid();v_club uuid;v_season uuid;v_balance bigint;v_reserved bigint;v_value bigint;v_id uuid;v_hash text;v_prior public.idempotency_receipts%rowtype;
 begin
  if v_user is null then raise exception 'Authentication required';end if;
- v_hash:=encode(digest(jsonb_build_array(p_market,p_player,p_amount,p_salary)::text,'sha256'),'hex');
+ if p_market is null or p_player is null or length(p_player)=0 or p_amount is null or p_amount<=0 or p_salary is null or p_salary not between 200 and 1000 or p_key is null then raise exception 'Invalid offer';end if;
+ v_hash:=encode(sha256(convert_to(jsonb_build_array('place_market_bid',p_market,p_player,p_amount,p_salary)::text,'UTF8')),'hex');
  -- Serializar acciones del mismo usuario también impide carreras sobre la clave idempotente.
  perform 1 from public.profiles where id=v_user for update;
+ if not found then raise exception 'Profile unavailable';end if;
  select * into v_prior from public.idempotency_receipts where user_id=v_user and key=p_key;
  if found then if v_prior.operation_hash<>v_hash then raise exception 'Idempotency key reused';end if;return(v_prior.result->>'bid_id')::uuid;end if;
- select m.season_id into v_season from public.markets m join public.seasons s on s.id=m.season_id where m.id=p_market and m.status='open' and m.closes_at>now() and public.is_league_member(s.league_id) for update of m;
+ select m.season_id into v_season from public.markets m join public.seasons s on s.id=m.season_id where m.id=p_market and m.status='open' and m.opens_at<=now() and m.closes_at>now() and s.status='active' and public.is_league_member(s.league_id) for update of m;
  if not found then raise exception 'Market closed or unavailable';end if;
  select id into v_club from public.clubs where user_id=v_user and season_id=v_season;
  if v_club is null then raise exception 'Club unavailable';end if;
  perform 1 from public.market_entries where market_id=p_market and player_id=p_player;
  if not found or exists(select 1 from public.ownership where season_id=v_season and player_id=p_player) then raise exception 'Player unavailable';end if;
- select value_cents into v_value from public.player_market_values where player_id=p_player order by at desc limit 1;
+ select value_cents into v_value from public.player_market_values where player_id=p_player and at<=now() order by at desc limit 1;
  if v_value is null or p_amount<v_value or p_salary not between 200 and 1000 then raise exception 'Invalid offer';end if;
  select balance into v_balance from public.resources where club_id=v_club and kind='money' for update;
  select coalesce(sum(amount_cents),0) into v_reserved from public.market_bids where club_id=v_club and status='open' and not(market_id=p_market and player_id=p_player);
  v_reserved:=v_reserved+(select coalesce(sum(highest_cents),0) from public.auctions where leading_club_id=v_club and status='open');
  if v_balance is null or v_balance-v_reserved<p_amount then raise exception 'Insufficient available balance';end if;
- if (select count(*) from public.ownership where club_id=v_club)>=least(30,12+coalesce((select level from public.facilities where club_id=v_club and definition_id='locker'),0)) then raise exception 'Squad full';end if;
- insert into public.market_bids(market_id,player_id,club_id,amount_cents,salary_bps) values(p_market,p_player,v_club,p_amount,p_salary) on conflict(market_id,player_id,club_id) do update set amount_cents=excluded.amount_cents,salary_bps=excluded.salary_bps,created_at=now() returning id into v_id;
+ if exists(select 1 from public.market_bids where market_id=p_market and player_id=p_player and club_id=v_club and status not in('open','withdrawn')) then raise exception 'Offer already settled';end if;
+ if (select count(*) from (select player_id from public.ownership where club_id=v_club union select player_id from public.market_bids where club_id=v_club and status='open' and not(market_id=p_market and player_id=p_player) union select player_id from public.auctions where leading_club_id=v_club and status='open') reserved_players)>=least(30,12+coalesce((select level from public.facilities where club_id=v_club and definition_id='locker'),0)) then raise exception 'Squad full';end if;
+ insert into public.market_bids(market_id,player_id,club_id,amount_cents,salary_bps) values(p_market,p_player,v_club,p_amount,p_salary) on conflict(market_id,player_id,club_id) do update set amount_cents=excluded.amount_cents,salary_bps=excluded.salary_bps,status='open',created_at=now() returning id into v_id;
  insert into public.idempotency_receipts values(v_user,p_key,v_hash,jsonb_build_object('bid_id',v_id),now());return v_id;
 end$$;
 revoke all on function public.place_market_bid(uuid,text,bigint,integer,uuid) from public,anon;
 grant execute on function public.place_market_bid(uuid,text,bigint,integer,uuid) to authenticated;
+-- The four boolean helpers return only authorization decisions, not personal data.
+revoke all on function public.is_league_member(uuid),public.is_club_owner(uuid),public.club_visible(uuid),public.season_visible(uuid) from public,anon;
+grant execute on function public.is_league_member(uuid),public.is_club_owner(uuid),public.club_visible(uuid),public.season_visible(uuid) to authenticated;
+-- Apply privileges only to tables declared by this migration, never unrelated public tables.
+do $privileges$
+declare t record;
+begin
+ for t in select tablename from pg_tables where schemaname='public' and rowsecurity and tablename=any(array[
+ 'profiles','leagues','memberships','invitations','seasons','real_clubs','coaches','players','clubs','player_market_values','matchdays','matches','player_statistics','player_scores','ownership','contracts','shields','resources','ledger','idempotency_receipts','drafts','draft_queue','auctions','auction_bids','markets','market_entries','market_bids','wishlists','negotiations','transfers','player_loans','callups','callup_players','slot_quality','substitutions','round_reports','building_definitions','facility_definitions','buildings','facilities','office_modules','research_definitions','research_dependencies','research_progress','jobs','bonuses','sponsor_definitions','sponsor_deals','sponsor_payments','concert_definitions','concert_deals','concert_payments','merchandising_sales','daily_decisions','institutional_actions','bank_loans','news','newspaper_editions','newspaper_articles','events','event_progress','achievement_definitions','trophies','chat_messages','notifications','sports_sync_logs','process_runs','season_archives','game_configuration']) loop
+   execute format('revoke all on table public.%I from public,anon,authenticated',t.tablename);
+   execute format('grant select on table public.%I to authenticated',t.tablename);
+   execute format('grant all on table public.%I to service_role',t.tablename);
+ end loop;
+end $privileges$;
+-- Clients never write economic rows directly. The server role remains trusted and private.
+-- Additional consistency constraints; negative money is allowed because debt is a game mechanic.
+alter table public.invitations add constraint invitations_positive_uses check(max_uses>0);
+alter table public.seasons add constraint seasons_positive_number check(number>0);
+alter table public.matchdays add constraint matchdays_state check(number>0 and locks_at<=starts_at and status in('upcoming','live','finished'));
+alter table public.matches add constraint matches_values check((ends_at is null or ends_at>starts_at) and status in('scheduled','live','finished','postponed') and (home_goals is null or home_goals>=0) and (away_goals is null or away_goals>=0));
+alter table public.player_statistics add constraint statistics_nonnegative check(goals>=0 and assists>=0);
+alter table public.contracts add constraint contracts_missed check(missed_rounds>=0);
+alter table public.shields add constraint shields_time check(ends_at>starts_at);
+alter table public.resources add constraint resources_bounded check(kind not in('fame','prestige','fans','luck') or balance<=100);
+alter table public.auctions add constraint auctions_values check(highest_cents>=0 and status in('open','closed') and ((highest_cents=0 and leading_club_id is null) or (highest_cents>0 and leading_club_id is not null)));
+alter table public.market_bids add constraint market_bid_values check(status in('open','won','rejected','lost','withdrawn') and (rejection_percent is null or rejection_percent between 0 and 100) and (random_roll is null or random_roll between 0 and 100));
+alter table public.markets add constraint markets_status check(status in('open','closed'));
+alter table public.negotiations add constraint negotiations_status check(status in('open','accepted','rejected','countered'));
+alter table public.player_loans add constraint loans_distinct_clubs check(from_club<>to_club);
+alter table public.callups add constraint callups_nonnegative check(cost_cents>=0);
+alter table public.callup_players add constraint callup_player_values check(value_snapshot_cents>0 and salary_snapshot_cents>=0 and ((bench and slot is null) or (not bench and slot is not null)));
+alter table public.slot_quality add constraint slot_quality_minimum check(unlocked>=0);
+alter table public.facility_definitions add constraint facilities_maximum check(max_level>=0);
+alter table public.research_definitions add constraint research_definition_limits check(max_level>0 and building_level between 1 and 5);
+alter table public.research_progress add constraint research_progress_minimum check(level>=0);
+alter table public.jobs add constraint jobs_values check(level>0 and cost_cents>=0 and development_cost>=0 and attempts>=0 and status in('pending','completed','cancelled','failed'));
+alter table public.sponsor_deals add constraint sponsor_values check(daily_cents>=0 and ends_at>starts_at);
+alter table public.concert_deals add constraint concert_values check(per_round_cents>=0 and ends_at>starts_at);
+alter table public.merchandising_sales add constraint merchandising_values check(amount_cents>=0);
+alter table public.bank_loans add constraint bank_values check(principal_cents>0 and repay_cents>=principal_cents);
+alter table public.institutional_actions add constraint institutional_values check(risk_percent between 0 and 100 and roll between 0 and 100);
+alter table public.events add constraint events_values check(goal>0 and ends_at>starts_at);
+alter table public.event_progress add constraint event_progress_minimum check(progress>=0);
+alter table public.process_runs add constraint process_attempts check(attempts>0);
+-- Finite sponsorship overlaps are checked by the trusted game command; no time-dependent CHECK.
+create index notifications_user_league_time_idx on public.notifications(user_id,league_id,created_at desc);
+create index contracts_expiry_idx on public.contracts(ends_at);
+create index research_dependencies_requires_idx on public.research_dependencies(requires_id);
+create index negotiations_recipient_idx on public.negotiations(to_club) where status in('open','countered');
+
+-- Child foreign keys alone did not prevent a trusted writer linking different leagues/seasons.
+-- A shared trigger validates the season relationships on insertion or modification.
+create function public.validate_season_links() returns trigger language plpgsql
+set search_path=pg_catalog,pg_temp as $links$
+declare expected uuid; other uuid;
+begin
+ case tg_table_name
+ when 'market_bids' then
+   select season_id into expected from public.markets where id=new.market_id;
+   select season_id into other from public.clubs where id=new.club_id;
+ when 'auction_bids' then
+   select season_id into expected from public.auctions where id=new.auction_id;
+   select season_id into other from public.clubs where id=new.club_id;
+ when 'callups' then
+   select season_id into expected from public.matchdays where id=new.matchday_id;
+   select season_id into other from public.clubs where id=new.club_id;
+ when 'negotiations' then
+   select season_id into expected from public.clubs where id=new.from_club;
+   select season_id into other from public.clubs where id=new.to_club;
+ when 'player_loans' then
+   expected:=new.season_id;
+   if not exists(select 1 from public.clubs where id=new.from_club and season_id=expected)
+      or not exists(select 1 from public.clubs where id=new.to_club and season_id=expected)
+      or not exists(select 1 from public.matchdays where id=new.ends_matchday and season_id=expected) then
+     raise exception 'Cross-season player loan';
+   end if;
+   return new;
+ when 'transfers' then
+   expected:=new.season_id;
+   if (new.from_club is not null and not exists(select 1 from public.clubs where id=new.from_club and season_id=expected))
+      or (new.to_club is not null and not exists(select 1 from public.clubs where id=new.to_club and season_id=expected)) then
+     raise exception 'Cross-season transfer';
+   end if;
+   return new;
+ when 'auctions' then
+   if new.leading_club_id is null then return new;end if;
+   expected:=new.season_id;
+   select season_id into other from public.clubs where id=new.leading_club_id;
+ when 'event_progress' then
+   select season_id into expected from public.events where id=new.event_id;
+   select season_id into other from public.clubs where id=new.club_id;
+ when 'merchandising_sales' then
+   select season_id into expected from public.matchdays where id=new.matchday_id;
+   select season_id into other from public.clubs where id=new.club_id;
+ when 'bank_loans' then
+   select season_id into expected from public.matchdays where id=new.due_matchday;
+   select season_id into other from public.clubs where id=new.club_id;
+ else raise exception 'Unexpected season-link trigger';
+ end case;
+ if expected is null or other is null or expected<>other then raise exception 'Cross-season reference';end if;
+ return new;
+end $links$;
+revoke all on function public.validate_season_links() from public,anon,authenticated;
+do $triggers$
+declare t text;
+begin
+ foreach t in array array['market_bids','auction_bids','callups','negotiations','player_loans','transfers','auctions','event_progress','merchandising_sales','bank_loans'] loop
+   execute format('create trigger validate_season_links before insert or update on public.%I for each row execute function public.validate_season_links()',t);
+ end loop;
+end $triggers$;
+
+create function public.validate_detail_links() returns trigger language plpgsql
+set search_path=pg_catalog,pg_temp as $details$
+declare expected uuid; other uuid;
+begin
+ case tg_table_name
+ when 'news' then
+   if new.club_id is null then return new;end if;
+   select s.league_id into expected from public.clubs c join public.seasons s on s.id=c.season_id where c.id=new.club_id;
+   other:=new.league_id;
+ when 'newspaper_articles' then
+   select league_id into expected from public.newspaper_editions where id=new.edition_id;
+   select league_id into other from public.news where id=new.news_id;
+ when 'notifications','chat_messages' then
+   expected:=new.league_id;
+   if tg_table_name='notifications' then
+     select league_id into other from public.memberships where user_id=new.user_id;
+   else
+     select league_id into other from public.memberships where user_id=new.author_id;
+   end if;
+ when 'callup_players' then
+   select c.season_id into expected from public.callups ca join public.clubs c on c.id=ca.club_id where ca.id=new.callup_id;
+   select o.season_id into other from public.ownership o join public.callups ca on ca.club_id=o.club_id where ca.id=new.callup_id and o.player_id=new.player_id and o.season_id=expected;
+ when 'sponsor_payments' then
+   select club_id into expected from public.sponsor_deals where id=new.deal_id;
+   select club_id into other from public.ledger where id=new.ledger_id;
+ when 'concert_payments' then
+   select club_id into expected from public.concert_deals where id=new.deal_id;
+   select club_id into other from public.ledger where id=new.ledger_id;
+   if not exists(select 1 from public.matchdays m join public.clubs c on c.season_id=m.season_id where m.id=new.matchday_id and c.id=expected) then raise exception 'Cross-season concert payment';end if;
+ else raise exception 'Unexpected detail-link trigger';
+ end case;
+ if expected is null or other is null or expected<>other then raise exception 'Inconsistent detail reference';end if;
+ return new;
+end $details$;
+revoke all on function public.validate_detail_links() from public,anon,authenticated;
+do $detail_triggers$
+declare t text;
+begin
+ foreach t in array array['news','newspaper_articles','notifications','chat_messages','callup_players','sponsor_payments','concert_payments'] loop
+  execute format('create trigger validate_detail_links before insert or update on public.%I for each row execute function public.validate_detail_links()',t);
+ end loop;
+end $detail_triggers$;
+
 -- Realtime nativo se conecta al habilitar la publicación en el proyecto externo.
 -- alter publication supabase_realtime add table public.chat_messages,public.auctions,public.auction_bids,public.news;
 commit;

@@ -2,7 +2,7 @@
 
 Catálogo central por **ID interno**, identidad, club actual, temporada `2026/27`, IDs externos disponibles, archivo, fuente, autor, licencia, fecha y estado. `sportsAsset(player)` conserva la identidad fotográfica al cambiar el club y obtiene el emblema del `realClubId` actual. No se hacen asociaciones aproximadas por nombre. Las 110 identidades ficticias nunca reciben fotografías de personas reales.
 
-Cobertura verificada al entregar: **6 / 390 fotografías reales (1,54 %)**, **384 pendientes**, **110 retratos ficticios consistentes** y **20 emblemas alternativos originales**. **0 escudos oficiales autorizados**. Se muestran como ALT y su alternativa no se anuncia como escudo oficial. No se ha alcanzado cobertura fotográfica completa.
+Cobertura actual v0.2: **7 / 390 fotografías reales (1,79 %)**, **383 pendientes**, **110 retratos ficticios consistentes** y **20 emblemas alternativos originales**. **0 escudos oficiales autorizados**. Se muestran como ALT y su alternativa no se anuncia como escudo oficial. No se ha alcanzado cobertura fotográfica completa. La investigación de FútbolFantasy y la incorporación de Pedri están documentadas en [PLAYER_PHOTOS_AUDIT.md](PLAYER_PHOTOS_AUDIT.md).
 
 | ID           | Fotografía      | Autor                        | Licencia / fuente                                                                                                                         |
 | ------------ | --------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,6 +12,7 @@ Cobertura verificada al entregar: **6 / 390 fotografías reales (1,54 %)**, **38
 | barcelona-17 | Lamine Yamal    | Biso                         | [CC BY 4.0 · ficha original](<https://commons.wikimedia.org/wiki/File:Lamine_Yamal_in_2025_(cropped).jpg>)                                |
 | athletic-0   | Unai Simón      | Bryan Berlin / WikiPortraits | [CC BY-SA 4.0 · ficha original](https://commons.wikimedia.org/wiki/File:Unai_Simon_France_v_Spain_7.24.26-066.jpg)                        |
 | athletic-4   | Aymeric Laporte | Lluis Fernandez Salas        | [CC BY 2.0 · ficha original](<https://commons.wikimedia.org/wiki/File:Aymeric_Laporte(cropped).jpg>)                                      |
+| barcelona-10 | Pedri           | Bryan Berlin / WikiPortraits | [CC BY-SA 4.0 · ficha original](https://commons.wikimedia.org/wiki/File:Pedri_France_v_Spain_7.24.26-226.jpg) |
 
 Verificación: 23-10-2026. Los JPEG originales se conservan sin modificar en `assets-source/photos/`, incluida su metadata. El juego distribuye derivados WebP de máximo 512 px de ancho, identificados como modificados y bajo la licencia original, con autor y fuente. El recorte para encajar en carta se realiza en CSS. Algunas fotos muestran selecciones o equipaciones históricas; no representan la equipación del club actual. El crédito y el enlace a la licencia aparecen en la ficha y en `/media`. Las fotos CC BY-SA mantienen esa licencia para sus derivados; no se pretende atribuirlas al juego ni trasladar su licencia al código independiente.
 

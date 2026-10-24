@@ -28,7 +28,7 @@ export function useDialogAccessibility() {
     const observer = new MutationObserver(sync);
     observer.observe(document.body, { subtree: true, childList: true });
     const key = (e: KeyboardEvent) => {
-      if (!current) return;
+      if (!current || document.querySelector('.game-select-popup')) return;
       const elements = [
         ...current.querySelectorAll<HTMLElement>(
           'button:not(:disabled),a[href],input:not(:disabled),select:not(:disabled),textarea:not(:disabled),[tabindex="0"]',
@@ -36,7 +36,7 @@ export function useDialogAccessibility() {
       ].filter((el) => el.offsetParent !== null);
       if (e.key === 'Escape') {
         const close =
-          current.querySelector<HTMLButtonElement>('.modal-close') ||
+          current.querySelector<HTMLButtonElement>('.modal-close, .modal-close-action') ||
           elements.find((el) => el.textContent?.trim() === 'Cancelar');
         if (close) {
           e.preventDefault();

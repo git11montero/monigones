@@ -1,3 +1,6 @@
+import { UnsavedChanges } from '../components/UnsavedChanges';
+import { AttentionBadge, ReadAttention } from '../components/Attention';
+import { GameSelect } from '../components/GameSelect';
 import { BRAND } from '../../shared/brand';
 import { PlayerCard } from '../components/PlayerCard';
 import { useEffect, useRef, useState } from 'react';
@@ -25,10 +28,13 @@ import {
   Empty,
   PageTitle,
   Progress,
+  PlayerRow,
   Section,
+  Confirm,
 } from '../components/ui';
 export function NewspaperPage() {
   const { state } = useGame();
+  const [chatOpen, setChatOpen] = useState(false);
   const editions = [...new Set(state.news.map((n) => dayKey(n.at)))].sort().reverse();
   const [edition, setEdition] = useState(editions[0]),
     [category, setCategory] = useState('Todo'),
@@ -40,6 +46,14 @@ export function NewspaperPage() {
   const lead = stories[0];
   return (
     <div className="newspaper">
+      {!chatOpen && <ReadAttention to="/newspaper" only={stories.map((n) => `news:${n.id}`)} />}
+      <button
+        className="newspaper-chat-toggle"
+        onClick={() => setChatOpen(true)}
+        aria-label="Abrir chat de la liga"
+      >
+        <MessageCircle size={20} /> Vestuario <AttentionBadge to="/chat" />
+      </button>
       <div className="newspaper-date">
         <span>LA VOZ DE TU LIGA</span>
         <span>EDICIÓN {editions.length}</span>
@@ -52,7 +66,7 @@ export function NewspaperPage() {
         <p>Mucho fútbol. Poco filtro.</p>
       </header>
       <div className="newspaper-toolbar">
-        <select
+        <GameSelect
           aria-label="Edición del periódico"
           value={edition}
           onChange={(e) => setEdition(e.target.value)}
@@ -60,8 +74,8 @@ export function NewspaperPage() {
           {editions.map((d) => (
             <option key={d}>{d}</option>
           ))}
-        </select>
-        <select
+        </GameSelect>
+        <GameSelect
           aria-label="Sección del periódico"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
@@ -70,7 +84,7 @@ export function NewspaperPage() {
           {[...new Set(state.news.map((n) => n.category))].map((c) => (
             <option key={c}>{c}</option>
           ))}
-        </select>
+        </GameSelect>
       </div>
       {lead ? (
         <>
@@ -172,6 +186,9 @@ export function NewspaperPage() {
             <Badge kind="gold">{article.category}</Badge>
             <h2>{article.title}</h2>
             <p>{article.subtitle}</p>
+            {article.playerId && state.players.some((p) => p.id === article.playerId) && (
+              <PlayerRow player={state.players.find((p) => p.id === article.playerId)!} />
+            )}
             <p className="hint">
               La Redacción ·{' '}
               {new Date(article.at).toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
@@ -192,6 +209,27 @@ export function NewspaperPage() {
           </article>
         </div>
       )}
+      {chatOpen && (
+        <div className="modal-backdrop newspaper-chat-backdrop" onClick={() => setChatOpen(false)}>
+          <section
+            className="modal newspaper-chat-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Chat de la liga"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              aria-label="Cerrar chat"
+              onClick={() => setChatOpen(false)}
+            >
+              <X />
+            </button>
+            <h2>El vestuario</h2>
+            <ChatPanel embedded />
+          </section>
+        </div>
+      )}
       <footer className="newspaper-bottom">
         Todos los artículos nacen del registro de esta partida.
         <br />
@@ -201,32 +239,55 @@ export function NewspaperPage() {
   );
 }
 export function ChatPage() {
+  return <ChatPanel />;
+}
+function ChatPanel({ embedded = false }: { embedded?: boolean }) {
   const { state, club, act, admin } = useGame();
   const [message, setMessage] = useState('');
-  const end = useRef<HTMLDivElement>(null);
+  const end = useRef<HTMLDivElement>(null),
+    list = useRef<HTMLDivElement>(null),
+    nearBottom = useRef(true);
+  const [reading, setReading] = useState(true);
   useEffect(() => {
-    end.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (nearBottom.current) {
+      const el = list.current;
+      if (el) el.scrollTop = el.scrollHeight;
+    }
   }, [state.chat.length]);
   return (
     <>
-      <PageTitle
-        back
-        eyebrow="LO QUE PASA EN LA LIGA…"
-        title="El vestuario"
-        subtitle={`${state.name} · Chat privado de ${state.clubs.length} clubes`}
-      />
+      <UnsavedChanges dirty={!!message.trim()} label="Mensaje sin enviar" />
+      {reading && <ReadAttention to="/chat" />}
+      {!embedded && (
+        <PageTitle
+          back
+          eyebrow="LO QUE PASA EN LA LIGA…"
+          title="El vestuario"
+          subtitle={`${state.name} · Chat privado de ${state.clubs.length} clubes`}
+        />
+      )}
       <div className="chat-intro">
         <MessageCircle size={17} />
         El buen pique se juega con respeto.
       </div>
-      <div className="chat-messages">
+      <div
+        className="chat-messages"
+        ref={list}
+        onScroll={() => {
+          const el = list.current!;
+          nearBottom.current = el.scrollHeight - el.scrollTop - el.clientHeight < 50;
+          setReading(nearBottom.current);
+        }}
+      >
         {state.chat.map((m) => {
           const author = state.clubs.find((c) => c.id === m.clubId);
           return (
             <div key={m.id} className={`chat-message ${m.clubId === club.id ? 'own' : ''}`}>
               <Crest size={25} color={author?.color} />
               <div>
-                <span className="chat-author">{author?.name}</span>
+                <span className="chat-author">
+                  {author?.presidentName || 'Presidente'} · {author?.name}
+                </span>
                 <p>{m.text}</p>
                 <span className="chat-time">
                   {new Date(m.at).toLocaleTimeString('es-ES', {
@@ -255,6 +316,16 @@ export function ChatPage() {
         })}
         <div ref={end} />
       </div>
+      {!reading && (
+        <button
+          className="text-link"
+          onClick={() => {
+            list.current?.scrollTo({ top: list.current.scrollHeight, behavior: 'smooth' });
+          }}
+        >
+          Ver mensajes recientes ↓
+        </button>
+      )}
       <form
         className="chat-compose"
         onSubmit={(e) => {
@@ -479,14 +550,14 @@ export function DraftPage() {
           <div className="card">
             <label>
               Orden de presentación
-              <select value={pick} onChange={(e) => setPick(e.target.value)}>
+              <GameSelect value={pick} onChange={(e) => setPick(e.target.value)}>
                 <option value="">Siguiente del orden inicial</option>
                 {state.draft.queue.slice(0, 100).map((id) => (
                   <option value={id} key={id}>
                     {state.players.find((p) => p.id === id)?.name}
                   </option>
                 ))}
-              </select>
+              </GameSelect>
             </label>
             <Button
               disabled={auctions.some((a) => a.kind === 'draft')}
@@ -561,8 +632,25 @@ export function TradesPage() {
   const { state, club, act } = useGame();
   const [counter, setCounter] = useState<Record<string, string>>({});
   const trades = state.negotiations;
+  const [reject, setReject] = useState<string | null>(null);
   return (
     <>
+      {reject && (
+        <Confirm
+          title="¿Rechazar esta negociación?"
+          confirmLabel="Sí, rechazar propuesta"
+          cancelLabel="Seguir negociando"
+          onClose={() => setReject(null)}
+          onConfirm={() =>
+            void act({ type: 'respondTrade', id: reject, accept: false }, 'Propuesta rechazada.')
+          }
+        >
+          <p>
+            La propuesta quedará cerrada y no podrás aceptarla después. No pierdes ni recuperas
+            dinero: no se había cobrado ningún importe.
+          </p>
+        </Confirm>
+      )}
       <PageTitle
         back
         eyebrow="UN APRETÓN DE MANOS PUEDE CAMBIARLO TODO"
@@ -603,15 +691,7 @@ export function TradesPage() {
                 {incoming && n.status === 'open' && (
                   <>
                     <div className="button-row">
-                      <Button
-                        variant="secondary"
-                        onClick={() =>
-                          void act(
-                            { type: 'respondTrade', id: n.id, accept: false },
-                            'Propuesta rechazada.',
-                          )
-                        }
-                      >
+                      <Button variant="secondary" onClick={() => setReject(n.id)}>
                         Rechazar
                       </Button>
                       <Button

@@ -1,9 +1,10 @@
+import { activityOffers } from './activities';
+import { notifications } from './attention';
 import { economicRandom } from './math';
 import {
   AD_SLOTS,
   ARTISTS,
   BUILDINGS,
-  DAILY_ACTIONS,
   DAY,
   FACILITIES,
   FORMATIONS,
@@ -72,6 +73,8 @@ export function effects(c: Club): Required<Effect> {
       e[key] += (v || 0) * level;
     }
   }
+  e.quality = Math.min(3, e.quality);
+  e.maintenance = Math.min(3000, e.maintenance);
   e.salary = Math.min(150, e.salary);
   e.sale = Math.min(1500, e.sale);
   e.sport = Math.min(2500, e.sport + (COACHES.find((x) => x.id === c.coach)?.sportBonus || 0));
@@ -143,8 +146,9 @@ function news(
   subtitle: string,
   clubId?: string,
   ref?: string,
+  playerId?: string,
 ) {
-  s.news.push({ id: uid(), at: s.now, category, title, subtitle, clubId, ref });
+  s.news.push({ id: uid(), at: s.now, category, title, subtitle, clubId, ref, playerId });
 }
 function award(
   s: GameState,
@@ -177,11 +181,12 @@ function award(
     `${p.name} ya viste los colores de ${c.name}`,
     `La operación se ha cerrado en ${Math.round(amount / 100).toLocaleString('es-ES')} €.`,
     c.id,
+    undefined,
+    p.id,
   );
 }
 export function dailyActions(s: GameState) {
-  const index = hash(dailyKey(s.now)) % DAILY_ACTIONS.length;
-  return [0, 1, 2].map((i) => DAILY_ACTIONS[(index + i * 3) % DAILY_ACTIONS.length]);
+  return activityOffers(s);
 }
 export function concertOffers(s: GameState) {
   const week = Math.floor((s.now - s.seasonStartedAt) / (7 * DAY));
@@ -1159,14 +1164,65 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
       ct.salaryBps = salary;
       break;
     }
-    case 'daily': {
+    case 'notificationRead': {
+      invariant(Array.isArray(cmd.ids) && cmd.ids.length <= 2000, 'Avisos inválidos.');
+      const valid = new Set(
+        notifications(
+          s,
+          c,
+          effects(c),
+          Object.fromEntries(s.events.map((e) => [e.id, eventProgress(s, c, e.id)])),
+        ).map((n) => n.id),
+      );
+      c.notificationReads ??= {};
+      for (const id of cmd.ids)
+        if (typeof id === 'string' && valid.has(id)) c.notificationReads[id] = s.now;
+      break;
+    }
+    case 'resourceVisibility': {
+      invariant(typeof cmd.hidden === 'boolean', 'Preferencia inválida.');
+      c.hideResources = cmd.hidden;
+      break;
+    }
+    case 'daily':
+    case 'dailyStart': {
       const id = str(cmd, 'id');
       const action = dailyActions(s).find((a) => a.id === id);
+      invariant(
+        !c.activity || !!c.activity.claimedAt,
+        'Recoge la actividad actual antes de iniciar otra.',
+      );
       invariant(action && !c.dailyDone.includes(id), 'Actividad no disponible o ya realizada.');
+      invariant(c.buildings.hq >= action.minimumHQ, 'Mejora la sede central.');
       spend(s, c, action.cost, action.name);
-      resource(s, c, action.resource, action.reward, action.name);
-      c.dailyDone.push(id);
-      s.audit.push({ at: s.now, action: 'daily', actor: c.id, detail: id });
+      c.activity = {
+        id: uid(),
+        offerDay: dailyKey(s.now),
+        definition: structuredClone(action),
+        startedAt: s.now,
+        endsAt: s.now + action.duration,
+      };
+      break;
+    }
+    case 'dailyClaim': {
+      const run = c.activity;
+      invariant(run && !run.claimedAt && run.id === str(cmd, 'id'), 'No hay recompensa pendiente.');
+      invariant(s.now >= run.endsAt, 'La actividad todavía no ha terminado.');
+      resource(s, c, run.definition.resource, run.definition.reward, run.definition.name, run.id);
+      for (const [key, amount] of Object.entries(run.definition.extra || {}))
+        resource(s, c, key as Resource, amount, run.definition.name, run.id);
+      run.claimedAt = s.now;
+      news(
+        s,
+        'Actividades',
+        `${c.name} deja huella`,
+        `${run.definition.name}: actividad completada y recompensa recogida.`,
+        c.id,
+        run.id,
+      );
+      (c.activityHistory ??= []).push(structuredClone(run));
+      if (run.offerDay === dailyKey(s.now)) c.dailyDone.push(run.definition.id);
+      s.audit.push({ at: s.now, action: 'daily', actor: c.id, detail: run.definition.id });
       break;
     }
     case 'sponsor': {
@@ -1624,6 +1680,8 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
           },
           selection: emptySelection(1),
           trophies: c.trophies,
+          hideResources: c.hideResources,
+          notificationReads: c.notificationReads,
         };
       });
       fresh.ledger = s.ledger;
@@ -1640,9 +1698,35 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
     default:
       throw new Error('Acción desconocida.');
   }
-  s.audit.push({ at: s.now, action: type, actor: c.id, detail: JSON.stringify(cmd) });
+  if (!['notificationRead', 'resourceVisibility'].includes(type))
+    s.audit.push({
+      at: s.now,
+      action: type === 'daily' ? 'dailyStart' : type,
+      actor: c.id,
+      detail: JSON.stringify(cmd),
+    });
   s.version++;
   return s;
+}
+/** Persist event first-seen and action resolution on every authoritative transaction/tick. */
+export function syncAttention(s: GameState) {
+  for (const c of s.clubs) {
+    const items = notifications(
+      s,
+      c,
+      effects(c),
+      Object.fromEntries(s.events.map((e) => [e.id, eventProgress(s, c, e.id)])),
+    );
+    c.notificationEvents ??= {};
+    const live = new Set(items.filter((n) => n.status === 'pending').map((n) => n.id));
+    for (const n of items) {
+      c.notificationEvents[n.id] ??= { firstSeenAt: n.at };
+      if (n.status === 'resolved') c.notificationEvents[n.id].resolvedAt ??= s.now;
+      else delete c.notificationEvents[n.id].resolvedAt;
+    }
+    for (const [id, event] of Object.entries(c.notificationEvents))
+      if (!live.has(id)) event.resolvedAt ??= s.now;
+  }
 }
 // La respuesta pública nunca entrega pujas rivales abiertas ni información privada de negociaciones.
 export function publicState(s: GameState, userId: string) {
@@ -1650,6 +1734,14 @@ export function publicState(s: GameState, userId: string) {
   invariant(c, 'No perteneces a esta liga.');
   const out = structuredClone(s);
   out.privateRng = undefined;
+  for (const m of out.chat)
+    if (
+      m.at === s.seasonStartedAt - 180000 &&
+      m.text === '¡Bienvenidos! Esta temporada la corona se queda en el barrio.'
+    )
+      m.text = '¡Bienvenidos! Esta temporada el título se queda en el barrio.';
+  for (const n of out.news)
+    if (n.title === 'La corona busca nuevo dueño') n.title = 'La liga busca nuevo campeón';
   const history = c.modules.includes('bidhistory');
   out.bids = out.bids.filter(
     (b) => b.clubId === c.id || (b.status !== 'open' && (b.status === 'won' || history)),
@@ -1664,6 +1756,11 @@ export function publicState(s: GameState, userId: string) {
       : {
           ...club,
           dailyDone: [],
+          activity: undefined,
+          activityHistory: undefined,
+          notificationReads: undefined,
+          notificationEvents: undefined,
+          hideResources: undefined,
           selection: {
             ...club.selection,
             bench: club.selection.locked ? club.selection.bench : [],
@@ -1679,6 +1776,12 @@ export function publicState(s: GameState, userId: string) {
     available: available(s, c),
     effects: effects(c),
     daily: dailyActions(s),
+    notifications: notifications(
+      s,
+      c,
+      effects(c),
+      Object.fromEntries(s.events.map((e) => [e.id, eventProgress(s, c, e.id)])),
+    ),
     concertOffers: concertOffers(s),
     eventProgress: Object.fromEntries(s.events.map((e) => [e.id, eventProgress(s, c, e.id)])),
   };

@@ -1,9 +1,21 @@
+import { AttentionBadge, ReadAttention } from './components/Attention';
+import { ResourceAmount, ResourceToggle } from './components/ResourceVisibility';
 import { BRAND } from '../shared/brand';
 import { AudioToggle, DepartmentScene, Experience } from './components/Experience';
 import { Suspense, lazy, useEffect } from 'react';
 import { NavLink, Navigate, Route, Routes, useLocation, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { Award, Bell, Coins, Crown, Landmark, ShoppingBag, Trophy, Users, Zap } from 'lucide-react';
+import {
+  Award,
+  Bell,
+  Coins,
+  Shield,
+  Landmark,
+  ShoppingBag,
+  Trophy,
+  Users,
+  Zap,
+} from 'lucide-react';
 import { GameProvider, sessionQuery, useGame } from './lib/api';
 import { Crest } from './components/ui';
 import { shortMoney } from '../shared/math';
@@ -61,11 +73,14 @@ function Layout() {
     ['/squad', 'Equipo', Users],
     ['/market', 'Mercado', ShoppingBag],
     ['/league', 'Liga', Trophy],
-    ['/more', 'Mi club', Crown],
+    ['/more', 'Mi club', Shield],
   ] as const;
   return (
     <>
       <Experience />
+      {!['/newspaper', '/chat', '/market'].includes(location.pathname) && (
+        <ReadAttention to={location.pathname} />
+      )}
       <header className="app-header">
         <div className="brand-row">
           <Link to="/city" className="brand">
@@ -84,9 +99,10 @@ function Layout() {
             />
           </Link>
           <AudioToggle />
+          <ResourceToggle />
           <Link className="header-notification" to="/newspaper" aria-label="Noticias de la liga">
             <Bell size={20} />
-            <i />
+            <AttentionBadge to="/newspaper" />
           </Link>
         </div>
         <div className="resource-bar">
@@ -95,7 +111,9 @@ function Layout() {
               <Coins size={16} />
             </span>
             <div>
-              <strong>{shortMoney(club.resources.money)}</strong>
+              <strong>
+                <ResourceAmount>{shortMoney(club.resources.money)}</ResourceAmount>
+              </strong>
               <span>TESORERÍA</span>
             </div>
           </Link>
@@ -104,7 +122,11 @@ function Layout() {
               <Zap size={16} />
             </span>
             <div>
-              <strong>{club.resources.development.toLocaleString('es-ES')}</strong>
+              <strong>
+                <ResourceAmount>
+                  {club.resources.development.toLocaleString('es-ES')}
+                </ResourceAmount>
+              </strong>
               <span>DESARROLLO</span>
             </div>
           </Link>
@@ -113,7 +135,9 @@ function Layout() {
               <Award size={17} />
             </span>
             <div>
-              <strong>{club.resources.medals}</strong>
+              <strong>
+                <ResourceAmount>{club.resources.medals}</ResourceAmount>
+              </strong>
               <span>MEDALLAS</span>
             </div>
           </Link>
@@ -170,6 +194,7 @@ function Layout() {
         {nav.map(([to, title, Icon]) => (
           <NavLink key={to} to={to} className={({ isActive }) => (isActive ? 'active' : '')}>
             <Icon size={23} />
+            <AttentionBadge to={to} />
             <span>{title}</span>
           </NavLink>
         ))}

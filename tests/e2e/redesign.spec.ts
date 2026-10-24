@@ -6,7 +6,7 @@ import { BUILDINGS } from '../../shared/config';
 async function login(page: Page) {
   await page.request.post('/api/demo', { data: { userId: 'demo1' } });
   await page.goto('/city');
-  await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
 }
 async function snapshot(page: Page, options: Parameters<Page['screenshot']>[0]) {
   await expect(page.locator('h1').first()).toBeVisible();
@@ -59,7 +59,7 @@ function fixture(info: TestInfo, mutate: (s: GameState) => void) {
     db.close();
   }
 }
-const root = 'docs/screenshots/redesign';
+const root = 'docs/screenshots/v02/regressions';
 test('cámara: zoom, arrastre sin abrir edificios, teclado y selección táctil', async ({ page }) => {
   await login(page);
   const map = page.getByRole('region', { name: /Mapa de la ciudad/ });
@@ -191,12 +191,8 @@ test('jornada: ambiente normal, inicio real, once, banquillo y cierre', async ({
   await page.getByRole('button', { name: 'Cerrar jornada', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Tiempo avanzado');
   await page.goto('/matchday');
-  await expect(
-    page.locator('select').first().locator('option').filter({ hasText: 'Liquidada' }).first(),
-  ).toBeAttached();
-  const options = await page.locator('select').first().locator('option').allTextContents(),
-    index = options.findIndex((t) => t.includes('Liquidada'));
-  await page.locator('select').first().selectOption({ index });
+  await page.getByRole('combobox').first().click();
+  await page.getByRole('option').filter({ hasText: 'Liquidada' }).first().click();
   await expect(page.getByRole('heading', { name: 'Los puntos, explicados' })).toBeVisible();
   await snapshot(page, {
     path: `${root}/informe-final-jornada.png`,
@@ -215,6 +211,7 @@ test('fotografías, emblemas asociados, cartas y alternativa ante error de red',
     'madrid-8',
     'madrid-14',
     'barcelona-17',
+    'barcelona-10',
     'athletic-0',
     'athletic-4',
   ]) {
@@ -281,13 +278,14 @@ test('audio: gesto, efectos, silencio, preferencias persistentes y movimiento re
   expect(await page.evaluate(() => (window as any).__tones)).toBe(n);
   await page.getByLabel('Música ambiental').check();
   await page.getByLabel('Volumen', { exact: true }).fill('20');
-  await page.getByLabel('Calidad gráfica').selectOption('low');
+  await page.getByRole('combobox', { name: 'Calidad gráfica' }).click();
+  await page.getByRole('option', { name: /Baja/ }).click();
   await page.getByLabel('Animaciones ambientales').uncheck();
   await page.reload();
   await expect(page.getByLabel('Música ambiental')).toBeChecked();
   await expect(page.getByLabel('Efectos sonoros')).not.toBeChecked();
   await expect(page.getByLabel('Volumen', { exact: true })).toHaveValue('20');
-  await expect(page.getByLabel('Calidad gráfica')).toHaveValue('low');
+  await expect(page.getByRole('combobox', { name: 'Calidad gráfica' })).toContainText('Baja');
   await page.goto('/city');
   await expect(page.locator('.ambient-layer')).toHaveCount(0);
   await expect(page.locator('html')).toHaveAttribute('data-motion', 'reduced');

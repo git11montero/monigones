@@ -22,7 +22,8 @@ describe('transacciones y persistencia del servidor', () => {
     store.dispatch('demo1', { type: 'daily', id: daily.id }, 'persist-test');
     store.close();
     store = new Store(join(path, 'test.sqlite'), true);
-    expect(store.getState('demo1').state.clubs[0].dailyDone).toContain(daily.id);
+    expect(store.getState('demo1').state.clubs[0].activity?.definition.id).toBe(daily.id);
+    expect(store.getState('demo1').state.clubs[0].activity?.claimedAt).toBeUndefined();
   });
   it('deduplica peticiones económicas con una clave de idempotencia', () => {
     const before = store.getState('demo1');

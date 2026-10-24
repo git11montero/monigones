@@ -1,3 +1,7 @@
+import { effectContribution, RESEARCH_STORIES } from '../../shared/research-guide';
+import { RARITIES } from '../../shared/activities';
+import { dailyKey } from '../../shared/math';
+import { GameSelect } from '../components/GameSelect';
 import { BUILDINGS } from '../../shared/config';
 import { BuildingArt } from '../components/City';
 import { BRAND } from '../../shared/brand';
@@ -6,7 +10,6 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   Check,
-  Clock3,
   Heart,
   HeartHandshake,
   LockKeyhole,
@@ -33,81 +36,125 @@ import { Badge, Button, Confirm, Countdown, PageTitle, Progress, Section } from 
 import { effectText } from './ResearchPage';
 export function DailyPage() {
   const { daily, club, act, state } = useGame();
+  const run = club.activity,
+    blocked = !!run && !run.claimedAt;
+  const ready = blocked && run.endsAt <= state.now;
+  const labels: Record<string, string> = {
+    money: '€',
+    development: 'PD',
+    fans: 'satisfacción',
+    fame: 'fama',
+    prestige: 'prestigio',
+    medals: 'medallas',
+    luck: 'suerte',
+  };
+  const reward = (resource: string, amount: number) =>
+    resource === 'money' ? shortMoney(amount) : `${amount} ${labels[resource]}`;
   return (
     <>
       <PageTitle
         back
         eyebrow="EL CLUB NUNCA DUERME"
         title="Hoy dejas huella"
-        subtitle="Tres historias. Tres oportunidades. Un club más fuerte."
+        subtitle="Tres propuestas al día. Una actividad a la vez. Tú recoges cada recompensa."
       />
       <div className="daily-progress">
-        <span className="icon-badge gold">
-          <Zap size={22} />
-        </span>
+        <Zap size={22} />
         <div>
           <b>{club.dailyDone.length} de 3 actividades realizadas</b>
           <Progress value={club.dailyDone.length} max={3} />
         </div>
       </div>
-      {daily.map((a, i) => (
-        <div className="daily-card" key={a.id}>
-          <div className={`daily-art daily-art-${i}`}>
-            <span className="daily-number">0{i + 1}</span>
-            <BuildingArt
-              building={BUILDINGS.find((b) => b.id === ['press', 'social', 'academy'][i])!}
-              level={club.buildings[['press', 'social', 'academy'][i]] || 1}
-            />
-            <span className="daily-art-tag">EL FÚTBOL TAMBIÉN ES ESTO</span>
-          </div>
-          <div className="daily-card-body">
-            <Badge kind="gold">ACCIÓN INMEDIATA</Badge>
-            <h2>{a.name}</h2>
-            <p>{a.story}</p>
-            <div className="daily-reward">
-              <Sparkles size={16} />
-              <b>
-                +{a.resource === 'money' ? shortMoney(a.reward) : a.reward}{' '}
-                {a.resource === 'fame'
-                  ? 'fama'
-                  : a.resource === 'fans'
-                    ? 'satisfacción'
-                    : a.resource === 'development'
-                      ? 'PD'
-                      : a.resource === 'prestige'
-                        ? 'prestigio'
-                        : ''}
-              </b>
-              <span>{a.cost ? shortMoney(a.cost) : 'Sin coste'}</span>
-            </div>
+      <p className="hint">
+        Las propuestas cambian a las 06:00 de Madrid. Tu actividad en curso continúa aunque cierre
+        el juego o cambie el día. Las propuestas sin iniciar caducan.
+      </p>
+      {blocked && (
+        <section
+          className={`activity-running rarity-${run.definition.rarity}`}
+          aria-label="Actividad en curso"
+        >
+          <Badge kind={ready ? 'gold' : ''}>
+            {ready ? 'RECOMPENSA LISTA' : 'ACTIVIDAD EN CURSO'}
+          </Badge>
+          <h2>{run.definition.name}</h2>
+          <p>
+            Inicio: {new Date(run.startedAt).toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
+          </p>
+          {ready ? (
             <Button
-              disabled={club.dailyDone.includes(a.id)}
-              onClick={() =>
-                void act(
-                  { type: 'daily', id: a.id },
-                  'Actividad completada. Tu club sigue creciendo.',
-                )
-              }
+              onClick={() => void act({ type: 'dailyClaim', id: run.id }, 'Recompensa recogida.')}
             >
-              {club.dailyDone.includes(a.id) ? (
-                <>
-                  <Check size={17} />
-                  Ya forma parte de tu historia
-                </>
-              ) : (
-                'Realizar actividad'
-              )}
+              Recoger recompensa
             </Button>
+          ) : (
+            <>
+              <Countdown to={run.endsAt} now={state.now} />
+              <Progress value={state.now - run.startedAt} max={run.endsAt - run.startedAt} />
+              <p className="hint">La finalización la valida el servidor. No admite cancelación.</p>
+            </>
+          )}
+        </section>
+      )}
+      {daily.map((a, i) => {
+        const done = club.dailyDone.includes(a.id),
+          current = blocked && run.definition.id === a.id && run.offerDay === dailyKey(state.now);
+        return (
+          <div className={`daily-card rarity-${a.rarity}`} key={a.id}>
+            <div className={`daily-art daily-art-${i}`}>
+              <span className="daily-number">0{i + 1}</span>
+              <BuildingArt
+                building={BUILDINGS.find((b) => b.id === a.building)!}
+                level={club.buildings[a.building] || 1}
+              />
+              <span className="daily-art-tag">{RARITIES[a.rarity].label.toUpperCase()}</span>
+            </div>
+            <div className="daily-card-body">
+              <Badge>
+                {RARITIES[a.rarity].label} · {a.duration / 60000} min
+              </Badge>
+              <h2>{a.name}</h2>
+              <p>{a.story}</p>
+              <div className="daily-reward">
+                <Sparkles size={16} />
+                <b>
+                  +{reward(a.resource, a.reward)}
+                  {Object.entries(a.extra || {})
+                    .map(([key, n]) => ` · +${reward(key, n)}`)
+                    .join('')}
+                </b>
+                <span>{a.cost ? shortMoney(a.cost) : 'Sin coste'}</span>
+              </div>
+              <p className="hint">
+                Requiere sede Nv. {a.minimumHQ}. Sin riesgo aleatorio. La recompensa respeta los
+                límites de fama y prestigio de tu club.
+              </p>
+              <Button
+                disabled={done || blocked || club.buildings.hq < a.minimumHQ}
+                onClick={() =>
+                  void act(
+                    { type: 'dailyStart', id: a.id },
+                    'Actividad iniciada. Volverás para recoger tu recompensa.',
+                  )
+                }
+              >
+                {done ? (
+                  <>
+                    <Check size={17} />
+                    Ya forma parte de tu historia
+                  </>
+                ) : current ? (
+                  'En curso'
+                ) : blocked ? (
+                  'Termina tu actividad actual'
+                ) : (
+                  'Iniciar actividad'
+                )}
+              </Button>
+            </div>
           </div>
-        </div>
-      ))}
-      <div className="info-note">
-        <Clock3 size={16} />
-        <p>
-          Nuevas decisiones a las 06:00 de Madrid. Dejar actividades pendientes reduce la fama al
-          día siguiente. Cada actividad solo puede completarse una vez.
-        </p>
-      </div>
+        );
+      })}
     </>
   );
 }
@@ -150,19 +197,19 @@ export function MarketingPage() {
         <div className="card">
           <label>
             Espacio publicitario
-            <select value={slot} onChange={(e) => setSlot(e.target.value)}>
+            <GameSelect value={slot} onChange={(e) => setSlot(e.target.value)}>
               {AD_SLOTS.map((s) => (
                 <option key={s}>{s}</option>
               ))}
-            </select>
+            </GameSelect>
           </label>
           <label>
             Duración del contrato
-            <select value={days} onChange={(e) => setDays(Number(e.target.value))}>
+            <GameSelect value={days} onChange={(e) => setDays(Number(e.target.value))}>
               <option value="7">7 días</option>
               <option value="14">14 días</option>
               <option value="30">30 días</option>
-            </select>
+            </GameSelect>
           </label>
         </div>
       </Section>
@@ -401,7 +448,7 @@ export function AcademyPage() {
         back
         eyebrow="EL FUTURO SE ENTRENA AQUÍ"
         title="Talento con raíces"
-        subtitle="Un proyecto por semana. Futbolistas ficticios del catálogo local."
+        subtitle="Un proyecto por semana. Talento joven del catálogo de la liga."
       />
       <div className="academy-hero">
         <Sprout size={62} />
@@ -423,8 +470,8 @@ export function AcademyPage() {
             </span>
           </div>
           <p>
-            Al terminar, el club incorpora un jugador ficticio disponible si tiene plaza y dinero
-            para abonar su VM. La observación no garantiza una plaza ni descuenta el fichaje.
+            Al terminar, el club incorpora un jugador disponible si tiene plaza y dinero para abonar
+            su VM. La observación no garantiza una plaza ni descuenta el fichaje.
           </p>
           <p className="hint">
             Capacidad actual: {state.contracts.filter((ct) => ct.clubId === club.id).length}/
@@ -587,9 +634,10 @@ export function BonusesPage() {
               <h3>
                 {r.name} · Nv. {club.research[r.id]}
               </h3>
+              <p>{RESEARCH_STORIES[r.id]}</p>
               {Object.entries(r.effects).map(([k, v]) => (
                 <p key={k}>
-                  {effectText[k]}: <b>+{Number(v) * club.research[r.id]}</b>
+                  {effectText[k]}: <b>{effectContribution(k, Number(v) * club.research[r.id])}</b>
                 </p>
               ))}
               <Badge>Vigente hasta fin de temporada</Badge>
@@ -658,7 +706,7 @@ export function CoachesPage() {
           </Badge>
           <h2>{c.name}</h2>
           <p>{c.clubId ? clubById(c.clubId).name : `Entrenador original de ${BRAND.name}`}</p>
-          <strong>+{c.sportBonus / 100}% deportivo simulado</strong>
+          <strong>+{c.sportBonus / 100}% deportivo</strong>
           {(club.coachInventory || ['generic', club.coach]).includes(c.id) && (
             <Button
               variant="secondary"

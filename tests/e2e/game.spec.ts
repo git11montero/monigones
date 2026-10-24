@@ -2,17 +2,17 @@ import { test, expect } from '@playwright/test';
 async function login(page: import('@playwright/test').Page, userId = 'demo1') {
   await page.request.post('/api/demo', { data: { userId } });
   await page.goto('/city');
-  await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
 }
 test('acceso, ciudad vertical, navegación y ausencia de desbordamiento', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /Tu club/ })).toBeVisible();
   await page.getByRole('button', { name: /Entrar a la partida de demostración/ }).click();
-  await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
   await expect(page.locator('.map-building')).toHaveCount(15);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({
-    path: 'docs/screenshots/ciudad-mobile.png',
+    path: 'docs/screenshots/v02/regressions/ciudad-mobile.png',
     fullPage: true,
     scale: 'css',
   });
@@ -46,13 +46,22 @@ test('puja secreta, reserva persistente y retirada', async ({ page }) => {
   await page.goto('/market');
   await page.getByRole('button', { name: 'Mis ofertas' }).click();
   await page.getByRole('button', { name: 'Retirar oferta' }).first().click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await page.getByRole('button', { name: 'Sí, retirar oferta' }).click();
   await expect(page.getByRole('status')).toContainText('Oferta retirada');
 });
 test('actividad diaria, recompensa y bloqueo de repetición', async ({ page }) => {
   await login(page);
   await page.goto('/daily');
-  const buttons = page.getByRole('button', { name: 'Realizar actividad' });
+  const buttons = page.getByRole('button', { name: 'Iniciar actividad', exact: true });
   await buttons.first().click();
+  await expect(page.getByRole('region', { name: 'Actividad en curso' })).toBeVisible();
+  await page.request.post('/api/command', {
+    data: { type: 'advance', step: 'activity' },
+    headers: { 'Idempotency-Key': crypto.randomUUID() },
+  });
+  await page.reload();
+  await page.getByRole('button', { name: 'Recoger recompensa' }).click();
   await expect(page.getByRole('button', { name: 'Ya forma parte de tu historia' })).toBeDisabled();
   await page.reload();
   await expect(page.getByRole('button', { name: 'Ya forma parte de tu historia' })).toBeDisabled();
@@ -75,10 +84,11 @@ test('alineación, cierre de jornada e informe persistente', async ({ page }) =>
   await page.getByRole('button', { name: 'Cerrar jornada', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('Tiempo avanzado');
   await page.goto('/matchday');
-  await page.locator('select').first().selectOption('1');
+  await page.getByRole('combobox').first().click();
+  await page.getByRole('option', { name: /Jornada 1 ·/ }).click();
   await expect(page.getByRole('heading', { name: 'Los puntos, explicados' })).toBeVisible();
   await page.screenshot({
-    path: 'docs/screenshots/informe-mobile.png',
+    path: 'docs/screenshots/v02/regressions/informe-mobile.png',
     fullPage: true,
     scale: 'css',
   });
@@ -135,9 +145,9 @@ test('mantiene columna móvil en escritorio y carga todos los paneles', async ({
     );
   }
   await page.goto('/city');
-  await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
   await page.screenshot({
-    path: 'docs/screenshots/ciudad-desktop.png',
+    path: 'docs/screenshots/v02/regressions/ciudad-desktop.png',
     fullPage: true,
     scale: 'css',
   });
@@ -155,7 +165,9 @@ test('consulta caché al perder conexión y recupera operaciones al volver', asy
     .catch(async () => {
       await expect(page.getByText(/Sin conexión · Consultando/)).toBeVisible();
     });
-  await expect(page.getByRole('button', { name: 'Realizar actividad' }).first()).toBeDisabled();
+  await expect(
+    page.getByRole('button', { name: 'Iniciar actividad', exact: true }).first(),
+  ).toBeDisabled();
   await context.setOffline(false);
   await expect(page.getByText(/Sin conexión · Consultando/)).toHaveCount(0);
 });
@@ -166,7 +178,7 @@ test('PWA de producción: manifest, iconos, service worker y recarga sin conexi�
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:3102/');
   await page.getByRole('button', { name: /Entrar a la partida de demostración/ }).click();
-  await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
   const manifest = await (
     await page.request.get('http://127.0.0.1:3102/manifest.webmanifest')
   ).json();
@@ -179,11 +191,11 @@ test('PWA de producción: manifest, iconos, service worker y recarga sin conexi�
   });
   await page.reload();
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
-  await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
   expect(await page.evaluate(async () => (await caches.keys()).length)).toBeGreaterThan(0);
   await context.setOffline(true);
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Un club. Una corona.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
   await expect(page.getByText(/Sin conexión · Consultando/)).toBeVisible();
   await context.setOffline(false);
   await expect(page.getByText(/Sin conexión · Consultando/)).toHaveCount(0);

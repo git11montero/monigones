@@ -1,3 +1,4 @@
+import { RESEARCH_STORIES } from './research-stories';
 import type { BuildingDef, FacilityDef, Position, ResearchDef, Tree } from './types';
 export const HOUR = 3_600_000,
   DAY = 24 * HOUR;
@@ -60,7 +61,7 @@ export const BUILDINGS: BuildingDef[] = [
   ],
   [
     'stadium',
-    'Estadio de la Corona',
+    'Estadio del club',
     'Estadio',
     'Tu casa, tu afición y once motivos para soñar.',
     'Stadium',
@@ -317,7 +318,7 @@ for (const [tree, rows] of [
       maxLevel: ['salary', 'sale', 'negotiator'].includes(id) ? 5 : 1,
       requires: custom ? custom.split(',') : prev[branch] ? [prev[branch]] : [],
       buildingLevel: Math.min(5, 1 + Math.floor(row / 2)),
-      description: `${name}: desarrolla ${['la gestión', 'el rendimiento', 'la identidad'][['Finanzas', 'Competición', 'Relaciones'].indexOf(tree)]} del club.`,
+      description: RESEARCH_STORIES[id],
       effects,
     });
     prev[branch] = id;
@@ -493,7 +494,7 @@ export const SPONSORS = [
   },
   {
     id: 'corona',
-    name: 'CORONA BANK',
+    name: 'GRADA BANK',
     tag: 'La confianza también se entrena.',
     color: '#a88a49',
     fame: 75,

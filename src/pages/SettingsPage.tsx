@@ -1,3 +1,5 @@
+import { UnsavedChanges } from '../components/UnsavedChanges';
+import { AttentionBadge } from '../components/Attention';
 import { BRAND } from '../../shared/brand';
 import { ExperienceSettings } from '../components/Experience';
 import { useEffect, useState } from 'react';
@@ -94,6 +96,7 @@ export default function MorePage() {
               <Icon size={21} />
             </span>
             <span>{label}</span>
+            <AttentionBadge to={to} />
             <ChevronRight size={17} />
           </Link>
         ))}
@@ -121,6 +124,10 @@ export function SettingsPage() {
   }, []);
   return (
     <>
+      <UnsavedChanges
+        dirty={name !== club.name || color !== club.color}
+        label="Identidad del club"
+      />
       <PageTitle back eyebrow="TU PARTIDA, A TU MANERA" title="Ajustes del club" />
       <Section title="Tu experiencia de juego">
         <ExperienceSettings />
@@ -245,6 +252,7 @@ export function SettingsPage() {
                 ['day', 'Día siguiente'],
                 ['market', 'Cerrar mercado'],
                 ['jobs', 'Terminar obras e investigación'],
+                ['activity', 'Terminar actividad en curso'],
                 ['kickoff', 'Iniciar jornada'],
                 ['match', 'Finalizar próximo partido'],
                 ['round', 'Cerrar jornada'],
@@ -305,7 +313,8 @@ export function SettingsPage() {
       <p className="page-footnote">
         {BRAND.name} · Servidor local persistente
         <br />
-        Puntuaciones, calendarios y valores de mercado simulados.
+        Datos de demostración: resultados, calendario y economía propios de esta partida. Las
+        fuentes de identidad y las fotografías pueden consultarse en Créditos de imágenes.
       </p>
       {reset && (
         <Confirm

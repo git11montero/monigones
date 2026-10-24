@@ -30,7 +30,7 @@ export function ClubBadge({ clubId, size = 26 }: { clubId: string; size?: number
 }
 export function PlayerPortrait({ player, size = 58 }: { player: Player; size?: number }) {
   const asset = sportsAsset(player),
-    [broken, setBroken] = useState(false),
+    [brokenFile, setBrokenFile] = useState<string>(),
     uid = useId().replaceAll(':', ''),
     c = clubById(player.realClubId);
   const n = [...player.id].reduce((a, b) => ((a << 5) - a + b.charCodeAt(0)) >>> 0, 0),
@@ -38,18 +38,18 @@ export function PlayerPortrait({ player, size = 58 }: { player: Player; size?: n
     hair = ['#241d28', '#4a2e24', '#a67a45', '#27232b'][n % 4];
   return (
     <span
-      className={`portrait player-avatar ${asset.photo && !broken ? 'has-photo' : 'illustrated'}`}
+      className={`portrait player-avatar ${asset.photo && asset.photo.file !== brokenFile ? 'has-photo' : 'illustrated'}`}
       style={{ width: size, height: size * 1.2, '--club-color': c.color } as CSSProperties}
       data-player-id={player.id}
       data-media={
-        asset.photo && !broken
+        asset.photo && asset.photo.file !== brokenFile
           ? 'photo'
           : asset.availability === 'fictional-portrait'
             ? 'fictional'
             : 'fallback'
       }
     >
-      {asset.photo && !broken ? (
+      {asset.photo && asset.photo.file !== brokenFile ? (
         <img
           src={asset.photo.file}
           alt={`Fotografía de ${player.name}`}
@@ -57,7 +57,7 @@ export function PlayerPortrait({ player, size = 58 }: { player: Player; size?: n
           height={asset.photo.height}
           loading="lazy"
           decoding="async"
-          onError={() => setBroken(true)}
+          onError={() => setBrokenFile(asset.photo?.file)}
           title={`${asset.photo.author} · ${asset.photo.license}`}
         />
       ) : (

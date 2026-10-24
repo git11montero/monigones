@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-23T18:54:28.743Z",
+  "generatedAt": "2026-10-23T19:42:52.240Z",
   "real": 390,
   "fictional": 110,
-  "authorizedPhotos": 6,
-  "pendingPhotos": 384,
+  "authorizedPhotos": 7,
+  "pendingPhotos": 383,
   "officialCrests": 0,
   "alternativeCrests": 20,
-  "photoCoveragePercent": 1.54,
+  "photoCoveragePercent": 1.79,
   "photos": [
     {
       "playerId": "madrid-13",
@@ -97,6 +97,21 @@
       "height": 737,
       "modified": true,
       "originalFile": "assets-source/photos/madrid-14-vinicius.jpg"
+    },
+    {
+      "playerId": "barcelona-10",
+      "identity": "Pedri",
+      "season": "2026/27",
+      "file": "/sports/barcelona-10-pedri.webp",
+      "source": "https://commons.wikimedia.org/wiki/File:Pedri_France_v_Spain_7.24.26-226.jpg",
+      "author": "Bryan Berlin / WikiPortraits",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "verifiedAt": "2026-10-23",
+      "width": 512,
+      "height": 769,
+      "modified": true,
+      "originalFile": "assets-source/photos/barcelona-10-pedri.jpg"
     }
   ],
   "clubs": [
@@ -3558,7 +3573,22 @@
       "clubId": "barcelona",
       "season": "2026/27",
       "externalIds": {},
-      "availability": "pending-photo",
+      "photo": {
+        "playerId": "barcelona-10",
+        "identity": "Pedri",
+        "season": "2026/27",
+        "file": "/sports/barcelona-10-pedri.webp",
+        "source": "https://commons.wikimedia.org/wiki/File:Pedri_France_v_Spain_7.24.26-226.jpg",
+        "author": "Bryan Berlin / WikiPortraits",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "verifiedAt": "2026-10-23",
+        "width": 512,
+        "height": 769,
+        "modified": true,
+        "originalFile": "assets-source/photos/barcelona-10-pedri.jpg"
+      },
+      "availability": "authorized-photo",
       "fallback": "original-portrait:barcelona-10",
       "crest": {
         "clubId": "barcelona",

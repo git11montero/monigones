@@ -1,8 +1,9 @@
+import { GameSelect } from '../components/GameSelect';
 import { BRAND } from '../../shared/brand';
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@supabase/supabase-js';
-import { ArrowRight, Crown, Flag, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRight, Shield, Flag, ShieldCheck, Users } from 'lucide-react';
 import { post, type Session } from '../lib/api';
 import { Crest } from '../components/ui';
 import { BuildingArt } from '../components/City';
@@ -61,7 +62,7 @@ export default function AuthPage({ session }: { session: Session }) {
         <span>FOOTBALL MANAGER</span>
       </div>
       <div className="auth-hero">
-        <span className="auth-eyebrow">TU REINO EMPIEZA CON UN BALÓN</span>
+        <span className="auth-eyebrow">TU HISTORIA EMPIEZA CON UN BALÓN</span>
         <h1>
           Tu club.
           <br />
@@ -80,7 +81,7 @@ export default function AuthPage({ session }: { session: Session }) {
             <BuildingArt building={BUILDINGS[1]} level={3} />
           </div>
           <span className="auth-art-tag">
-            <Crown size={14} />
+            <Shield size={14} />
             EL PRÓXIMO GRAN CLUB ES EL TUYO
           </span>
         </div>
@@ -96,6 +97,7 @@ export default function AuthPage({ session }: { session: Session }) {
         </div>
         {session.demo && (
           <div className="demo-access">
+            <small>Datos de demostración · resultados y economía de la partida.</small>
             <button
               className="button"
               disabled={busy}
@@ -105,7 +107,7 @@ export default function AuthPage({ session }: { session: Session }) {
             </button>
             <label className="demo-select">
               <Users size={14} />
-              <select
+              <GameSelect
                 aria-label="Presidente de demostración"
                 value={demo}
                 onChange={(e) => setDemo(e.target.value)}
@@ -123,7 +125,7 @@ export default function AuthPage({ session }: { session: Session }) {
                     {i === 0 ? ' · Administrador' : ''}
                   </option>
                 ))}
-              </select>
+              </GameSelect>
             </label>
             <span>Sin registro · Seis clubes · Progreso persistente</span>
           </div>
@@ -280,13 +282,13 @@ export function OnboardingPage() {
         </label>
         <label>
           El equipo de tu afición
-          <select value={favorite} onChange={(e) => setFavorite(e.target.value)}>
+          <GameSelect value={favorite} onChange={(e) => setFavorite(e.target.value)}>
             {REAL_CLUBS.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name}
               </option>
             ))}
-          </select>
+          </GameSelect>
         </label>
         {error && (
           <p className="error-text" role="alert">

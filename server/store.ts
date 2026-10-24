@@ -3,7 +3,7 @@ import { mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { randomBytes, scryptSync, timingSafeEqual, createHash } from 'node:crypto';
 import { createGame, makeClub, uid } from '../shared/seed';
-import { execute, publicState, reconcile } from '../shared/engine';
+import { execute, publicState, reconcile, syncAttention } from '../shared/engine';
 import { normalizeImport } from '../shared/sports';
 import { DAY } from '../shared/config';
 import { invariant } from '../shared/math';
@@ -53,6 +53,7 @@ export class Store {
     }
   }
   save(s: GameState, insert = false) {
+    syncAttention(s);
     if (insert)
       this.db
         .prepare('INSERT INTO leagues VALUES(?,?,?,?,?,?)')
@@ -75,6 +76,17 @@ export class Store {
       .prepare('SELECT league_id,club_id FROM memberships WHERE user_id=?')
       .get(userId) as { league_id: string; club_id: string } | undefined;
   }
+  view(s: GameState, userId: string) {
+    const result = publicState(s, userId);
+    const rows = this.db
+      .prepare(
+        'SELECT users.id,users.name FROM users JOIN memberships ON memberships.user_id=users.id WHERE memberships.league_id=?',
+      )
+      .all(s.id) as { id: string; name: string }[];
+    for (const c of result.state.clubs)
+      c.presidentName = rows.find((u) => u.id === c.userId)?.name || 'Presidente';
+    return result;
+  }
   getState(userId: string) {
     return this.tx(() => {
       const m = this.membership(userId);
@@ -84,7 +96,7 @@ export class Store {
       reconcile(s, Math.max(s.now, Date.now() + s.timeOffset));
       if (s.version === before) s.version++;
       this.save(s);
-      return publicState(s, userId);
+      return this.view(s, userId);
     });
   }
   dispatch(userId: string, command: Command, key: string, adminTools = false) {
@@ -101,7 +113,7 @@ export class Store {
           prior.command === encoded && prior.league_id === s.id,
           'La clave de idempotencia ya se utilizó con otra acción.',
         );
-        return publicState(s, userId);
+        return this.view(s, userId);
       }
       reconcile(s, Math.max(s.now, Date.now() + s.timeOffset));
       if (command.type === 'advance') {
@@ -120,6 +132,9 @@ export class Store {
             break;
           case 'market':
             target = s.nextMarketAt + 1;
+            break;
+          case 'activity':
+            target = Math.max(s.now, ...s.clubs.map((c) => c.activity?.endsAt || s.now));
             break;
           case 'jobs':
             target = Math.max(s.now, ...s.jobs.map((j) => j.endsAt));
@@ -191,7 +206,7 @@ export class Store {
       this.db
         .prepare('INSERT INTO receipts VALUES(?,?,?,?,?)')
         .run(userId, key, s.id, encoded, s.version);
-      return publicState(s, userId);
+      return this.view(s, userId);
     });
   }
   createUser(email: string, password: string, name: string) {

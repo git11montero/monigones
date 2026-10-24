@@ -250,7 +250,7 @@ export function createGame(
       id: uid(),
       at: now,
       category: 'Liga',
-      title: 'La corona busca nuevo dueño',
+      title: 'La liga busca nuevo campeón',
       subtitle: `${clubs.length} clubes abren una temporada de ambición en ${name}. Los resultados deportivos de esta partida son simulados.`,
     },
   ];
@@ -260,7 +260,7 @@ export function createGame(
         id: uid(),
         clubId: clubs[1].id,
         at: now - 180000,
-        text: '¡Bienvenidos! Esta temporada la corona se queda en el barrio.',
+        text: '¡Bienvenidos! Esta temporada el título se queda en el barrio.',
       },
       {
         id: uid(),

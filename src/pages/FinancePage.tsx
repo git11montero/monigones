@@ -1,3 +1,5 @@
+import { ResourceAmount } from '../components/ResourceVisibility';
+import { GameSelect } from '../components/GameSelect';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDownLeft, ArrowRight, ArrowUpRight, Wallet } from 'lucide-react';
@@ -7,7 +9,8 @@ import type { Resource } from '../../shared/types';
 import { Empty, PageTitle, Section } from '../components/ui';
 export default function FinancePage() {
   const { state, club, available } = useGame();
-  const [filter, setFilter] = useState<Resource>('money');
+  const [filter, setFilter] = useState<Resource>('money'),
+    [details, setDetails] = useState(false);
   const entries = state.ledger.filter((l) => l.clubId === club.id && l.resource === filter);
   const incomes = entries.filter((e) => e.amount > 0).reduce((n, e) => n + e.amount, 0),
     expenses = -entries.filter((e) => e.amount < 0).reduce((n, e) => n + e.amount, 0);
@@ -16,15 +19,22 @@ export default function FinancePage() {
       <PageTitle
         eyebrow="CADA EURO TIENE UN PROPÓSITO"
         title="La salud de tu club"
-        subtitle="Una cuenta. Todos tus recursos. Sin números escondidos."
+        subtitle="Una cuenta. Todos tus recursos. Con los detalles que tú decidas consultar."
       />
       <div className="balance-card">
         <span className="eyebrow">TESORERÍA DEL CLUB</span>
-        <strong>{shortMoney(club.resources.money)}</strong>
-        <span>Disponible {shortMoney(available)}</span>
+        <strong>
+          <ResourceAmount>{shortMoney(club.resources.money)}</ResourceAmount>
+        </strong>
+        <span>
+          Disponible <ResourceAmount>{shortMoney(available)}</ResourceAmount>
+        </span>
         <div>
           <Wallet size={16} />
-          <span>Reservado en pujas: {shortMoney(club.resources.money - available)}</span>
+          <span>
+            Reservado en pujas:{' '}
+            <ResourceAmount>{shortMoney(club.resources.money - available)}</ResourceAmount>
+          </span>
         </div>
       </div>
       <div className="padded">
@@ -38,7 +48,13 @@ export default function FinancePage() {
                 onClick={() => setFilter(key as Resource)}
               >
                 <span>{resourceName[key as Resource]}</span>
-                <b>{n}</b>
+                <b>
+                  {['development', 'medals'].includes(key) ? (
+                    <ResourceAmount>{n}</ResourceAmount>
+                  ) : (
+                    n
+                  )}
+                </b>
               </button>
             ))}
         </div>
@@ -49,14 +65,18 @@ export default function FinancePage() {
             <ArrowDownLeft size={19} />
             <span>Ingresos de {resourceName[filter]}</span>
             <strong>
-              {filter === 'money' ? shortMoney(incomes) : incomes.toLocaleString('es-ES')}
+              <ResourceAmount>
+                {filter === 'money' ? shortMoney(incomes) : incomes.toLocaleString('es-ES')}
+              </ResourceAmount>
             </strong>
           </div>
           <div>
             <ArrowUpRight size={19} />
             <span>Gastos de {resourceName[filter]}</span>
             <strong>
-              {filter === 'money' ? shortMoney(expenses) : expenses.toLocaleString('es-ES')}
+              <ResourceAmount>
+                {filter === 'money' ? shortMoney(expenses) : expenses.toLocaleString('es-ES')}
+              </ResourceAmount>
             </strong>
           </div>
         </div>
@@ -64,47 +84,54 @@ export default function FinancePage() {
       <Section eyebrow="LIBRO MAYOR AUDITABLE" title="Cada movimiento cuenta">
         <label>
           Recurso
-          <select value={filter} onChange={(e) => setFilter(e.target.value as Resource)}>
+          <GameSelect value={filter} onChange={(e) => setFilter(e.target.value as Resource)}>
             {Object.entries(resourceName).map(([k, v]) => (
               <option key={k} value={k}>
                 {v}
               </option>
             ))}
-          </select>
+          </GameSelect>
         </label>
-        <div className="ledger-list">
-          {entries.length ? (
-            entries
-              .toReversed()
-              .slice(0, 120)
-              .map((e) => (
-                <div className="ledger-row" key={e.id}>
-                  <span className={`ledger-icon ${e.amount >= 0 ? 'credit' : 'debit'}`}>
-                    {e.amount >= 0 ? <ArrowDownLeft size={17} /> : <ArrowUpRight size={17} />}
-                  </span>
-                  <div className="grow">
-                    <strong>{e.reason}</strong>
-                    <span>
-                      {new Date(e.at).toLocaleString('es-ES', {
-                        timeZone: 'Europe/Madrid',
-                        day: 'numeric',
-                        month: 'short',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}{' '}
-                      · Saldo {filter === 'money' ? shortMoney(e.balance) : e.balance}
+        {club.hideResources && (
+          <button className="button secondary" onClick={() => setDetails(!details)}>
+            {details ? 'Ocultar detalles' : 'Consultar detalles de movimientos'}
+          </button>
+        )}
+        {(!club.hideResources || details) && (
+          <div className="ledger-list">
+            {entries.length ? (
+              entries
+                .toReversed()
+                .slice(0, 120)
+                .map((e) => (
+                  <div className="ledger-row" key={e.id}>
+                    <span className={`ledger-icon ${e.amount >= 0 ? 'credit' : 'debit'}`}>
+                      {e.amount >= 0 ? <ArrowDownLeft size={17} /> : <ArrowUpRight size={17} />}
                     </span>
+                    <div className="grow">
+                      <strong>{e.reason}</strong>
+                      <span>
+                        {new Date(e.at).toLocaleString('es-ES', {
+                          timeZone: 'Europe/Madrid',
+                          day: 'numeric',
+                          month: 'short',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        })}{' '}
+                        · Saldo {filter === 'money' ? shortMoney(e.balance) : e.balance}
+                      </span>
+                    </div>
+                    <b className={e.amount >= 0 ? 'positive' : 'negative'}>
+                      {e.amount > 0 ? '+' : ''}
+                      {filter === 'money' ? shortMoney(e.amount) : e.amount}
+                    </b>
                   </div>
-                  <b className={e.amount >= 0 ? 'positive' : 'negative'}>
-                    {e.amount > 0 ? '+' : ''}
-                    {filter === 'money' ? shortMoney(e.amount) : e.amount}
-                  </b>
-                </div>
-              ))
-          ) : (
-            <Empty title="Sin movimientos de este recurso" />
-          )}
-        </div>
+                ))
+            ) : (
+              <Empty title="Sin movimientos de este recurso" />
+            )}
+          </div>
+        )}
       </Section>
       <Section title="Compromisos pendientes">
         <div className="card">

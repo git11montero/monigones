@@ -1,3 +1,4 @@
+import { GameSelect } from './GameSelect';
 import { shortMoney } from '../../shared/math';
 import { useDialogAccessibility } from '../lib/dialogs';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
@@ -23,7 +24,7 @@ const departments: Record<string, [string, string, string]> = {
   league: ['competition', 'festival', 'UNA LIGA. UNA CONQUISTA.'],
   matchday: ['stadium', 'sport', 'DONDE TODO COBRA SENTIDO'],
   finance: ['finance', 'gold', 'EL TESORO DE TU CLUB'],
-  more: ['hq', 'royal', 'EL PALACIO DE TU FÚTBOL'],
+  more: ['hq', 'royal', 'LA CASA DE TU CLUB'],
   settings: ['offices', 'royal', 'TU CLUB, A TU MANERA'],
   daily: ['social', 'festival', 'FUERA DEL CAMPO TAMBIÉN SE GANA'],
   marketing: ['marketing', 'coral', 'LA MARCA QUE LLEVAS DENTRO'],
@@ -153,14 +154,14 @@ export function ExperienceSettings() {
       </label>
       <label>
         Calidad gráfica
-        <select
+        <GameSelect
           value={p.quality}
           onChange={(e) => update({ quality: e.target.value as Preferences['quality'] })}
         >
           <option value="high">Alta · ciudad con toda su actividad</option>
           <option value="medium">Media · menos personajes ambientales</option>
           <option value="low">Baja · sin entidades ambientales</option>
-        </select>
+        </GameSelect>
       </label>
       <label className="switch-row">
         Animaciones ambientales
@@ -337,7 +338,7 @@ export function Experience() {
   return (
     <>
       <span className="route-announcer" key={location.pathname} />
-      {deltas && (
+      {deltas && !club.hideResources && (
         <div key={deltas.key} className="resource-deltas" aria-live="polite">
           {deltas.money !== 0 && (
             <span className={deltas.money > 0 ? 'gain' : 'loss'}>

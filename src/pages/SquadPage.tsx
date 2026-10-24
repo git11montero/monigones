@@ -1,7 +1,8 @@
+import { GameSelect } from '../components/GameSelect';
 import { BRAND } from '../../shared/brand';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, CirclePlus, Crown, Grip, Shield, Users, X } from 'lucide-react';
+import { ArrowRight, Check, CirclePlus, Grip, Shield, Users, X } from 'lucide-react';
 import { FORMATIONS, RULES } from '../../shared/config';
 import { callCost } from '../../shared/engine';
 import { capacity, shortMoney } from '../../shared/math';
@@ -59,7 +60,7 @@ export default function SquadPage() {
           <div className="pitch-top">
             <label>
               FORMACIÓN
-              <select
+              <GameSelect
                 aria-label="Formación"
                 value={currentFormation}
                 onChange={(e) =>
@@ -70,12 +71,13 @@ export default function SquadPage() {
                 }
                 disabled={sel.locked}
               >
-                {Object.keys(FORMATIONS)
-                  .slice(0, 1 + (club.facilities.pitch || 0))
-                  .map((f) => (
-                    <option key={f}>{f}</option>
-                  ))}
-              </select>
+                {Object.keys(FORMATIONS).map((f, index) => (
+                  <option key={f} value={f} disabled={index > (club.facilities.pitch || 0)}>
+                    {f}
+                    {index > (club.facilities.pitch || 0) ? ` · Requiere césped Nv. ${index}` : ''}
+                  </option>
+                ))}
+              </GameSelect>
             </label>
             <button
               className="text-link"
@@ -283,7 +285,7 @@ export default function SquadPage() {
               </Button>
             )}
             <Link to="/training" onClick={() => setSlot(null)} className="text-link">
-              Mejorar calidad de la casilla <Crown size={14} />
+              Mejorar calidad de la casilla <Shield size={14} />
             </Link>
           </section>
         </div>

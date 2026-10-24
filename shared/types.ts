@@ -69,6 +69,12 @@ export interface Club {
   totalPoints: number;
   roundPoints: number;
   dailyDone: string[];
+  activity?: import('./activities').ActivityRun;
+  activityHistory?: import('./activities').ActivityRun[];
+  notificationReads?: Record<string, number>;
+  notificationEvents?: Record<string, { firstSeenAt: number; resolvedAt?: number }>;
+  hideResources?: boolean;
+  presidentName?: string;
   lastInstitution: number;
   wish: string[];
   trophies: Trophy[];
@@ -133,6 +139,7 @@ export interface News {
   category: string;
   title: string;
   subtitle: string;
+  playerId?: string;
   clubId?: string;
   ref?: string;
 }
@@ -344,3 +351,19 @@ export interface Actor {
   admin: boolean;
 }
 export type Command = { type: string; [key: string]: unknown };
+
+export interface Attention {
+  id: string;
+  eventId: string;
+  type: string;
+  destination: string;
+  userId: string;
+  leagueId: string;
+  priority: 'normal' | 'important';
+  mode: 'information' | 'action';
+  read: boolean;
+  status: 'pending' | 'resolved';
+  at: number;
+  count: number;
+  title: string;
+}

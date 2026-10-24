@@ -1,3 +1,7 @@
+import { UnsavedChanges } from '../components/UnsavedChanges';
+import { AttentionBadge, ReadAttention } from '../components/Attention';
+import { ResourceAmount } from '../components/ResourceVisibility';
+import { GameSelect } from '../components/GameSelect';
 import { PlayerCard } from '../components/PlayerCard';
 import { PhotoCredit } from '../components/PlayerPortrait';
 import { useState } from 'react';
@@ -22,6 +26,7 @@ export default function MarketPage() {
   const [tab, setTab] = useState('agents'),
     [position, setPosition] = useState('Todos'),
     [search, setSearch] = useState('');
+  const [withdraw, setWithdraw] = useState<string | null>(null);
   const bids = state.bids.filter((b) => b.clubId === club.id);
   const ids = tab === 'agents' ? state.marketPlayers : state.players.map((p) => p.id);
   const players = state.players.filter(
@@ -32,6 +37,38 @@ export default function MarketPage() {
   );
   return (
     <>
+      {withdraw && (
+        <Confirm
+          title="¿Retirar esta oferta?"
+          confirmLabel="Sí, retirar oferta"
+          cancelLabel="Mantener oferta"
+          onClose={() => setWithdraw(null)}
+          onConfirm={() =>
+            void act({ type: 'withdrawBid', id: withdraw }, 'Oferta retirada y reserva liberada.')
+          }
+        >
+          <p>
+            Dejarás de competir por este futbolista. Se libera la reserva de{' '}
+            {shortMoney(bids.find((b) => b.id === withdraw)?.amount || 0)}. No pierdes dinero: la
+            puja todavía no se había cobrado.
+          </p>
+        </Confirm>
+      )}
+      <ReadAttention
+        to="/market"
+        only={state.bids
+          .filter((b) => b.clubId === club.id && b.status !== 'open')
+          .map((b) => `bid:${b.id}:${b.status}`)
+          .filter(() => tab === 'bids')
+          .concat(
+            tab === 'agents'
+              ? [
+                  `market:${state.season}:${state.marketId}`,
+                  ...club.wish.map((id) => `wish:${state.marketId}:${id}`),
+                ]
+              : [],
+          )}
+      />
       <PageTitle
         eyebrow="EL TALENTO NO ESPERA"
         title="La próxima gran firma"
@@ -53,8 +90,12 @@ export default function MarketPage() {
       </div>
       <div className="market-budget">
         <span>Disponible para pujar</span>
-        <strong>{shortMoney(available)}</strong>
-        <span className="muted">Reservado: {shortMoney(club.resources.money - available)}</span>
+        <strong>
+          <ResourceAmount>{shortMoney(available)}</ResourceAmount>
+        </strong>
+        <span className="muted">
+          Reservado: <ResourceAmount>{shortMoney(club.resources.money - available)}</ResourceAmount>
+        </span>
       </div>
       <div className="segmented padded-segment">
         {[
@@ -64,6 +105,7 @@ export default function MarketPage() {
         ].map(([id, t]) => (
           <button key={id} className={tab === id ? 'active' : ''} onClick={() => setTab(id)}>
             {t}
+            {id === 'bids' && <AttentionBadge to="/market" />}
           </button>
         ))}
       </div>
@@ -173,15 +215,7 @@ export default function MarketPage() {
                       : ''}
                   </p>
                   {b.status === 'open' && (
-                    <Button
-                      variant="secondary"
-                      onClick={() =>
-                        void act(
-                          { type: 'withdrawBid', id: b.id },
-                          'Oferta retirada y reserva liberada.',
-                        )
-                      }
-                    >
+                    <Button variant="secondary" onClick={() => setWithdraw(b.id)}>
                       Retirar oferta
                     </Button>
                   )}
@@ -199,7 +233,7 @@ export default function MarketPage() {
         <Info size={16} />
         <p>
           Ofertas secretas hasta el cierre. El jugador puede rechazarlas; el atractivo combina
-          dinero, salario y fama. Los valores de mercado son simulados.
+          dinero, salario y fama.
         </p>
       </div>
     </>
@@ -233,6 +267,14 @@ export function PlayerPage() {
     max = Math.max(...history.map((x) => x.value)) * 1.04;
   return (
     <>
+      <UnsavedChanges
+        dirty={
+          free
+            ? amount !== (bid?.amount || p.value) || salary !== (bid?.salaryBps || 200)
+            : trade && (!!offer || !!offered || loan > 0)
+        }
+        label="Oferta por el futbolista"
+      />
       <PageTitle
         back
         eyebrow={`${p.position} · ${clubById(p.realClubId).name}`}
@@ -251,9 +293,7 @@ export function PlayerPage() {
         <p>
           {clubById(p.realClubId).name} · {p.position}
         </p>
-        <Badge kind="gold">
-          {p.simulated ? 'FUTBOLISTA FICTICIO' : 'IDENTIDAD CON FUENTE'} · VM SIMULADO
-        </Badge>
+        <Badge kind="gold">FICHA DEL FUTBOLISTA</Badge>
         <div className="player-hero-stats">
           <span>
             <strong>{shortMoney(p.value)}</strong>Valor de mercado
@@ -447,7 +487,7 @@ export function PlayerPage() {
                 </label>
                 <label>
                   Futbolista de intercambio
-                  <select value={offered} onChange={(e) => setOffered(e.target.value)}>
+                  <GameSelect value={offered} onChange={(e) => setOffered(e.target.value)}>
                     <option value="">Sin intercambio</option>
                     {state.contracts
                       .filter((ct) => ct.clubId === club.id)
@@ -456,17 +496,17 @@ export function PlayerPage() {
                           {state.players.find((p) => p.id === ct.playerId)?.name}
                         </option>
                       ))}
-                  </select>
+                  </GameSelect>
                 </label>
                 {club.modules.includes('loans') && (
                   <label>
                     Modalidad
-                    <select value={loan} onChange={(e) => setLoan(Number(e.target.value))}>
+                    <GameSelect value={loan} onChange={(e) => setLoan(Number(e.target.value))}>
                       <option value="0">Traspaso</option>
                       <option value="1">Cesión 1 jornada</option>
                       <option value="2">Cesión 2 jornadas</option>
                       <option value="3">Cesión 3 jornadas</option>
-                    </select>
+                    </GameSelect>
                   </label>
                 )}
                 <Button type="submit">Enviar propuesta</Button>
@@ -514,7 +554,7 @@ export function PlayerPage() {
                 </div>
               ))
           ) : (
-            <p>El historial se completará cuando termine su primer encuentro simulado.</p>
+            <p>El historial se completará cuando termine su primer encuentro.</p>
           )}
         </div>
       </Section>

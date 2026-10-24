@@ -1,3 +1,5 @@
+import { CampusGround } from './CampusGround';
+import { AttentionBadge } from './Attention';
 import { AtlasSprite } from './AtlasSprite';
 import atlasBounds from '../lib/atlas-bounds.json';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,7 +14,7 @@ import {
   X,
 } from 'lucide-react';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { BUILDINGS } from '../../shared/config';
+import { BUILDINGS, FACILITIES, RESEARCH } from '../../shared/config';
 import type { BuildingDef } from '../../shared/types';
 import { useGame } from '../lib/api';
 import {
@@ -24,7 +26,9 @@ import {
   type Camera,
 } from '../lib/visuals';
 import { audioManager, readPreferences } from '../lib/audio';
-import { Countdown, Progress } from './ui';
+import { shortMoney } from '../../shared/math';
+import type { Job } from '../../shared/types';
+import { Confirm, Countdown, Progress } from './ui';
 export function BuildingArt({
   building,
   level = 1,
@@ -64,155 +68,6 @@ export function BuildingArt({
         </span>
       )}
     </span>
-  );
-}
-function Tree({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
-  return (
-    <AtlasSprite
-      atlas="props"
-      row={0}
-      column={Math.round(x + y) % 4}
-      x={x - 45 * scale}
-      y={y - 85 * scale}
-      width={90 * scale}
-      height={90 * scale}
-    />
-  );
-}
-function Grounds() {
-  const paths = [
-    'M90 440Q680 120 1320 490',
-    'M90 790Q700 420 1320 840',
-    'M100 1150Q700 810 1320 1220',
-    'M90 1500Q700 1170 1340 1580',
-    'M170 1780Q760 1470 1270 1800',
-    'M680 185L680 1770',
-  ];
-  return (
-    <svg
-      className="campus-ground"
-      width={WORLD.width}
-      height={WORLD.height}
-      viewBox={`0 0 ${WORLD.width} ${WORLD.height}`}
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="campus-grass" x2="1" y2="1">
-          <stop stopColor="#5a9752" />
-          <stop offset=".45" stopColor="#8db368" />
-          <stop offset="1" stopColor="#337c59" />
-        </linearGradient>
-        <pattern id="grass-texture" width="52" height="39" patternUnits="userSpaceOnUse">
-          <path
-            d="M4 7l3-4m0 5V4M32 27l4-3m-1 5v-5"
-            stroke="#b6cf7b"
-            strokeWidth="2"
-            opacity=".3"
-          />
-          <circle cx="20" cy="20" r="2" fill="#215c43" opacity=".2" />
-        </pattern>
-        <linearGradient id="river" x2="1" y2="1">
-          <stop stopColor="#54c8d0" />
-          <stop offset="1" stopColor="#237a9b" />
-        </linearGradient>
-        <pattern id="paving" width="28" height="18" patternUnits="userSpaceOnUse">
-          <path d="M0 1H28M14 1V18" stroke="#9c9272" opacity=".25" />
-        </pattern>
-      </defs>
-      <rect width="1420" height="1920" fill="url(#campus-grass)" />
-      <rect width="1420" height="1920" fill="url(#grass-texture)" />
-      <path
-        d="M1360 -60Q1100 180 1385 440T1370 960Q1220 1180 1460 1510V-60Z"
-        fill="#c4bd8b"
-        stroke="#d3cd9b"
-        strokeWidth="26"
-      />
-      <path d="M1378 -70Q1120 175 1400 440T1390 970Q1260 1170 1470 1490V-60Z" fill="url(#river)" />
-      <path d="M-20 1380Q180 1320 80 1600Q5 1810 180 1950H-20Z" fill="#246e78" />
-      <path
-        d="M-20 1380Q180 1320 80 1600Q5 1810 180 1950"
-        fill="none"
-        stroke="#d0c598"
-        strokeWidth="15"
-      />
-      {paths.map((d, i) => (
-        <g key={d}>
-          <path
-            d={d}
-            fill="none"
-            stroke="#376849"
-            strokeWidth="65"
-            opacity=".25"
-            transform="translate(5 9)"
-          />
-          <path d={d} fill="none" stroke="#c1b58b" strokeWidth="58" />
-          <path d={d} fill="none" stroke="#e6d9af" strokeWidth="45" />
-          <path
-            d={d}
-            fill="none"
-            stroke="#f7ebc3"
-            strokeWidth="2"
-            strokeDasharray={i === 5 ? '2 16' : '0'}
-          />
-        </g>
-      ))}
-      <ellipse cx="680" cy="760" rx="120" ry="67" fill="#c6b99b" stroke="#f4e4b1" strokeWidth="8" />
-      <ellipse cx="680" cy="760" rx="114" ry="61" fill="url(#paving)" />
-      <AtlasSprite
-        atlas="props"
-        row={1}
-        column={2}
-        x={610}
-        y={630}
-        width={140}
-        height={140}
-        className="fountain-water"
-      />
-
-      {Array.from({ length: 88 }, (_, i) => {
-        const edge = i < 38,
-          x = edge ? (i % 2 ? 85 : 1330) + (i % 3) * 8 : 150 + ((i * 173) % 1110),
-          y = edge ? 70 + Math.floor(i / 2) * 94 : 180 + ((i * 277) % 1510);
-        if (
-          !edge &&
-          Object.values(BUILDING_VISUALS).some(
-            (v) => Math.abs(v.x - x) < v.width * 0.55 && Math.abs(v.y - y) < 150,
-          )
-        )
-          return null;
-        return <Tree key={i} x={x} y={y} scale={0.65 + (i % 4) * 0.17} />;
-      })}
-      {Array.from({ length: 22 }, (_, i) => (
-        <AtlasSprite
-          key={i}
-          atlas="props"
-          row={2}
-          column={0}
-          x={(i % 2 ? 745 : 595) - 20}
-          y={160 + Math.floor(i / 2) * 148}
-          width={45}
-          height={65}
-        />
-      ))}
-
-      <g transform="translate(440 1780)">
-        <path d="M0 0L240-28 355 35 115 65Z" fill="#536263" stroke="#d0c5a5" strokeWidth="10" />
-        {Array.from({ length: 7 }, (_, i) => (
-          <path key={i} d={`M${25 + i * 30} ${2 - i * 3}l48 29`} stroke="#eee5bc" strokeWidth="2" />
-        ))}
-      </g>
-      <text
-        x="720"
-        y="1865"
-        textAnchor="middle"
-        fill="#e0d8a8"
-        fontSize="31"
-        fontWeight="900"
-        letterSpacing="10"
-      >
-        MONIGONES
-      </text>
-    </svg>
   );
 }
 function Ambient({ live }: { live: boolean }) {
@@ -461,25 +316,37 @@ export function CityMap({ decorative = false }: { decorative?: boolean }) {
           transform: `translate3d(${camera.x}px,${camera.y}px,0) scale(${camera.zoom})`,
         }}
       >
-        <Grounds />
+        <CampusGround />
         {BUILDINGS.map((b) => {
           const v = BUILDING_VISUALS[b.id],
             job = state.jobs.find(
               (j) => j.clubId === club.id && j.kind === 'building' && j.target === b.id,
             ),
-            level = club.buildings[b.id] || 1;
+            level = club.buildings[b.id] || 1,
+            bounds =
+              atlasBounds[v.atlas as keyof typeof atlasBounds][v.row][(b.max ? level : 3) - 1];
           return (
             <Link
               key={b.id}
               to={`/building/${b.id}`}
               className={`map-building ${b.id === 'stadium' ? 'stadium-building' : ''} ${job ? 'has-job' : ''}`}
-              style={{ left: v.x, top: v.y, width: v.width, zIndex: Math.round(v.y) }}
+              style={
+                {
+                  left: v.x,
+                  top: v.y,
+                  width: v.width,
+                  zIndex: Math.round(v.y),
+                  '--attention-top': `${((370 - bounds.height) / 380) * 100}%`,
+                  '--attention-right': `${((390 - bounds.width) / 780) * 100}%`,
+                } as CSSProperties
+              }
               aria-label={`${b.name}${b.max ? `, nivel ${level}` : ''}${job ? ', en construcción' : ''}`}
               onClick={(e) => {
                 if (moved.current) e.preventDefault();
                 else audioManager.play('open');
               }}
             >
+              <AttentionBadge to={`/building/${b.id}`} />
               <BuildingArt building={b} level={level} constructing={!!job} />
               {job && (
                 <span className="building-timer">
@@ -534,8 +401,13 @@ export function CityMap({ decorative = false }: { decorative?: boolean }) {
           <b>Viaja por tu club</b>
           <div>
             {BUILDINGS.map((b) => (
-              <button key={b.id} onClick={() => focus(b.id)}>
+              <button
+                key={b.id}
+                aria-label={`${b.short} ${b.max ? `Nv. ${club.buildings[b.id]}` : 'Acceder'}`}
+                onClick={() => focus(b.id)}
+              >
                 {b.short}
+                <AttentionBadge to={`/building/${b.id}`} />
                 <small>{b.max ? `Nv. ${club.buildings[b.id]}` : 'Acceder'}</small>
               </button>
             ))}
@@ -548,9 +420,41 @@ export function CityMap({ decorative = false }: { decorative?: boolean }) {
 }
 export function WorkQueue() {
   const { state, club, act } = useGame();
+  const [cancel, setCancel] = useState<Job | null>(null);
   const jobs = state.jobs.filter((j) => j.clubId === club.id);
   return (
     <div className="work-list">
+      {cancel && (
+        <Confirm
+          title="¿Cancelar este proyecto?"
+          confirmLabel="Sí, cancelar proyecto"
+          cancelLabel="Continuar proyecto"
+          onClose={() => setCancel(null)}
+          onConfirm={() =>
+            void act(
+              { type: 'cancelJob', id: cancel.id },
+              'Proyecto cancelado. Devolución del 50 %.',
+            )
+          }
+        >
+          <h3>
+            {BUILDINGS.find((b) => b.id === cancel.target)?.name ||
+              FACILITIES.find((f) => f.id === cancel.target)?.name ||
+              'Cantera'}{' '}
+            · nivel {cancel.level}
+          </h3>
+          <p>
+            Lleva {Math.floor((state.now - cancel.startedAt) / 60000)} minutos en curso. Recuperarás{' '}
+            {shortMoney(Math.floor(cancel.money / 2))} y {Math.floor(cancel.development / 2)} PD.
+          </p>
+          <p>
+            Perderás {shortMoney(cancel.money - Math.floor(cancel.money / 2))} y{' '}
+            {cancel.development - Math.floor(cancel.development / 2)} PD. El progreso se pierde y
+            esta cancelación es irreversible.
+          </p>
+        </Confirm>
+      )}
+
       {jobs.length ? (
         jobs.map((j) => (
           <div className="card work-card" key={j.id}>
@@ -559,7 +463,12 @@ export function WorkQueue() {
                 <Hammer size={20} />
               </span>
               <div className="grow">
-                <b>{BUILDINGS.find((b) => b.id === j.target)?.name || j.target}</b>
+                <b>
+                  {BUILDINGS.find((b) => b.id === j.target)?.name ||
+                    FACILITIES.find((f) => f.id === j.target)?.name ||
+                    RESEARCH.find((r) => r.id === j.target)?.name ||
+                    'Proyecto de cantera'}
+                </b>
                 <p>
                   Nivel {j.level} · <Countdown to={j.endsAt} now={state.now} />
                 </p>
@@ -567,12 +476,7 @@ export function WorkQueue() {
             </div>
             <Progress value={state.now - j.startedAt} max={j.endsAt - j.startedAt} />
             {j.kind !== 'research' && (
-              <button
-                className="text-link danger"
-                onClick={() =>
-                  void act({ type: 'cancelJob', id: j.id }, 'Obra cancelada. Se devuelve el 50 %.')
-                }
-              >
+              <button className="text-link danger" onClick={() => setCancel(j)}>
                 Cancelar · recuperar el 50 %
               </button>
             )}

@@ -130,14 +130,16 @@ export function GameProvider({ session, children }: { session: Session; children
       return result;
     },
     onSuccess: (data) => {
-      qc.setQueryData(['game', session.user!.id], data);
+      qc.setQueryData<Game>(['game', session.user!.id], (current) =>
+        current && current.state.version > data.state.version ? current : data,
+      );
       saveSnapshot(key, data);
     },
   });
   async function act(cmd: Command, message = 'Operación completada') {
     try {
       await mutation.mutateAsync(cmd);
-      setNotice(message);
+      if (message) setNotice(message);
       const sounds: Record<string, Sound> = {
         build: 'construction',
         facility: 'construction',
@@ -166,7 +168,7 @@ export function GameProvider({ session, children }: { session: Session; children
   if (query.isPending)
     return (
       <div className="loading-screen">
-        <div className="loading-crown">♜</div>
+        <div className="loading-crown">⚽</div>
         <h2>Preparando tu club</h2>
         <p>El próximo capítulo empieza aquí.</p>
         <div className="loading-bar" />
@@ -186,7 +188,15 @@ export function GameProvider({ session, children }: { session: Session; children
     club = data.state.clubs.find((c) => c.id === data.clubId)!;
   return (
     <Context.Provider
-      value={{ ...data, club, act, busy: mutation.isPending, online, toast: setNotice, session }}
+      value={{
+        ...data,
+        club,
+        act,
+        busy: mutation.isPending && mutation.variables?.type !== 'notificationRead',
+        online,
+        toast: setNotice,
+        session,
+      }}
     >
       {!online && (
         <div role="status" className="offline-banner">

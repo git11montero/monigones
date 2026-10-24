@@ -1,0 +1,174 @@
+{
+  "base": "http://127.0.0.1:5175",
+  "errors": [],
+  "checks": [
+    {
+      "path": "city-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "daily-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "research-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "finance-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "newspaper-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "squad-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "settings-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "more-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "player-barcelona-10-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "map-after-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "custom-select-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "resources-hidden-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "activity-running-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "activity-ready-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "research-explained-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "cancel-confirmation-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "newspaper-chat-over-article-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "article-preserved-390x844",
+      "width": 390,
+      "scroll": 390,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "map-360x800",
+      "width": 360,
+      "scroll": 360,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "newspaper-360x800",
+      "width": 360,
+      "scroll": 360,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "map-430x932",
+      "width": 430,
+      "scroll": 430,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "newspaper-430x932",
+      "width": 430,
+      "scroll": 430,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "map-1440x1000",
+      "width": 1440,
+      "scroll": 1440,
+      "nativeSelects": 0,
+      "brokenImages": []
+    },
+    {
+      "path": "newspaper-1440x1000",
+      "width": 1440,
+      "scroll": 1440,
+      "nativeSelects": 0,
+      "brokenImages": []
+    }
+  ]
+}

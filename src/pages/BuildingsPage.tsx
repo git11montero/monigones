@@ -1,3 +1,4 @@
+import { AttentionBadge } from '../components/Attention';
 import { BuildingBenefits } from '../components/BuildingBenefits';
 import { Facilities } from '../components/Facilities';
 import { LEVEL_DESCRIPTIONS } from '../lib/visuals';
@@ -213,15 +214,19 @@ export default function BuildingsPage() {
           })}
           <div className="link-grid">
             <Link to="/squad">
+              <AttentionBadge to="/squad" />
               Contratos <ArrowRight size={16} />
             </Link>
             <Link to="/trades">
+              <AttentionBadge to="/trades" />
               Negociaciones <ArrowRight size={16} />
             </Link>
             <Link to="/concerts">
+              <AttentionBadge to="/concerts" />
               Conciertos <ArrowRight size={16} />
             </Link>
             <Link to="/finance">
+              <AttentionBadge to="/finance" />
               Movimientos <ArrowRight size={16} />
             </Link>
           </div>
@@ -230,6 +235,7 @@ export default function BuildingsPage() {
       {(routes[b.id] || []).map(([to, label]) => (
         <div className="padded" key={to}>
           <Link className="card access-link" to={to}>
+            <AttentionBadge to={to} />
             <span>{label}</span>
             <ArrowRight size={20} />
           </Link>

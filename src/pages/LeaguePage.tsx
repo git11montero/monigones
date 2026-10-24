@@ -1,10 +1,11 @@
+import { GameSelect } from '../components/GameSelect';
 import { BuildingArt } from '../components/City';
 import { BUILDINGS, RULES } from '../../shared/config';
 import { PlayerCard } from '../components/PlayerCard';
 import { ClubBadge } from '../components/PlayerPortrait';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, CalendarDays, Crown, Flag, Trophy, Users } from 'lucide-react';
+import { ArrowRight, CalendarDays, Shield, Flag, Trophy, Users } from 'lucide-react';
 import { shortMoney } from '../../shared/math';
 import { clubById } from '../../shared/sports';
 import { useGame } from '../lib/api';
@@ -66,11 +67,11 @@ export default function LeaguePage() {
     <>
       <PageTitle
         eyebrow="AQUÍ SE ESCRIBE LA HISTORIA"
-        title="La corona está en juego"
+        title="La liga está en juego"
         subtitle={state.name}
       />
       <div className="league-hero">
-        <Crown size={33} />
+        <Shield size={33} />
         <Badge kind="gold">TEMPORADA {String(state.season).padStart(2, '0')}</Badge>
         <h2>{ranking[0]?.name}</h2>
         <p>
@@ -92,7 +93,7 @@ export default function LeaguePage() {
       <div className="padded">
         <label>
           Clasificación
-          <select value={sort} onChange={(e) => setSort(e.target.value)}>
+          <GameSelect value={sort} onChange={(e) => setSort(e.target.value)}>
             {[
               ['general', 'General de temporada'],
               ['round', 'Última jornada'],
@@ -106,7 +107,7 @@ export default function LeaguePage() {
                 {name}
               </option>
             ))}
-          </select>
+          </GameSelect>
         </label>
       </div>
       <div className="ranking-table">
@@ -121,7 +122,7 @@ export default function LeaguePage() {
             className={`ranking-row ${c.id === club.id ? 'is-me' : ''}`}
           >
             <span className={`rank-number rank-${i + 1}`}>
-              {i === 0 ? <Crown size={17} /> : String(i + 1).padStart(2, '0')}
+              {i === 0 ? <Shield size={17} /> : String(i + 1).padStart(2, '0')}
             </span>
             <Crest
               size={31}
@@ -176,19 +177,19 @@ export function MatchdayPage() {
         back
         eyebrow="EL FÚTBOL DECIDE"
         title={`Jornada ${round.number}`}
-        subtitle="Calendario y puntuaciones del proveedor simulado."
+        subtitle="Calendario, resultados y convocatorias de tu liga."
       />
       <div className="padded">
         <label>
           Consultar jornada
-          <select value={round.number} onChange={(e) => setRoundNo(Number(e.target.value))}>
+          <GameSelect value={round.number} onChange={(e) => setRoundNo(Number(e.target.value))}>
             {state.rounds.map((r) => (
               <option key={r.number} value={r.number}>
                 Jornada {r.number} ·{' '}
                 {r.settled ? 'Liquidada' : r.status === 'live' ? 'En juego' : 'Próxima'}
               </option>
             ))}
-          </select>
+          </GameSelect>
         </label>
       </div>
       <div
@@ -199,8 +200,8 @@ export function MatchdayPage() {
           {round.settled
             ? 'JORNADA FINALIZADA'
             : round.status === 'live'
-              ? '● EN JUEGO · DATOS SIMULADOS'
-              : 'LA PREVIA · DATOS SIMULADOS'}
+              ? '● EN JUEGO'
+              : 'LA PREVIA'}
         </span>
         <BuildingArt
           building={BUILDINGS.find((b) => b.id === 'stadium')!}
@@ -297,7 +298,7 @@ export function MatchdayPage() {
             </div>
             <label>
               Política de entradas
-              <select
+              <GameSelect
                 value={club.ticketPolicy}
                 disabled={club.selection.locked}
                 onChange={(e) =>
@@ -310,7 +311,7 @@ export function MatchdayPage() {
                 <option value="economic">Económica · ×0,75 precio · +12 ocupación · +2 fama</option>
                 <option value="standard">Estándar · precio y ocupación base</option>
                 <option value="premium">Premium · ×1,35 precio · -10 ocupación · -2 fama</option>
-              </select>
+              </GameSelect>
             </label>
             <p className="hint">
               Se congela una hora antes del primer encuentro. Saldo negativo o dinero insuficiente
@@ -322,7 +323,7 @@ export function MatchdayPage() {
           </div>
         </Section>
       )}
-      <Section eyebrow="SIMULACIÓN DE DESARROLLO" title="Sobre el césped">
+      <Section eyebrow="EN LA JORNADA" title="Sobre el césped">
         <div className="matches">
           {round.matches.map((m) => (
             <div className="match-row" key={m.id}>
