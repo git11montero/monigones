@@ -69,3 +69,9 @@ Una compra o cesión **dentro del fantasy** no cambia `realClubId`, el identific
 522 PNG físicos: 500 jugadores, 20 escudos y 2 fallbacks. Hay 493 siluetas de jugador, 7 fotografías previamente autorizadas y 20 escudos genéricos. Las 110 identidades ficticias siguen teniendo siluetas genéricas. No se afirma cobertura fotográfica completa ni escudos oficiales.
 
 Utiliza imágenes que tengas derecho a distribuir. El juego no busca ni descarga fotografías de terceros. Un archivo nuevo se identifica como **aportado por el usuario**, sin inventar una licencia ni darlo automáticamente por fotografía real. Las siete fotos autorizadas conservan sus créditos mientras sus bytes coincidan con los autorizados.
+
+## Publicación en el modo online de Vercel
+
+La sustitución en caliente descrita arriba corresponde al modo local. Online, sustituye los mismos PNG en el repositorio, ejecuta `npm run images:validate` y publica un nuevo despliegue de Vercel. `npm run build:online` genera automáticamente `public/assets/futbol/manifest.json` con versiones de contenido; las pantallas online vuelven a consultar ese manifiesto y la PWA solicita los archivos nuevos. No se escribe en la carpeta temporal de una Function ni se necesita Supabase Storage para estos 522 recursos.
+
+Consulta [ONLINE_SETUP.md, publicación de PNG](ONLINE_SETUP.md#10-publicar-nuevos-png-en-vercel) para los comandos. El usuario sin conexión conservará lo visitado hasta volver a conectarse. No se ha publicado ningún cambio remoto durante esta preparación.

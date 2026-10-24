@@ -1,0 +1,28 @@
+{
+  "unitTests": 95,
+  "localBrowserTests": 32,
+  "historicalCaptureSkipped": 1,
+  "postgresIntegrationTests": 20,
+  "postgres": "17.11",
+  "pngFiles": 522,
+  "manifestEntries": 522,
+  "rulesAndGraphicsUnmodified": true,
+  "sqliteAdapterUnmodified": true,
+  "onlineRuntime": "Stateless Vercel Function + Supabase HTTPS RPC",
+  "remoteChanges": false,
+  "remoteValidationPending": [
+    "Supabase Auth / SMTP",
+    "Official PostgREST and Realtime hosted services",
+    "Vault + pg_net + pg_cron activation",
+    "Vercel runtime and streaming",
+    "Physical Android/iOS PWA installation"
+  ],
+  "localFixtures": {
+    "auth": "Signed JWT HTTP fixture through actual Supabase SDK",
+    "realtime": "Protocol-emulated WebSocket; publication and RLS tested in real PostgreSQL"
+  },
+  "migrationHashes": {
+    "supabase/migrations/202610230001_crown.sql": "1ecf555832cedbb132ef7c94f1191199caef40e26b8486deb110455d3a6331a6",
+    "supabase/migrations/202610240001_online.sql": "44439d3c0fff51f5bf41032ae4460c7d5598d506181f8a273927ce3b584ecdf4"
+  }
+}

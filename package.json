@@ -20,7 +20,10 @@
     "sports:assets": "node --import tsx scripts/sports-media.ts",
     "sports:assets:import": "node --import tsx scripts/sports-media.ts",
     "images:prepare": "node --import tsx scripts/football-images.ts --prepare",
-    "images:validate": "node --import tsx scripts/football-images.ts"
+    "images:validate": "node --import tsx scripts/football-images.ts",
+    "build:online": "node scripts/build-online.mjs",
+    "images:manifest": "node --import tsx scripts/football-manifest.ts",
+    "test:postgres": "node scripts/test-postgres.mjs"
   },
   "dependencies": {
     "@noble/hashes": "^2.4.0",
@@ -39,6 +42,7 @@
     "@testing-library/jest-dom": "^6.9.0",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^22.19.0",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.0",
@@ -46,13 +50,14 @@
     "eslint": "^10.13.0",
     "eslint-plugin-unused-imports": "^4.4.1",
     "jsdom": "^26.1.0",
+    "pg": "^8.23.1",
     "prettier": "^3.9.10",
     "tsx": "^4.20.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.72.0",
     "vite": "^7.1.0",
     "vite-plugin-pwa": "^1.1.0",
-    "vitest": "^3.2.0"
+    "vitest": "^5.0.5"
   },
   "engines": {
     "node": ">=22.22.0"

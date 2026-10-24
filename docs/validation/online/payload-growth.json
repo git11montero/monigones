@@ -1,0 +1,23 @@
+{
+  "scenario": "Simulation in memory; no user database",
+  "rows": [
+    {
+      "days": 0,
+      "jsonBytes": 221920,
+      "gzipBytes": 21774,
+      "privateBytes": 226147
+    },
+    {
+      "days": 60,
+      "jsonBytes": 1976233,
+      "gzipBytes": 332823,
+      "privateBytes": 2168458
+    },
+    {
+      "days": 365,
+      "jsonBytes": 9976946,
+      "gzipBytes": 1902273,
+      "privateBytes": 11023023
+    }
+  ]
+}

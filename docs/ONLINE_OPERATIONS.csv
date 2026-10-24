@@ -1,0 +1,53 @@
+Operacion,Entrada online,Autoridad,Atomicidad,Notas
+bid,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+withdrawBid,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+sell,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+wish,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+build,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+research,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+facility,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+cancelJob,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+lineup,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+autoLineup,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+formation,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+bench,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+ticket,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+manualSub,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+quality,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+unlockModule,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+shield,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+clause,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+renegotiate,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+notificationRead,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+resourceVisibility,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+daily,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,daily es alias de dailyStart
+dailyStart,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+dailyClaim,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+sponsor,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+concert,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+institution,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+chat,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+deleteMessage,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Permisos administrativos del motor conservados
+eventClaim,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+coach,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+academy,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+negotiate,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+respondTrade,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+counterTrade,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+acceptCounter,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+auctionBid,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+nextAuction,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Permisos administrativos del motor conservados
+finishDraft,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Permisos administrativos del motor conservados
+specialAuction,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Permisos administrativos del motor conservados
+identity,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Reglas de v0.3 conservadas
+resetSeason,POST /api/command,Motor compartido en Vercel Function; usuario verificado por Supabase Auth,CAS PostgreSQL + bloqueo de liga + recibo idempotente,Permisos administrativos del motor conservados
+crear_liga,POST /api/leagues,Supabase Auth + backend autoritativo,Transacción PostgreSQL / servicio Auth,Alta y membresía en una transacción
+unirse_liga,POST /api/leagues,Supabase Auth + backend autoritativo,Transacción PostgreSQL / servicio Auth,"Invitación, límite y membresía en una transacción"
+reconciliar,POST /api/cron,Supabase Auth + backend autoritativo,Transacción PostgreSQL / servicio Auth,"Concesión con expiración, checkpoint CAS y recuperación"
+lectura,GET /api/state,Supabase Auth + backend autoritativo,Transacción PostgreSQL / servicio Auth,Vista filtrada por usuario; reloj DB; 304 sin cambios
+registro,Supabase Auth signUp,Supabase Auth + backend autoritativo,Transacción PostgreSQL / servicio Auth,Email y contraseña; confirmación según configuración Auth
+acceso,Supabase Auth signInWithPassword,Supabase Auth + backend autoritativo,Transacción PostgreSQL / servicio Auth,JWT comprobado mediante Auth getUser en cada API
+salida,Supabase Auth signOut local,Supabase Auth + backend autoritativo,Transacción PostgreSQL / servicio Auth,Revoca sesión actual y limpia copia offline
+perfil,online_profile privado,Supabase Auth + backend autoritativo,Transacción PostgreSQL / servicio Auth,Nombre validado; ID procede del JWT
+advance,Solo servidor SQLite local,Laboratorio local,Transacción SQLite,"No habilitado en producción, igual que las herramientas de prueba anteriores"
+importSports,Solo servidor SQLite local,Laboratorio local,Transacción SQLite,"No habilitado en producción, igual que las herramientas de prueba anteriores"

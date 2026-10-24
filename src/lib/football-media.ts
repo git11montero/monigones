@@ -1,12 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import { request } from './api';
 import type { MediaStatus } from '../../server/football-media';
+import { isOnlineBackend } from './supabase';
 export function useFootballCatalog() {
   return useQuery({
     queryKey: ['football-media'],
     queryFn: async () => {
       try {
-        const result = await request<Record<string, MediaStatus>>('/api/football-assets');
+        const result = isOnlineBackend
+          ? await fetch('/assets/futbol/manifest.json', { cache: 'no-cache' }).then(
+              async (response) => {
+                if (!response.ok) throw Error('No se pudo cargar el catálogo de imágenes.');
+                return response.json() as Promise<Record<string, MediaStatus>>;
+              },
+            )
+          : await request<Record<string, MediaStatus>>('/api/football-assets');
         try {
           localStorage.setItem('monigones-football-media-v3', JSON.stringify(result));
         } catch {
@@ -19,7 +27,7 @@ export function useFootballCatalog() {
         throw error;
       }
     },
-    refetchInterval: 5000,
+    refetchInterval: isOnlineBackend ? 60000 : 5000,
     staleTime: 4000,
     retry: 1,
   });

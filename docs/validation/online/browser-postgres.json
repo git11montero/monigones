@@ -1,0 +1,10 @@
+{
+  "database": "Disposable native PostgreSQL",
+  "users": 3,
+  "leagues": 2,
+  "auth": "Supabase SDK with local signed-JWT Auth wire fixture",
+  "realtime": "Supabase SDK with protocol-emulated websocket; PostgreSQL RLS/publication tested separately",
+  "pwaOffline": true,
+  "javascriptErrors": [],
+  "sqlite": false
+}

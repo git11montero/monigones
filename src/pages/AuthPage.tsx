@@ -3,6 +3,7 @@ import { BRAND } from '../../shared/brand';
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@supabase/supabase-js';
+import { getSupabase, isOnlineBackend } from '../lib/supabase';
 import { ArrowRight, Shield, Flag, ShieldCheck, Users } from 'lucide-react';
 import { post, type Session } from '../lib/api';
 import { Crest } from '../components/ui';
@@ -33,14 +34,15 @@ export default function AuthPage({ session }: { session: Session }) {
   async function authenticate() {
     if (session.authMode === 'supabase') {
       const url = import.meta.env.VITE_SUPABASE_URL,
-        key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+        key =
+          import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY;
       if (!url || !key) throw Error('Falta la configuración pública de Supabase.');
-      const sb = createClient(url, key);
+      const sb = isOnlineBackend ? getSupabase()! : createClient(url, key);
       if (mode === 'register') {
         const { data, error } = await sb.auth.signUp({
           email,
           password,
-          options: { data: { name } },
+          options: { data: { name }, emailRedirectTo: location.origin + '/' },
         });
         if (error) throw error;
         if (!data.session)

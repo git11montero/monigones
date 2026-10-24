@@ -15,3 +15,12 @@ test-results/
 # Archivos de configuración local
 .vercel/
 *.log
+
+# Public template for the separate online build
+!.env.online.example
+
+# Supabase CLI checkout-local state
+supabase/.temp/
+supabase/.branches/
+.vercel
+.env*

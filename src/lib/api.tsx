@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useRef, useState, type ReactNode 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type { Command } from '../../shared/types';
 import type { publicState } from '../../shared/engine';
+import { getSupabase, isOnlineBackend, onlineScope } from './supabase';
 export type Game = ReturnType<typeof publicState>;
 export type Session = {
   user: { id: string; email: string; name: string } | null;
@@ -12,14 +13,57 @@ export type Session = {
   authMode: string;
 };
 const base = import.meta.env.VITE_API_URL || '';
+let lastOnlineGame: { user: string; game: Game } | undefined;
+export function clearOnlineCache(user = '') {
+  lastOnlineGame = undefined;
+  sessionStorage.removeItem(`monigones-session:${onlineScope}`);
+  if (user) localStorage.removeItem(`monigones-snapshot:${onlineScope}:${user}`);
+}
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+  }
+}
 export async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(base + path, {
+  const headers = new Headers(options?.headers);
+  headers.set('Content-Type', 'application/json');
+  let user = '';
+  if (isOnlineBackend) {
+    const sb = getSupabase()!;
+    const { data } = await sb.auth.getSession();
+    user = data.session?.user.id || '';
+    if (data.session) headers.set('Authorization', `Bearer ${data.session.access_token}`);
+    if (path === '/api/state' && lastOnlineGame?.user === user)
+      headers.set('If-None-Match', `"${lastOnlineGame.game.state.version}"`);
+    if (path === '/api/logout') {
+      const { error } = await sb.auth.signOut({ scope: 'local' });
+      if (error) throw error;
+      clearOnlineCache(user);
+      return { ok: true } as T;
+    }
+  }
+  const res = await fetch((isOnlineBackend ? '' : base) + path, {
     ...options,
     credentials: 'include',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    headers,
   });
+  if (res.status === 304 && lastOnlineGame?.user === user) {
+    const game = {
+      ...lastOnlineGame.game,
+      state: {
+        ...lastOnlineGame.game.state,
+        now: Number(res.headers.get('X-Monigones-Time')) || lastOnlineGame.game.state.now,
+      },
+    };
+    lastOnlineGame = { user, game };
+    return game as T;
+  }
   const data = await res.json();
-  if (!res.ok) throw Error(data.error || 'No se pudo completar la operación.');
+  if (!res.ok) throw new ApiError(data.error || 'No se pudo completar la operación.', res.status);
+  if (isOnlineBackend && data.state && data.clubId) lastOnlineGame = { user, game: data };
   return data;
 }
 export const post = <T,>(path: string, data: unknown) =>
@@ -29,10 +73,26 @@ export const sessionQuery = () => ({
   queryFn: async () => {
     try {
       const session = await request<Session>('/api/session');
-      sessionStorage.setItem('crown-session', JSON.stringify(session));
+      sessionStorage.setItem(
+        isOnlineBackend ? `monigones-session:${onlineScope}` : 'crown-session',
+        JSON.stringify(session),
+      );
       return session;
     } catch (e) {
-      const saved = sessionStorage.getItem('crown-session');
+      if (isOnlineBackend && e instanceof ApiError && e.status === 401) {
+        clearOnlineCache();
+        await getSupabase()!.auth.signOut({ scope: 'local' });
+        return {
+          user: null,
+          membership: false,
+          demo: false,
+          adminTools: false,
+          authMode: 'supabase',
+        } satisfies Session;
+      }
+      const saved = sessionStorage.getItem(
+        isOnlineBackend ? `monigones-session:${onlineScope}` : 'crown-session',
+      );
       if (saved) return JSON.parse(saved) as Session;
       throw e;
     }
@@ -64,7 +124,9 @@ export function GameProvider({ session, children }: { session: Session; children
   const qc = useQueryClient();
   const [online, setOnline] = useState(navigator.onLine),
     [notice, setNotice] = useState('');
-  const key = `crown-snapshot-${session.user!.id}`;
+  const key = isOnlineBackend
+    ? `monigones-snapshot:${onlineScope}:${session.user!.id}`
+    : `crown-snapshot-${session.user!.id}`;
   const query = useQuery({
     queryKey: ['game', session.user!.id],
     queryFn: async () => {
@@ -80,7 +142,7 @@ export function GameProvider({ session, children }: { session: Session; children
         throw e;
       }
     },
-    refetchInterval: 15000,
+    refetchInterval: isOnlineBackend ? 60000 : 15000,
     retry: 1,
   });
   useEffect(() => {
@@ -90,6 +152,38 @@ export function GameProvider({ session, children }: { session: Session; children
     };
     window.addEventListener('online', update);
     window.addEventListener('offline', update);
+    if (isOnlineBackend) {
+      const sb = getSupabase()!;
+      let channel: ReturnType<typeof sb.channel> | undefined;
+      let timer: ReturnType<typeof setTimeout>;
+      const leagueId = query.data?.state.id;
+      if (leagueId) {
+        channel = sb
+          .channel(`league:${leagueId}`)
+          .on(
+            'postgres_changes',
+            {
+              event: 'UPDATE',
+              schema: 'public',
+              table: 'game_revisions',
+              filter: `league_id=eq.${leagueId}`,
+            },
+            () => {
+              clearTimeout(timer);
+              timer = setTimeout(() => void query.refetch(), 200);
+            },
+          )
+          .subscribe((status) => {
+            if (status === 'SUBSCRIBED') void query.refetch();
+          });
+      }
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('online', update);
+        window.removeEventListener('offline', update);
+        if (channel) void sb.removeChannel(channel);
+      };
+    }
     const es = new EventSource(base + '/api/events', { withCredentials: true });
     es.addEventListener('change', () => {
       void query.refetch();
@@ -102,7 +196,7 @@ export function GameProvider({ session, children }: { session: Session; children
       window.removeEventListener('offline', update);
       es.close();
     };
-  }, [session.user!.id]);
+  }, [session.user!.id, query.data?.state.id]);
   useEffect(() => {
     if (!notice) return;
     const t = setTimeout(() => setNotice(''), 4500);

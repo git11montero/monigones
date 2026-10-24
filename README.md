@@ -2,7 +2,15 @@
 
 **Gestiona tu club. Compite en tu liga.**
 
-Juego de gestión de fútbol con PWA vertical, ciudad deportiva, fantasy privado y servidor local persistente. Este repositorio implementa una partida multijugador local real; calendarios, resultados y economía deportiva se simulan. La integración completa de persistencia con Supabase todavía es una tarea pendiente: no basta con poner sus claves para sustituir SQLite.
+Juego de gestión de fútbol con PWA vertical, ciudad deportiva, fantasy privado y servidor local persistente. Este repositorio implementa una partida multijugador local real; calendarios, resultados y economía deportiva se simulan. Incluye dos adaptadores separados: SQLite para jugar localmente y PostgreSQL/Supabase con Functions de Vercel para el modo online. La configuración y validación remotas siguen pendientes de autorización.
+
+## Preparación online: Supabase + Vercel
+
+El modo online utiliza Supabase Auth, PostgreSQL y Realtime, una Function serverless de Vercel para el motor de reglas y Supabase Cron para los vencimientos sin navegador. No necesita el Mac encendido ni SQLite en producción. Los 522 PNG se publican como archivos estáticos con manifiesto versionado. No se ha desplegado ni modificado ningún servicio remoto.
+
+[Conexión y despliegue paso a paso](docs/ONLINE_SETUP.md) · [Arquitectura y transacciones](docs/ONLINE_ARCHITECTURE.md) · [Entrega, pruebas y límites](docs/MONIGONES_ONLINE_DELIVERY.md) · [Operaciones inventariadas](docs/ONLINE_OPERATIONS.csv).
+
+Para jugar localmente sigue usando `npm run dev` y tu `.env`; tu partida se conserva. `npm run build:online` usa `.env.online.local` o las variables configuradas en Vercel. Consulta `.env.online.example`; las claves privadas nunca deben llevar prefijo `VITE_`.
 
 ## Monigones v0.3
 
@@ -18,7 +26,7 @@ Avisos persistentes entre sesiones, selectores personalizados, actividades de 30
 
 [Entrega y estado de las mejoras](docs/MONIGONES_V02_DELIVERY.md) · [Antes/después y capturas](docs/screenshots/v02/index.html) · [Auditoría de fotografías](docs/PLAYER_PHOTOS_AUDIT.md) · [Auditoría Supabase](docs/SUPABASE_MIGRATION_AUDIT.md).
 
-La migración de Supabase supera el análisis estático; su ejecución y pruebas de RLS en PostgreSQL siguen pendientes. No se ha aplicado a ninguna base remota.
+La auditoría v0.2 conserva su resultado histórico. La preparación online posterior ejecuta todas las migraciones, funciones y RLS en PostgreSQL 17 desechable; la aceptación en Supabase/Vercel alojados sigue pendiente.
 
 ## Base visual
 
@@ -96,4 +104,4 @@ El [informe actual de entrega](docs/MONIGONES_V03_DELIVERY.md) distingue impleme
 - [Pruebas](docs/TESTING.md), [despliegue e instalación](docs/DEPLOYMENT.md).
 - [Decisiones autónomas](docs/DECISIONS.md), [estado y trabajo pendiente](docs/ROADMAP.md).
 
-No se han creado ni modificado proyectos remotos. El frontend de Cloudflare Pages está preparado; un despliegue del juego completo necesita un backend ejecutándose y persistencia duradera. Los SQL de `supabase/` son una base de migración, no una integración de producción ya verificada.
+No se han creado ni modificado proyectos remotos. El frontend de Cloudflare Pages está preparado; un despliegue del juego completo necesita un backend ejecutándose y persistencia duradera. El adaptador PostgreSQL está implementado y probado localmente; Auth, Realtime y cron alojados necesitan la configuración y aceptación remotas descritas en `docs/ONLINE_SETUP.md`.

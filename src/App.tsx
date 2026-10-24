@@ -4,7 +4,8 @@ import { BRAND } from '../shared/brand';
 import { AudioToggle, DepartmentScene, Experience } from './components/Experience';
 import { Suspense, lazy, useEffect } from 'react';
 import { NavLink, Navigate, Route, Routes, useLocation, Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { getSupabase, isOnlineBackend } from './lib/supabase';
 import {
   Award,
   Bell,
@@ -16,7 +17,7 @@ import {
   Users,
   Zap,
 } from 'lucide-react';
-import { GameProvider, sessionQuery, useGame } from './lib/api';
+import { GameProvider, sessionQuery, useGame, clearOnlineCache, type Session } from './lib/api';
 import { Crest } from './components/ui';
 import { shortMoney } from '../shared/math';
 import AuthPage, { OnboardingPage } from './pages/AuthPage';
@@ -233,6 +234,25 @@ function Layout() {
   );
 }
 export default function App() {
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    if (!isOnlineBackend) return;
+    let timer: ReturnType<typeof setTimeout>;
+    const { data } = getSupabase()!.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') {
+        clearOnlineCache(queryClient.getQueryData<Session>(['session'])?.user?.id);
+        queryClient.removeQueries({ queryKey: ['game'] });
+      }
+      if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'USER_UPDATED') {
+        clearTimeout(timer);
+        timer = setTimeout(() => void queryClient.invalidateQueries({ queryKey: ['session'] }), 0);
+      }
+    });
+    return () => {
+      clearTimeout(timer);
+      data.subscription.unsubscribe();
+    };
+  }, [queryClient]);
   const session = useQuery(sessionQuery());
   return (
     <div className="phone-shell">
