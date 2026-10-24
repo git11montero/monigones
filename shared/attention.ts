@@ -7,10 +7,10 @@ import {
   MODULES,
   AD_SLOTS,
   ARTISTS,
-} from './config';
-import { dailyKey, seasonDay } from './math';
-import { activityOffers } from './activities';
-import type { Attention, Club, Effect, GameState } from './types';
+} from './config.js';
+import { dailyKey, seasonDay } from './math.js';
+import { activityOffers } from './activities.js';
+import type { Attention, Club, Effect, GameState } from './types.js';
 /** One event has one identity. Ancestors aggregate destinations without cloning events. */
 export function notifications(
   s: GameState,

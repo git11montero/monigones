@@ -5,6 +5,7 @@ export default ts.config(
   {
     ignores: [
       'dist/**',
+      '.vercel/**',
       'node_modules/**',
       'playwright-report/**',
       'test-results/**',

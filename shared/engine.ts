@@ -1,6 +1,6 @@
-import { activityOffers, activityDay } from './activities';
-import { notifications } from './attention';
-import { economicRandom } from './math';
+import { activityOffers, activityDay } from './activities.js';
+import { notifications } from './attention.js';
+import { economicRandom } from './math.js';
 import {
   AD_SLOTS,
   ARTISTS,
@@ -15,7 +15,7 @@ import {
   RULES,
   SPONSORS,
   euro,
-} from './config';
+} from './config.js';
 import {
   acceptance,
   capacity,
@@ -29,9 +29,9 @@ import {
   roundRatio,
   score,
   seasonDay,
-} from './math';
-import { COACHES, mockScore } from './sports';
-import { createGame, emptySelection, makeEvents, makeRound, uid } from './seed';
+} from './math.js';
+import { COACHES, mockScore } from './sports.js';
+import { createGame, emptySelection, makeEvents, makeRound, uid } from './seed.js';
 import type {
   Actor,
   Club,
@@ -43,7 +43,7 @@ import type {
   Resource,
   Round,
   Selection,
-} from './types';
+} from './types.js';
 export function effects(c: Club): Required<Effect> {
   const e: Required<Effect> = {
     salary: 0,

@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto';
-import { createGame, makeClub } from '../../shared/seed';
-import { execute, publicState, reconcile, syncAttention } from '../../shared/engine';
-import { invariant } from '../../shared/math';
-import { REAL_CLUBS } from '../../shared/sports';
-import type { Command, GameState } from '../../shared/types';
+import { createGame, makeClub } from '../../shared/seed.js';
+import { execute, publicState, reconcile, syncAttention } from '../../shared/engine.js';
+import { invariant } from '../../shared/math.js';
+import { REAL_CLUBS } from '../../shared/sports.js';
+import type { Command, GameState } from '../../shared/types.js';
 export interface OnlineUser {
   id: string;
   email: string;

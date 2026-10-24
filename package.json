@@ -12,7 +12,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "simulate": "node --import tsx scripts/simulate.ts",
-    "check": "tsc --noEmit",
+    "check": "tsc --noEmit && npm run check:online",
     "catalogs": "node --import tsx scripts/export-catalogs.ts && node --import tsx scripts/export-sql.ts",
     "sports:validate": "node --import tsx scripts/import-sports.ts",
     "lint": "eslint .",
@@ -23,7 +23,10 @@
     "images:validate": "node --import tsx scripts/football-images.ts",
     "build:online": "node scripts/build-online.mjs",
     "images:manifest": "node --import tsx scripts/football-manifest.ts",
-    "test:postgres": "node scripts/test-postgres.mjs"
+    "test:postgres": "node scripts/test-postgres.mjs",
+    "check:online": "tsc --project tsconfig.online.json",
+    "test:vercel-artifact": "node scripts/test-vercel-artifact.mjs",
+    "verify:vercel": "npx vercel build --prod && npm run test:vercel-artifact"
   },
   "dependencies": {
     "@noble/hashes": "^2.4.0",

@@ -1,0 +1,116 @@
+{
+  "verifiedAt": "2026-10-24T14:41:09.484145+00:00",
+  "vercelCli": "65.2.0",
+  "build": {
+    "command": "npx vercel build --prod",
+    "status": "passed",
+    "runtime": "nodejs24.x",
+    "handler": "api/[...path].js",
+    "architecture": "arm64"
+  },
+  "artifactExecution": {
+    "runtime": "v24.22.1",
+    "handler": "api/[...path].js",
+    "isolated": true,
+    "nativeEsm": true,
+    "httpChecks": 13,
+    "supabase": "local HTTP fixture; no remote requests",
+    "status": "passed"
+  },
+  "negativeControl": {
+    "originalArtifact": "ERR_MODULE_NOT_FOUND",
+    "detectedBySameTest": true,
+    "evidence": "before-error.txt"
+  },
+  "checks": {
+    "typescript": "passed (Bundler and NodeNext)",
+    "eslint": "passed",
+    "prettierNewScripts": "passed",
+    "unit": {
+      "passed": 95,
+      "files": 6
+    },
+    "postgresIntegration": {
+      "passed": 20,
+      "database": "new isolated disposable PostgreSQL 17.11 cluster",
+      "remote": false
+    },
+    "playwright": {
+      "passed": 32,
+      "skipped": 1,
+      "skippedReason": "historical screenshot archive",
+      "finalRun": "complete suite with local build, no concurrent online build",
+      "initialFailure": "PWA image replacement; concurrent online build changed dist; resolved by local rebuild and full suite rerun"
+    },
+    "localBuild": "passed",
+    "onlineBuild": "passed (Vercel production build)",
+    "pngFilesUnchangedAndPresentInStaticOutput": 522,
+    "gameLogic": "12 source files changed only in relative import specifiers",
+    "protectedTrackedFilesUnchanged": [
+      "src",
+      "public",
+      "supabase",
+      "vercel.json",
+      "package-lock.json"
+    ],
+    "gitDiffCheck": "passed"
+  },
+  "applicationJavascript": [
+    {
+      "file": "api/[...path].js",
+      "sha256": "09fa138e859839f87d73b5620ce07542d74d5b7848aaef67f5eff10dba7eadb8"
+    },
+    {
+      "file": "server/online/handler.js",
+      "sha256": "bccea66ed9f9211a375dda75c915d49181bf6ec8ceee2b20ed98a80fe5d73935"
+    },
+    {
+      "file": "server/online/response.js",
+      "sha256": "631d381ec93803eab0d34a576565cfedf8cac04c017ca636989ba5e71fd5f879"
+    },
+    {
+      "file": "server/online/store.js",
+      "sha256": "fade96786860d9fd829212eb5759ef08dc5bb3aca6a10eccc6d5da339521240e"
+    },
+    {
+      "file": "server/online/transport.js",
+      "sha256": "b733f0f8b1cbe3d6ad98260eaf896338535e9f75657a04e6a6a94c61d3f86086"
+    },
+    {
+      "file": "shared/activities.js",
+      "sha256": "b041766a7837c9433d479384021755d8aad218278fb2b7ae858851133280554f"
+    },
+    {
+      "file": "shared/attention.js",
+      "sha256": "d7ddc9a12098fb5229c2ec6bd601524467e151b2063c72ee583f899a6f5c87e9"
+    },
+    {
+      "file": "shared/config.js",
+      "sha256": "22ced1383b2a4cd15dfb595b5e9190b2391a679c7cfc76aac504c29408e88369"
+    },
+    {
+      "file": "shared/engine.js",
+      "sha256": "a9b0003f41d5184bb2b38e14a3518602ed569ab3334d34b8344f3fb7b52ed9b9"
+    },
+    {
+      "file": "shared/math.js",
+      "sha256": "2028012314533fb9dade8d31bcb51c5dffab84a2be7b8309b24cb44011e5d3c5"
+    },
+    {
+      "file": "shared/research-stories.js",
+      "sha256": "37e0e042d706c26128a3d887be2ae9fb1a232727327ba4abc2f2ee7976ab9b50"
+    },
+    {
+      "file": "shared/seed.js",
+      "sha256": "207f8edd9411cae6ecbe26d81ea68ec48da7255e8cb40386f8f1a980b6d68736"
+    },
+    {
+      "file": "shared/sports.js",
+      "sha256": "9c9be60ee39f40049e4be5b20832e8d9141f104c88544094e9a4648af8debe33"
+    }
+  ],
+  "deployment": "not performed",
+  "remoteSupabase": "not accessed or modified; Auth and RPC artifact tests use localhost fixtures",
+  "remoteVercelConfiguration": "not modified; existing local configuration used",
+  "pending": "redeploy and check health/session against real production services"
+}

@@ -1,8 +1,8 @@
 import { hmac } from '@noble/hashes/hmac.js';
 import { sha256 } from '@noble/hashes/sha2.js';
 import { utf8ToBytes } from '@noble/hashes/utils.js';
-import { DAY, RULES } from './config';
-import type { Club, GameState, Player, Resource } from './types';
+import { DAY, RULES } from './config.js';
+import type { Club, GameState, Player, Resource } from './types.js';
 export const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 export function invariant(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);

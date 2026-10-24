@@ -1,7 +1,7 @@
-import { BUILDINGS, DAY, FORMATIONS, RULES, euro } from './config';
-import { dailyKey, nextMarket } from './math';
-import { mockMatches, REAL_CLUBS, roster } from './sports';
-import type { Club, GameEvent, GameState, Round, Selection } from './types';
+import { BUILDINGS, DAY, FORMATIONS, RULES, euro } from './config.js';
+import { dailyKey, nextMarket } from './math.js';
+import { mockMatches, REAL_CLUBS, roster } from './sports.js';
+import type { Club, GameEvent, GameState, Round, Selection } from './types.js';
 export const uid = () => crypto.randomUUID();
 export function emptySelection(round: number): Selection {
   return {

@@ -1,4 +1,4 @@
-import type { RpcTransport } from './store';
+import type { RpcTransport } from './store.js';
 /** PostgREST transport: no TCP pool, SQLite, disk writes or permanent Node process. */
 export class SupabaseRpc implements RpcTransport {
   constructor(

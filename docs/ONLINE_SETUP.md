@@ -133,10 +133,19 @@ Solo tras autorizar los cambios remotos:
 ```sh
 npx vercel pull --yes --environment=production
 npx vercel build --prod
+# Ejecuta el artefacto real en la misma versión principal de Node que Vercel.
+# El proyecto actual usa nodejs24.x; con Node 24 instalado:
+npm run test:vercel-artifact
+# Si tu Node local sigue siendo 22, usa en su lugar:
+# npx --yes --package=node@24 node scripts/test-vercel-artifact.mjs
 npx vercel deploy --prebuilt --prod
 ```
 
 La primera orden descarga configuración en `.vercel/`, ignorada por Git. La última publica y actualiza el dominio de producción. También puedes usar el despliegue por Git del proyecto existente, conservando el build command del repositorio.
+
+Con Node 24 puedes ejecutar `npm run verify:vercel` para encadenar el build y la prueba antes de publicar. Esta prueba copia cada `.func` fuera del repositorio y carga su handler con Node nativo, sin `tsx`, sin dependencias del checkout y sin credenciales de producción. Ejecuta 13 comprobaciones HTTP con fixtures locales de Auth/PostgREST; no consulta Supabase remoto. Comprueba que la versión principal del proceso coincide con `runtime` en `.vc-config.json`. Si cambias la versión de Node en Vercel, utiliza esa misma versión al probar. Un build que termina correctamente no sustituye esta prueba de ejecución.
+
+`build:online` también comprueba la cadena completa del backend mediante `tsconfig.online.json` (`NodeNext`). Mantén las extensiones `.js` en imports relativos del backend y del motor que utiliza: TypeScript resuelve los `.ts` originales, Vite conserva su funcionamiento y Node carga los `.js` que genera Vercel. No crees archivos manuales dentro de `.vercel/output`; el siguiente build los reemplaza. Detalles y evidencias: [corrección del runtime de Vercel](VERCEL_RUNTIME_FIX.md).
 
 Verifica:
 

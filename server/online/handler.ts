@@ -1,9 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 import { timingSafeEqual } from 'node:crypto';
-import { invariant } from '../../shared/math';
-import { PostgresStore, type OnlineUser } from './store';
-import { SupabaseRpc } from './transport';
-import type { Command } from '../../shared/types';
+import { invariant } from '../../shared/math.js';
+import { PostgresStore, type OnlineUser } from './store.js';
+import { SupabaseRpc } from './transport.js';
+import type { Command } from '../../shared/types.js';
 export type OnlineConfig = { url: string; secret: string; cronSecret: string; origin: string };
 export function onlineConfig(): OnlineConfig {
   const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',

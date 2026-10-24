@@ -69,9 +69,9 @@ export interface Club {
   totalPoints: number;
   roundPoints: number;
   dailyDone: string[];
-  activity?: import('./activities').ActivityRun;
-  activityHistory?: import('./activities').ActivityRun[];
-  activityDays?: Record<string, import('./activities').ActivityDay>;
+  activity?: import('./activities.js').ActivityRun;
+  activityHistory?: import('./activities.js').ActivityRun[];
+  activityDays?: Record<string, import('./activities.js').ActivityDay>;
   notificationReads?: Record<string, number>;
   notificationEvents?: Record<string, { firstSeenAt: number; resolvedAt?: number }>;
   hideResources?: boolean;

@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { productionHandler } from '../server/online/handler';
-import { writeOnlineResponse } from '../server/online/response';
+import { productionHandler } from '../server/online/handler.js';
+import { writeOnlineResponse } from '../server/online/response.js';
 /** One stateless Vercel Function. Never imports server/index.ts or node:sqlite. */
 export default async function handler(
   req: IncomingMessage & { body?: unknown },

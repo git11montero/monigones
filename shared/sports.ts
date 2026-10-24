@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { euro } from './config';
-import { hash, random } from './math';
-import type { Player, PlayerScore, Position, RealClub, Match } from './types';
+import { euro } from './config.js';
+import { hash, random } from './math.js';
+import type { Player, PlayerScore, Position, RealClub, Match } from './types.js';
 export const REAL_CLUBS: RealClub[] = [
   ['athletic', 'Athletic Club', 'ATH', '#c94443'],
   ['atletico', 'Atlético de Madrid', 'ATM', '#c84748'],

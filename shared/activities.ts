@@ -1,6 +1,6 @@
-import { DAILY_ACTIONS, HOUR, euro } from './config';
-import { dailyKey, hash } from './math';
-import type { GameState, Resource } from './types';
+import { DAILY_ACTIONS, HOUR, euro } from './config.js';
+import { dailyKey, hash } from './math.js';
+import type { GameState, Resource } from './types.js';
 export type Rarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
 export interface ActivityDef {
   id: string;
@@ -176,7 +176,7 @@ export interface ActivityDay {
 }
 /** Separate started-day accounting from today's expiring offer IDs. Backward-compatible with v0.2. */
 export function activityDay(
-  c: import('./types').Club,
+  c: import('./types.js').Club,
   day: string,
   legacyCompleted = 0,
 ): ActivityDay {

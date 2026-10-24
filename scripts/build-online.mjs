@@ -26,6 +26,9 @@ for (const [name, value] of Object.entries(process.env)) {
   )
     throw Error(`Una variable pública contiene una clave privada: ${name}`);
 }
+// The browser's Bundler resolution accepts imports that native Node ESM rejects.
+// Check the entire function dependency graph with Node's resolution before building.
+execFileSync('npm', ['run', 'check:online'], { stdio: 'inherit' });
 execFileSync(process.execPath, ['--import', 'tsx', 'scripts/football-manifest.ts'], {
   stdio: 'inherit',
 });

@@ -1,5 +1,5 @@
-import { RESEARCH_STORIES } from './research-stories';
-import type { BuildingDef, FacilityDef, Position, ResearchDef, Tree } from './types';
+import { RESEARCH_STORIES } from './research-stories.js';
+import type { BuildingDef, FacilityDef, Position, ResearchDef, Tree } from './types.js';
 export const HOUR = 3_600_000,
   DAY = 24 * HOUR;
 export const euro = (n: number) => Math.round(n * 100);
