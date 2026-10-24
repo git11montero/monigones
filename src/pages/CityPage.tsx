@@ -1,81 +1,50 @@
 import { CitySections } from '../components/CitySections';
 import { CITY_VIEW_KEY, readCityView } from '../lib/city-access';
-import { AttentionBadge } from '../components/Attention';
-import { Link } from 'react-router-dom';
-import { ChevronRight, Flag, Gift, Hammer, Newspaper, Trophy, X } from 'lucide-react';
-import { useState } from 'react';
-import { useGame } from '../lib/api';
+import { CityMatchday } from '../components/CityMatchday';
+import { CityShortcuts } from '../components/CityShortcuts';
+import { X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { CityMap, WorkQueue } from '../components/City';
-import { Countdown } from '../components/ui';
-import { cityEnvironment } from '../lib/visuals';
 export default function CityPage() {
-  const { state, club } = useGame(),
-    [jobs, setJobs] = useState(false),
+  const [jobs, setJobs] = useState(false),
     [view, setView] = useState(readCityView);
-  const { round, live } = cityEnvironment(state, club);
-  const count = state.jobs.filter((j) => j.clubId === club.id).length;
+  const toolbar = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const node = toolbar.current!;
+    const observer = new ResizeObserver(() =>
+      node.parentElement?.style.setProperty('--city-toolbar-height', `${node.offsetHeight + 8}px`),
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
   return (
     <div className={`city-page city-view-${view}`}>
       <h1 className="sr-only">Ciudad deportiva</h1>
-      <div className="city-view-switch" role="group" aria-label="Vista de la ciudad">
-        {(['map', 'sections'] as const).map((mode) => (
-          <button
-            key={mode}
-            aria-pressed={view === mode}
-            onClick={() => {
-              setView(mode);
-              try {
-                localStorage.setItem(CITY_VIEW_KEY, mode);
-              } catch {
-                /* Session-only preference. */
-              }
-            }}
-          >
-            {mode === 'map' ? 'Mapa' : 'Secciones'}
-          </button>
-        ))}
+      <div className="city-topbar" ref={toolbar}>
+        <div className="city-view-switch" role="group" aria-label="Vista de la ciudad">
+          {(['map', 'sections'] as const).map((mode) => (
+            <button
+              key={mode}
+              aria-pressed={view === mode}
+              onClick={() => {
+                setView(mode);
+                try {
+                  localStorage.setItem(CITY_VIEW_KEY, mode);
+                } catch {
+                  /* Session-only preference. */
+                }
+              }}
+            >
+              {mode === 'map' ? 'Mapa' : 'Secciones'}
+            </button>
+          ))}
+        </div>
+        <CityMatchday />
       </div>
-      {view === 'map' ? <CityMap /> : <CitySections />}
-      <div className="city-shortcuts">
-        <Link to="/daily" aria-label="Actividades y recompensas">
-          <Gift />
-          <AttentionBadge to="/daily" />
-          <span>
-            Actividades<small>{club.dailyDone.length}/3</small>
-          </span>
-        </Link>
-        <Link to="/events" aria-label="Eventos de liga">
-          <Trophy />
-          <span>Eventos</span>
-          <AttentionBadge to="/events" />
-        </Link>
-        <Link to="/newspaper" aria-label="Leer el periódico">
-          <Newspaper />
-          <AttentionBadge to="/newspaper" />
-          <span>El Balonazo</span>
-        </Link>
-        <button onClick={() => setJobs(!jobs)} aria-expanded={jobs}>
-          <Hammer />
-          <span>
-            Obras<small>{count} en curso</small>
-          </span>
-        </button>
-      </div>
-      <Link to="/matchday" className={`city-match-dock ${live ? 'is-live' : ''}`}>
-        <span className="round-icon">
-          <Flag size={20} />
-        </span>
-        <span>
-          <small>
-            JORNADA {round?.number || state.currentRound} · {live ? 'EN JUEGO' : 'PREVIA'}
-          </small>
-          <b>{live ? 'Tu estadio está vibrando' : 'El próximo partido empieza contigo'}</b>
-        </span>
-        {round && <Countdown to={round.locksAt} now={state.now} />}
-        <ChevronRight size={18} />
-      </Link>
+      <div className="city-content">{view === 'map' ? <CityMap /> : <CitySections />}</div>
+      <CityShortcuts jobsOpen={jobs} toggleJobs={() => setJobs(!jobs)} />
       {jobs && (
-        <div className="city-jobs-panel">
+        <div id="city-jobs" className="city-jobs-panel" role="region" aria-label="Obras de tu club">
           <div className="row spread">
             <h2>Tu club está creciendo</h2>
             <button aria-label="Cerrar construcciones" onClick={() => setJobs(false)}>

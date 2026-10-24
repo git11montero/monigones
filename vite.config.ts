@@ -3,7 +3,7 @@ import { BRAND } from './shared/brand';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
-const buildId = process.env.MONIGONES_BUILD_ID || `v04-${randomUUID()}`;
+const buildId = process.env.MONIGONES_BUILD_ID || `v05-${randomUUID()}`;
 export default defineConfig(({ command }) => ({
   define: {
     __MONIGONES_BUILD_ID__: JSON.stringify(buildId),

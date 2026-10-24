@@ -294,27 +294,29 @@ function ChatPanel({ embedded = false }: { embedded?: boolean }) {
                   {author?.presidentName || 'Presidente'} · {author?.name}
                 </span>
                 <p>{m.text}</p>
-                <span className="chat-time">
-                  {new Date(m.at).toLocaleTimeString('es-ES', {
-                    timeZone: 'Europe/Madrid',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
-                </span>
-                {admin && (
-                  <button
-                    className="chat-moderate"
-                    aria-label="Eliminar mensaje"
-                    onClick={() =>
-                      void act(
-                        { type: 'deleteMessage', id: m.id },
-                        'Mensaje eliminado por moderación.',
-                      )
-                    }
-                  >
-                    <Trash2 size={12} />
-                  </button>
-                )}
+                <div className="chat-message-meta">
+                  <time className="chat-time" dateTime={new Date(m.at).toISOString()}>
+                    {new Date(m.at).toLocaleTimeString('es-ES', {
+                      timeZone: 'Europe/Madrid',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </time>
+                  {admin && (
+                    <button
+                      className="chat-moderate"
+                      aria-label="Eliminar mensaje"
+                      onClick={() =>
+                        void act(
+                          { type: 'deleteMessage', id: m.id },
+                          'Mensaje eliminado por moderación.',
+                        )
+                      }
+                    >
+                      <Trash2 size={12} />
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           );

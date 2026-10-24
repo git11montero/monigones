@@ -327,7 +327,7 @@ export function SettingsPage() {
         </Button>
       </div>
       <p className="page-footnote">
-        {BRAND.name} · Servidor local persistente
+        {BRAND.name} · Tu club, tu liga
         <br />
         Datos de demostración: resultados, calendario y economía propios de esta partida. Las
         fuentes de identidad y las fotografías pueden consultarse en Créditos de imágenes.

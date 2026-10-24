@@ -1,5 +1,6 @@
 import { RESEARCH_STORIES } from './research-stories.js';
-import type { BuildingDef, FacilityDef, Position, ResearchDef, Tree } from './types.js';
+import type { BuildingDef, FacilityDef, ResearchDef, Tree } from './types.js';
+export { FORMATIONS } from './formations.js';
 export const HOUR = 3_600_000,
   DAY = 24 * HOUR;
 export const euro = (n: number) => Math.round(n * 100);
@@ -39,13 +40,6 @@ export const RULES = {
   loanCap: euro(3_000_000),
   institutionCooldown: 2 * DAY,
   marketSize: 5,
-};
-export const FORMATIONS: Record<string, Position[]> = {
-  '4-4-2': ['POR', ...Array(4).fill('DEF'), ...Array(4).fill('MED'), ...Array(2).fill('DEL')],
-  '4-3-3': ['POR', ...Array(4).fill('DEF'), ...Array(3).fill('MED'), ...Array(3).fill('DEL')],
-  '3-5-2': ['POR', ...Array(3).fill('DEF'), ...Array(5).fill('MED'), ...Array(2).fill('DEL')],
-  '3-4-3': ['POR', ...Array(3).fill('DEF'), ...Array(4).fill('MED'), ...Array(3).fill('DEL')],
-  '5-3-2': ['POR', ...Array(5).fill('DEF'), ...Array(3).fill('MED'), ...Array(2).fill('DEL')],
 };
 export const BUILDINGS: BuildingDef[] = [
   [
@@ -228,7 +222,12 @@ export const FACILITIES: FacilityDef[] = [
   ['stands', 'Gradas', 'Más aforo: 8.000 plazas adicionales por ampliación.', 5],
   ['locker', 'Vestuarios', 'Una plaza más de plantilla por ampliación, hasta 30.', 18],
   ['bench', 'Banquillo', 'Desbloquea suplentes y entradas automáticas.', 7],
-  ['pitch', 'Césped', 'Desbloquea formaciones: 4-3-3, 3-5-2, 3-4-3 y 5-3-2.', 4],
+  [
+    'pitch',
+    'Césped',
+    'Amplía las alternativas tácticas por niveles, hasta 4-2-4 y 3-3-4 en nivel 4. Sin bonificaciones adicionales.',
+    4,
+  ],
   ['led', 'Iluminación LED', 'Reduce exclusivamente el gasto energético.', 5],
   [
     'showlights',

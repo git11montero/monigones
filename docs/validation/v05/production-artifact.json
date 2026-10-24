@@ -1,0 +1,14 @@
+{
+  "sourcePngCount": 522,
+  "staticPngCount": 522,
+  "sha256Differences": [],
+  "trackedPublicAssetChanges": [],
+  "functions": [
+    {
+      "artifact": ".vercel/output/functions/api/[...path].func",
+      "runtime": "nodejs24.x",
+      "handler": "api/[...path].js"
+    }
+  ],
+  "remoteDeploymentPerformed": false
+}

@@ -241,3 +241,9 @@ La PWA muestra «Nueva versión disponible — Actualizar» y conserva sesiones,
 La instalación se recomienda tras entrar a Ciudad en un navegador móvil; Ajustes ofrece las instrucciones de nuevo. Mi club contiene los recursos y su control de ocultación. Ciudad recuerda la elección Mapa/Secciones. No hay variables, migraciones ni tareas programadas nuevas para esta actualización.
 
 Antes de publicar, `npm run build:online` verifica también la configuración pública y los recursos del resultado compilado. Puedes comprobar el frontend del artefacto con `node scripts/verify-pwa-build.mjs .vercel/output/static`, además de la prueba de ejecución de la Function. Consulta [el informe v0.4](MONIGONES_V04_MOBILE_DELIVERY.md) y [la galería móvil](screenshots/v04/index.html) para las pruebas, límites de simulación y comandos de publicación voluntaria.
+
+## 14. Actualización visual y táctica v0.5
+
+La nueva versión incorpora el indicador desplegable de jornada, los accesos de Ciudad compartidos entre Mapa/Secciones y catorce formaciones con desbloqueo por césped. Las selecciones anteriores siguen siendo válidas y los nuevos dibujos se guardan en el estado existente. No requiere migraciones, importaciones, variables ni cambios de Cron. La referencia 3-4-4 se descarta por sumar doce titulares con portero; 3-3-4 y 4-2-4 son las alternativas de nivel 4.
+
+Consulta [el informe v0.5](MONIGONES_V05_DELIVERY.md) y [la galería](screenshots/v05/index.html) para los resultados de las pruebas, las decisiones y el flujo de publicación. La instalación y actualización de la PWA siguen el procedimiento anterior.

@@ -4,7 +4,7 @@ import { BUILDINGS, RULES } from '../../shared/config';
 import { PlayerCard } from '../components/PlayerCard';
 import { ClubBadge } from '../components/PlayerPortrait';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowRight, CalendarDays, Shield, Flag, Trophy, Users } from 'lucide-react';
 import { shortMoney } from '../../shared/math';
 import { clubById } from '../../shared/sports';
@@ -168,7 +168,8 @@ export default function LeaguePage() {
 }
 export function MatchdayPage() {
   const { state, club, act } = useGame();
-  const [roundNo, setRoundNo] = useState(state.currentRound);
+  const [params] = useSearchParams();
+  const [roundNo, setRoundNo] = useState(() => Number(params.get('round')) || state.currentRound);
   const round = state.rounds.find((r) => r.number === roundNo) || state.rounds.at(-1)!;
   const report = round.reports[club.id];
   return (

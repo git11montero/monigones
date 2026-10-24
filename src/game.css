@@ -4861,3 +4861,547 @@ select {
 .chat-shell.full-chat {
   height: calc(var(--viewport-height) - var(--header-height, 62px) - var(--navigation-height));
 }
+
+/* v0.5 · city navigation shares one shell in both views. */
+.city-page {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.city-content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  isolation: isolate;
+}
+.city-topbar {
+  position: relative;
+  z-index: 15;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  padding: 8px 10px;
+  background: #122b40;
+  border-bottom: 1px solid #a48e59;
+}
+.city-topbar .city-view-switch {
+  position: static;
+  transform: none;
+  padding: 2px;
+  flex-shrink: 0;
+  box-shadow: none;
+}
+.city-topbar .city-view-switch button {
+  padding: 6px 11px;
+  min-height: 40px;
+}
+.city-matchday {
+  margin-left: auto;
+}
+.matchday-toggle {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 5px;
+  align-items: center;
+  padding: 5px 8px;
+  min-height: 46px;
+  min-width: 132px;
+  border: 1px solid #ad955f;
+  border-radius: 8px;
+  background: #203c54;
+  color: #f2d396;
+  text-align: left;
+}
+.matchday-toggle b {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.matchday-toggle > span {
+  grid-row: 2;
+  font:
+    12px ui-monospace,
+    monospace;
+}
+.matchday-toggle svg {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+.matchday-toggle.is-live {
+  border-color: #a3d8be;
+  color: #b7f2d4;
+}
+.city-round-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 10px;
+  width: min(370px, calc(100% - 20px));
+  max-height: min(
+    420px,
+    calc(100svh - var(--header-height, 62px) - 150px - env(safe-area-inset-bottom))
+  );
+  overflow-y: auto;
+  touch-action: pan-y;
+  padding: 14px;
+  background: linear-gradient(130deg, #2b475f, #142d43);
+  border: 1px solid #e1be75;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px #0009;
+}
+.city-round-panel h2 {
+  font: 800 16px/1.3 system-ui;
+  color: #ffe0a0;
+}
+.city-round-panel .row > button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  background: #173047;
+  border: 1px solid #688092;
+}
+.city-round-panel p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 7px 0;
+}
+.city-round-panel .text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.round-next-event {
+  color: #f3d499;
+}
+.round-facts {
+  margin: 8px 0;
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+}
+.round-facts div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+.round-facts dt {
+  color: #b9ccdc;
+}
+.round-facts dd {
+  margin: 0;
+  font-weight: 700;
+}
+.round-settlement {
+  border-top: 1px solid #617589;
+  margin-top: 10px;
+  padding-top: 8px;
+  font-size: 12px;
+}
+.round-settlement div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+}
+.city-shortcuts,
+.city-view-sections .city-shortcuts {
+  position: absolute;
+  bottom: 12px;
+  left: 10px;
+  right: 10px;
+  margin: 0;
+  z-index: 6;
+}
+.city-view-sections .city-content {
+  overflow-y: auto;
+  padding-bottom: 85px;
+}
+.city-sections {
+  padding: 4px 12px 12px;
+}
+.city-jobs-panel {
+  top: var(--city-toolbar-height, 108px);
+  bottom: 85px;
+  left: 10px;
+  right: 10px;
+}
+@media (max-width: 350px) {
+  .city-topbar {
+    padding: 6px 9px;
+    gap: 4px;
+  }
+  .city-topbar .city-view-switch button {
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+  .matchday-toggle {
+    min-width: 126px;
+  }
+}
+/* Tactical choices retain 11 engine slots, including the goalkeeper. */
+.formation-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  min-width: 140px;
+  padding: 6px 12px;
+  gap: 12px;
+  background: #172e47;
+  border: 1px solid #c1a569;
+  border-radius: 8px;
+  color: #ffe1a1;
+}
+.formation-trigger span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.formation-trigger small {
+  font-size: 10px;
+  color: #b6c9dc;
+  letter-spacing: 0.7px;
+}
+.formation-trigger b {
+  font: 800 19px/1.2 system-ui;
+}
+.formation-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  padding: 18px;
+  overflow: hidden;
+}
+.formation-modal > h2 {
+  margin: 0;
+  font: 800 22px/1.3 system-ui;
+  padding-right: 40px;
+}
+.formation-modal > p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.formation-preview-panel {
+  display: grid;
+  grid-template-columns: 95px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #647d87;
+  border-radius: 8px;
+  background: #102b3c;
+}
+.formation-preview-panel b {
+  font-size: 20px;
+  color: #f7db9d;
+}
+.formation-preview-panel p {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 3px 0;
+}
+.formation-preview-panel span,
+.formation-preview-panel small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #d3e7df;
+}
+.tactical-preview {
+  height: 108px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #d4e3c988;
+  border-radius: 5px;
+  background: repeating-linear-gradient(#285b4b 0 18px, #306653 18px 36px);
+  padding: 4px;
+}
+.tactical-row {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 2px;
+}
+.tactical-row i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #f4d68d;
+  box-shadow: 0 1px 2px #0007;
+}
+.tactical-row i[data-position='POR'] {
+  background: #c9e8ff;
+}
+.formation-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  overflow-y: auto;
+  min-height: 90px;
+  max-height: 30dvh;
+  padding: 2px;
+}
+.formation-choice {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 50px;
+  padding: 7px 8px;
+  background: #19354d;
+  border: 1px solid #60798e;
+  border-radius: 7px;
+  text-align: left;
+  flex-wrap: wrap;
+}
+.formation-choice b {
+  font: 800 14px/1.4 system-ui;
+  color: #ffe1a1;
+}
+.formation-choice span {
+  font-size: 10px;
+  color: #d1dce7;
+}
+.formation-choice svg,
+.formation-choice .formation-ready {
+  margin-left: auto;
+}
+.formation-choice.locked {
+  background: #172b3c;
+  border-style: dashed;
+}
+.formation-choice.locked b {
+  color: #bcc8d4;
+}
+.formation-choice[aria-pressed='true'] {
+  outline: 2px solid #edc776;
+  outline-offset: -2px;
+}
+.formation-apply {
+  flex-shrink: 0;
+}
+.formation-apply p {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #bdcede;
+  margin-bottom: 8px;
+}
+.formation-apply .button {
+  width: 100%;
+}
+.football-pitch {
+  gap: 14px;
+  padding: 14px 8px;
+}
+.football-pitch .pitch-row {
+  display: grid;
+  width: 100%;
+  padding: 0;
+  gap: 3px;
+}
+.football-pitch .pitch-player {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+.football-pitch .pitch-shirt {
+  width: min(100%, 48px);
+  height: 55px;
+}
+.football-pitch .pitch-shirt .portrait {
+  width: 100% !important;
+  height: 54px !important;
+}
+.football-pitch .pitch-player-name {
+  width: 100%;
+  font-size: 10px;
+  line-height: 1.4;
+  max-width: none;
+}
+.football-pitch .pitch-position {
+  font-size: 10px;
+}
+.bench-summary {
+  padding: 14px;
+  background: linear-gradient(120deg, #263f56, #142c41);
+  border: 1px solid #839177;
+  border-radius: 10px;
+}
+.bench-capacity {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.bench-capacity span {
+  font-size: 12px;
+  color: #c2d5e4;
+}
+.bench-capacity b {
+  display: inline-block;
+  margin-right: 7px;
+  font: 800 23px/1.3 system-ui;
+  color: #f2d394;
+}
+.bench-summary p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 10px 0 4px;
+}
+.bench-summary .text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.bench-player .button {
+  min-width: 44px;
+  min-height: 44px;
+}
+/* Findings from the five-size visual audit: readable cards and balanced controls. */
+.interior-main .section-heading h2 {
+  font: 800 20px/1.3 system-ui;
+  letter-spacing: 0;
+}
+.bench-area .section-heading {
+  margin-bottom: 10px;
+}
+.bench-summary {
+  padding: 12px;
+}
+.bench-capacity span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.bench-capacity b {
+  flex-shrink: 0;
+  margin: 0;
+}
+.bench-summary p {
+  margin: 8px 0 0;
+}
+.chat-message-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  min-height: 24px;
+  margin-top: 4px;
+}
+.chat-message-meta .chat-time {
+  font-size: 11px;
+  margin: 0;
+}
+.chat-message-meta .chat-moderate {
+  position: static;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 8px;
+}
+.research-tree .research-node {
+  grid-template-columns: 44px minmax(0, 1fr) 28px;
+  gap: 8px;
+  padding: 12px;
+}
+.research-tree .research-node .node-symbol {
+  width: 44px;
+  height: 52px;
+}
+.research-tree .research-node .research-copy {
+  min-width: 0;
+}
+.research-tree .research-node .research-copy b {
+  font-size: 14px;
+  line-height: 1.35;
+}
+.research-tree .research-node .research-copy small {
+  font-size: 11px;
+  line-height: 1.45;
+}
+.research-tree .research-node .research-state {
+  font-size: 10px;
+}
+.sports-card.market {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  grid-template-areas: 'top top' 'portrait name' 'portrait club' 'info info' 'status status';
+  gap: 5px 10px;
+  padding: 12px;
+  min-height: 0;
+}
+.sports-card.market .sports-card-top {
+  position: static;
+  grid-area: top;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+.sports-card.market .sports-card-top .real-club-badge {
+  width: 24px !important;
+  height: 24px !important;
+}
+.sports-card.market .sports-card-portrait {
+  grid-area: portrait;
+  width: 80px;
+  height: 86px;
+  min-height: 0;
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+.sports-card.market .sports-card-portrait .portrait {
+  width: 80px !important;
+  height: 84px !important;
+}
+.sports-card.market h2 {
+  grid-area: name;
+  margin: 0;
+  align-self: end;
+  font: 800 19px/1.2 system-ui;
+  overflow-wrap: anywhere;
+}
+.sports-card.market .sports-card-club {
+  grid-area: club;
+  margin: 0;
+  font-size: 12px;
+  align-self: start;
+}
+.sports-card.market .sports-card-info {
+  grid-area: info;
+  margin: 0;
+  padding: 8px 0 4px;
+}
+.sports-card.market .sports-card-info b {
+  font-size: 19px;
+}
+.sports-card.market .sports-card-info small {
+  font-size: 9px;
+}
+.sports-card.market .sports-card-status {
+  grid-area: status;
+  font-size: 9px;
+  line-height: 1.5;
+  white-space: normal;
+}
+.market-card-bottom {
+  min-height: 44px;
+  font-size: 12px;
+}
+.market-deadline {
+  min-height: 70px;
+  padding: 10px 14px;
+}
+.market-budget strong {
+  font-size: 24px;
+}

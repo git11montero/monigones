@@ -42,6 +42,8 @@ export interface Slot {
 }
 export interface Selection {
   round: number;
+  /** Optional for existing saves; inferred from their unchanged slots when absent. */
+  formation?: string;
   starters: Slot[];
   bench: string[];
   policy: 'economic' | 'standard' | 'premium';

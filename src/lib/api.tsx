@@ -1,3 +1,4 @@
+import { GameClock } from '../components/GameClock';
 import { emitFeedback, type Sound } from './audio';
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -313,7 +314,7 @@ export function GameProvider({ session, children }: { session: Session; children
           Sin conexión · Consultando la última copia. Las operaciones están desactivadas.
         </div>
       )}
-      {children}
+      <GameClock now={data.state.now}>{children}</GameClock>
       {notice && (
         <div className="toast" role="status">
           {notice}

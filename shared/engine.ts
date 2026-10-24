@@ -1,4 +1,5 @@
 import { activityOffers, activityDay } from './activities.js';
+import { formationAllowed, selectionFormation } from './formations.js';
 import { notifications } from './attention.js';
 import { economicRandom } from './math.js';
 import {
@@ -248,6 +249,10 @@ export function jobQuote(c: Club, kind: 'building' | 'facility' | 'research', ta
   return { level, money, development, duration: Math.round(hours * HOUR) };
 }
 export function callCost(s: GameState, c: Club, selection = c.selection) {
+  invariant(
+    selection.starters.length === 11 && !!selectionFormation(selection),
+    'La formación debe tener once titulares y un portero.',
+  );
   const ef = effects(c);
   let cost = 0;
   const snapshots: Selection['snapshots'] = {};
@@ -679,6 +684,7 @@ export function settleRound(s: GameState, r: Round) {
       const prev = c.selection;
       c.selection = {
         ...emptySelection(s.currentRound),
+        formation: prev.formation,
         starters: prev.starters.map((slot) => ({
           ...slot,
           playerId:
@@ -1012,20 +1018,24 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
     case 'formation': {
       invariant(!c.selection.locked && s.now < r.locksAt, 'La convocatoria ya está cerrada.');
       const f = str(cmd, 'formation');
-      invariant(
-        Object.keys(FORMATIONS)
-          .slice(0, 1 + (c.facilities.pitch || 0))
-          .includes(f),
-        'Formación bloqueada por el césped.',
-      );
+      invariant(formationAllowed(f, c.facilities.pitch || 0), 'Formación bloqueada por el césped.');
       const previous = c.selection.starters;
+      if (selectionFormation(c.selection)?.id === f) break;
+      const assigned = new Set<string>();
       c.selection.starters = FORMATIONS[f].map((position, i) => ({
         position,
-        playerId: null,
+        playerId: (() => {
+          const compatible = previous.find(
+            (slot) => slot.position === position && slot.playerId && !assigned.has(slot.playerId),
+          );
+          if (compatible?.playerId) assigned.add(compatible.playerId);
+          return compatible?.playerId || null;
+        })(),
         quality: previous[i]?.quality || 0,
         unlockedQuality: previous[i]?.unlockedQuality || 0,
       }));
-      c.selection.bench = [];
+      c.selection.formation = f;
+      c.selection.bench = c.selection.bench.filter((id) => !assigned.has(id));
       break;
     }
     case 'bench': {
@@ -1781,6 +1791,7 @@ export function publicState(s: GameState, userId: string) {
           hideResources: undefined,
           selection: {
             ...club.selection,
+            formation: club.selection.locked ? club.selection.formation : undefined,
             bench: club.selection.locked ? club.selection.bench : [],
             starters: club.selection.locked ? club.selection.starters : [],
             snapshots: {},

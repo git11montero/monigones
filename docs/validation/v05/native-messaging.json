@@ -1,0 +1,8 @@
+{
+  "browser": "Playwright Chromium with extensions disabled",
+  "cleanProfile": true,
+  "reproduced": false,
+  "matchingMessages": [],
+  "originalExtensionIdentified": false,
+  "globalConsoleFilters": false
+}

@@ -1,0 +1,105 @@
+{
+  "preparedLocally": true,
+  "remoteChangesPerformed": false,
+  "typeScript": "passed",
+  "eslint": "passed",
+  "vitest": {
+    "passed": 190,
+    "files": 13
+  },
+  "postgresql": {
+    "passed": 42,
+    "files": 2,
+    "disposableLocalCluster": true
+  },
+  "browser": {
+    "historicalRegressionPassed": 38,
+    "historicalVisualArchiveSkipped": 1,
+    "firstFullRun": {
+      "passed": 41,
+      "failed": 1,
+      "skipped": 1,
+      "failure": "visual audit exceeded 300-second test timeout; capture readiness and duration corrected"
+    },
+    "finalV05Suite": {
+      "distinctCasesPassed": 6,
+      "runs": [
+        {
+          "casesPassed": 5,
+          "log": "browser-v05-final.log"
+        },
+        {
+          "casesPassed": 2,
+          "log": "browser-details-final.log",
+          "overlapWithPreviousRun": 1
+        },
+        {
+          "casesPassed": 2,
+          "log": "browser-viewport-final.log",
+          "overlapWithPreviousRuns": 2,
+          "reason": "explicit viewport dimensions for five named screenshots"
+        }
+      ]
+    },
+    "distinctCasesPassed": 44,
+    "skipped": 1
+  },
+  "visualAudit": {
+    "routeViewportChecks": 195,
+    "overflows": 0,
+    "javascriptErrors": 0,
+    "consoleErrors": 0,
+    "sizes": [
+      [
+        320,
+        568
+      ],
+      [
+        375,
+        812
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        430,
+        932
+      ],
+      [
+        1440,
+        1000
+      ]
+    ],
+    "additionalRouteViewportChecks": 15,
+    "totalRouteViewportChecks": 210,
+    "screenshots": 315,
+    "allPngDimensionsMatchViewport": true
+  },
+  "buildLocal": "passed",
+  "buildOnline": "passed",
+  "vercelBuild": "passed",
+  "vercelNativeArtifact": {
+    "status": "passed",
+    "node": "24.22.1",
+    "runtime": "nodejs24.x",
+    "nativeEsm": true,
+    "isolatedOutsideRepository": true,
+    "httpChecks": 36,
+    "remoteRequests": false
+  },
+  "pwaArtifact": {
+    "status": "passed",
+    "precacheResources": 51
+  },
+  "pngAssets": {
+    "count": 522,
+    "sha256Unchanged": true
+  },
+  "nativeMessaging": {
+    "cleanBrowserReproduction": false,
+    "originalScriptOriginConfirmed": false
+  },
+  "physicalDeviceValidation": "pending",
+  "validationDates": "2026-10-24/2026-10-25"
+}

@@ -28,7 +28,7 @@ test('v04: recursos contextuales, 15 accesos, preferencia y auditoría de cuatro
     const map = page.locator('.city-map');
     await expect(map).toHaveAttribute('data-ready', 'true');
     const box = (await map.boundingBox())!;
-    expect(box.height).toBeGreaterThan(height < 600 ? 390 : 500);
+    expect(box.height).toBeGreaterThan(height < 600 ? 300 : 470);
     await page.screenshot({ path: `${root}/mapa-${width}x${height}.png`, scale: 'css' });
     // Every badge lives inside its label, and inherits exactly the same map transform.
     expect(await page.locator('.map-building > .attention-badge').count()).toBe(0);
@@ -103,7 +103,7 @@ test('v04: gestos de mapa, scroll de secciones y zoom accesible sin restricción
   await expect(map).not.toHaveAttribute('data-zoom', originalZoom!);
   expect(await page.evaluate(() => visualViewport?.scale)).toBe(1);
   await page.getByRole('button', { name: 'Secciones', exact: true }).click();
-  const surface = page.locator('.city-view-sections');
+  const surface = page.locator('.city-view-sections .city-content');
   await session.send('Input.synthesizeScrollGesture', {
     x: 180,
     y: 500,

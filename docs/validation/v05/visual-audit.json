@@ -1,0 +1,1176 @@
+{
+  "audited": [
+    {
+      "route": "more",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "market",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "squad",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "draft",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/hq",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/stadium",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/offices",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/research",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/marketing",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/academy",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/sport",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/training",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/shop",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/finance",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/social",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/institution",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/press",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/museum",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "building/competition",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "research",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "finance",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "daily",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "events",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "newspaper",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "chat",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "trades",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "league",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "matchday",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "training",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "fans",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "marketing",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "concerts",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "academy",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "institution",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "museum",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "coaches",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "bonuses",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "archive",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "more",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "market",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "squad",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "draft",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/hq",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/stadium",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/offices",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/research",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/marketing",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/academy",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/sport",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/training",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/shop",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/finance",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/social",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/institution",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/press",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/museum",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "building/competition",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "research",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "finance",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "daily",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "events",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "newspaper",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "chat",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "trades",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "league",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "matchday",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "training",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "fans",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "marketing",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "concerts",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "academy",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "institution",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "museum",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "coaches",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "bonuses",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "archive",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "more",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "market",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "squad",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "draft",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/hq",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/stadium",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/offices",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/research",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/marketing",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/academy",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/sport",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/training",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/shop",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/finance",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/social",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/institution",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/press",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/museum",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "building/competition",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "research",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "finance",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "daily",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "events",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "newspaper",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "chat",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "trades",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "league",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "matchday",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "training",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "fans",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "marketing",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "concerts",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "academy",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "institution",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "museum",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "coaches",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "bonuses",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "archive",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "more",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "market",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "squad",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "draft",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/hq",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/stadium",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/offices",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/research",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/marketing",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/academy",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/sport",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/training",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/shop",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/finance",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/social",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/institution",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/press",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/museum",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "building/competition",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "research",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "finance",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "daily",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "events",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "newspaper",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "chat",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "trades",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "league",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "matchday",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "training",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "fans",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "marketing",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "concerts",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "academy",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "institution",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "museum",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "coaches",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "bonuses",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "archive",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "more",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "market",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "squad",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "draft",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/hq",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/stadium",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/offices",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/research",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/marketing",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/academy",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/sport",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/training",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/shop",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/finance",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/social",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/institution",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/press",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/museum",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "building/competition",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "research",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "finance",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "daily",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "events",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "newspaper",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "chat",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "trades",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "settings",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "league",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "matchday",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "training",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "fans",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "marketing",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "concerts",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "academy",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "institution",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "museum",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "coaches",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "bonuses",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "archive",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    }
+  ],
+  "javascriptErrors": [],
+  "consoleErrors": []
+}

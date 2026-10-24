@@ -1,9 +1,10 @@
-import { GameSelect } from '../components/GameSelect';
+import { FormationPicker } from '../components/FormationPicker';
+import { FORMATION_CATALOG, selectionFormation, formationRows } from '../../shared/formations';
 import { BRAND } from '../../shared/brand';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, CirclePlus, Grip, Shield, Users, X } from 'lucide-react';
-import { FORMATIONS, RULES } from '../../shared/config';
+import { RULES } from '../../shared/config';
 import { callCost } from '../../shared/engine';
 import { capacity, shortMoney } from '../../shared/math';
 import { useGame } from '../lib/api';
@@ -30,13 +31,11 @@ export default function SquadPage() {
   } catch {
     /* Errores específicos al confirmar operaciones. */
   }
-  const counts = ['DEL', 'MED', 'DEF', 'POR'].map((pos) =>
-    sel.starters.map((s, i) => ({ ...s, index: i })).filter((s) => s.position === pos),
+  const currentFormation = selectionFormation(sel) || FORMATION_CATALOG[0];
+  const counts = formationRows(currentFormation).map((row) =>
+    row.map((index) => ({ ...sel.starters[index], index })),
   );
-  const currentFormation =
-    Object.entries(FORMATIONS).find(
-      ([, positions]) => positions.join(',') === sel.starters.map((x) => x.position).join(','),
-    )?.[0] || '4-4-2';
+  const [benchMax, autoMax] = RULES.bench[Math.min(7, club.facilities.bench || 0)];
   return (
     <>
       <PageTitle
@@ -58,27 +57,16 @@ export default function SquadPage() {
       {tab === 'lineup' && (
         <>
           <div className="pitch-top">
-            <label>
-              FORMACIÓN
-              <GameSelect
-                aria-label="Formación"
-                value={currentFormation}
-                onChange={(e) =>
-                  void act(
-                    { type: 'formation', formation: e.target.value },
-                    'Formación actualizada. Vuelve a asignar tu once.',
-                  )
-                }
-                disabled={sel.locked}
-              >
-                {Object.keys(FORMATIONS).map((f, index) => (
-                  <option key={f} value={f} disabled={index > (club.facilities.pitch || 0)}>
-                    {f}
-                    {index > (club.facilities.pitch || 0) ? ` · Requiere césped Nv. ${index}` : ''}
-                  </option>
-                ))}
-              </GameSelect>
-            </label>
+            <FormationPicker
+              current={currentFormation}
+              disabled={sel.locked}
+              onApply={(formation) =>
+                act(
+                  { type: 'formation', formation },
+                  'Táctica guardada. Revisa las plazas disponibles.',
+                )
+              }
+            />
             <button
               className="text-link"
               disabled={sel.locked}
@@ -89,7 +77,7 @@ export default function SquadPage() {
               Once automático <Grip size={14} />
             </button>
           </div>
-          <div className="football-pitch">
+          <div className="football-pitch" data-formation={currentFormation.id}>
             <div className="pitch-lines">
               <i className="center-circle" />
               <i className="center-line" />
@@ -97,7 +85,11 @@ export default function SquadPage() {
               <i className="box-bottom" />
             </div>
             {counts.map((row, ri) => (
-              <div className={`pitch-row pitch-row-${ri}`} key={ri}>
+              <div
+                className={`pitch-row pitch-row-${ri}`}
+                style={{ gridTemplateColumns: `repeat(${row.length},minmax(0,1fr))` }}
+                key={ri}
+              >
                 {row.map((s) => {
                   const p = state.players.find((p) => p.id === s.playerId);
                   return (
@@ -183,51 +175,71 @@ export default function SquadPage() {
         </div>
       )}
       {tab === 'bench' && (
-        <Section title="Siempre preparados">
-          <div className="card">
-            <div className="mini-metrics">
-              <span>
-                <b>{RULES.bench[Math.min(7, club.facilities.bench || 0)][0]}</b>Suplentes
-                disponibles
-              </span>
-              <span>
-                <b>{RULES.bench[Math.min(7, club.facilities.bench || 0)][1]}</b>Entradas automáticas
-              </span>
-            </div>
-            <p>
-              Un suplente por demarcación. Todos cobran convocatoria. La entrada automática espera
-              al final del partido del suplente.
-            </p>
-            <Link className="text-link" to="/building/stadium">
-              Ampliar banquillo <ArrowRight size={15} />
-            </Link>
-          </div>
-          {roster
-            .filter((p) => !sel.starters.some((s) => s.playerId === p.id))
-            .map((p) => (
-              <div className="bench-player" key={p.id}>
-                <PlayerRow
-                  player={p}
-                  aside={
-                    <Button
-                      variant="small secondary"
-                      disabled={sel.locked}
-                      onClick={() =>
-                        void act({ type: 'bench', playerId: p.id }, 'Banquillo actualizado.')
-                      }
-                    >
-                      {sel.bench.includes(p.id) ? <Check size={16} /> : <CirclePlus size={16} />}
-                    </Button>
-                  }
-                />
+        <div className="bench-area">
+          <Section title="Siempre preparados">
+            <div className="bench-summary">
+              <div className="bench-capacity">
+                <span>
+                  <b>
+                    {sel.bench.length}/{benchMax}
+                  </b>
+                  Suplentes convocados
+                </span>
+                <span>
+                  <b>{autoMax}</b>Entradas automáticas
+                </span>
               </div>
-            ))}
-          {!roster.filter((p) => !sel.starters.some((s) => s.playerId === p.id)).length && (
-            <Empty title="Todos están en el once">
-              Ficha más jugadores y amplía tu banquillo para tener alternativas.
-            </Empty>
-          )}
-        </Section>
+              {benchMax === 0 ? (
+                <p>
+                  Amplía Banquillo a nivel 1 en el estadio: un suplente y una entrada automática.
+                </p>
+              ) : (
+                <p>
+                  Un suplente por demarcación. Todos cobran convocatoria; las entradas automáticas
+                  esperan al final de su partido.
+                </p>
+              )}
+              <Link className="text-link" to="/building/stadium">
+                {benchMax ? 'Ampliar banquillo' : 'Desbloquear banquillo'} <ArrowRight size={16} />
+              </Link>
+            </div>
+            {roster
+              .filter((p) => !sel.starters.some((s) => s.playerId === p.id))
+              .map((p) => (
+                <div className="bench-player" key={p.id}>
+                  <PlayerRow
+                    player={p}
+                    aside={
+                      <Button
+                        variant="small secondary"
+                        aria-label={`${sel.bench.includes(p.id) ? 'Quitar' : 'Añadir'} ${p.name} ${sel.bench.includes(p.id) ? 'del' : 'al'} banquillo`}
+                        disabled={
+                          sel.locked ||
+                          (!sel.bench.includes(p.id) &&
+                            (sel.bench.length >= benchMax ||
+                              sel.bench.some(
+                                (id) =>
+                                  state.players.find((player) => player.id === id)?.position ===
+                                  p.position,
+                              )))
+                        }
+                        onClick={() =>
+                          void act({ type: 'bench', playerId: p.id }, 'Banquillo actualizado.')
+                        }
+                      >
+                        {sel.bench.includes(p.id) ? <Check size={16} /> : <CirclePlus size={16} />}
+                      </Button>
+                    }
+                  />
+                </div>
+              ))}
+            {!roster.filter((p) => !sel.starters.some((s) => s.playerId === p.id)).length && (
+              <Empty title="Todos están en el once">
+                Ficha más jugadores y amplía tu banquillo para tener alternativas.
+              </Empty>
+            )}
+          </Section>
+        </div>
       )}
       {slot !== null && (
         <div className="modal-backdrop" onClick={() => setSlot(null)}>
@@ -255,6 +267,7 @@ export default function SquadPage() {
                     aside={
                       <Button
                         variant="small secondary"
+                        aria-label={`${sel.locked ? 'Cambiar por' : 'Alinear'} ${p.name}`}
                         onClick={() => {
                           void act(
                             { type: sel.locked ? 'manualSub' : 'lineup', slot, playerId: p.id },

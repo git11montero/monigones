@@ -1,0 +1,94 @@
+{
+  "audited": [
+    {
+      "route": "media",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "player/athletic-0",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "museum/d89e9730-7fe0-41eb-b14d-232a0f7129db",
+      "width": 320,
+      "height": 568,
+      "overflow": false
+    },
+    {
+      "route": "media",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "player/athletic-0",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "museum/d89e9730-7fe0-41eb-b14d-232a0f7129db",
+      "width": 375,
+      "height": 812,
+      "overflow": false
+    },
+    {
+      "route": "media",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "player/athletic-0",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "museum/d89e9730-7fe0-41eb-b14d-232a0f7129db",
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "route": "media",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "player/athletic-0",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "museum/d89e9730-7fe0-41eb-b14d-232a0f7129db",
+      "width": 430,
+      "height": 932,
+      "overflow": false
+    },
+    {
+      "route": "media",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "player/athletic-0",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    },
+    {
+      "route": "museum/d89e9730-7fe0-41eb-b14d-232a0f7129db",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    }
+  ]
+}

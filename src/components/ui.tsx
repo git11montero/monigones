@@ -1,3 +1,4 @@
+import { remainingTime, useServerNow } from './GameClock';
 import { PlayerPortrait, ClubBadge } from './PlayerPortrait';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -9,7 +10,7 @@ import {
   LockKeyhole,
   type LucideIcon,
 } from 'lucide-react';
-import { useEffect, useState, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { clubById } from '../../shared/sports';
 import { shortMoney } from '../../shared/math';
 import type { Player } from '../../shared/types';
@@ -109,6 +110,7 @@ export function Button({
   variant = '',
   className = '',
   type = 'button',
+  'aria-label': ariaLabel,
 }: {
   children: ReactNode;
   onClick?: () => void;
@@ -116,11 +118,13 @@ export function Button({
   variant?: string;
   className?: string;
   type?: 'button' | 'submit';
+  'aria-label'?: string;
 }) {
   const { busy, online } = useGame();
   return (
     <button
       type={type}
+      aria-label={ariaLabel}
       className={`button ${variant} ${className}`}
       disabled={disabled || busy || !online}
       onClick={onClick}
@@ -163,24 +167,15 @@ export function Progress({ value, max = 100 }: { value: number; max?: number }) 
   );
 }
 export function Countdown({ to, now }: { to: number; now?: number }) {
-  const [elapsed, setElapsed] = useState(0);
-  useEffect(() => {
-    setElapsed(0);
-    const t = setInterval(() => setElapsed((e) => e + 1000), 1000);
-    return () => clearInterval(t);
-  }, [to, now]);
-  const ms = Math.max(0, to - (now || Date.now()) - elapsed);
-  const seconds = Math.floor(ms / 1000);
+  const serverNow = useServerNow(now);
   return (
     <span className="countdown">
       <Clock3 size={13} />
-      {seconds >= 86400 ? `${Math.floor(seconds / 86400)}d ` : ''}
-      {String(Math.floor(seconds / 3600) % 24).padStart(2, '0')}:
-      {String(Math.floor(seconds / 60) % 60).padStart(2, '0')}:
-      {String(seconds % 60).padStart(2, '0')}
+      {remainingTime(to, serverNow)}
     </span>
   );
 }
+
 export function Crest({
   color = '#bc9a52',
   size = 42,

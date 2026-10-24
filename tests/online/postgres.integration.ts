@@ -9,6 +9,7 @@ import { createServer } from 'node:http';
 import { createGame } from '../../shared/seed';
 import { euro } from '../../shared/config';
 import type { GameState } from '../../shared/types';
+import { FORMATION_CATALOG, selectionFormation } from '../../shared/formations';
 const url = process.env.MONIGONES_TEST_DATABASE_URL || '';
 if (
   process.env.MONIGONES_ISOLATED_TEST !== 'true' ||
@@ -99,6 +100,33 @@ beforeEach(async () => {
 });
 afterAll(async () => {
   await db.end();
+});
+
+it('formaciones v0.5: bloqueos autoritativos, aislamiento, catálogo completo y persistencia PostgreSQL', async () => {
+  const initial = await store.getState(users[0].id),
+    own = initial.state.clubs.find((c) => c.userId === users[0].id)!;
+  const money = own.resources.money;
+  for (const f of FORMATION_CATALOG.filter((f) => f.pitch > 0))
+    await expect(command(0, { type: 'formation', formation: f.id })).rejects.toThrow(/bloqueada/);
+  await expect(command(0, { type: 'formation', formation: '3-4-4' })).rejects.toThrow(/bloqueada/);
+  await mutate((s) => {
+    s.clubs.find((c) => c.userId === users[0].id)!.facilities.pitch = 4;
+  });
+  for (const f of FORMATION_CATALOG) {
+    await command(0, { type: 'formation', formation: f.id });
+    const persisted = await store.getState(users[0].id),
+      club = persisted.state.clubs.find((c) => c.userId === users[0].id)!;
+    expect(selectionFormation(club.selection)?.id).toBe(f.id);
+    expect(club.selection.starters.map((s) => s.position)).toEqual(f.positions);
+    expect(club.selection.starters).toHaveLength(11);
+    expect(club.resources.money).toBe(money);
+  }
+  await expect(
+    command(1, { type: 'formation', formation: '3-3-4', clubId: own.id }),
+  ).rejects.toThrow(/bloqueada/);
+  await expect(
+    command(2, { type: 'formation', formation: '3-3-4', clubId: own.id }),
+  ).rejects.toThrow(/bloqueada/);
 });
 
 describe('PostgreSQL real: migraciones, RLS y superficie privilegiada', () => {

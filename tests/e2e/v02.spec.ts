@@ -140,11 +140,9 @@ test('selectores: táctil, teclado, opciones bloqueadas y portal dentro de la pa
   await expect(page.getByRole('listbox')).toHaveCount(0);
   await expect(select).toBeFocused();
   await page.goto('/squad');
-  await page.getByRole('combobox').click();
-  await expect(page.getByRole('option').filter({ hasText: '4-3-3' })).toHaveAttribute(
-    'aria-disabled',
-    'true',
-  );
+  await page.getByRole('button', { name: /^Formación / }).click();
+  await page.locator('.formation-choice').filter({ hasText: '4-2-3-1' }).click();
+  await expect(page.getByRole('button', { name: 'Requiere césped nivel 1' })).toBeDisabled();
   await page.keyboard.press('Escape');
   expect(await page.locator('select').count()).toBe(0);
 });
