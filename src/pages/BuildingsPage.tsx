@@ -1,3 +1,4 @@
+import { OperationResources } from '../components/ResourceVisibility';
 import { AttentionBadge } from '../components/Attention';
 import { BuildingBenefits } from '../components/BuildingBenefits';
 import { Facilities } from '../components/Facilities';
@@ -55,6 +56,7 @@ export default function BuildingsPage() {
   return (
     <>
       <PageTitle back eyebrow="CIUDAD DEPORTIVA" title={b.name} subtitle={b.description} />
+      <OperationResources development />
       <div className="building-showcase">
         <BuildingArt building={b} level={club.buildings[b.id] || 1} constructing={!!job} />
         {b.max > 0 ? (

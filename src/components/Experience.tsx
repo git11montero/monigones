@@ -132,32 +132,16 @@ export function Experience() {
     audioManager.setMode(mode === 'normal' ? 'city' : mode);
   }, [mode]);
   useEffect(() => {
-    const gesture = (e: Event) => {
-      void audioManager.unlock();
-      if ((e.target as Element)?.closest('button,a'))
-        audioManager.play((e.target as Element).closest('[href^="/building/"]') ? 'open' : 'tap');
-    };
     const prefs = () => setPreferences(readPreferences());
     const event = (e: Event) => {
       const detail = (e as CustomEvent).detail;
       setFeedback({ ...detail, key: Date.now() });
     };
-    const visibility = () => {
-      if (document.hidden) audioManager.stop();
-      else if (audioManager.unlocked) audioManager.sync();
-    };
-    window.addEventListener('pointerdown', gesture);
-    window.addEventListener('keydown', gesture);
     window.addEventListener('monigones:preferences', prefs);
     window.addEventListener('monigones:feedback', event);
-    document.addEventListener('visibilitychange', visibility);
     return () => {
-      window.removeEventListener('pointerdown', gesture);
-      window.removeEventListener('keydown', gesture);
       window.removeEventListener('monigones:preferences', prefs);
       window.removeEventListener('monigones:feedback', event);
-      document.removeEventListener('visibilitychange', visibility);
-      audioManager.stop();
     };
   }, []);
   useEffect(() => {

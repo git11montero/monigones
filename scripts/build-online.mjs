@@ -1,5 +1,6 @@
 import process from 'node:process';
 import { execFileSync } from 'node:child_process';
+import { verifyPwaBuild } from './verify-pwa-build.mjs';
 try {
   process.loadEnvFile('.env.online.local');
 } catch (error) {
@@ -39,3 +40,7 @@ execFileSync('npm', args, {
   stdio: 'inherit',
   env: { ...process.env, VITE_BACKEND: 'supabase' },
 });
+const verified = verifyPwaBuild(process.env.MONIGONES_BUILD_OUT_DIR || 'dist', { url, key });
+console.log(
+  `PWA verificada: ${verified.precachedResources} recursos; versión coherente y configuración pública presente.`,
+);

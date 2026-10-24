@@ -1,8 +1,15 @@
+import {
+  ResourceAmount,
+  ResourceToggle,
+  OperationResources,
+} from '../components/ResourceVisibility';
+import { Installation } from '../components/MobileExperience';
+import { shortMoney } from '../../shared/math';
 import { UnsavedChanges } from '../components/UnsavedChanges';
 import { AttentionBadge } from '../components/Attention';
 import { BRAND } from '../../shared/brand';
 import { ExperienceSettings } from '../components/Experience';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import {
@@ -13,7 +20,6 @@ import {
   ClipboardList,
   Coins,
   Copy,
-  Download,
   FlaskConical,
   Gavel,
   HeartHandshake,
@@ -78,17 +84,41 @@ export default function MorePage() {
           </p>
         </div>
       </div>
-      <div className="profile-stats">
-        <span>
-          <b>{club.resources.fame}</b>Fama
-        </span>
-        <span>
-          <b>{club.resources.prestige}</b>Prestigio
-        </span>
-        <span>
-          <b>{club.resources.fans}%</b>Afición
-        </span>
-      </div>
+      <section className="club-resources" aria-label="Recursos de Mi club">
+        <div className="row spread">
+          <h2>Recursos de tu club</h2>
+          <ResourceToggle />
+        </div>
+        <div className="club-resource-grid">
+          {[
+            ['/finance', 'Tesorería', shortMoney(club.resources.money), Coins],
+            [
+              '/research',
+              'Puntos de desarrollo',
+              club.resources.development.toLocaleString('es-ES'),
+              FlaskConical,
+            ],
+            ['/events', 'Medallas', club.resources.medals.toLocaleString('es-ES'), Award],
+            ['/bonuses', 'Fama', club.resources.fame, Shield],
+            ['/museum', 'Prestigio', club.resources.prestige, Trophy],
+            ['/fans', 'Afición', `${club.resources.fans}%`, HeartHandshake],
+          ].map(([to, label, value, Icon]) => {
+            const ResourceIcon = Icon as typeof Coins;
+            return (
+              <Link to={String(to)} key={String(label)}>
+                <ResourceIcon size={21} />
+                <span>
+                  <b>
+                    <ResourceAmount>{String(value)}</ResourceAmount>
+                  </b>
+                  <small>{String(label)}</small>
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+        <OperationResources />
+      </section>
       <div className="more-links">
         {links.map(([to, label, Icon]) => (
           <Link to={to} key={to}>
@@ -113,15 +143,6 @@ export function SettingsPage() {
   const [reset, setReset] = useState(false),
     [name, setName] = useState(club.name),
     [color, setColor] = useState(club.color);
-  const [install, setInstall] = useState<any>(null);
-  useEffect(() => {
-    const handler = (e: Event) => {
-      e.preventDefault();
-      setInstall(e);
-    };
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
-  }, []);
   return (
     <>
       <UnsavedChanges
@@ -174,12 +195,7 @@ export function SettingsPage() {
             Se necesita HTTPS en producción. Sin conexión puedes consultar la última copia; las
             operaciones requieren servidor.
           </p>
-          {install && (
-            <Button onClick={() => void install.prompt()}>
-              <Download size={17} />
-              Instalar {BRAND.name}
-            </Button>
-          )}
+          <Installation manual />
         </div>
       </Section>
       {admin && (

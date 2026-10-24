@@ -1,3 +1,4 @@
+import { buildingAccess, buildingDestination } from '../lib/city-access';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BUILDINGS } from '../../shared/config';
@@ -58,6 +59,7 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
       start: { x: 0, y: 0 },
       distance: 0,
       pinched: false,
+      target: '',
     });
   const [camera, setCamera] = useState(cameraRef.current),
     [size, setSize] = useState({ width: 390, height: 700 }),
@@ -281,20 +283,22 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
           x: (event.clientX - rect.left - c.x) / c.zoom,
           y: (event.clientY - rect.top - c.y) / c.zoom,
         };
-      const hit = [...BUILDINGS]
-        .sort((a, b) => BUILDING_VISUALS[b.id].y - BUILDING_VISUALS[a.id].y)
-        .find((b) => {
-          const r = spriteRect(b.id, club.buildings[b.id] || 1);
-          return (
-            point.x >= r.x &&
-            point.x <= r.x + r.width &&
-            point.y >= r.y &&
-            point.y <= r.y + r.height
-          );
-        });
+      const hit =
+        BUILDINGS.find((b) => b.id === g.target) ||
+        [...BUILDINGS]
+          .sort((a, b) => BUILDING_VISUALS[b.id].y - BUILDING_VISUALS[a.id].y)
+          .find((b) => {
+            const r = spriteRect(b.id, club.buildings[b.id] || 1);
+            return (
+              point.x >= r.x &&
+              point.x <= r.x + r.width &&
+              point.y >= r.y &&
+              point.y <= r.y + r.height
+            );
+          });
       if (hit) {
         audioManager.play('open');
-        nav(`/building/${hit.id}`);
+        nav(buildingDestination(hit.id));
       }
     }
     if (pointers.current.size) g.last = [...pointers.current.values()][0];
@@ -348,6 +352,8 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
           g.pinched = false;
           g.start = point;
           g.last = point;
+          g.target =
+            (e.target as Element).closest<HTMLElement>('[data-building]')?.dataset.building || '';
         } else {
           const [a, b] = [...pointers.current.values()];
           g.distance = Math.hypot(a.x - b.x, a.y - b.y);
@@ -401,14 +407,12 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
         }}
       >
         {BUILDINGS.map((b) => {
-          const r = spriteRect(b.id, club.buildings[b.id] || 1),
-            job = state.jobs.find(
-              (j) => j.clubId === club.id && j.kind === 'building' && j.target === b.id,
-            );
+          const { to, level, job } = buildingAccess(state, club, b.id),
+            r = spriteRect(b.id, level);
           return (
             <Link
               key={b.id}
-              to={`/building/${b.id}`}
+              to={to}
               data-building={b.id}
               data-level={club.buildings[b.id] || 1}
               className={`map-building ${job ? 'has-job' : ''}`}
@@ -423,13 +427,13 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
               }
               aria-label={`${b.name}${b.max ? `, nivel ${club.buildings[b.id]}` : ''}`}
               onClick={(e) => {
-                if (gesture.current.moved || e.detail > 0) e.preventDefault();
+                if (e.detail > 0) e.preventDefault();
               }}
             >
-              <AttentionBadge to={`/building/${b.id}`} />
               <span className="building-label">
                 {b.short}
                 {b.max > 0 && <b>{club.buildings[b.id]}</b>}
+                <AttentionBadge to={to} />
               </span>
               {job && (
                 <span className="building-timer">

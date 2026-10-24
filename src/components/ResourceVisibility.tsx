@@ -1,6 +1,27 @@
 import { Eye, EyeOff } from 'lucide-react';
 import { useGame } from '../lib/api';
 import type { ReactNode } from 'react';
+import { shortMoney } from '../../shared/math';
+/** Context balances use the same reservation calculation as the authoritative game view. */
+export function OperationResources({ development = false }: { development?: boolean }) {
+  const { club, available } = useGame();
+  return (
+    <div className="operation-resources" aria-label="Recursos disponibles">
+      <span>
+        Disponible: <ResourceAmount>{shortMoney(available)}</ResourceAmount>
+      </span>
+      <span>
+        Reservado: <ResourceAmount>{shortMoney(club.resources.money - available)}</ResourceAmount>
+      </span>
+      {development && (
+        <span>
+          Desarrollo:{' '}
+          <ResourceAmount>{club.resources.development.toLocaleString('es-ES')}</ResourceAmount> PD
+        </span>
+      )}
+    </div>
+  );
+}
 export function ResourceAmount({ children }: { children: ReactNode }) {
   const { club } = useGame();
   return (

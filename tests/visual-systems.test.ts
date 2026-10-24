@@ -138,9 +138,9 @@ describe('preferencias defensivas de audio y gráficos', () => {
       configurable: true,
     });
   });
-  it('empieza sin música y con calidad alta', () => {
+  it('empieza con música y con calidad alta', () => {
     expect(readPreferences()).toMatchObject({
-      music: false,
+      music: true,
       effects: true,
       quality: 'high',
       volume: 0.35,
@@ -151,7 +151,7 @@ describe('preferencias defensivas de audio y gráficos', () => {
       value: { getItem: () => '{invalido' },
       configurable: true,
     });
-    expect(readPreferences().music).toBe(false);
+    expect(readPreferences().music).toBe(true);
     Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: () =>
@@ -162,7 +162,7 @@ describe('preferencias defensivas de audio y gráficos', () => {
     expect(readPreferences()).toMatchObject({
       volume: 1,
       quality: 'high',
-      music: false,
+      music: true,
       effects: false,
     });
   });

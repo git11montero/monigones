@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import { useBlocker } from 'react-router-dom';
 import { Confirm } from './ui';
 /** Covers internal links, programmatic navigation and the browser Back button. */
 export function UnsavedChanges({ dirty, label }: { dirty: boolean; label: string }) {
+  useEffect(() => {
+    const unload = (e: BeforeUnloadEvent) => {
+      if (dirty) e.preventDefault();
+    };
+    window.addEventListener('beforeunload', unload);
+    return () => {
+      window.removeEventListener('beforeunload', unload);
+    };
+  }, [dirty]);
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       dirty && currentLocation.pathname !== nextLocation.pathname,

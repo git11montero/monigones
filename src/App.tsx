@@ -1,25 +1,14 @@
 import { AttentionBadge, ReadAttention } from './components/Attention';
-import { ResourceAmount, ResourceToggle } from './components/ResourceVisibility';
+import { Installation, RouteRecovery, UpdateNotice } from './components/MobileExperience';
 import { BRAND } from '../shared/brand';
 import { AudioToggle, DepartmentScene, Experience } from './components/Experience';
 import { Suspense, lazy, useEffect } from 'react';
 import { NavLink, Navigate, Route, Routes, useLocation, Link } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getSupabase, isOnlineBackend } from './lib/supabase';
-import {
-  Award,
-  Bell,
-  Coins,
-  Shield,
-  Landmark,
-  ShoppingBag,
-  Trophy,
-  Users,
-  Zap,
-} from 'lucide-react';
+import { Bell, Shield, Landmark, ShoppingBag, Trophy, Users } from 'lucide-react';
 import { GameProvider, sessionQuery, useGame, clearOnlineCache, type Session } from './lib/api';
 import { Crest } from './components/ui';
-import { shortMoney } from '../shared/math';
 import AuthPage, { OnboardingPage } from './pages/AuthPage';
 const MediaCredits = lazy(() => import('./components/MediaCredits'));
 const CityPage = lazy(() => import('./pages/CityPage'));
@@ -70,6 +59,17 @@ function Layout() {
     window.scrollTo({ top: 0 });
   }, [location.pathname]);
   useEffect(() => {
+    const header = document.querySelector('header.app-header');
+    const resize = new ResizeObserver(() => {
+      document.documentElement.style.setProperty(
+        '--header-height',
+        `${header?.getBoundingClientRect().height || 62}px`,
+      );
+    });
+    if (header) resize.observe(header);
+    return () => resize.disconnect();
+  }, []);
+  useEffect(() => {
     let baseline = window.innerHeight;
     const update = () => {
       const vv = window.visualViewport,
@@ -109,6 +109,7 @@ function Layout() {
   return (
     <>
       <Experience />
+      <Installation />
       {!['/newspaper', '/chat', '/market'].includes(location.pathname) && (
         <ReadAttention to={location.pathname} />
       )}
@@ -130,47 +131,9 @@ function Layout() {
             />
           </Link>
           <AudioToggle />
-          <ResourceToggle />
           <Link className="header-notification" to="/newspaper" aria-label="Noticias de la liga">
             <Bell size={20} />
             <AttentionBadge to="/newspaper" />
-          </Link>
-        </div>
-        <div className="resource-bar">
-          <Link to="/finance">
-            <span className="resource-symbol money">
-              <Coins size={16} />
-            </span>
-            <div>
-              <strong>
-                <ResourceAmount>{shortMoney(club.resources.money)}</ResourceAmount>
-              </strong>
-              <span>TESORERÍA</span>
-            </div>
-          </Link>
-          <Link to="/research">
-            <span className="resource-symbol development">
-              <Zap size={16} />
-            </span>
-            <div>
-              <strong>
-                <ResourceAmount>
-                  {club.resources.development.toLocaleString('es-ES')}
-                </ResourceAmount>
-              </strong>
-              <span>DESARROLLO</span>
-            </div>
-          </Link>
-          <Link to="/events">
-            <span className="resource-symbol medals">
-              <Award size={17} />
-            </span>
-            <div>
-              <strong>
-                <ResourceAmount>{club.resources.medals}</ResourceAmount>
-              </strong>
-              <span>MEDALLAS</span>
-            </div>
           </Link>
         </div>
       </header>
@@ -180,46 +143,48 @@ function Layout() {
         key={location.pathname}
       >
         <DepartmentScene />
-        <Suspense
-          fallback={
-            <div className="route-loading">
-              <span className="spinner" />
-              Preparando el siguiente capítulo…
-            </div>
-          }
-        >
-          <Routes>
-            <Route path="/city" element={<CityPage />} />
-            <Route path="/media" element={<MediaCredits />} />
-            <Route path="/building/:id" element={<BuildingsPage />} />
-            <Route path="/research" element={<ResearchPage />} />
-            <Route path="/market" element={<MarketPage />} />
-            <Route path="/player/:id" element={<PlayerPage />} />
-            <Route path="/squad" element={<SquadPage />} />
-            <Route path="/league" element={<LeaguePage />} />
-            <Route path="/matchday" element={<MatchdayPage />} />
-            <Route path="/museum/:clubId?" element={<MuseumPage />} />
-            <Route path="/archive" element={<ArchivePage />} />
-            <Route path="/finance" element={<FinancePage />} />
-            <Route path="/more" element={<MorePage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/daily" element={<DailyPage />} />
-            <Route path="/marketing" element={<MarketingPage />} />
-            <Route path="/concerts" element={<ConcertsPage />} />
-            <Route path="/institution" element={<InstitutionPage />} />
-            <Route path="/academy" element={<AcademyPage />} />
-            <Route path="/training" element={<TrainingPage />} />
-            <Route path="/fans" element={<FansPage />} />
-            <Route path="/bonuses" element={<BonusesPage />} />
-            <Route path="/coaches" element={<CoachesPage />} />
-            <Route path="/newspaper" element={<NewspaperPage />} />
-            <Route path="/chat" element={<ChatPage />} />
-            <Route path="/events" element={<EventsPage />} />
-            <Route path="/draft" element={<DraftPage />} />
-            <Route path="/trades" element={<TradesPage />} />
-            <Route path="*" element={<Navigate to="/city" replace />} />
-          </Routes>
-        </Suspense>
+        <RouteRecovery key={location.pathname}>
+          <Suspense
+            fallback={
+              <div className="route-loading">
+                <span className="spinner" />
+                Preparando el siguiente capítulo…
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/city" element={<CityPage />} />
+              <Route path="/media" element={<MediaCredits />} />
+              <Route path="/building/:id" element={<BuildingsPage />} />
+              <Route path="/research" element={<ResearchPage />} />
+              <Route path="/market" element={<MarketPage />} />
+              <Route path="/player/:id" element={<PlayerPage />} />
+              <Route path="/squad" element={<SquadPage />} />
+              <Route path="/league" element={<LeaguePage />} />
+              <Route path="/matchday" element={<MatchdayPage />} />
+              <Route path="/museum/:clubId?" element={<MuseumPage />} />
+              <Route path="/archive" element={<ArchivePage />} />
+              <Route path="/finance" element={<FinancePage />} />
+              <Route path="/more" element={<MorePage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/daily" element={<DailyPage />} />
+              <Route path="/marketing" element={<MarketingPage />} />
+              <Route path="/concerts" element={<ConcertsPage />} />
+              <Route path="/institution" element={<InstitutionPage />} />
+              <Route path="/academy" element={<AcademyPage />} />
+              <Route path="/training" element={<TrainingPage />} />
+              <Route path="/fans" element={<FansPage />} />
+              <Route path="/bonuses" element={<BonusesPage />} />
+              <Route path="/coaches" element={<CoachesPage />} />
+              <Route path="/newspaper" element={<NewspaperPage />} />
+              <Route path="/chat" element={<ChatPage />} />
+              <Route path="/events" element={<EventsPage />} />
+              <Route path="/draft" element={<DraftPage />} />
+              <Route path="/trades" element={<TradesPage />} />
+              <Route path="*" element={<Navigate to="/city" replace />} />
+            </Routes>
+          </Suspense>
+        </RouteRecovery>
       </main>
       <nav className="bottom-nav" aria-label="Navegación principal">
         {nav.map(([to, title, Icon]) => (
@@ -256,6 +221,7 @@ export default function App() {
   const session = useQuery(sessionQuery());
   return (
     <div className="phone-shell">
+      <UpdateNotice />
       {session.isPending ? (
         <div className="loading-screen">
           <Crest size={70} />

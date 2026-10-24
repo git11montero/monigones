@@ -6,7 +6,7 @@ export type Preferences = {
   motion: boolean;
 };
 export const DEFAULT_PREFERENCES: Preferences = {
-  music: false,
+  music: true,
   effects: true,
   volume: 0.35,
   quality: 'high',
@@ -17,7 +17,7 @@ export function readPreferences(): Preferences {
   try {
     const p = JSON.parse(localStorage.getItem(PREFERENCES_KEY) || '{}');
     return {
-      music: typeof p.music === 'boolean' ? p.music : false,
+      music: typeof p.music === 'boolean' ? p.music : DEFAULT_PREFERENCES.music,
       effects: typeof p.effects === 'boolean' ? p.effects : true,
       volume:
         typeof p.volume === 'number' && Number.isFinite(p.volume)
@@ -68,7 +68,8 @@ const motifs: Record<Sound, number[]> = {
   concert: [262, 330, 392, 523],
 };
 /** Música y efectos originales por síntesis; no descargas ni muestras de terceros. */
-class AudioManager {
+export class AudioManager {
+  private activated = false;
   private context?: AudioContext;
   private effectsBus?: GainNode;
   private musicBus?: GainNode;
@@ -81,19 +82,27 @@ class AudioManager {
     return this.context?.state === 'running';
   }
   async unlock() {
+    if (document.hidden) return;
+    this.activated = true;
+    await this.resume();
+  }
+  async resume() {
+    if (!this.activated || document.hidden) return;
     const Audio =
       window.AudioContext ||
       (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
     if (!Audio) return;
     try {
-      if (!this.context) {
+      if (!this.context || this.context.state === 'closed') {
         this.context = new Audio();
         this.effectsBus = this.context.createGain();
         this.musicBus = this.context.createGain();
         this.effectsBus.connect(this.context.destination);
         this.musicBus.connect(this.context.destination);
+        this.context.onstatechange = () => this.sync();
       }
-      if (this.context.state === 'suspended') await this.context.resume();
+      if (this.context.state !== 'running' && this.context.state !== 'closed')
+        await this.context.resume();
       this.sync();
     } catch {
       /* Navegador sin salida de audio: la interfaz sigue disponible. */
@@ -194,13 +203,16 @@ class AudioManager {
       );
       this.musicBus?.gain.setTargetAtTime(p.music ? p.volume : 0, this.context.currentTime, 0.015);
     }
-    if (this.interval) window.clearInterval(this.interval);
-    this.interval = undefined;
+    if (document.hidden || !p.music || !this.unlocked) {
+      if (this.interval) window.clearInterval(this.interval);
+      this.interval = undefined;
+    }
     if (document.hidden) {
-      void this.context?.suspend();
+      if (this.context?.state === 'running') void this.context.suspend();
       return;
     }
     if (!p.music || !this.unlocked) return;
+    if (this.interval) return;
     this.interval = window.setInterval(() => {
       const p = readPreferences();
       if (!p.music || !this.unlocked || document.hidden) return;
@@ -230,7 +242,7 @@ class AudioManager {
   stop() {
     if (this.interval) window.clearInterval(this.interval);
     this.interval = undefined;
-    void this.context?.suspend();
+    if (this.context?.state === 'running') void this.context.suspend();
   }
 }
 export const audioManager = new AudioManager();
@@ -246,4 +258,27 @@ export function savePreferences(p: Preferences) {
 export function emitFeedback(kind: Sound, title?: string) {
   audioManager.play(kind);
   window.dispatchEvent(new CustomEvent('monigones:feedback', { detail: { kind, title } }));
+}
+
+let lifecycleStarted = false;
+/** Installed before authentication: the login gesture can unlock the same game context. */
+export function startAudioLifecycle() {
+  if (lifecycleStarted) return;
+  lifecycleStarted = true;
+  const gesture = (event: Event) => {
+    if (!event.isTrusted) return;
+    void audioManager.unlock().then(() => {
+      if (event.type !== 'touchend' && (event.target as Element)?.closest?.('button,a'))
+        audioManager.play('tap');
+    });
+  };
+  window.addEventListener('pointerdown', gesture, { capture: true });
+  window.addEventListener('touchend', gesture, { capture: true, passive: true });
+  window.addEventListener('keydown', gesture, { capture: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) audioManager.stop();
+    else void audioManager.resume();
+  });
+  window.addEventListener('pagehide', () => audioManager.stop());
+  window.addEventListener('pageshow', () => void audioManager.resume());
 }

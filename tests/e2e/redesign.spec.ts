@@ -274,6 +274,7 @@ test('audio: gesto, efectos, silencio, preferencias persistentes y movimiento re
   await page.goto('/settings');
   await page.getByRole('button', { name: 'Probar efectos' }).click();
   await expect.poll(() => page.evaluate(() => (window as any).__tones)).toBeGreaterThan(0);
+  await page.getByLabel('Música ambiental').uncheck();
   await page.getByLabel('Efectos sonoros').uncheck();
   const n = await page.evaluate(() => (window as any).__tones);
   await page.getByRole('button', { name: 'Probar efectos' }).click();

@@ -1,3 +1,5 @@
+import { CitySections } from '../components/CitySections';
+import { CITY_VIEW_KEY, readCityView } from '../lib/city-access';
 import { AttentionBadge } from '../components/Attention';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Flag, Gift, Hammer, Newspaper, Trophy, X } from 'lucide-react';
@@ -8,13 +10,32 @@ import { Countdown } from '../components/ui';
 import { cityEnvironment } from '../lib/visuals';
 export default function CityPage() {
   const { state, club } = useGame(),
-    [jobs, setJobs] = useState(false);
+    [jobs, setJobs] = useState(false),
+    [view, setView] = useState(readCityView);
   const { round, live } = cityEnvironment(state, club);
   const count = state.jobs.filter((j) => j.clubId === club.id).length;
   return (
-    <div className="city-page">
+    <div className={`city-page city-view-${view}`}>
       <h1 className="sr-only">Ciudad deportiva</h1>
-      <CityMap />
+      <div className="city-view-switch" role="group" aria-label="Vista de la ciudad">
+        {(['map', 'sections'] as const).map((mode) => (
+          <button
+            key={mode}
+            aria-pressed={view === mode}
+            onClick={() => {
+              setView(mode);
+              try {
+                localStorage.setItem(CITY_VIEW_KEY, mode);
+              } catch {
+                /* Session-only preference. */
+              }
+            }}
+          >
+            {mode === 'map' ? 'Mapa' : 'Secciones'}
+          </button>
+        ))}
+      </div>
+      {view === 'map' ? <CityMap /> : <CitySections />}
       <div className="city-shortcuts">
         <Link to="/daily" aria-label="Actividades y recompensas">
           <Gift />

@@ -93,12 +93,17 @@ test('recursos ocultos persisten al navegar y recargar, sin ocultar el coste de 
   fixture(info);
   await login(page);
   const initial = await (await page.request.get('/api/state')).json();
+  await page.goto('/more');
   await page.getByRole('button', { name: 'Ocultar recursos' }).click();
-  await expect(page.locator('.resource-bar .resource-amount')).toHaveText(['••••', '••••', '••••']);
+  await expect(page.locator('.club-resource-grid .resource-amount')).toHaveText(
+    Array(6).fill('••••'),
+  );
   await page.goto('/finance');
   await expect(page.locator('.balance-card .resource-amount').first()).toHaveText('••••');
   await page.reload();
+  await page.goto('/more');
   await expect(page.getByRole('button', { name: 'Mostrar recursos' })).toBeVisible();
+  await page.goto('/finance');
   await expect(page.locator('.ledger-list')).toHaveCount(0);
   await page.getByRole('button', { name: 'Consultar detalles de movimientos' }).click();
   await expect(page.locator('.ledger-list')).toBeVisible();
@@ -106,8 +111,9 @@ test('recursos ocultos persisten al navegar y recargar, sin ocultar el coste de 
   await expect(page.locator('.quote')).toContainText('300.000');
   const after = await (await page.request.get('/api/state')).json();
   expect(after.state.clubs[0].resources.money).toBe(initial.state.clubs[0].resources.money);
+  await page.goto('/more');
   await page.getByRole('button', { name: 'Mostrar recursos' }).click();
-  await expect(page.locator('.resource-bar .resource-amount').first()).not.toHaveText('••••');
+  await expect(page.locator('.club-resource-grid .resource-amount').first()).not.toHaveText('••••');
 });
 test('selectores: táctil, teclado, opciones bloqueadas y portal dentro de la pantalla', async ({
   page,

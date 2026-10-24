@@ -526,7 +526,7 @@ it('frontend online de producción: tres sesiones, Auth SDK, Realtime emulado y 
     user_metadata: { name: user.name },
     identities: [],
   });
-  const sign = (user: OnlineUser) => {
+  const sign = (user: OnlineUser, expired = false) => {
     const header = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url'),
       payload = Buffer.from(
         JSON.stringify({
@@ -535,7 +535,7 @@ it('frontend online de producción: tres sesiones, Auth SDK, Realtime emulado y 
           role: 'authenticated',
           aud: 'authenticated',
           iat: Math.floor(Date.now() / 1000),
-          exp: Math.floor(Date.now() / 1000) + 3600,
+          exp: Math.floor(Date.now() / 1000) + (expired ? -120 : 3600),
         }),
       ).toString('base64url');
     const value = header + '.' + payload;
@@ -717,6 +717,7 @@ it('frontend online de producción: tres sesiones, Auth SDK, Realtime emulado y 
       stdio: 'pipe',
       env: {
         ...process.env,
+        NODE_ENV: 'production',
         VITE_BACKEND: 'supabase',
         VITE_SUPABASE_URL: origin,
         VITE_SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_local_qa',
@@ -727,7 +728,7 @@ it('frontend online de producción: tres sesiones, Auth SDK, Realtime emulado y 
   const contexts = [];
   const errors: string[] = [];
   try {
-    const pages = [];
+    const pages: import('@playwright/test').Page[] = [];
     const requested: string[] = [];
     expect(
       (
@@ -819,9 +820,19 @@ it('frontend online de producción: tres sesiones, Auth SDK, Realtime emulado y 
       path: 'docs/validation/online/online-chat-390x844.png',
       scale: 'css',
     });
-    await pages[1].evaluate(async () => {
-      await navigator.serviceWorker.ready;
-    });
+    await browserExpect
+      .poll(
+        () =>
+          pages[1].evaluate(async () => {
+            const registration = await navigator.serviceWorker.getRegistration();
+            return registration?.active?.state || registration?.installing?.state || 'unregistered';
+          }),
+        {
+          message: 'El worker de producción debe instalar todo el shell antes de la prueba offline',
+          timeout: 15000,
+        },
+      )
+      .toBe('activated');
     await pages[1].reload();
     await pages[1].waitForFunction(() => !!navigator.serviceWorker.controller);
     await contexts[1].setOffline(true);
@@ -829,6 +840,32 @@ it('frontend online de producción: tres sesiones, Auth SDK, Realtime emulado y 
     await browserExpect(pages[1].getByText(/Sin conexión · Consultando/)).toBeVisible();
     await browserExpect(pages[1].getByText(text, { exact: true })).toBeVisible();
     await contexts[1].setOffline(false);
+    // Expire a signed fixture JWT inside the SDK's own storage. A valid refresh
+    // token must preserve the imported membership, chat and device preferences.
+    const expire = async (index: number, revoke = false) => {
+      const refresh = await pages[index].evaluate(
+        (token) => {
+          const key = Object.keys(localStorage).find((k) => /^sb-.*-auth-token$/.test(k));
+          if (!key) throw Error('Missing SDK session in local fixture');
+          const session = JSON.parse(localStorage.getItem(key)!);
+          const refresh = session.refresh_token;
+          session.access_token = token;
+          session.expires_at = Math.floor(Date.now() / 1000) - 120;
+          localStorage.setItem(key, JSON.stringify(session));
+          return refresh as string;
+        },
+        sign(users[index], true),
+      );
+      if (revoke) issued.delete(refresh);
+      await pages[index].reload();
+    };
+    const issuedBeforeRefresh = issued.size;
+    await expire(1);
+    await browserExpect(pages[1].getByRole('textbox', { name: 'Mensaje a la liga' })).toBeVisible();
+    await browserExpect.poll(() => issued.size).toBeGreaterThan(issuedBeforeRefresh);
+    await browserExpect(pages[1].getByText(text, { exact: true })).toBeVisible();
+    await expire(2, true);
+    await browserExpect(pages[2].getByLabel('Correo electrónico')).toBeVisible();
     expect(errors).toEqual([]);
     expect(
       requested.some(

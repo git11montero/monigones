@@ -10,6 +10,13 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: 'http://127.0.0.1:5174',
+    storageState: {
+      cookies: [],
+      origins: ['http://127.0.0.1:5174', 'http://127.0.0.1:3102'].map((origin) => ({
+        origin,
+        localStorage: [{ name: 'monigones-install-never', value: 'yes' }],
+      })),
+    },
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     ...devices['iPhone 13'],

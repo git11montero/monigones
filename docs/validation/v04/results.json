@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-24",
+  "typescript": "passed",
+  "eslint": "passed",
+  "unit": {
+    "passed": 142,
+    "files": 11
+  },
+  "postgres": {
+    "passed": 41,
+    "files": 2,
+    "database": "disposable localhost PostgreSQL 17",
+    "productionFrontend": true,
+    "auth": "real SDK / local signed-JWT Auth protocol fixture",
+    "expiredSessionRefresh": true,
+    "revokedRefreshReturnsToAuth": true,
+    "realtime": "protocol fixture / actual PostgreSQL isolation and publication checks"
+  },
+  "browser": {
+    "passed": 38,
+    "skipped": 1,
+    "skipReason": "pre-existing historical design archive",
+    "engines": [
+      "Chromium",
+      "WebKit"
+    ],
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        375,
+        812
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        430,
+        932
+      ],
+      [
+        1440,
+        1000
+      ]
+    ],
+    "updateTest": "persistent Chromium profile, generated legacy Workbox, actual v0.4 builds, clean context, standalone simulation, interrupted install, multiple windows and draft preservation",
+    "finalFocusedRevalidation": {
+      "passed": 6,
+      "reason": "Final modal layering correction, overlay hit-test, all mobile/PWA scenarios rerun"
+    }
+  },
+  "localBuild": "passed",
+  "onlineBuild": "passed / isolated public fixture build; final production online build repeated successfully by Vercel",
+  "vercelBuild": "passed / local only",
+  "vercelRuntime": "nodejs24.x",
+  "vercelArtifact": {
+    "runtime": "v24.22.1",
+    "handler": "api/[...path].js",
+    "isolated": true,
+    "nativeEsm": true,
+    "httpChecks": 36,
+    "profile204": true,
+    "parsedAndConsumedBodies": true,
+    "membershipAndGame": true,
+    "supabase": "local HTTP fixture; no remote requests",
+    "status": "passed"
+  },
+  "pwaArtifact": {
+    "buildId": "v04-387c7caa-5f15-40d9-b0f8-bfd9c0126d4c",
+    "precachedResources": 51,
+    "publicConfigChecked": false
+  },
+  "png": {
+    "source": "public/assets/futbol",
+    "artifact": ".vercel/output/static/assets/futbol",
+    "pngCount": 522,
+    "allHashesMatch": true,
+    "differences": []
+  },
+  "physicalDevicesTested": false,
+  "remoteChanges": false,
+  "backendMigrationsRulesAndPublicAssetsModified": false
+}

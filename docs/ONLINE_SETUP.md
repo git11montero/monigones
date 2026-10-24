@@ -233,3 +233,11 @@ Vercel Hobby es para uso personal no comercial. Las Functions tienen cuotas de C
 Las lecturas online usan ETag/304, fallback de sondeo cada 60 segundos y avisos de revisión pequeños para reducir transferencia. Las respuestas completas usan streaming y gzip opcional: una simulación de históricos de un año supera los 4,5 MB buffered permitidos por Vercel. [Límites de Functions](https://vercel.com/docs/functions/limitations). No se promete soportar usuarios ilimitados: el agregado incluye históricos completos, y los límites gratuitos deben observarse con uso real. La región única `dub1` aproxima la Function a Supabase Irlanda. No se utiliza un añadido IPv4 de pago ni un pool TCP permanente: el adaptador accede a RPC por HTTPS.
 
 No se exige un servicio de pago como parte del código. SMTP, dominio propio, mayor disponibilidad, copias administradas y crecimiento pueden tener costes según la opción que elijas. Las claves, Vault, cuotas y la monitorización del proyecto real todavía requieren la configuración del propietario.
+
+## 13. Actualización móvil v0.4
+
+La PWA muestra «Nueva versión disponible — Actualizar» y conserva sesiones, preferencias y borradores del chat. El worker instala el shell completo para la siguiente navegación, conserva los recursos necesarios para otras ventanas abiertas y elimina únicamente sus precachés obsoletos cuando dejan de usarse. No es necesario borrar los datos del sitio. En la primera transición desde v0.3, una reapertura normal tras detectar el worker nuevo permite salir del frontend antiguo que no tenía botón de actualización.
+
+La instalación se recomienda tras entrar a Ciudad en un navegador móvil; Ajustes ofrece las instrucciones de nuevo. Mi club contiene los recursos y su control de ocultación. Ciudad recuerda la elección Mapa/Secciones. No hay variables, migraciones ni tareas programadas nuevas para esta actualización.
+
+Antes de publicar, `npm run build:online` verifica también la configuración pública y los recursos del resultado compilado. Puedes comprobar el frontend del artefacto con `node scripts/verify-pwa-build.mjs .vercel/output/static`, además de la prueba de ejecución de la Function. Consulta [el informe v0.4](MONIGONES_V04_MOBILE_DELIVERY.md) y [la galería móvil](screenshots/v04/index.html) para las pruebas, límites de simulación y comandos de publicación voluntaria.

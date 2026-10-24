@@ -1,12 +1,31 @@
+import { randomUUID } from 'node:crypto';
 import { BRAND } from './shared/brand';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
-export default defineConfig({
+const buildId = process.env.MONIGONES_BUILD_ID || `v04-${randomUUID()}`;
+export default defineConfig(({ command }) => ({
+  define: {
+    __MONIGONES_BUILD_ID__: JSON.stringify(buildId),
+    __MONIGONES_SW_ENABLED__: command === 'build',
+  },
   plugins: [
     react(),
+    {
+      name: 'monigones-version',
+      generateBundle() {
+        this.emitFile({
+          type: 'asset',
+          fileName: 'version.json',
+          source: JSON.stringify({ buildId }),
+        });
+      },
+    },
     VitePWA({
-      registerType: 'prompt',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
+      injectRegister: false,
       manifest: {
         name: `${BRAND.name} · ${BRAND.edition}`,
         short_name: BRAND.name,
@@ -23,38 +42,14 @@ export default defineConfig({
           { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
-      workbox: {
-        clientsClaim: true,
+      injectManifest: {
+        rollupFormat: 'iife',
         additionalManifestEntries: [
           { url: '/assets/futbol/fallback/jugador.png', revision: 'v03-player-1' },
           { url: '/assets/futbol/fallback/escudo.png', revision: 'v03-club-1' },
         ],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         globIgnores: ['sports/**', 'assets/futbol/**'],
-        runtimeCaching: [
-          {
-            urlPattern: /\/assets\/futbol\/.*\.png(?:\?.*)?$/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'monigones-local-football-v3',
-              networkTimeoutSeconds: 3,
-              expiration: { maxEntries: 550, maxAgeSeconds: 30 * 24 * 3600 },
-              cacheableResponse: { statuses: [200] },
-            },
-          },
-          {
-            urlPattern: /\/sports\/.*\.(?:jpg|jpeg|png|webp)$/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'monigones-sports-v1',
-              expiration: { maxEntries: 180, maxAgeSeconds: 14 * 24 * 3600 },
-              cacheableResponse: { statuses: [200] },
-            },
-          },
-        ],
-        dontCacheBustURLsMatching: /-[a-zA-Z0-9_-]{8}\.(js|css)$/,
-        navigateFallback: '/index.html',
-        navigateFallbackDenylist: [/^\/api\//],
         globPatterns: ['**/*.{js,css,html,svg,png,webp,jpg,woff2}'],
       },
     }),
@@ -70,4 +65,4 @@ export default defineConfig({
     },
   },
   build: { chunkSizeWarningLimit: 650 },
-});
+}));

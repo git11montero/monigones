@@ -1,3 +1,4 @@
+import { OperationResources } from '../components/ResourceVisibility';
 import { EFFECT_LABELS, RESEARCH_STORIES, researchDetails } from '../../shared/research-guide';
 import { ResourceAmount } from '../components/ResourceVisibility';
 import { AttentionBadge } from '../components/Attention';
@@ -47,6 +48,7 @@ export default function ResearchPage() {
         title="La ventaja se investiga"
         subtitle={`${done} de ${RESEARCH.length} tecnologías desarrolladas. Una investigación simultánea.`}
       />
+      <OperationResources development />
       <div className="research-summary">
         <span className="icon-badge gold" style={{ position: 'relative' }}>
           <AttentionBadge to="/research" />
