@@ -11,6 +11,8 @@ Este documento contiene comandos para que el propietario los ejecute **cuando au
 
 La versión online no abre SQLite, no importa el servidor permanente y no escribe archivos persistentes en Vercel. No se transfieren automáticamente usuarios, contraseñas, demos ni partidas SQLite a Supabase: se conservan localmente y las ligas online se fundan con cuentas Supabase. Los controles de reloj e importación del laboratorio siguen disponibles localmente; no se activan en producción.
 
+Para crear de forma controlada una liga equivalente a la demo local, consulta [ONLINE_DEMO_SEED.md](ONLINE_DEMO_SEED.md). Incluye previsualización, confirmación interactiva, usuarios Auth reales e importación de instantáneas explícitas; no carga demostraciones automáticamente ni lee tu partida personal por defecto.
+
 ## 2. Verificar la preparación local
 
 Node 22.22+, npm y navegadores Playwright:
@@ -84,7 +86,7 @@ supabase db push --dry-run
 supabase db push
 ```
 
-Se esperan `202610230001_crown.sql` y `202610240001_online.sql`. La primera conserva el esquema normalizado histórico. La segunda activa el adaptador JSONB privado, añade la membresía del club, RPC privadas, permisos, tabla de revisiones y publicación Realtime. Si la primera ya está registrada correctamente, Supabase la omite. Si existen tablas sin historial compatible, detente y revisa esa diferencia; no fuerces su recreación.
+Este checkout contiene `202610230001_crown.sql`, `202610240001_online.sql` y `202610250001_online_demo.sql`. La primera conserva el esquema normalizado histórico. La segunda activa el adaptador JSONB privado, añade la membresía del club, RPC privadas, permisos, tabla de revisiones y publicación Realtime. La tercera añade el registro privado y las RPC del importador controlado; no crea una demo ni modifica partidas por sí sola. Supabase omite las migraciones que ya están registradas correctamente. Revisa siempre el plan completo antes de autorizarlo; si existen tablas sin historial compatible, detente y revisa esa diferencia, sin forzar su recreación.
 
 El juego online obtiene sus 500 jugadores y definiciones del motor compartido al fundar una liga. **No necesita ejecutar el seed de pruebas en producción.** `supabase/seed.sql` se valida localmente y sirve para pruebas del esquema normalizado. No contiene ni sustituye partidas online.
 

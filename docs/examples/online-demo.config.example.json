@@ -1,0 +1,13 @@
+{
+  "environment": "production",
+  "projectRef": "abcdefghijklmnopqrst",
+  "leagueId": "00000000-0000-4000-8000-000000000010",
+  "adminUserId": "00000000-0000-4000-8000-000000000001",
+  "mode": "advanced",
+  "seed": "monigones-demo-v1",
+  "sourceAt": "2026-10-23T12:00:00+02:00",
+  "startAt": "now",
+  "users": {
+    "demo1": "00000000-0000-4000-8000-000000000001"
+  }
+}

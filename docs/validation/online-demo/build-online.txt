@@ -1,0 +1,71 @@
+
+> monigones@0.3.0 build:online
+> node scripts/build-online.mjs
+
+
+> monigones@0.3.0 check:online
+> tsc --project tsconfig.online.json
+
+Manifiesto estático: 522 PNG con versión de contenido.
+
+> monigones@0.3.0 build
+> tsc --noEmit && vite build --outDir /tmp/monigones-demo-online-build --emptyOutDir
+
+vite v7.3.7 building client environment for production...
+transforming...
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 1831 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../tmp/monigones-demo-online-build/manifest.webmanifest                          0.51 kB
+../../../../tmp/monigones-demo-online-build/index.html                                    0.97 kB │ gzip:   0.50 kB
+../../../../tmp/monigones-demo-online-build/assets/index-kiff2txN.css                   126.83 kB │ gzip:  31.43 kB
+../../../../tmp/monigones-demo-online-build/assets/x-CU-3j6Ti.js                          0.15 kB │ gzip:   0.15 kB
+../../../../tmp/monigones-demo-online-build/assets/arrow-up-right-DURnzLfQ.js             0.16 kB │ gzip:   0.16 kB
+../../../../tmp/monigones-demo-online-build/assets/heart-cfMVPcd4.js                      0.24 kB │ gzip:   0.21 kB
+../../../../tmp/monigones-demo-online-build/assets/flask-conical-D6ySfnaE.js              0.30 kB │ gzip:   0.23 kB
+../../../../tmp/monigones-demo-online-build/assets/newspaper-7fnWkxTc.js                  0.34 kB │ gzip:   0.24 kB
+../../../../tmp/monigones-demo-online-build/assets/gift-C7Hwfean.js                       0.35 kB │ gzip:   0.25 kB
+../../../../tmp/monigones-demo-online-build/assets/message-circle-JAdIILf7.js             0.39 kB │ gzip:   0.26 kB
+../../../../tmp/monigones-demo-online-build/assets/star-CFqwKDVl.js                       0.47 kB │ gzip:   0.29 kB
+../../../../tmp/monigones-demo-online-build/assets/UnsavedChanges-C6yxxXUj.js             0.55 kB │ gzip:   0.39 kB
+../../../../tmp/monigones-demo-online-build/assets/sprout-85S6Z7EP.js                     0.81 kB │ gzip:   0.46 kB
+../../../../tmp/monigones-demo-online-build/assets/PlayerCard-D04LdkZp.js                 1.38 kB │ gzip:   0.66 kB
+../../../../tmp/monigones-demo-online-build/assets/MediaCredits-caXjI0r8.js               1.81 kB │ gzip:   1.02 kB
+../../../../tmp/monigones-demo-online-build/assets/engine-OePwKBep.js                     2.96 kB │ gzip:   1.42 kB
+../../../../tmp/monigones-demo-online-build/assets/FinancePage-Buj-Z5ij.js                3.90 kB │ gzip:   1.61 kB
+../../../../tmp/monigones-demo-online-build/assets/workbox-window.prod.es5-BBnX5xw4.js    5.75 kB │ gzip:   2.36 kB
+../../../../tmp/monigones-demo-online-build/assets/SquadPage-bJdCiUOv.js                  7.28 kB │ gzip:   2.76 kB
+../../../../tmp/monigones-demo-online-build/assets/CityPage-BqlNOtUU.js                  10.34 kB │ gzip:   4.47 kB
+../../../../tmp/monigones-demo-online-build/assets/SettingsPage-CdSE4CQe.js              10.63 kB │ gzip:   4.47 kB
+../../../../tmp/monigones-demo-online-build/assets/ResearchPage-B6bS3dVT.js              10.64 kB │ gzip:   4.32 kB
+../../../../tmp/monigones-demo-online-build/assets/LeaguePage-BOvAJNUO.js                12.54 kB │ gzip:   4.30 kB
+../../../../tmp/monigones-demo-online-build/assets/MarketPage-cNS4Hdme.js                13.27 kB │ gzip:   4.81 kB
+../../../../tmp/monigones-demo-online-build/assets/BuildingsPage-fP3gBPu8.js             13.97 kB │ gzip:   5.14 kB
+../../../../tmp/monigones-demo-online-build/assets/SocialPages-Bv26AjOG.js               17.20 kB │ gzip:   6.09 kB
+../../../../tmp/monigones-demo-online-build/assets/ManagementPages-2cB1ty2u.js           18.75 kB │ gzip:   6.80 kB
+../../../../tmp/monigones-demo-online-build/assets/index-DQ6ew_kD.js                    874.97 kB │ gzip: 244.72 kB
+
+(!) Some chunks are larger than 650 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.16s
+
+PWA v1.3.0
+mode      generateSW
+precache  52 entries (9681.82 KiB)
+files generated
+  ../../../../tmp/monigones-demo-online-build/sw.js
+  ../../../../tmp/monigones-demo-online-build/workbox-f641ca17.js

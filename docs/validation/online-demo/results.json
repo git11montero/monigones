@@ -1,0 +1,65 @@
+{
+  "verifiedAt": "2026-10-24T16:07:22.224085+00:00",
+  "status": "passed locally; remote validation pending",
+  "typescript": "passed (general and NodeNext)",
+  "eslint": "passed",
+  "unit": {
+    "files": 7,
+    "passed": 103,
+    "demoTests": 8
+  },
+  "postgres": {
+    "version": "17.11",
+    "files": 2,
+    "passed": 40,
+    "demoTests": 20,
+    "newDisposableCluster": true,
+    "migrationsAppliedOnlyLocally": [
+      "202610230001_crown.sql",
+      "202610240001_online.sql",
+      "202610250001_online_demo.sql"
+    ],
+    "stoppedAndRemoved": true
+  },
+  "migrationSha256": "707a1d78f83aa749fd3445eb848e638c10961d4679f4f121f58a6d7c3d9a121d",
+  "builds": {
+    "local": "passed; dist",
+    "online": "passed; /tmp/monigones-demo-online-build; localhost URL and fake publishable key"
+  },
+  "cli": {
+    "previewStatusVerify": "passed against local HTTP Auth fixture and real PostgreSQL RPC",
+    "applyWithoutTTY": "rejected without writes",
+    "serviceApplyAndBind": "passed transactionally against real PostgreSQL",
+    "generatedExport": "passed",
+    "exportFileMode": "0600",
+    "exportOverwrite": "rejected, content unchanged",
+    "sqliteFixtureReadOnly": "passed, file hash unchanged"
+  },
+  "realtime": "actual pgoutput WAL for game_revisions, transaction revisions and RLS; hosted Realtime service not accessed",
+  "scheduledWork": "PostgresStore.tick completed imported research once; remote cron not accessed",
+  "preserved": {
+    "protectedTrackedPaths": [
+      "src",
+      "shared",
+      "public",
+      "vercel.json",
+      "package-lock.json",
+      "supabase/migrations/202610230001_crown.sql",
+      "supabase/migrations/202610240001_online.sql"
+    ],
+    "PNGsUnchangedAndIncludedInBothBuilds": 522,
+    "personalSqlite": "not accessed"
+  },
+  "remoteChanges": {
+    "supabase": false,
+    "vercel": false,
+    "cron": false,
+    "deploy": false
+  },
+  "authorization": "User explicitly authorized applying the new migration only to a new disposable local PostgreSQL cluster after automatic review initially rejected it.",
+  "pending": [
+    "owner authorization/application of additional remote migration",
+    "publish backend name display change when authorized",
+    "real Auth/Realtime/Cron and production API smoke test after import"
+  ]
+}

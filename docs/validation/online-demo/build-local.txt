@@ -1,0 +1,57 @@
+
+> monigones@0.3.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 1831 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/manifest.webmanifest                          0.51 kB
+dist/index.html                                    0.97 kB │ gzip:   0.50 kB
+dist/assets/index-kiff2txN.css                   126.83 kB │ gzip:  31.43 kB
+dist/assets/x-DYzLqvw1.js                          0.15 kB │ gzip:   0.15 kB
+dist/assets/arrow-up-right-Bxb6lwmJ.js             0.16 kB │ gzip:   0.16 kB
+dist/assets/heart-S25ae_ik.js                      0.24 kB │ gzip:   0.21 kB
+dist/assets/flask-conical-TDw0a__M.js              0.30 kB │ gzip:   0.23 kB
+dist/assets/newspaper-DTgQlmSk.js                  0.34 kB │ gzip:   0.23 kB
+dist/assets/gift-DmUyFHyn.js                       0.35 kB │ gzip:   0.25 kB
+dist/assets/message-circle-BcvjnYRq.js             0.39 kB │ gzip:   0.26 kB
+dist/assets/star-LOiNFexb.js                       0.47 kB │ gzip:   0.29 kB
+dist/assets/UnsavedChanges-Bd6ROdgu.js             0.55 kB │ gzip:   0.39 kB
+dist/assets/sprout-CaEGBnc-.js                     0.81 kB │ gzip:   0.46 kB
+dist/assets/PlayerCard-DyinXOdY.js                 1.38 kB │ gzip:   0.66 kB
+dist/assets/MediaCredits-Crb5jA5c.js               1.81 kB │ gzip:   1.02 kB
+dist/assets/engine-DtKVE8E4.js                     2.96 kB │ gzip:   1.42 kB
+dist/assets/FinancePage-BOIJM5l-.js                3.90 kB │ gzip:   1.61 kB
+dist/assets/workbox-window.prod.es5-BBnX5xw4.js    5.75 kB │ gzip:   2.36 kB
+dist/assets/SquadPage-DIP_BD3h.js                  7.28 kB │ gzip:   2.76 kB
+dist/assets/CityPage-D_nQo6T_.js                  10.34 kB │ gzip:   4.47 kB
+dist/assets/SettingsPage-QrJ2R6v2.js              10.63 kB │ gzip:   4.46 kB
+dist/assets/ResearchPage-CGo1PMjc.js              10.64 kB │ gzip:   4.32 kB
+dist/assets/LeaguePage-QMShlYfG.js                12.54 kB │ gzip:   4.30 kB
+dist/assets/MarketPage-B6GhEhKd.js                13.27 kB │ gzip:   4.80 kB
+dist/assets/BuildingsPage-B2-xjzPs.js             13.97 kB │ gzip:   5.14 kB
+dist/assets/SocialPages-C2A6sSQg.js               17.20 kB │ gzip:   6.09 kB
+dist/assets/ManagementPages-TME4cvnp.js           18.75 kB │ gzip:   6.80 kB
+dist/assets/index-Ee1zteVd.js                    648.61 kB │ gzip: 185.32 kB
+✓ built in 2.61s
+
+PWA v1.3.0
+mode      generateSW
+precache  52 entries (9460.77 KiB)
+files generated
+  dist/sw.js
+  dist/workbox-f641ca17.js

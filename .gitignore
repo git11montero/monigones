@@ -24,3 +24,6 @@ supabase/.temp/
 supabase/.branches/
 .vercel
 .env*
+
+# Private demo configuration, exports and operator files (never public assets)
+.monigones-demo/

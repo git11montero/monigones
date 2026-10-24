@@ -65,7 +65,7 @@ function prepare(s: GameState, snapshot: Snapshot) {
 function view(snapshot: Snapshot, user: string) {
   const result = publicState(snapshot.state, user);
   for (const c of result.state.clubs)
-    c.presidentName = snapshot.presidents?.[c.userId] || 'Presidente';
+    c.presidentName = c.presidentName || snapshot.presidents?.[c.userId] || 'Presidente';
   return result;
 }
 export class PostgresStore {
