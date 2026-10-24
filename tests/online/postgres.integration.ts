@@ -467,9 +467,15 @@ describe('API online y transporte HTTP sobre PostgreSQL real', () => {
         }
         let body = '';
         for await (const chunk of req) body += chunk;
-        const data = await rpc.call(req.url!.split('/').at(-1)!, JSON.parse(body));
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(data));
+        const name = req.url!.split('/').at(-1)!;
+        const data = await rpc.call(name, JSON.parse(body));
+        if (name === 'online_profile' || name === 'online_tick_failed') {
+          res.writeHead(204);
+          res.end();
+        } else {
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify(data));
+        }
       } catch (e) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: String(e) }));
@@ -612,7 +618,10 @@ it('frontend online de producción: tres sesiones, Auth SDK, Realtime emulado y 
         const args = JSON.parse(text),
           name = path.split('/').at(-1)!;
         const result = await rpc.call(name, args);
-        send(result);
+        if (name === 'online_profile' || name === 'online_tick_failed') {
+          res.writeHead(204);
+          res.end();
+        } else send(result);
         if (name === 'online_commit' && result === 'committed')
           for (const sub of subscriptions)
             if (sub.league === args.p_league) {

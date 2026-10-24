@@ -1,0 +1,94 @@
+Vercel CLI 65.2.0
+Warning: Detected "engines": { "node": ">=22.22.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version
+Installing dependencies...
+
+up to date in 696ms
+
+151 packages are looking for funding
+  run `npm fund` for details
+
+> monigones@0.3.0 build:online
+> node scripts/build-online.mjs
+
+
+> monigones@0.3.0 check:online
+> tsc --project tsconfig.online.json
+
+Manifiesto estático: 522 PNG con versión de contenido.
+
+> monigones@0.3.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 1831 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/manifest.webmanifest                          0.51 kB
+dist/index.html                                    0.97 kB │ gzip:   0.50 kB
+dist/assets/index-kiff2txN.css                   126.83 kB │ gzip:  31.43 kB
+dist/assets/x-Cu1swm3l.js                          0.15 kB │ gzip:   0.15 kB
+dist/assets/arrow-up-right-DSXlaF8d.js             0.16 kB │ gzip:   0.16 kB
+dist/assets/heart-gYQbbZLl.js                      0.24 kB │ gzip:   0.21 kB
+dist/assets/flask-conical-BU2JXcJO.js              0.30 kB │ gzip:   0.23 kB
+dist/assets/newspaper-BP-cUYKr.js                  0.34 kB │ gzip:   0.23 kB
+dist/assets/gift-DkdrFl1j.js                       0.35 kB │ gzip:   0.25 kB
+dist/assets/message-circle-DZQEifID.js             0.39 kB │ gzip:   0.26 kB
+dist/assets/star-BATXUzgr.js                       0.47 kB │ gzip:   0.29 kB
+dist/assets/UnsavedChanges-CRddLAaG.js             0.55 kB │ gzip:   0.39 kB
+dist/assets/sprout-DODW1ftz.js                     0.81 kB │ gzip:   0.46 kB
+dist/assets/PlayerCard-DsRW919M.js                 1.38 kB │ gzip:   0.66 kB
+dist/assets/MediaCredits-BpXL_TZ9.js               1.81 kB │ gzip:   1.02 kB
+dist/assets/engine-CkD-JCTX.js                     2.96 kB │ gzip:   1.42 kB
+dist/assets/FinancePage-HQdiVr8Z.js                3.90 kB │ gzip:   1.60 kB
+dist/assets/workbox-window.prod.es5-BBnX5xw4.js    5.75 kB │ gzip:   2.36 kB
+dist/assets/SquadPage-DxaKdDtZ.js                  7.28 kB │ gzip:   2.76 kB
+dist/assets/CityPage-CZOzHhkf.js                  10.34 kB │ gzip:   4.47 kB
+dist/assets/SettingsPage-D8XCM4uX.js              10.63 kB │ gzip:   4.47 kB
+dist/assets/ResearchPage-DQWbwlBy.js              10.64 kB │ gzip:   4.32 kB
+dist/assets/LeaguePage-CEFUB1xD.js                12.54 kB │ gzip:   4.30 kB
+dist/assets/MarketPage-BPQPhUev.js                13.27 kB │ gzip:   4.81 kB
+dist/assets/BuildingsPage-CJ4KXCP-.js             13.97 kB │ gzip:   5.14 kB
+dist/assets/SocialPages-BJsUJpnO.js               17.20 kB │ gzip:   6.09 kB
+dist/assets/ManagementPages-CpeobY-P.js           18.75 kB │ gzip:   6.80 kB
+dist/assets/index-C7d_rVlC.js                    875.36 kB │ gzip: 244.90 kB
+
+(!) Some chunks are larger than 650 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.58s
+
+PWA v1.3.0
+mode      generateSW
+precache  52 entries (9682.21 KiB)
+files generated
+  dist/sw.js
+  dist/workbox-f641ca17.js
+Warning: Detected "engines": { "node": ">=22.22.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version
+Using TypeScript 5.9.3 (local user-provided)
+{
+  "status": "ok",
+  "outputDir": "<repository>/.vercel/output",
+  "outputDirRelative": ".vercel/output",
+  "target": "production",
+  "message": "Build completed successfully.",
+  "next": [
+    {
+      "command": "vercel deploy",
+      "when": "Deploy the build output"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: GET /api/session: Unexpected end of JSON input
+
+400 !== 200
+
+    at request (file://<repository>/scripts/vercel-artifact-worker.mjs:82:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file://<repository>/scripts/vercel-artifact-worker.mjs:93:25 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 400,
+  expected: 200,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: El artefacto <repository>/.vercel/output/functions/api/[...path].func no es ejecutable.
+
+1 !== 0
+
+    at file://<repository>/scripts/test-vercel-artifact.mjs:43:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

@@ -29,7 +29,8 @@ export class ApiError extends Error {
 }
 export async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const headers = new Headers(options?.headers);
-  headers.set('Content-Type', 'application/json');
+  if (options?.body != null && !headers.has('Content-Type'))
+    headers.set('Content-Type', 'application/json');
   let user = '';
   if (isOnlineBackend) {
     const sb = getSupabase()!;
@@ -61,7 +62,22 @@ export async function request<T>(path: string, options?: RequestInit): Promise<T
     lastOnlineGame = { user, game };
     return game as T;
   }
-  const data = await res.json();
+  const raw = await res.text();
+  let data: any;
+  try {
+    data = raw.trim() ? JSON.parse(raw) : undefined;
+  } catch (error) {
+    if (!(error instanceof SyntaxError)) throw error;
+    throw new ApiError(
+      'El servidor devolvió una respuesta JSON inválida.',
+      res.ok ? 502 : res.status,
+    );
+  }
+  if (!data || typeof data !== 'object' || Array.isArray(data))
+    throw new ApiError(
+      'El servidor devolvió una respuesta vacía o inesperada.',
+      res.ok ? 502 : res.status,
+    );
   if (!res.ok) throw new ApiError(data.error || 'No se pudo completar la operación.', res.status);
   if (isOnlineBackend && data.state && data.clubId) lastOnlineGame = { user, game: data };
   return data;

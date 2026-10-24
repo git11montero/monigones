@@ -4,16 +4,19 @@ import { invariant } from '../../shared/math.js';
 import { PostgresStore, type OnlineUser } from './store.js';
 import { SupabaseRpc } from './transport.js';
 import type { Command } from '../../shared/types.js';
+import { OnlineHttpError, onlineFailure, readJsonObject } from './http.js';
 export type OnlineConfig = { url: string; secret: string; cronSecret: string; origin: string };
 export function onlineConfig(): OnlineConfig {
   const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
     secret = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || '',
     cronSecret = process.env.MONIGONES_CRON_SECRET || '',
     origin = process.env.PUBLIC_ORIGIN || 'https://monigones.vercel.app';
-  invariant(
-    url && secret && cronSecret.length >= 32,
-    'Configura el backend online: URL, clave privada y secreto cron.',
-  );
+  if (!url || !secret || cronSecret.length < 32)
+    throw new OnlineHttpError(
+      503,
+      'BACKEND_NOT_CONFIGURED',
+      'Configura el backend online: URL, clave privada y secreto cron.',
+    );
   return { url, secret, cronSecret, origin };
 }
 export async function supabaseIdentity(token: string, config: OnlineConfig): Promise<OnlineUser> {
@@ -21,7 +24,14 @@ export async function supabaseIdentity(token: string, config: OnlineConfig): Pro
     auth: { persistSession: false, autoRefreshToken: false },
   });
   const { data, error } = await client.auth.getUser(token);
-  invariant(!error && data.user?.email, 'Sesión Supabase inválida.');
+  if (error && error.status !== 400 && error.status !== 401 && error.status !== 403)
+    throw new OnlineHttpError(
+      503,
+      'AUTH_UNAVAILABLE',
+      'El servicio de autenticación no está disponible.',
+    );
+  if (error || !data.user?.email)
+    throw new OnlineHttpError(401, 'AUTH_INVALID_TOKEN', 'Sesión Supabase inválida.');
   const proposed = String(data.user.user_metadata?.name || data.user.email.split('@')[0])
     .trim()
     .slice(0, 60);
@@ -88,9 +98,16 @@ export function onlineHandler(
       let user: OnlineUser;
       try {
         user = await identity(token);
-      } catch {
+      } catch (error) {
+        if (error instanceof OnlineHttpError) throw error;
+        if (!(error instanceof Error) || error.constructor !== Error) throw error;
         return json({ error: 'Sesión Supabase inválida.' }, 401);
       }
+      const body =
+        request.method === 'POST' &&
+        ['/api/login', '/api/logout', '/api/command', '/api/leagues'].includes(path)
+          ? await readJsonObject(request, path === '/api/command' || path === '/api/leagues')
+          : undefined;
       await store.profile(user);
       await store.rate(
         user.id,
@@ -122,10 +139,7 @@ export function onlineHandler(
         return json(state, 200, { ETag: `"${state.state.version}"` });
       }
       if (request.method === 'POST' && ['/api/command', '/api/leagues'].includes(path)) {
-        const raw = await request.text();
-        invariant(raw.length <= 512000, 'Petición demasiado grande.');
-        const body = JSON.parse(raw) as Record<string, unknown>;
-        invariant(body && !Array.isArray(body) && typeof body === 'object', 'JSON inválido.');
+        invariant(body, 'Esta ruta requiere un cuerpo JSON.');
         if (path === '/api/leagues')
           return json(
             await (body.invite ? store.joinLeague(user, body) : store.createLeague(user, body)),
@@ -142,10 +156,8 @@ export function onlineHandler(
       }
       return json({ error: 'Ruta no encontrada.' }, 404);
     } catch (error) {
-      return json(
-        { error: error instanceof Error ? error.message : 'No se pudo completar la operación.' },
-        400,
-      );
+      const failure = onlineFailure(error);
+      return json(failure.body, failure.status);
     }
   };
 }

@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@supabase/supabase-js';
 import { getSupabase, isOnlineBackend } from '../lib/supabase';
 import { ArrowRight, Shield, Flag, ShieldCheck, Users } from 'lucide-react';
-import { post, type Session } from '../lib/api';
+import { post, request, type Session } from '../lib/api';
 import { Crest } from '../components/ui';
 import { BuildingArt } from '../components/City';
 import { BUILDINGS } from '../../shared/config';
@@ -31,6 +31,11 @@ export default function AuthPage({ session }: { session: Session }) {
       setBusy(false);
     }
   }
+  async function finishSupabaseLogin(accessToken: string) {
+    // Online identity is always a Bearer header. Keep the legacy local Auth bridge.
+    if (isOnlineBackend) await request('/api/login', { method: 'POST' });
+    else await post('/api/login', { accessToken });
+  }
   async function authenticate() {
     if (session.authMode === 'supabase') {
       const url = import.meta.env.VITE_SUPABASE_URL,
@@ -47,11 +52,11 @@ export default function AuthPage({ session }: { session: Session }) {
         if (error) throw error;
         if (!data.session)
           throw Error('Cuenta creada. Confirma tu correo antes de iniciar sesión.');
-        await post('/api/login', { accessToken: data.session.access_token });
+        await finishSupabaseLogin(data.session.access_token);
       } else {
         const { data, error } = await sb.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        await post('/api/login', { accessToken: data.session.access_token });
+        await finishSupabaseLogin(data.session.access_token);
       }
     } else
       await post(mode === 'register' ? '/api/register' : '/api/login', { email, password, name });

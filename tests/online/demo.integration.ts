@@ -16,6 +16,7 @@ import {
 } from '../../server/demo/state';
 import { PostgresStore, type RpcTransport, type Snapshot } from '../../server/online/store';
 import { onlineHandler } from '../../server/online/handler';
+import { SupabaseRpc } from '../../server/online/transport';
 import { execute, reconcile, syncAttention } from '../../shared/engine';
 import { RULES, DAY } from '../../shared/config';
 import { nextMarket } from '../../shared/math';
@@ -100,6 +101,91 @@ afterAll(async () => {
 });
 
 describe('Importador de demostración: PostgreSQL real y API online', () => {
+  it('el login con perfil 204 lee la membresía de Presidente 1 y la liga importada por HTTP real', async () => {
+    const config = configuration('advanced', false);
+    await service.apply(config, source());
+    const bridge = createServer(async (req, res) => {
+      try {
+        if (req.url === '/auth/v1/user') {
+          if (req.headers.authorization !== 'Bearer login-fixture') {
+            res.writeHead(401);
+            res.end('{}');
+            return;
+          }
+          res.setHeader('Content-Type', 'application/json');
+          res.end(
+            JSON.stringify({
+              id: users[0],
+              email: 'fixture@example.test',
+              aud: 'authenticated',
+              role: 'authenticated',
+              user_metadata: { name: 'Cuenta real fixture' },
+            }),
+          );
+          return;
+        }
+        let raw = '';
+        for await (const chunk of req) raw += chunk;
+        const name = req.url!.split('/').at(-1)!;
+        const result = await rpc.call(name, JSON.parse(raw));
+        if (name === 'online_profile') {
+          res.writeHead(204);
+          res.end();
+        } else {
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify(result));
+        }
+      } catch {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end('{"message":"fixture rejected"}');
+      }
+    });
+    await new Promise<void>((resolve) => bridge.listen(0, '127.0.0.1', resolve));
+    const address = bridge.address() as { port: number };
+    const url = `http://127.0.0.1:${address.port}`;
+    const handle = onlineHandler(new PostgresStore(new SupabaseRpc(url, 'sb_secret_fixture')), {
+      url,
+      secret: 'sb_secret_fixture',
+      cronSecret: 'x'.repeat(40),
+      origin: 'https://monigones.vercel.app',
+    });
+    const headers = { authorization: 'Bearer login-fixture' };
+    try {
+      for (const body of [undefined, '', '{}']) {
+        const login = await handle(
+          new Request('https://monigones.vercel.app/api/login', { method: 'POST', headers, body }),
+        );
+        expect(login.status).toBe(200);
+        expect((await login.json()).user.id).toBe(users[0]);
+      }
+      const session = await handle(
+        new Request('https://monigones.vercel.app/api/session', { headers }),
+      );
+      expect(session.status).toBe(200);
+      expect((await session.json()).membership).toBe(true);
+      const game = await handle(new Request('https://monigones.vercel.app/api/state', { headers }));
+      expect(game.status).toBe(200);
+      const view = await game.json();
+      expect(view.state.id).toBe(config.leagueId);
+      expect(view.state.players).toHaveLength(500);
+      expect(view.state.clubs.find((c: any) => c.userId === users[0]).presidentName).toBe(
+        'Presidente 1',
+      );
+      expect(view.state.privateRng).toBeUndefined();
+      const bad = await handle(
+        new Request('https://monigones.vercel.app/api/login', {
+          method: 'POST',
+          headers,
+          body: '{',
+        }),
+      );
+      expect(bad.status).toBe(400);
+      expect((await bad.json()).code).toBe('INVALID_JSON');
+    } finally {
+      bridge.closeAllConnections();
+      await new Promise<void>((resolve) => bridge.close(() => resolve()));
+    }
+  });
   it('la RPC rechaza relaciones alteradas y revierte perfiles creados antes del error', async () => {
     const c = configuration();
     const plan = prepareDemo(c, source(), Date.now());

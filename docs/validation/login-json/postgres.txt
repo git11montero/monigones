@@ -1,0 +1,13 @@
+
+> monigones@0.3.0 test:postgres
+> node scripts/test-postgres.mjs
+
+
+ RUN  v5.0.5 <repository>
+
+
+ Test Files  2 passed (2)
+      Tests  41 passed (41)
+   Start at  19:19:58
+   Duration  25.05s (tests 98%, import 1%, transform 1%)
+

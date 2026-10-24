@@ -1,0 +1,19 @@
+
+> monigones@0.3.0 test
+> vitest run
+
+
+ RUN  v5.0.5 <repository>
+
+(node:25019) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25018) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25021) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  9 passed (9)
+      Tests  132 passed (132)
+   Start at  19:28:49
+   Duration  1.55s (tests 65%, import 18%, environment 11%, transform 6%, worker 1%)
+

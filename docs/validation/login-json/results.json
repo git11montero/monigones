@@ -1,0 +1,66 @@
+{
+  "verifiedAt": "2026-10-24T17:35:50.326295+00:00",
+  "cause": {
+    "rpc": "online_profile",
+    "sqlReturnType": "void",
+    "httpStatus": 204,
+    "originalParser": "unconditional response.json()",
+    "symptom": "GET /api/session HTTP 400 Unexpected end of JSON input",
+    "sharedByRoutes": [
+      "POST /api/login",
+      "GET /api/session"
+    ]
+  },
+  "reproducedInOriginalVercelBuild": true,
+  "typescript": "passed (general and NodeNext)",
+  "eslint": "passed",
+  "unit": {
+    "passed": 132,
+    "files": 9
+  },
+  "postgres": {
+    "passed": 41,
+    "files": 2,
+    "version": "17.11",
+    "isolatedDisposableCluster": true,
+    "stoppedAndRemoved": true,
+    "membershipTest": "real PostgreSQL demo fixture, Presidente 1, HTTP Auth SDK and PostgREST fixture returning 204, API login/session/state"
+  },
+  "vercelBuild": {
+    "command": "npx vercel build --prod",
+    "cliVersion": "65.2.0",
+    "runtime": "nodejs24.x",
+    "handler": "api/[...path].js",
+    "onlineBuild": "passed"
+  },
+  "artifactExecution": {
+    "runtime": "v24.22.1",
+    "handler": "api/[...path].js",
+    "isolated": true,
+    "nativeEsm": true,
+    "httpChecks": 36,
+    "profile204": true,
+    "parsedAndConsumedBodies": true,
+    "membershipAndGame": true,
+    "supabase": "local HTTP fixture; no remote requests",
+    "status": "passed"
+  },
+  "artifactModuleHashes": {
+    "api/[...path].js": "2c425ebd2aed756d55b443be91929913e0f83cb6f80363119723e060b4ca167e",
+    "server/online/handler.js": "0443e24a992cfbe251d20776c9956a363ef30d6817d1bd72df34e893754881d3",
+    "server/online/transport.js": "70a5f0b35003b3168df920f4e35d5352f6c965f4d0c18069c2acba51c82094ca",
+    "server/online/http.js": "4955f5892c8839e576b496046565d0df29ddb2190c14aa2c9b67cac56644bded",
+    "server/online/store.js": "2656fafd5de5b75b7ef5ddbb6b16261757d0616b754c0a088686f87f9703410a",
+    "server/online/response.js": "631d381ec93803eab0d34a576565cfedf8cac04c017ca636989ba5e71fd5f879"
+  },
+  "platformBodyHelpers": "emulated lazy getter on a consumed IncomingMessage according to Vercel documentation; raw handler is actual built artifact",
+  "negativeCases": "GET getter must not run; missing/invalid token; empty/invalid JSON; consumed/missing body; oversized input; invalid/empty RPC error response; all deliberate failures checked",
+  "preservedPNGs": 522,
+  "remoteSupabase": "not accessed or modified; real imported league not touched",
+  "remoteVercel": "no configuration changes and no deployment",
+  "migrationsAndRules": "unchanged; existing migrations applied only to disposable test cluster",
+  "pending": "owner redeploy and authenticated production smoke test; no re-import or migration needed",
+  "personalSqlite": "not accessed or modified",
+  "demoCredentialsFile": ".monigones-demo/credentials.env not accessed or printed",
+  "buildEnvironment": "existing Vercel local production configuration used; values not printed; runtime checks use only localhost fixtures"
+}
