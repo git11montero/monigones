@@ -13,16 +13,7 @@ export default function CityPage() {
   const count = state.jobs.filter((j) => j.clubId === club.id).length;
   return (
     <div className="city-page">
-      <div className="city-command">
-        <div>
-          <span className="eyebrow">TU CIUDAD DEPORTIVA</span>
-          <h1>Tu club. Tu afición.</h1>
-        </div>
-        <Link to="/league" className="season-seal">
-          <Trophy size={18} />
-          <b>T{String(state.season).padStart(2, '0')}</b>
-        </Link>
-      </div>
+      <h1 className="sr-only">Ciudad deportiva</h1>
       <CityMap />
       <div className="city-shortcuts">
         <Link to="/daily" aria-label="Actividades y recompensas">

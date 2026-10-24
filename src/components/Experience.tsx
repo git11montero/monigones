@@ -4,7 +4,6 @@ import { useDialogAccessibility } from '../lib/dialogs';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Music2, Volume2, VolumeX, Sparkles } from 'lucide-react';
-import { BUILDINGS } from '../../shared/config';
 import { useGame } from '../lib/api';
 import {
   audioManager,
@@ -14,80 +13,9 @@ import {
   type Sound,
 } from '../lib/audio';
 import { cityEnvironment } from '../lib/visuals';
-import { BuildingArt } from './City';
 
-const departments: Record<string, [string, string, string]> = {
-  research: ['research', 'science', 'EL LABORATORIO DE LAS VICTORIAS'],
-  market: ['sport', 'sport', 'LA MESA DE LOS GRANDES FICHAJES'],
-  player: ['sport', 'sport', 'TALENTO PARA TU HISTORIA'],
-  squad: ['training', 'sport', 'EL VESTUARIO · TU ONCE'],
-  league: ['competition', 'festival', 'UNA LIGA. UNA CONQUISTA.'],
-  matchday: ['stadium', 'sport', 'DONDE TODO COBRA SENTIDO'],
-  finance: ['finance', 'gold', 'EL TESORO DE TU CLUB'],
-  more: ['hq', 'royal', 'LA CASA DE TU CLUB'],
-  settings: ['offices', 'royal', 'TU CLUB, A TU MANERA'],
-  daily: ['social', 'festival', 'FUERA DEL CAMPO TAMBIÉN SE GANA'],
-  marketing: ['marketing', 'coral', 'LA MARCA QUE LLEVAS DENTRO'],
-  concerts: ['social', 'festival', 'EL ESTADIO CAMBIA DE ESCENARIO'],
-  institution: ['institution', 'crimson', 'EL PODER TAMBIÉN SE NEGOCIA'],
-  academy: ['academy', 'academy', 'EL FUTURO LLEVA TU ESCUDO'],
-  training: ['training', 'sport', 'UNA VENTAJA EN CADA CASILLA'],
-  fans: ['social', 'festival', 'NO JUEGAS SOLO'],
-  bonuses: ['research', 'science', 'CADA MEJORA CUENTA'],
-  coaches: ['sport', 'sport', 'EL CEREBRO DEL EQUIPO'],
-  chat: ['social', 'festival', 'EL VESTUARIO DE LOS PRESIDENTES'],
-  events: ['competition', 'festival', 'TU PRÓXIMO DESAFÍO'],
-  draft: ['competition', 'festival', 'EL PRIMER GRAN GOLPE'],
-  trades: ['offices', 'royal', 'LA MESA DE NEGOCIACIÓN'],
-  museum: ['museum', 'gold', 'AQUÍ VIVEN LAS LEYENDAS'],
-  archive: ['museum', 'gold', 'LAS TEMPORADAS NUNCA SE OLVIDAN'],
-};
 export function DepartmentScene() {
-  const { club } = useGame(),
-    location = useLocation(),
-    route = location.pathname.split('/')[1];
-  if (['city', 'newspaper', 'building'].includes(route)) return null;
-  const [id, theme, motto] = departments[route] || departments.more;
-  const scenes: Record<string, [number, number]> = {
-    finance: [0, 0],
-    institution: [1, 0],
-    concerts: [0, 1],
-    marketing: [1, 1],
-    academy: [1, 2],
-  };
-  const scene = scenes[route];
-  if (scene)
-    return (
-      <div
-        className={`department-scene illustrated-interior theme-${theme}`}
-        data-department={id}
-        aria-hidden="true"
-      >
-        <svg className="interior-art" viewBox="0 0 768 341.333">
-          <image
-            href="/art/interiors-atlas.webp"
-            width="1536"
-            height="1024"
-            x={-scene[0] * 768}
-            y={-scene[1] * 341.333}
-          />
-        </svg>
-        <span>{motto}</span>
-      </div>
-    );
-  return (
-    <div className={`department-scene theme-${theme}`} data-department={id} aria-hidden="true">
-      <div className="scene-architecture">
-        <BuildingArt
-          building={BUILDINGS.find((b) => b.id === id)!}
-          level={club.buildings[id] || 1}
-        />
-      </div>
-      <div className="scene-rays" />
-      <span>{motto}</span>
-      <i className="scene-star">✦</i>
-    </div>
-  );
+  return null;
 }
 export function AudioToggle() {
   const [prefs, setPrefs] = useState(readPreferences);

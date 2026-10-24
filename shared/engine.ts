@@ -1,4 +1,4 @@
-import { activityOffers } from './activities';
+import { activityOffers, activityDay } from './activities';
 import { notifications } from './attention';
 import { economicRandom } from './math';
 import {
@@ -699,7 +699,15 @@ function daily(s: GameState) {
   if (s.lastDaily === key) return;
   for (const c of s.clubs) {
     resource(s, c, 'development', RULES.dailyDevelopment, 'Desarrollo diario');
-    if (c.dailyDone.length < 3) resource(s, c, 'fame', -1, 'Actividades diarias pendientes');
+    const previous = activityDay(c, s.lastDaily, c.dailyDone.length);
+    previous.closed = true;
+    const pending = c.activity && !c.activity.claimedAt && c.activity.offerDay === s.lastDaily;
+    if (pending) previous.pendingRunId = c.activity!.id;
+    if (previous.completed === 0 && !pending && !previous.penaltyApplied) {
+      resource(s, c, 'fame', -1, 'Inactividad: ninguna actividad completada');
+      previous.penaltyApplied = true;
+      previous.resolvedAt = s.now;
+    } else if (previous.completed > 0) previous.resolvedAt = s.now;
     c.dailyDone = [];
   }
   for (const d of s.sponsors) {
@@ -1194,6 +1202,7 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
       );
       invariant(action && !c.dailyDone.includes(id), 'Actividad no disponible o ya realizada.');
       invariant(c.buildings.hq >= action.minimumHQ, 'Mejora la sede central.');
+      activityDay(c, dailyKey(s.now), c.dailyDone.length);
       spend(s, c, action.cost, action.name);
       c.activity = {
         id: uid(),
@@ -1211,6 +1220,14 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
       resource(s, c, run.definition.resource, run.definition.reward, run.definition.name, run.id);
       for (const [key, amount] of Object.entries(run.definition.extra || {}))
         resource(s, c, key as Resource, amount, run.definition.name, run.id);
+      const completedDay = activityDay(
+        c,
+        run.offerDay,
+        run.offerDay === dailyKey(s.now) ? c.dailyDone.length : 0,
+      );
+      completedDay.completed++;
+      delete completedDay.pendingRunId;
+      completedDay.resolvedAt = s.now;
       run.claimedAt = s.now;
       news(
         s,
@@ -1758,6 +1775,7 @@ export function publicState(s: GameState, userId: string) {
           dailyDone: [],
           activity: undefined,
           activityHistory: undefined,
+          activityDays: undefined,
           notificationReads: undefined,
           notificationEvents: undefined,
           hideResources: undefined,

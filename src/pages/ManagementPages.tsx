@@ -66,8 +66,11 @@ export function DailyPage() {
         </div>
       </div>
       <p className="hint">
-        Las propuestas cambian a las 06:00 de Madrid. Tu actividad en curso continúa aunque cierre
-        el juego o cambie el día. Las propuestas sin iniciar caducan.
+        Completar y recoger una actividad evita la penalización diaria. Si no completas ninguna,
+        pierdes 1 de fama. Las propuestas cambian a las 06:00 de Madrid. Tu actividad en curso
+        continúa aunque cierre el juego o cambie el día. Las propuestas sin iniciar caducan. Una
+        actividad que cruce las 06:00 cuenta para el día en que se inició; su penalización queda
+        aplazada hasta recogerla.
       </p>
       {blocked && (
         <section
@@ -168,7 +171,7 @@ export function MarketingPage() {
         back
         eyebrow="MARCAS QUE CREEN EN TU CLUB"
         title="Juntos, más lejos"
-        subtitle="Elige tus socios. Haz crecer tu identidad."
+        subtitle="Contratos publicitarios, espacios disponibles e ingresos diarios."
       />
       <div className="sponsor-shirt">
         <svg viewBox="0 0 200 160" aria-hidden="true">
@@ -280,7 +283,7 @@ export function ConcertsPage() {
         back
         eyebrow="CUANDO EL ESTADIO CAMBIA DE RITMO"
         title="Noches para recordar"
-        subtitle="Tres propuestas cada semana. Tu estadio, una noche inolvidable."
+        subtitle="Tres propuestas semanales para contratar conciertos en el estadio."
       />
       {!club.modules.includes('concerts') && (
         <div className="info-note">

@@ -1,0 +1,10 @@
+{
+  "players": 500,
+  "clubs": 20,
+  "placeholders": 493,
+  "licensedPhotos": 7,
+  "userProvided": 0,
+  "expectedPngs": 522,
+  "unexpectedFiles": [],
+  "result": "PASS PNG signatures, full ImageMagick decode, dimensions and unique paths"
+}

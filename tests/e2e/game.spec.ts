@@ -2,17 +2,17 @@ import { test, expect } from '@playwright/test';
 async function login(page: import('@playwright/test').Page, userId = 'demo1') {
   await page.request.post('/api/demo', { data: { userId } });
   await page.goto('/city');
-  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
 }
 test('acceso, ciudad vertical, navegación y ausencia de desbordamiento', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /Tu club/ })).toBeVisible();
   await page.getByRole('button', { name: /Entrar a la partida de demostración/ }).click();
-  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
   await expect(page.locator('.map-building')).toHaveCount(15);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({
-    path: 'docs/screenshots/v02/regressions/ciudad-mobile.png',
+    path: 'docs/screenshots/v03/regressions/ciudad-mobile.png',
     fullPage: true,
     scale: 'css',
   });
@@ -20,7 +20,7 @@ test('acceso, ciudad vertical, navegación y ausencia de desbordamiento', async 
     .getByRole('navigation', { name: 'Navegación principal' })
     .getByRole('link', { name: 'Mercado' })
     .click();
-  await expect(page.getByRole('heading', { name: 'La próxima gran firma' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Mercado' })).toBeVisible();
   await expect(page.locator('.market-card')).toHaveCount(5);
 });
 test('puja secreta, reserva persistente y retirada', async ({ page }) => {
@@ -88,7 +88,7 @@ test('alineación, cierre de jornada e informe persistente', async ({ page }) =>
   await page.getByRole('option', { name: /Jornada 1 ·/ }).click();
   await expect(page.getByRole('heading', { name: 'Los puntos, explicados' })).toBeVisible();
   await page.screenshot({
-    path: 'docs/screenshots/v02/regressions/informe-mobile.png',
+    path: 'docs/screenshots/v03/regressions/informe-mobile.png',
     fullPage: true,
     scale: 'css',
   });
@@ -145,9 +145,9 @@ test('mantiene columna móvil en escritorio y carga todos los paneles', async ({
     );
   }
   await page.goto('/city');
-  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
   await page.screenshot({
-    path: 'docs/screenshots/v02/regressions/ciudad-desktop.png',
+    path: 'docs/screenshots/v03/regressions/ciudad-desktop.png',
     fullPage: true,
     scale: 'css',
   });
@@ -178,7 +178,7 @@ test('PWA de producción: manifest, iconos, service worker y recarga sin conexi�
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:3102/');
   await page.getByRole('button', { name: /Entrar a la partida de demostración/ }).click();
-  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
   const manifest = await (
     await page.request.get('http://127.0.0.1:3102/manifest.webmanifest')
   ).json();
@@ -191,11 +191,11 @@ test('PWA de producción: manifest, iconos, service worker y recarga sin conexi�
   });
   await page.reload();
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
-  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
   expect(await page.evaluate(async () => (await caches.keys()).length)).toBeGreaterThan(0);
   await context.setOffline(true);
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
   await expect(page.getByText(/Sin conexión · Consultando/)).toBeVisible();
   await context.setOffline(false);
   await expect(page.getByText(/Sin conexión · Consultando/)).toHaveCount(0);

@@ -98,7 +98,7 @@ export function NewspaperPage() {
             <p className="lead-subtitle">{lead.subtitle}</p>
             <div className="editorial-illustration">
               <img
-                src="/art/kingdom-splash.webp"
+                src="/art/v03/ground.webp"
                 alt="Ilustración original de la ciudad deportiva y su estadio al atardecer"
                 loading="lazy"
               />
@@ -243,7 +243,12 @@ export function ChatPage() {
 }
 function ChatPanel({ embedded = false }: { embedded?: boolean }) {
   const { state, club, act, admin } = useGame();
-  const [message, setMessage] = useState('');
+  const draftKey = `monigones-chat-draft:${state.id}:${club.id}`;
+  const [message, setMessage] = useState(() => sessionStorage.getItem(draftKey) || '');
+  useEffect(() => {
+    if (message) sessionStorage.setItem(draftKey, message);
+    else sessionStorage.removeItem(draftKey);
+  }, [message, draftKey]);
   const end = useRef<HTMLDivElement>(null),
     list = useRef<HTMLDivElement>(null),
     nearBottom = useRef(true);
@@ -255,7 +260,7 @@ function ChatPanel({ embedded = false }: { embedded?: boolean }) {
     }
   }, [state.chat.length]);
   return (
-    <>
+    <section className={`chat-shell ${embedded ? 'embedded-chat' : 'full-chat'}`}>
       <UnsavedChanges dirty={!!message.trim()} label="Mensaje sin enviar" />
       {reading && <ReadAttention to="/chat" />}
       {!embedded && (
@@ -337,10 +342,15 @@ function ChatPanel({ embedded = false }: { embedded?: boolean }) {
           }
         }}
       >
-        <input
+        <textarea
+          rows={1}
           aria-label="Mensaje a la liga"
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) => {
+            setMessage(e.target.value);
+            e.currentTarget.style.height = 'auto';
+            e.currentTarget.style.height = Math.min(112, e.currentTarget.scrollHeight) + 'px';
+          }}
           placeholder="Un mensaje para tu liga…"
           maxLength={500}
           required
@@ -350,7 +360,7 @@ function ChatPanel({ embedded = false }: { embedded?: boolean }) {
           <span className="sr-only">Enviar mensaje</span>
         </Button>
       </form>
-    </>
+    </section>
   );
 }
 export function EventsPage() {
@@ -359,9 +369,9 @@ export function EventsPage() {
   return (
     <>
       <PageTitle
-        eyebrow="SIEMPRE HAY ALGO POR CONQUISTAR"
+        eyebrow="OBJETIVOS DE LA LIGA"
         title="Un paso más allá"
-        subtitle="Objetivos que conectan tu ciudad, tu equipo y tu ambición."
+        subtitle="Objetivos activos, progreso y recompensas de la liga."
       />
       <Link to="/draft" className="event-feature">
         <span className="icon-badge gold">

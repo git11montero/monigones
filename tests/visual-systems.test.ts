@@ -8,7 +8,7 @@ import { AUTHORIZED_PHOTOS, sportsAsset, CLUB_ASSETS } from '../shared/sports-as
 import { validateMediaPackage } from '../shared/sports-media-validation';
 import { imageDimensions } from '../scripts/sports-image-info';
 import { BUILDING_VISUALS, zoomCamera, clampCamera, cityEnvironment } from '../src/lib/visuals';
-import atlas from '../src/lib/atlas-bounds.json';
+import atlas from '../src/lib/v03-atlas-bounds.json';
 import { readPreferences } from '../src/lib/audio';
 describe('recursos gráficos y cámara', () => {
   it('ofrece cinco recortes de arquitectura distintos para todos los edificios mejorables', () => {
@@ -22,7 +22,7 @@ describe('recursos gráficos y cámara', () => {
       }
       for (const cell of row) {
         expect(cell.width).toBeGreaterThan(150);
-        expect(cell.height).toBeGreaterThan(150);
+        expect(cell.height).toBeGreaterThan(128);
       }
     }
   });
@@ -33,8 +33,8 @@ describe('recursos gráficos y cámara', () => {
     expect((anchor.x - c.x) / c.zoom).toBeCloseTo((anchor.x - n.x) / n.zoom);
     expect((anchor.y - c.y) / c.zoom).toBeCloseTo((anchor.y - n.y) / n.zoom);
     expect(clampCamera({ x: 99999, y: -99999, zoom: 10 }, 390, 650)).toEqual({
-      x: 70,
-      y: 650 - 1920 * 1.15 - 70,
+      x: 0,
+      y: 650 - 2400 * 1.15,
       zoom: 1.15,
     });
   });

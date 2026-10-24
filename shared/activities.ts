@@ -166,3 +166,26 @@ export function activityOffers(s: GameState): ActivityDef[] {
   }
   return selected;
 }
+
+export interface ActivityDay {
+  completed: number;
+  closed: boolean;
+  pendingRunId?: string;
+  penaltyApplied?: boolean;
+  resolvedAt?: number;
+}
+/** Separate started-day accounting from today's expiring offer IDs. Backward-compatible with v0.2. */
+export function activityDay(
+  c: import('./types').Club,
+  day: string,
+  legacyCompleted = 0,
+): ActivityDay {
+  c.activityDays ??= {};
+  return (c.activityDays[day] ??= {
+    completed: Math.max(
+      legacyCompleted,
+      (c.activityHistory || []).filter((r) => r.offerDay === day && r.claimedAt).length,
+    ),
+    closed: false,
+  });
+}

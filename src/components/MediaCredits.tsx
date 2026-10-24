@@ -1,19 +1,22 @@
-import { AUTHORIZED_PHOTOS, CLUB_ASSETS } from '../../shared/sports-assets';
+import { CLUB_ASSETS } from '../../shared/sports-assets';
+import { playerAsset } from '../../shared/football-assets';
+import { useFootballCatalog } from '../lib/football-media';
 import { useGame } from '../lib/api';
 import { Badge, PageTitle, Section } from './ui';
 import { PlayerCard } from './PlayerCard';
 import { PhotoCredit } from './PlayerPortrait';
 export default function MediaCredits() {
   const { state } = useGame(),
+    media = useFootballCatalog(),
     real = state.players.filter((p) => !p.simulated),
-    available = real.filter((p) => AUTHORIZED_PHOTOS.some((a) => a.playerId === p.id));
+    available = real.filter((p) => media.data?.[playerAsset(p).photo]?.kind === 'licensed');
   return (
     <>
       <PageTitle
         back
         eyebrow="RECURSOS DEPORTIVOS Y CRÉDITOS"
-        title="Caras con nombre y fuente"
-        subtitle={`${available.length}/${real.length} fotografías reales autorizadas · ${state.players.length - real.length} identidades ficticias con retrato original.`}
+        title="Imágenes y créditos"
+        subtitle={`${available.length}/${real.length} fotografías autorizadas verificadas · ${state.players.length} imágenes PNG locales.`}
       />
       <Section title="Fotografías disponibles">
         <p>
@@ -33,17 +36,18 @@ export default function MediaCredits() {
       <Section title="Emblemas de los clubes">
         <Badge kind="gold">0 / {CLUB_ASSETS.length} ESCUDOS OFICIALES AUTORIZADOS</Badge>
         <p>
-          Los clubes están asociados por ID y temporada. Se muestran emblemas alternativos
-          originales, marcados ALT. Los escudos oficiales están pendientes de autorización
-          verificable; no se presentan los emblemas como oficiales.
+          La entrega incluye veinte escudos genéricos. Puedes sustituir sus PNG por imágenes que
+          tengas derecho a utilizar. Las sustituciones manuales no se verifican ni se presentan
+          automáticamente como escudos oficiales autorizados.
         </p>
       </Section>
       <Section title="Arte y sonido originales">
         <p>
           Arquitecturas, paisaje de acceso y atlas ilustrados creados para MONIGONES mediante
-          imagegen. Terreno, instalaciones, retratos alternativos y emblemas dibujados para este
-          proyecto. Música y efectos originales sintetizados con Web Audio. El catálogo de fuentes y
-          licencias está documentado en docs/SPORTS_ASSETS.md y docs/BUILDING_ASSETS.md.
+          imagegen. Siluetas genéricas y escudos neutros originales. Las identidades ficticias
+          conservan siluetas, sin fotografías de otras personas. Música y efectos originales
+          sintetizados con Web Audio. La guía de imágenes y la documentación gráfica están
+          disponibles junto al proyecto.
         </p>
       </Section>
     </>

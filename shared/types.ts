@@ -71,6 +71,7 @@ export interface Club {
   dailyDone: string[];
   activity?: import('./activities').ActivityRun;
   activityHistory?: import('./activities').ActivityRun[];
+  activityDays?: Record<string, import('./activities').ActivityDay>;
   notificationReads?: Record<string, number>;
   notificationEvents?: Record<string, { firstSeenAt: number; resolvedAt?: number }>;
   hideResources?: boolean;

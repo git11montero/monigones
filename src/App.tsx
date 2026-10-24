@@ -68,6 +68,36 @@ function Layout() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [location.pathname]);
+  useEffect(() => {
+    let baseline = window.innerHeight;
+    const update = () => {
+      const vv = window.visualViewport,
+        height = vv?.height || window.innerHeight;
+      baseline = Math.max(baseline, window.innerHeight);
+      // Keep the compressed layout while focus moves to Send: restoring navigation
+      // between pointerdown and click would move the button away from the pointer.
+      const composing =
+        document.activeElement?.matches('.chat-compose textarea') ||
+        (document.querySelector('.chat-compose') &&
+          document.documentElement.dataset.keyboard === 'open');
+      const keyboard = !!composing && (height < baseline - 100 || height < 550);
+      document.documentElement.style.setProperty('--viewport-height', `${height}px`);
+      document.documentElement.dataset.keyboard = keyboard ? 'open' : 'closed';
+    };
+    window.visualViewport?.addEventListener('resize', update);
+    window.visualViewport?.addEventListener('scroll', update);
+    window.addEventListener('resize', update);
+    document.addEventListener('focusin', update);
+    document.addEventListener('focusout', update);
+    update();
+    return () => {
+      window.visualViewport?.removeEventListener('resize', update);
+      window.visualViewport?.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+      document.removeEventListener('focusin', update);
+      document.removeEventListener('focusout', update);
+    };
+  }, []);
   const nav = [
     ['/city', 'Ciudad', Landmark],
     ['/squad', 'Equipo', Users],

@@ -72,7 +72,7 @@ export default function MarketPage() {
       <PageTitle
         eyebrow="EL TALENTO NO ESPERA"
         title="La próxima gran firma"
-        subtitle={`Un mercado. ${state.clubs.length - 1} rivales. Tu mejor movimiento.`}
+        subtitle={`${state.clubs.length} clubes · ${state.marketPlayers.length} agentes disponibles.`}
       />
       <div className="market-deadline">
         <div>

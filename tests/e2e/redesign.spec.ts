@@ -6,7 +6,7 @@ import { BUILDINGS } from '../../shared/config';
 async function login(page: Page) {
   await page.request.post('/api/demo', { data: { userId: 'demo1' } });
   await page.goto('/city');
-  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
 }
 async function snapshot(page: Page, options: Parameters<Page['screenshot']>[0]) {
   await expect(page.locator('h1').first()).toBeVisible();
@@ -59,15 +59,16 @@ function fixture(info: TestInfo, mutate: (s: GameState) => void) {
     db.close();
   }
 }
-const root = 'docs/screenshots/v02/regressions';
+const root = 'docs/screenshots/v03/regressions';
 test('cámara: zoom, arrastre sin abrir edificios, teclado y selección táctil', async ({ page }) => {
   await login(page);
   const map = page.getByRole('region', { name: /Mapa de la ciudad/ });
   await expect(page.locator('.map-building')).toHaveCount(15);
   const z = Number(await map.getAttribute('data-zoom'));
-  await page.getByRole('button', { name: 'Ampliar mapa' }).click();
+  await map.focus();
+  await page.keyboard.press('+');
   expect(Number(await map.getAttribute('data-zoom'))).toBeGreaterThan(z);
-  await page.getByRole('button', { name: 'Alejar mapa' }).click();
+  await page.keyboard.press('-');
   const old = await page.locator('.city-world').getAttribute('style');
   const b = (await map.boundingBox())!;
   await page.mouse.move(b.x + 180, b.y + 190);
@@ -80,10 +81,8 @@ test('cámara: zoom, arrastre sin abrir edificios, teclado y selección táctil'
   await page.keyboard.press('+');
   expect(Number(await map.getAttribute('data-zoom'))).toBeGreaterThan(z);
   await page.keyboard.press('Home');
-  await page.getByRole('button', { name: 'Departamentos', exact: true }).click();
-  await page.getByRole('button', { name: 'Sede Nv.' }).click();
-  await page.getByRole('link', { name: /Sede central, nivel/ }).tap();
-  await expect(page).toHaveURL(/building\/hq/);
+  await page.getByRole('link', { name: /Estadio del club, nivel/ }).tap();
+  await expect(page).toHaveURL(/building\/stadium/);
 });
 test('pellizco con dos dedos conserva el mapa y cambia su escala', async ({ page }) => {
   await login(page);
@@ -121,7 +120,7 @@ test('cinco niveles de arquitectura, estadio e instalaciones ilustradas', async 
       s.jobs = s.jobs.filter((j) => j.clubId !== c.id);
     });
     await page.goto('/city');
-    await expect(page.locator('.map-building [data-building="hq"]')).toHaveAttribute(
+    await expect(page.locator('.map-building[data-building="hq"]')).toHaveAttribute(
       'data-level',
       String(level),
     );
@@ -156,7 +155,7 @@ test('obras reales: animación de construcción y evolución persistente', async
   await page.getByRole('button', { name: 'Comenzar ampliación' }).click();
   await expect(page.getByText('Ampliación en curso')).toBeVisible();
   await page.goto('/city');
-  await expect(page.locator('[data-building="hq"]')).toHaveClass(/constructing/);
+  await expect(page.locator('[data-building="hq"]')).toHaveClass(/has-job/);
   await snapshot(page, { path: `${root}/construccion-ciudad.png`, scale: 'css' });
   await page.goto('/building/hq');
   await snapshot(page, { path: `${root}/detalle-construccion.png`, fullPage: true, scale: 'css' });
@@ -216,7 +215,7 @@ test('fotografías, emblemas asociados, cartas y alternativa ante error de red',
     'athletic-4',
   ]) {
     await page.goto('/player/' + id);
-    const img = page.locator('.sports-card img');
+    const img = page.locator('.sports-card .player-avatar img');
     await expect(img).toBeVisible();
     await expect
       .poll(() => img.evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth >= 250))
@@ -234,10 +233,13 @@ test('fotografías, emblemas asociados, cartas y alternativa ante error de red',
   }
   await page.goto('/player/madrid-13');
   await snapshot(page, { path: `${root}/ficha-mbappe.png`, fullPage: true, scale: 'css' });
-  await page.route('**/sports/madrid-13-mbappe.webp', (route) => route.abort());
+  await page.route('**/assets/futbol/jugadores/realmadrid-mbappe.png*', (route) => route.abort());
   await page.reload();
-  await expect(page.locator('.sports-card [data-media="fallback"]')).toBeVisible();
-  await expect(page.locator('.sports-card img')).toHaveCount(0);
+  await expect(page.locator('.sports-card [data-asset-state="fallback"]')).toBeVisible();
+  await expect(page.locator('.sports-card .player-avatar img')).toHaveAttribute(
+    'src',
+    '/assets/futbol/fallback/jugador.png',
+  );
   await snapshot(page, { path: `${root}/retrato-alternativo.png`, fullPage: true, scale: 'css' });
 });
 test('investigaciones por capítulos: tres árboles, ramas y dependencias', async ({ page }) => {
@@ -290,11 +292,7 @@ test('audio: gesto, efectos, silencio, preferencias persistentes y movimiento re
   await expect(page.locator('.ambient-layer')).toHaveCount(0);
   await expect(page.locator('html')).toHaveAttribute('data-motion', 'reduced');
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  expect(
-    parseFloat(
-      await page.locator('.fountain-water').evaluate((e) => getComputedStyle(e).animationDuration),
-    ),
-  ).toBeLessThan(0.01);
+  await expect(page.locator('.city-map')).toHaveAttribute('data-animated', 'false');
 });
 test('auditoría de todas las rutas, imágenes sin romper y vertical en móvil y escritorio', async ({
   page,
@@ -387,10 +385,11 @@ test('Safari WebKit y Chrome Android: acceso, ciudad, cámara y fotos', async ({
       }),
       page = await context.newPage();
     await login(page);
-    await page.getByRole('button', { name: 'Ampliar mapa' }).tap();
+    await page.locator('.city-map').focus();
+    await page.keyboard.press('+');
     expect(Number(await page.locator('.city-map').getAttribute('data-zoom'))).toBeGreaterThan(0.43);
     await page.goto('/player/madrid-13');
-    await expect(page.locator('.sports-card img')).toBeVisible();
+    await expect(page.locator('.sports-card .player-avatar img')).toBeVisible();
     await snapshot(page, { path: `${root}/safari-webkit.png`, fullPage: true, scale: 'css' });
     await context.close();
   } finally {
@@ -403,8 +402,11 @@ test('Safari WebKit y Chrome Android: acceso, ciudad, cámara y fotos', async ({
   try {
     const page = await android.newPage();
     await login(page);
-    await page.getByRole('button', { name: 'Vista general' }).tap();
-    await expect(page.locator('.city-map')).toHaveAttribute('data-zoom', '0.27');
+    await page.locator('.city-map').focus();
+    for (let i = 0; i < 12; i++) await page.keyboard.press('-');
+    expect(
+      Number(await page.locator('.city-map').getAttribute('data-zoom')),
+    ).toBeGreaterThanOrEqual(0.27);
     await snapshot(page, { path: `${root}/chrome-android.png`, fullPage: true, scale: 'css' });
   } finally {
     await android.close();

@@ -1,8 +1,16 @@
 # MONIGONES
 
-**Construye tu club. Conquista la liga.**
+**Gestiona tu club. Compite en tu liga.**
 
 Juego de gestión de fútbol con PWA vertical, ciudad deportiva, fantasy privado y servidor local persistente. Este repositorio implementa una partida multijugador local real; calendarios, resultados y economía deportiva se simulan. La integración completa de persistencia con Supabase todavía es una tarea pendiente: no basta con poner sus claves para sustituir SQLite.
+
+## Monigones v0.3
+
+Nueva ciudad en Canvas 2D con siete recursos raster originales, cámara limitada al escenario y cinco niveles de arquitectura. Pantallas compactas sin banners decorativos, chat multilínea adaptable al teclado y nueva regla de actividades: solo cero actividades completadas supone −1 fama, aplazando la decisión si hay una actividad pendiente de ese día.
+
+Incluye 522 PNG locales: 500 jugadores, 20 escudos y 2 fallbacks. Puedes sustituir cada archivo manteniendo su nombre; el servidor detecta su contenido y actualiza la imagen sin editar código ni reconstruir el frontend. Se conservan siete fotografías autorizadas; las demás imágenes de jugador y todos los escudos son genéricos.
+
+[Entrega v0.3](docs/MONIGONES_V03_DELIVERY.md) · [Galería antes/después](docs/screenshots/v03/index.html) · [Cómo añadir imágenes](docs/COMO_AÑADIR_IMAGENES.md) · [Inventario CSV](docs/INVENTARIO_IMAGENES.csv) · [Motor gráfico](docs/MAP_GRAPHICS.md) · [Actividades y balance](docs/ACTIVITY_BALANCE.md).
 
 ## Mejoras Monigones v0.2
 
@@ -14,11 +22,11 @@ La migración de Supabase supera el análisis estático; su ejecución y pruebas
 
 ## Base visual
 
-Ciudad isométrica con cámara libre, arrastre y pellizco, cinco arquitecturas para cada uno de los trece edificios mejorables, doce instalaciones ilustradas, interiores de departamentos, cartas de futbolistas, periódico deportivo y música/efectos originales. La columna sigue siendo vertical también en escritorio. En Ajustes puedes controlar audio, volumen, movimiento y calidad gráfica; la música comienza después de un gesto.
+Ciudad isométrica con cámara libre, arrastre y pellizco, cinco arquitecturas para cada uno de los trece edificios mejorables, doce instalaciones ilustradas, títulos compactos de departamentos, cartas de futbolistas, periódico deportivo y música/efectos originales. La columna sigue siendo vertical también en escritorio. En Ajustes puedes controlar audio, volumen, movimiento y calidad gráfica; la música comienza después de un gesto.
 
 [Auditoría y límites](docs/REDESIGN_AUDIT.md) · [Guía de arte](docs/ART_DIRECTION.md) · [Capturas del juego](docs/screenshots/redesign/index.html) · [Galería de edificios](docs/building-gallery.html) · [Cobertura de pantallas](docs/SCREEN_COVERAGE.md) · [Pruebas del rediseño](docs/REDESIGN_TESTING.md).
 
-Recursos deportivos: siete fotografías autorizadas de 390 identidades reales, 383 pendientes, 110 retratos ficticios y veinte emblemas alternativos ALT. Los escudos oficiales están pendientes de autorización. Créditos dentro del juego en Ajustes → Fotografías, emblemas y créditos, y en [PLAYER_PHOTOS_AUDIT.md](docs/PLAYER_PHOTOS_AUDIT.md). No se afirma cobertura completa ni resultados deportivos reales.
+Recursos deportivos: siete fotografías autorizadas de 390 identidades reales, 383 pendientes, 110 siluetas de identidades ficticias y veinte escudos genéricos PNG. Los escudos oficiales están pendientes de autorización. Créditos dentro del juego en Ajustes → Fotografías, emblemas y créditos, y en [PLAYER_PHOTOS_AUDIT.md](docs/PLAYER_PHOTOS_AUDIT.md). No se afirma cobertura completa ni resultados deportivos reales.
 
 ## Arrancar
 
@@ -53,6 +61,8 @@ Con Real Corona, abre **Mi club → Ajustes y administración → Laboratorio de
 ## Comandos
 
 ```sh
+npm run images:validate
+npm run images:prepare
 npm run sports:assets
 npm run check
 npm run lint
@@ -78,7 +88,7 @@ Abre http://localhost:3001. En producción normal ambas opciones están desactiv
 
 ## Documentación
 
-El [informe actual de entrega](docs/MONIGONES_V02_DELIVERY.md) distingue implementación probada, integración externa y desarrollo pendiente. El [informe inicial](docs/DELIVERY.md) conserva la historia de la primera versión. Consulta también:
+El [informe actual de entrega](docs/MONIGONES_V03_DELIVERY.md) distingue implementación probada, integración externa y desarrollo pendiente. El [informe inicial](docs/DELIVERY.md) conserva la historia de la primera versión. Consulta también:
 
 - [Diseño del juego](docs/GAME_DESIGN.md), [arquitectura](docs/ARCHITECTURE.md), [base de datos](docs/DATABASE.md).
 - [Economía](docs/ECONOMY.md), [balance](docs/BALANCING.md), [árboles](docs/RESEARCH_TREES.md), [edificios](docs/BUILDINGS.md).

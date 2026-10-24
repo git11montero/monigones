@@ -11,14 +11,14 @@ test('registro, creación de club, invitación y draft conectados al servidor', 
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /Dale un hogar/ })).toBeVisible();
   await page.screenshot({
-    path: 'docs/screenshots/v02/regressions/redesign/crear-club.png',
+    path: 'docs/screenshots/v03/regressions/redesign/crear-club.png',
     fullPage: true,
     scale: 'css',
   });
   await page.getByRole('button', { name: 'Tengo invitación' }).click();
   await expect(page.getByLabel('Código de invitación')).toBeVisible();
   await page.screenshot({
-    path: 'docs/screenshots/v02/regressions/redesign/invitacion.png',
+    path: 'docs/screenshots/v03/regressions/redesign/invitacion.png',
     fullPage: true,
     scale: 'css',
   });
@@ -26,7 +26,7 @@ test('registro, creación de club, invitación y draft conectados al servidor', 
   await page.getByLabel('Nombre de la liga').fill('La liga del rediseño');
   await page.getByLabel('Nombre de tu club').fill('Monigones United');
   await page.getByRole('button', { name: 'Fundar mi club' }).click();
-  await expect(page.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
   const game = await (await page.request.get('/api/state')).json();
   const context = await browser.newContext({
     baseURL: 'http://127.0.0.1:5174',
@@ -46,7 +46,7 @@ test('registro, creación de club, invitación y draft conectados al servidor', 
     await guest.getByLabel('Código de invitación').fill(game.state.invite);
     await guest.getByLabel('Nombre de tu club').fill('Atlético Invitado');
     await guest.getByRole('button', { name: 'Entrar a la liga', exact: true }).click();
-    await expect(guest.getByRole('heading', { name: 'Tu club. Tu afición.' })).toBeVisible();
+    await expect(guest.getByRole('heading', { name: 'Ciudad deportiva' })).toBeVisible();
     const joined = await (await guest.request.get('/api/state')).json();
     expect(joined.state.id).toBe(game.state.id);
   } finally {
@@ -57,7 +57,7 @@ test('registro, creación de club, invitación y draft conectados al servidor', 
   await expect(page.getByRole('status')).toContainText('Nuevo futbolista');
   await expect(page.locator('.auction-card .sports-card')).toHaveCount(1);
   await page.screenshot({
-    path: 'docs/screenshots/v02/regressions/redesign/draft-activo.png',
+    path: 'docs/screenshots/v03/regressions/redesign/draft-activo.png',
     fullPage: true,
     scale: 'css',
   });

@@ -51,8 +51,30 @@ export function Section({
     </section>
   );
 }
+const SCREEN_TITLES: Record<string, string> = {
+  'La próxima gran firma': 'Mercado',
+  'La ventaja se investiga': 'Investigación',
+  'Hoy dejas huella': 'Actividades diarias',
+  'La salud de tu club': 'Finanzas',
+  'La liga está en juego': 'Clasificación',
+  'El club que estás creando': 'Mi club',
+  'Ajustes del club': 'Ajustes',
+  'Un paso más allá': 'Eventos',
+  'La mesa de negociación': 'Negociaciones',
+  'Desde la banda': 'Entrenadores',
+  'Tu club, al detalle': 'Bonificaciones',
+  'Tu once, tu historia': 'Plantilla',
+  'Tu equipo, tu idea': 'Plantilla',
+  'Juntos, más lejos': 'Patrocinios',
+  'Noches para recordar': 'Conciertos',
+  'Poder, pactos y palancas': 'Relaciones institucionales',
+  'Talento con raíces': 'Cantera',
+  'Cada casilla, más fuerte': 'Entrenamiento',
+  'Nadie juega solo': 'Afición',
+  'Un lugar en la historia': 'Museo del club',
+  'La primera gran decisión': 'Draft inicial',
+};
 export function PageTitle({
-  eyebrow,
   title,
   subtitle,
   back = false,
@@ -73,8 +95,7 @@ export function PageTitle({
         </button>
       )}
       <div>
-        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-        <h1>{title}</h1>
+        <h1>{SCREEN_TITLES[title] || title}</h1>
         {subtitle && <p>{subtitle}</p>}
       </div>
       {action}

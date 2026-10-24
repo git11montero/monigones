@@ -3,32 +3,34 @@ export const BUILDING_VISUALS: Record<
   string,
   { atlas: string; row: number; x: number; y: number; width: number; theme: string }
 > = {
-  hq: { atlas: 'core', row: 0, x: 660, y: 290, width: 270, theme: 'royal' },
-  stadium: { atlas: 'core', row: 1, x: 655, y: 625, width: 380, theme: 'sport' },
-  research: { atlas: 'core', row: 2, x: 1040, y: 430, width: 265, theme: 'science' },
-  marketing: { atlas: 'training', row: 0, x: 270, y: 670, width: 250, theme: 'coral' },
-  academy: { atlas: 'training', row: 1, x: 1110, y: 740, width: 280, theme: 'academy' },
-  training: { atlas: 'training', row: 2, x: 1040, y: 1050, width: 300, theme: 'sport' },
-  offices: { atlas: 'commerce', row: 0, x: 300, y: 390, width: 250, theme: 'royal' },
-  sport: { atlas: 'commerce', row: 1, x: 650, y: 965, width: 250, theme: 'sport' },
-  shop: { atlas: 'commerce', row: 2, x: 300, y: 980, width: 240, theme: 'coral' },
-  finance: { atlas: 'relations', row: 0, x: 700, y: 1270, width: 250, theme: 'gold' },
-  social: { atlas: 'relations', row: 1, x: 310, y: 1260, width: 250, theme: 'festival' },
-  institution: { atlas: 'relations', row: 2, x: 1110, y: 1360, width: 260, theme: 'crimson' },
-  press: { atlas: 'culture', row: 0, x: 310, y: 1550, width: 250, theme: 'press' },
-  museum: { atlas: 'culture', row: 1, x: 700, y: 1570, width: 260, theme: 'gold' },
-  competition: { atlas: 'culture', row: 2, x: 1080, y: 1650, width: 255, theme: 'festival' },
+  hq: { atlas: 'core', row: 0, x: 715, y: 420, width: 275, theme: 'club' },
+  offices: { atlas: 'commerce', row: 0, x: 950, y: 442, width: 210, theme: 'club' },
+  finance: { atlas: 'relations', row: 0, x: 265, y: 418, width: 210, theme: 'business' },
+  marketing: { atlas: 'training', row: 0, x: 480, y: 435, width: 200, theme: 'business' },
+  research: { atlas: 'core', row: 2, x: 1190, y: 440, width: 340, theme: 'science' },
+  stadium: { atlas: 'core', row: 1, x: 790, y: 960, width: 700, theme: 'sport' },
+  training: { atlas: 'training', row: 2, x: 1440, y: 1020, width: 250, theme: 'sport' },
+  shop: { atlas: 'commerce', row: 2, x: 320, y: 1260, width: 205, theme: 'retail' },
+  social: { atlas: 'relations', row: 1, x: 535, y: 1280, width: 210, theme: 'fans' },
+  sport: { atlas: 'commerce', row: 1, x: 800, y: 1260, width: 310, theme: 'sport' },
+  academy: { atlas: 'training', row: 1, x: 1205, y: 1290, width: 400, theme: 'academy' },
+  press: { atlas: 'culture', row: 0, x: 255, y: 1740, width: 210, theme: 'press' },
+  institution: { atlas: 'relations', row: 2, x: 480, y: 1770, width: 210, theme: 'club' },
+  museum: { atlas: 'culture', row: 1, x: 800, y: 1800, width: 340, theme: 'club' },
+  competition: { atlas: 'culture', row: 2, x: 1260, y: 1790, width: 370, theme: 'sport' },
 };
-export const WORLD = { width: 1420, height: 1920 };
+export const WORLD = { width: 1600, height: 2400 };
 export type Camera = { x: number; y: number; zoom: number };
 export function clampCamera(c: Camera, width: number, height: number): Camera {
-  const zoom = Math.max(0.27, Math.min(1.15, c.zoom));
-  const margin = 70;
-  return {
-    zoom,
-    x: Math.max(width - WORLD.width * zoom - margin, Math.min(margin, c.x)),
-    y: Math.max(height - WORLD.height * zoom - margin, Math.min(margin, c.y)),
-  };
+  const zoom = Math.max(
+    Math.min(1.15, Math.max(0.27, width / WORLD.width, height / WORLD.height)),
+    Math.min(1.15, c.zoom),
+  );
+  const constrain = (value: number, viewport: number, world: number) =>
+    world * zoom <= viewport
+      ? (viewport - world * zoom) / 2
+      : Math.min(0, Math.max(viewport - world * zoom, value));
+  return { zoom, x: constrain(c.x, width, WORLD.width), y: constrain(c.y, height, WORLD.height) };
 }
 export function zoomCamera(c: Camera, zoom: number, anchor: { x: number; y: number }): Camera {
   const z = Math.max(0.27, Math.min(1.15, zoom));
@@ -50,9 +52,9 @@ export function cityEnvironment(
   return { mode: live ? 'matchday' : concert ? 'concert' : 'normal', live, concert, round };
 }
 export const LEVEL_DESCRIPTIONS = [
-  'Club de barrio: ladrillo, tejados y un primer equipo de trabajo.',
+  'Club de barrio: instalaciones compactas y primer equipo de trabajo.',
   'El club crece: segunda planta, nuevos accesos y equipamiento.',
   'Etapa profesional: alas adicionales, cristal y zonas especializadas.',
   'Referencia nacional: grandes volúmenes, cubiertas y servicios avanzados.',
-  'Capital del fútbol: arquitectura monumental, jardines y acabados de lujo.',
+  'Campus de referencia: edificios amplios, terrazas y equipamiento avanzado.',
 ];

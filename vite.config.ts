@@ -25,9 +25,23 @@ export default defineConfig({
       },
       workbox: {
         clientsClaim: true,
+        additionalManifestEntries: [
+          { url: '/assets/futbol/fallback/jugador.png', revision: 'v03-player-1' },
+          { url: '/assets/futbol/fallback/escudo.png', revision: 'v03-club-1' },
+        ],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-        globIgnores: ['sports/**'],
+        globIgnores: ['sports/**', 'assets/futbol/**'],
         runtimeCaching: [
+          {
+            urlPattern: /\/assets\/futbol\/.*\.png(?:\?.*)?$/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'monigones-local-football-v3',
+              networkTimeoutSeconds: 3,
+              expiration: { maxEntries: 550, maxAgeSeconds: 30 * 24 * 3600 },
+              cacheableResponse: { statuses: [200] },
+            },
+          },
           {
             urlPattern: /\/sports\/.*\.(?:jpg|jpeg|png|webp)$/,
             handler: 'CacheFirst',
@@ -48,6 +62,10 @@ export default defineConfig({
   server: {
     port: Number(process.env.WEB_PORT || 5173),
     proxy: {
+      '/assets/futbol': {
+        target: `http://127.0.0.1:${process.env.PORT || 3001}`,
+        changeOrigin: true,
+      },
       '/api': { target: `http://127.0.0.1:${process.env.PORT || 3001}`, changeOrigin: true },
     },
   },

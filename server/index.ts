@@ -1,3 +1,4 @@
+import { mediaStatus, publicFootballPath } from './football-media';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, extname } from 'node:path';
@@ -99,6 +100,24 @@ const server = createServer(async (req, res) => {
         rate.n++;
         invariant(rate.n <= 180, 'Demasiadas peticiones. Espera un minuto.');
       }
+    }
+    if (req.method === 'GET' && url.pathname === '/api/football-assets') {
+      json(res, 200, mediaStatus());
+      return;
+    }
+    if (req.method === 'GET' && url.pathname.startsWith('/assets/futbol/')) {
+      const file = publicFootballPath(url.pathname);
+      if (!file || !existsSync(file)) {
+        json(res, 404, { error: 'Imagen no encontrada.' });
+        return;
+      }
+      res.writeHead(200, {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'no-cache',
+        'X-Content-Type-Options': 'nosniff',
+      });
+      res.end(readFileSync(file));
+      return;
     }
     if (url.pathname === '/api/health') {
       json(res, 200, { ok: true, mode: 'local-server', demo, adminTools });

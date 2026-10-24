@@ -1,6 +1,6 @@
 {
   "name": "monigones",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -18,7 +18,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "sports:assets": "node --import tsx scripts/sports-media.ts",
-    "sports:assets:import": "node --import tsx scripts/sports-media.ts"
+    "sports:assets:import": "node --import tsx scripts/sports-media.ts",
+    "images:prepare": "node --import tsx scripts/football-images.ts --prepare",
+    "images:validate": "node --import tsx scripts/football-images.ts"
   },
   "dependencies": {
     "@noble/hashes": "^2.4.0",
