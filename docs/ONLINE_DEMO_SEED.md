@@ -1,6 +1,6 @@
 # Demostración online de Monigones
 
-**v0.6:** la nueva modalidad de cinco equipos personalizados y sexta plaza vacía se documenta en [DEMO_FANTASY_TEAMS.md](DEMO_FANTASY_TEAMS.md). Usa `fantasyTeams` en modo avanzado y añade `--offline-preview`, sin credenciales ni red. A. Santos continúa pendiente y bloquea su importación. El catálogo nuevo tiene 500 jugadores reales; las instantáneas completas de v0.5 siguen admitidas sin reescribirlas. Las cifras de jugadores ficticios más abajo describen el catálogo histórico.
+**Fuente definitiva:** [DEMO_FANTASY_TEAMS.md](DEMO_FANTASY_TEAMS.md) documenta cinco equipos completos, Antony y Fermín confirmados, y sexta plaza vacía. La previsualización offline ya pasa. Este documento describe el importador de **creación**, que no sobrescribe ligas existentes. Para sustituir la demo conservando cuenta y UUID, usar [DEMO_REPLACEMENT.md](DEMO_REPLACEMENT.md), con su migración nueva y respaldo. Las descripciones de 72 contratos y nombres antiguos más abajo son históricas; no son una segunda fuente de inicialización.
 
 El importador reutiliza el motor del juego local. No lee tu partida personal por defecto, no copia contraseñas o sesiones y no crea cuentas Auth. La preparación y las pruebas se realizan localmente; los comandos de producción de este documento son pasos posteriores para el propietario.
 
@@ -16,7 +16,7 @@ El importador reutiliza el motor del juego local. No lee tu partida personal por
 
 `package.json` registra `seed:online-demo` y `export:local-demo`. `server/online/store.ts` conserva el nombre de presidente de la demo guardado en cada club; las ligas normales siguen usando sus perfiles. `.monigones-demo/` está ignorada por Git. No hay cambios de frontend, catálogo, gráficos ni reglas económicas/deportivas.
 
-## Procedencia de los datos
+## Procedencia histórica de los datos (importador original)
 
 SQLite se inicializa en `server/store.ts`, constructor de `Store`: crea `demo1` a `demo6`, llamados **Presidente 1** a **Presidente 6**, y guarda `createGame(Date.now())`. Sus correos locales `crown.local` y contraseñas desactivadas no se importan. `Store.save()` llama a `syncAttention()`.
 

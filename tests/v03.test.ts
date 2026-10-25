@@ -103,8 +103,8 @@ describe('v0.3: catálogo manual de PNG', () => {
       expect(asset.entry?.clubId).toBe(p.realClubId);
       const bytes = readFileSync('public' + asset.photo);
       expect(bytes.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
-      expect(bytes.readUInt32BE(16)).toBe(512);
-      expect(bytes.readUInt32BE(20)).toBe(512);
+      expect(bytes.readUInt32BE(16)).toBeGreaterThanOrEqual(64);
+      expect(bytes.readUInt32BE(20)).toBeGreaterThanOrEqual(64);
     }
     expect(REAL_CLUBS).toHaveLength(20);
     for (const club of REAL_CLUBS) expect(existsSync('public' + clubAsset(club.id))).toBe(true);

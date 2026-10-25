@@ -1,0 +1,62 @@
+[WebServer] (node:3674) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3718) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3718) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3718) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(node:3652) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:3729) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/game.spec.ts:69:1 › obra, finalización en servidor y cambio del edificio (5.2s)
+(node:3729) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✓  2 tests/e2e/v05.spec.ts:135:1 › v05: selector táctico: vista previa, bloqueo, filas reales, servidor y recarga (20.4s)
+  ✓  3 tests/e2e/v05.spec.ts:191:1 › v05: auditoría visual completa, cinco tamaños y consola sin extensiones (2.4m)
+  ✘  4 tests/e2e/z-demo-replacement.spec.ts:7:1 › demo sustituida: la sesión conservada carga Cholo ATM y permite mercado, convocatoria y chat (7.1s)
+
+
+  1) tests/e2e/z-demo-replacement.spec.ts:7:1 › demo sustituida: la sesión conservada carga Cholo ATM y permite mercado, convocatoria y chat 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Demo definitiva 2358a096-b083-4222-a2bf-7827e29c770f')
+    Expected: visible
+    Error: strict mode violation: getByText('Demo definitiva 2358a096-b083-4222-a2bf-7827e29c770f') resolved to 2 elements:
+        1) <p>Demo definitiva 2358a096-b083-4222-a2bf-7827e29c7…</p> aka getByRole('dialog', { name: 'Chat de la liga' }).getByRole('paragraph')
+        2) <textarea rows="1" required="" maxlength="500" aria-label="Mensaje a la liga" placeholder="Un mensaje para tu liga…">Demo definitiva 2358a096-b083-4222-a2bf-7827e29c7…</textarea> aka getByRole('textbox', { name: 'Mensaje a la liga' })
+
+    Call log:
+      - Expect "toBeVisible" getByText('Demo definitiva 2358a096-b083-4222-a2bf-7827e29c770f') with timeout 10000ms
+      - waiting for getByText('Demo definitiva 2358a096-b083-4222-a2bf-7827e29c770f')
+
+
+      42 |     await page.reload();
+      43 |     await page.locator('.newspaper-chat-toggle').click();
+    > 44 |     await expect(page.getByText(message)).toBeVisible();
+         |                                           ^
+      45 |   } finally {
+      46 |     rmSync(directory, { recursive: true, force: true });
+      47 |   }
+        at /Users/montero/Proyectos/juego-futbol/tests/e2e/z-demo-replacement.spec.ts:44:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/z-demo-replacement-demo-su-2b8ac-mercado-convocatoria-y-chat/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/z-demo-replacement-demo-su-2b8ac-mercado-convocatoria-y-chat/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/z-demo-replacement-demo-su-2b8ac-mercado-convocatoria-y-chat/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/z-demo-replacement-demo-su-2b8ac-mercado-convocatoria-y-chat/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/z-demo-replacement.spec.ts:7:1 › demo sustituida: la sesión conservada carga Cholo ATM y permite mercado, convocatoria y chat 
+  3 passed (3.0m)

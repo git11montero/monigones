@@ -1,0 +1,12 @@
+{
+  "environment": "production",
+  "projectRef": "vevmceaoebrpctepytzn",
+  "leagueId": "d42761a6-e7a1-4e99-a1e1-5d3424a244b9",
+  "adminUserId": "9172013f-73b5-4edb-8441-436602e82236",
+  "mode": "advanced",
+  "seed": "monigones-fantasy-definitive-v06",
+  "sourceAt": "2026-10-25T10:00:00Z",
+  "fantasyTeams": "../data/demo-fantasy-v06.json",
+  "startAt": "now",
+  "users": { "demo1": "9172013f-73b5-4edb-8441-436602e82236" }
+}

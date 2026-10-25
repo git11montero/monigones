@@ -119,12 +119,11 @@
       "formation": "4-2-4",
       "starters": [
         {
-          "reference": "A. Santos",
-          "playerId": null,
-          "realClubId": null,
-          "fullName": null,
-          "position": null,
-          "pending": "Identidad pendiente de confirmación del usuario; no asignar a Antony."
+          "reference": "Antony",
+          "playerId": "betis-17",
+          "realClubId": "betis",
+          "fullName": "Antony Matheus dos Santos",
+          "position": "DEL"
         },
         {
           "reference": "Zabiri",

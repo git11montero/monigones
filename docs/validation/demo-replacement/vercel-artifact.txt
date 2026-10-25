@@ -1,0 +1,7 @@
+{"runtime":"v24.22.1","handler":"api/[...path].js","isolated":true,"nativeEsm":true,"httpChecks":36,"profile204":true,"parsedAndConsumedBodies":true,"membershipAndGame":true,"supabase":"local HTTP fixture; no remote requests","status":"passed"}
+monigones.online {
+  code: 'RPC_INVALID_JSON',
+  rpc: 'online_profile',
+  upstreamStatus: 200
+}
+monigones.online { code: 'RPC_REJECTED', rpc: 'online_profile', upstreamStatus: 503 }

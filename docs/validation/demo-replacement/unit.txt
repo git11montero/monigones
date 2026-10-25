@@ -1,0 +1,24 @@
+
+> monigones@0.6.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /Users/montero/Proyectos/juego-futbol
+
+(node:3406) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3402) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3408) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3403) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  15 passed (15)
+      Tests  210 passed (210)
+   Start at  17:42:08
+   Duration  3.78s (tests 69%, import 13%, environment 11%, transform 6%, worker 1%)
+
+    Isolate  15 workers spawned · ~282ms startup each (spawn + environment, per file)
+             at least ~322ms faster with isolate: false — reuses workers across files instead of one per file
+

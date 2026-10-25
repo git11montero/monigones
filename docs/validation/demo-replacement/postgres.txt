@@ -1,0 +1,13 @@
+
+> monigones@0.6.0 test:postgres
+> node scripts/test-postgres.mjs
+
+
+ RUN  v5.0.5 /Users/montero/Proyectos/juego-futbol
+
+
+ Test Files  3 passed (3)
+      Tests  49 passed (49)
+   Start at  17:47:17
+   Duration  22.56s (tests 98%, import 1%, transform 1%)
+

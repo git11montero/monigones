@@ -251,4 +251,4 @@ Consulta [el informe v0.5](MONIGONES_V05_DELIVERY.md) y [la galería](screenshot
 
 ## Cambios v0.6
 
-Ver [entrega v0.6](MONIGONES_V06_DELIVERY.md), [demo personalizada](DEMO_FANTASY_TEAMS.md) e [imágenes en Vercel](IMAGE_ASSETS_V06.md). No se requiere migración SQL nueva para estos cambios. Las ligas ya guardadas mantienen su catálogo; la nueva fuente personalizada crea otra liga y actualmente impide cargar A. Santos sin identidad confirmada.
+Ver [entrega v0.6](MONIGONES_V06_DELIVERY.md), [demo personalizada](DEMO_FANTASY_TEAMS.md) e [imágenes en Vercel](IMAGE_ASSETS_V06.md). Las identidades de Antony y Fermín están resueltas. La fuente personalizada es el valor predeterminado para demos nuevas. Para reemplazar la liga existente conservando cuenta y UUID, seguir [DEMO_REPLACEMENT.md](DEMO_REPLACEMENT.md): requiere la migración adicional `202610250002_demo_replace.sql`, publicación previa del backend/frontend nuevos, respaldo y confirmación. Nada se aplica automáticamente a partidas guardadas.

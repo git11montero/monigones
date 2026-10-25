@@ -138,7 +138,9 @@ const server = createServer(async (req, res) => {
       invariant(demo, 'Las cuentas de demostración están desactivadas.');
       const b = await body(req);
       const id = string(b.userId);
-      invariant(/^demo[1-6]$/.test(id), 'Cuenta no disponible.');
+      // A historical sixth account remains usable after an explicit restoration.
+      // New demos have no sixth membership, so the reserved club cannot log in.
+      invariant(/^demo[1-6]$/.test(id) && store.membership(id), 'Cuenta no disponible.');
       setSession(res, id);
       json(res, 200, { ok: true });
       return;
@@ -196,7 +198,19 @@ const server = createServer(async (req, res) => {
         );
         const b = await body(req);
         invariant(typeof b.type === 'string', 'Acción inválida.');
-        json(res, 200, store.dispatch(user.id, b as Command, key, adminTools));
+        json(
+          res,
+          200,
+          store.dispatch(
+            user.id,
+            b as Command,
+            key,
+            adminTools,
+            typeof req.headers['x-monigones-generation'] === 'string'
+              ? req.headers['x-monigones-generation']
+              : undefined,
+          ),
+        );
         broadcast();
         return;
       }

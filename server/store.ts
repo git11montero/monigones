@@ -30,13 +30,14 @@ export class Store {
  `);
     if (demo && !this.db.prepare('SELECT id FROM users WHERE id=?').get('demo1')) {
       this.tx(() => {
-        for (let i = 1; i <= 6; i++)
+        for (let i = 1; i <= 5; i++)
           this.db
             .prepare('INSERT INTO users VALUES(?,?,?,?)')
             .run(`demo${i}`, `presidente${i}@crown.local`, `Presidente ${i}`, 'disabled');
         const s = createGame(Date.now());
+        s.clubs[5].userId = `reserved-demo:${s.id}:demo6`;
         this.save(s, true);
-        for (const c of s.clubs)
+        for (const c of s.clubs.filter((c) => /^demo[1-5]$/.test(c.userId)))
           this.db.prepare('INSERT INTO memberships VALUES(?,?,?)').run(c.userId, s.id, c.id);
       });
     }
@@ -99,11 +100,15 @@ export class Store {
       return this.view(s, userId);
     });
   }
-  dispatch(userId: string, command: Command, key: string, adminTools = false) {
+  dispatch(userId: string, command: Command, key: string, adminTools = false, generation?: string) {
     return this.tx(() => {
       const m = this.membership(userId);
       invariant(m, 'No perteneces a una liga.');
       const s = this.getLeague(m.league_id);
+      invariant(
+        !s.resetId || generation === s.resetId,
+        'La demo ha cambiado. Actualiza la partida antes de volver a enviar esta acción.',
+      );
       const encoded = JSON.stringify(command);
       const prior = this.db
         .prepare('SELECT command,league_id FROM receipts WHERE user_id=? AND key=?')

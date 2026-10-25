@@ -1,0 +1,475 @@
+
+> monigones@0.6.0 seed:online-demo
+> node --import tsx scripts/seed-online-demo.ts --config examples/demo-fantasy-v06.config.json --offline-preview
+
+{
+  "complete": true,
+  "problems": [],
+  "config": {
+    "format": "monigones-fantasy-teams-v06",
+    "season": "2026/27",
+    "initialMoneyEuros": 100000000,
+    "reservedName": "Plaza reservada",
+    "teams": [
+      {
+        "slot": "demo1",
+        "name": "Cholo ATM",
+        "favorite": "atletico",
+        "formation": "3-3-4",
+        "starters": [
+          {
+            "reference": "Abde",
+            "playerId": "betis-18",
+            "realClubId": "betis",
+            "fullName": "Abde Ezzalzouli",
+            "position": "DEL"
+          },
+          {
+            "reference": "Raphinha",
+            "playerId": "barcelona-18",
+            "realClubId": "barcelona",
+            "fullName": "Raphael Dias Belloli",
+            "position": "DEL"
+          },
+          {
+            "reference": "Lamine Yamal",
+            "playerId": "barcelona-17",
+            "realClubId": "barcelona",
+            "fullName": "Lamine Yamal Nasraoui Ebana",
+            "position": "DEL"
+          },
+          {
+            "reference": "Iñigo Vicente",
+            "playerId": "racing-10",
+            "realClubId": "racing",
+            "fullName": "Iñigo Vicente",
+            "position": "MED"
+          },
+          {
+            "reference": "Fermín López",
+            "playerId": "barcelona-14",
+            "realClubId": "barcelona",
+            "fullName": "Fermín López",
+            "position": "MED"
+          },
+          {
+            "reference": "Fofana",
+            "playerId": "sevilla-9",
+            "realClubId": "sevilla",
+            "fullName": "Youssouf Fofana",
+            "position": "MED"
+          },
+          {
+            "reference": "Moro",
+            "playerId": "osasuna-18",
+            "realClubId": "osasuna",
+            "fullName": "Raúl Moro",
+            "position": "DEL"
+          },
+          {
+            "reference": "Marcos Llorente",
+            "playerId": "atletico-6",
+            "realClubId": "atletico",
+            "fullName": "Marcos Llorente",
+            "position": "DEF"
+          },
+          {
+            "reference": "Aymeric Laporte",
+            "playerId": "athletic-4",
+            "realClubId": "athletic",
+            "fullName": "Aymeric Laporte",
+            "position": "DEF"
+          },
+          {
+            "reference": "Alex Freeman",
+            "playerId": "ll-44529",
+            "realClubId": "villarreal",
+            "fullName": "Alex Freeman",
+            "position": "DEF"
+          },
+          {
+            "reference": "Emil Audero",
+            "playerId": "rayo-3",
+            "realClubId": "rayo",
+            "fullName": "Emil Audero",
+            "position": "POR"
+          }
+        ],
+        "bench": [
+          {
+            "reference": "Toni Martínez",
+            "playerId": "alaves-16",
+            "realClubId": "alaves",
+            "fullName": "Toni Martínez",
+            "position": "DEL"
+          },
+          {
+            "reference": "Hugo Novoa",
+            "playerId": "ll-14762",
+            "realClubId": "alaves",
+            "fullName": "Hugo Novoa",
+            "position": "DEF"
+          },
+          {
+            "reference": "Salvi Esquivel",
+            "playerId": "ll-40922",
+            "realClubId": "atletico",
+            "fullName": "Salvi Esquivel",
+            "position": "POR"
+          }
+        ]
+      },
+      {
+        "slot": "demo2",
+        "name": "Porcinos FC",
+        "favorite": "barcelona",
+        "formation": "4-2-4",
+        "starters": [
+          {
+            "reference": "Antony",
+            "playerId": "betis-17",
+            "realClubId": "betis",
+            "fullName": "Antony Matheus dos Santos",
+            "position": "DEL"
+          },
+          {
+            "reference": "Zabiri",
+            "playerId": "racing-14",
+            "realClubId": "racing",
+            "fullName": "Yassir Zabiri",
+            "position": "DEL"
+          },
+          {
+            "reference": "Isaac Romero",
+            "playerId": "sevilla-11",
+            "realClubId": "sevilla",
+            "fullName": "Isaac Romero",
+            "position": "DEL"
+          },
+          {
+            "reference": "Giuliano Simeone",
+            "playerId": "ll-22856",
+            "realClubId": "atletico",
+            "fullName": "Giuliano Simeone",
+            "position": "DEL"
+          },
+          {
+            "reference": "Álex Baena",
+            "playerId": "atletico-11",
+            "realClubId": "atletico",
+            "fullName": "Álex Baena",
+            "position": "MED"
+          },
+          {
+            "reference": "Pedri",
+            "playerId": "barcelona-10",
+            "realClubId": "barcelona",
+            "fullName": "Pedro González López",
+            "position": "MED"
+          },
+          {
+            "reference": "Marc Pubill",
+            "playerId": "atletico-3",
+            "realClubId": "atletico",
+            "fullName": "Marc Pubill",
+            "position": "DEF"
+          },
+          {
+            "reference": "Pau Cubarsí",
+            "playerId": "barcelona-3",
+            "realClubId": "barcelona",
+            "fullName": "Pau Cubarsí",
+            "position": "DEF"
+          },
+          {
+            "reference": "Xavi Espart",
+            "playerId": "ll-43270",
+            "realClubId": "barcelona",
+            "fullName": "Xavi Espart",
+            "position": "DEF"
+          },
+          {
+            "reference": "Jesús Areso",
+            "playerId": "athletic-2",
+            "realClubId": "athletic",
+            "fullName": "Jesús Areso",
+            "position": "DEF"
+          },
+          {
+            "reference": "Jan Oblak",
+            "playerId": "atletico-0",
+            "realClubId": "atletico",
+            "fullName": "Jan Oblak",
+            "position": "POR"
+          }
+        ],
+        "bench": []
+      },
+      {
+        "slot": "demo3",
+        "name": "Madurito",
+        "favorite": "madrid",
+        "formation": "3-4-3",
+        "starters": [
+          {
+            "reference": "Gonçalo Guedes",
+            "playerId": "sociedad-17",
+            "realClubId": "sociedad",
+            "fullName": "Gonçalo Manuel Ganchinho Guedes",
+            "position": "DEL"
+          },
+          {
+            "reference": "Yan Diomande",
+            "playerId": "madrid-15",
+            "realClubId": "madrid",
+            "fullName": "Yan Diomande",
+            "position": "DEL"
+          },
+          {
+            "reference": "Brugué",
+            "playerId": "levante-13",
+            "realClubId": "levante",
+            "fullName": "Roger Brugué",
+            "position": "DEL"
+          },
+          {
+            "reference": "Dani Ceballos",
+            "playerId": "betis-11",
+            "realClubId": "betis",
+            "fullName": "Dani Ceballos",
+            "position": "MED"
+          },
+          {
+            "reference": "Edu Expósito",
+            "playerId": "espanyol-9",
+            "realClubId": "espanyol",
+            "fullName": "Edu Expósito",
+            "position": "MED"
+          },
+          {
+            "reference": "Mario Soriano",
+            "playerId": "deportivo-12",
+            "realClubId": "deportivo",
+            "fullName": "Mario Soriano",
+            "position": "MED"
+          },
+          {
+            "reference": "Pablo Barrios",
+            "playerId": "atletico-8",
+            "realClubId": "atletico",
+            "fullName": "Pablo Barrios",
+            "position": "MED"
+          },
+          {
+            "reference": "Ibrahima Konaté",
+            "playerId": "madrid-5",
+            "realClubId": "madrid",
+            "fullName": "Ibrahima Konaté",
+            "position": "DEF"
+          },
+          {
+            "reference": "Aitor Paredes",
+            "playerId": "ll-15047",
+            "realClubId": "athletic",
+            "fullName": "Aitor Paredes",
+            "position": "DEF"
+          },
+          {
+            "reference": "Yoel Lago",
+            "playerId": "celta-8",
+            "realClubId": "celta",
+            "fullName": "Yoel Lago",
+            "position": "DEF"
+          },
+          {
+            "reference": "Péter Gulácsi",
+            "playerId": "villarreal-1",
+            "realClubId": "villarreal",
+            "fullName": "Péter Gulácsi",
+            "position": "POR"
+          }
+        ],
+        "bench": []
+      },
+      {
+        "slot": "demo4",
+        "name": "Juancarli Team",
+        "favorite": "betis",
+        "formation": "3-4-3",
+        "starters": [
+          {
+            "reference": "Fer Niño",
+            "playerId": "elche-13",
+            "realClubId": "elche",
+            "fullName": "Fer Niño",
+            "position": "DEL"
+          },
+          {
+            "reference": "Jonathan David",
+            "playerId": "atletico-18",
+            "realClubId": "atletico",
+            "fullName": "Jonathan David",
+            "position": "DEL"
+          },
+          {
+            "reference": "David Otorbi",
+            "playerId": "ll-35179",
+            "realClubId": "valencia",
+            "fullName": "David Otorbi",
+            "position": "DEL"
+          },
+          {
+            "reference": "Isco",
+            "playerId": "betis-13",
+            "realClubId": "betis",
+            "fullName": "Francisco Román Alarcón Suárez",
+            "position": "MED"
+          },
+          {
+            "reference": "Izan Merino",
+            "playerId": "malaga-11",
+            "realClubId": "malaga",
+            "fullName": "Izan Merino",
+            "position": "MED"
+          },
+          {
+            "reference": "Arda Güler",
+            "playerId": "ll-23967",
+            "realClubId": "madrid",
+            "fullName": "Arda Güler",
+            "position": "MED"
+          },
+          {
+            "reference": "Agoumé",
+            "playerId": "sevilla-10",
+            "realClubId": "sevilla",
+            "fullName": "Lucien Agoumé",
+            "position": "MED"
+          },
+          {
+            "reference": "José María Giménez",
+            "playerId": "deportivo-8",
+            "realClubId": "deportivo",
+            "fullName": "José María Giménez",
+            "position": "DEF"
+          },
+          {
+            "reference": "Catena",
+            "playerId": "osasuna-5",
+            "realClubId": "osasuna",
+            "fullName": "Alejandro Catena",
+            "position": "DEF"
+          },
+          {
+            "reference": "Valentini",
+            "playerId": "alaves-4",
+            "realClubId": "alaves",
+            "fullName": "Nicolás Valentini",
+            "position": "DEF"
+          },
+          {
+            "reference": "Leo Román",
+            "playerId": "deportivo-0",
+            "realClubId": "deportivo",
+            "fullName": "Leo Román",
+            "position": "POR"
+          }
+        ],
+        "bench": []
+      },
+      {
+        "slot": "demo5",
+        "name": "Joselinho",
+        "favorite": "osasuna",
+        "formation": "3-3-4",
+        "starters": [
+          {
+            "reference": "Ante Budimir",
+            "playerId": "osasuna-15",
+            "realClubId": "osasuna",
+            "fullName": "Ante Budimir",
+            "position": "DEL"
+          },
+          {
+            "reference": "Roberto Fernández",
+            "playerId": "espanyol-17",
+            "realClubId": "espanyol",
+            "fullName": "Roberto Fernández",
+            "position": "DEL"
+          },
+          {
+            "reference": "Martín Satriano",
+            "playerId": "getafe-12",
+            "realClubId": "getafe",
+            "fullName": "Martín Satriano",
+            "position": "DEL"
+          },
+          {
+            "reference": "Correia",
+            "playerId": "sevilla-17",
+            "realClubId": "sevilla",
+            "fullName": "Félix Alexandre Andrade Sanches Correia",
+            "position": "DEL"
+          },
+          {
+            "reference": "Jude Bellingham",
+            "playerId": "madrid-8",
+            "realClubId": "madrid",
+            "fullName": "Jude Bellingham",
+            "position": "MED"
+          },
+          {
+            "reference": "Carlos Soler",
+            "playerId": "sociedad-10",
+            "realClubId": "sociedad",
+            "fullName": "Carlos Soler",
+            "position": "MED"
+          },
+          {
+            "reference": "Luismi Cruz",
+            "playerId": "deportivo-17",
+            "realClubId": "deportivo",
+            "fullName": "Luismi Cruz",
+            "position": "MED"
+          },
+          {
+            "reference": "Alejandro Grimaldo",
+            "playerId": "atletico-2",
+            "realClubId": "atletico",
+            "fullName": "Alejandro Grimaldo",
+            "position": "DEF"
+          },
+          {
+            "reference": "De Haas",
+            "playerId": "valencia-6",
+            "realClubId": "valencia",
+            "fullName": "Justin de Haas",
+            "position": "DEF"
+          },
+          {
+            "reference": "Adrià Pedrosa",
+            "playerId": "rayo-7",
+            "realClubId": "rayo",
+            "fullName": "Adrià Pedrosa",
+            "position": "DEF"
+          },
+          {
+            "reference": "Unai Simón",
+            "playerId": "athletic-0",
+            "realClubId": "athletic",
+            "fullName": "Unai Simón",
+            "position": "POR"
+          }
+        ],
+        "bench": []
+      }
+    ]
+  },
+  "players": 58,
+  "clubs": 6,
+  "reservedRoster": 0
+}
+{
+  "snapshotHash": "f39104190f2f714eb7ec36cfac3b0fe42f988e2fcc77ca8d1497e816692f81ff",
+  "contracts": 58
+}

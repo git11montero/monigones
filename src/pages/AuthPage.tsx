@@ -1,3 +1,4 @@
+import { DEFAULT_FANTASY } from '../../shared/fantasy';
 import { GameSelect } from '../components/GameSelect';
 import { BRAND } from '../../shared/brand';
 import { useState } from 'react';
@@ -119,22 +120,18 @@ export default function AuthPage({ session }: { session: Session }) {
                 value={demo}
                 onChange={(e) => setDemo(e.target.value)}
               >
-                {[
-                  'Real Corona',
-                  'Atlético del Barrio',
-                  'Deportivo Aurora',
-                  'Sporting Oliva',
-                  'Unión del Puerto',
-                  'Racing Imperial',
-                ].map((n, i) => (
-                  <option value={`demo${i + 1}`} key={n}>
-                    {n}
-                    {i === 0 ? ' · Administrador' : ''}
-                  </option>
-                ))}
+                {DEFAULT_FANTASY.teams.map((team, i) => {
+                  const n = team.name;
+                  return (
+                    <option value={`demo${i + 1}`} key={n}>
+                      {n}
+                      {i === 0 ? ' · Administrador' : ''}
+                    </option>
+                  );
+                })}
               </GameSelect>
             </label>
-            <span>Sin registro · Seis clubes · Progreso persistente</span>
+            <span>Sin registro · Cinco equipos y una plaza reservada · Progreso persistente</span>
           </div>
         )}
         <div className="auth-divider">
@@ -277,7 +274,7 @@ export function OnboardingPage() {
           <input
             value={clubName}
             onChange={(e) => setClubName(e.target.value)}
-            placeholder="Real Corona"
+            placeholder="Nombre de tu club"
             minLength={3}
             maxLength={40}
             required

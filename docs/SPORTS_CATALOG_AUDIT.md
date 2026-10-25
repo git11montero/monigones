@@ -14,7 +14,7 @@ Selección: jugadores solicitados para la demo, después titularidades y minutos
 | Iñigo Vicente | MED | Adaptación Fantasy de mediapunta, documentada en [su perfil de posición](https://www.comuniate.com/jugadores/3010/inigo-vicente). LaLiga lo agrupa como Striker. |
 | Marcos Llorente | DEF | Se conserva la posición Fantasy de v0.5 para el carrilero. Su [club](https://www.atleticodemadrid.com/jugadores/marcos-llorente-moreno-2026-2027) lo clasifica como centrocampista polivalente y también describe su función de carrilero. No se presenta DEF como la etiqueta oficial de esa ficha. |
 
-Fermín López corresponde al FC Barcelona, según corrección expresa del usuario y ficha oficial. «A. Santos» permanece sin identidad ni club asignados; no se ha equiparado a Antony. «D. Gulácsi» se ha normalizado a **Péter Gulácsi**, portero del Villarreal, con [ficha oficial](https://www.laliga.com/jugador/peter-gulacsi) y [anuncio del club](https://villarrealcf.es/en/peter-gulacsi-nuevo-portero-del-villarreal-cf/); la inicial escrita no coincide y debe revisarse en la previsualización.
+Fermín López corresponde al FC Barcelona, según corrección expresa del usuario y ficha oficial. La confirmación definitiva del usuario identifica «A. Santos» como Antony Matheus dos Santos, nombre deportivo Antony: registro existente `betis-17`, Real Betis, DEL; asignado a Porcinos FC sin duplicar el catálogo. «D. Gulácsi» se ha normalizado a **Péter Gulácsi**, portero del Villarreal, con [ficha oficial](https://www.laliga.com/jugador/peter-gulacsi) y [anuncio del club](https://villarrealcf.es/en/peter-gulacsi-nuevo-portero-del-villarreal-cf/); la inicial escrita no coincide y debe revisarse en la previsualización.
 
 ## Compatibilidad y reproducción
 

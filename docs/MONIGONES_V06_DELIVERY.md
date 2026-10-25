@@ -1,5 +1,7 @@
 # Monigones v0.6 — entrega local
 
+> Entrega histórica anterior a la sustitución definitiva. Los pendientes de A. Santos y la propuesta de otra liga quedaron superados por la confirmación del usuario. El procedimiento actual, con fuente completa y migración adicional, está en [DEMO_REPLACEMENT.md](DEMO_REPLACEMENT.md); sus resultados de pruebas se registran por separado.
+
 No se ha modificado Supabase remoto, Auth, la liga importada, Vercel remoto ni la partida SQLite del usuario. No se ha desplegado. Versión de paquete: 0.6.0. El código conserva ambos modos: `npm run dev` o el build local con SQLite, y el artefacto online autocontenido de `.vercel/output` para Vercel. Al finalizar se deja `dist/` reconstruido en modo local; reconstruirlo no altera el artefacto prebuilt online.
 
 ## Implementado

@@ -46,6 +46,8 @@ export function mediaStatus(): Record<string, MediaStatus> {
     .filter((path) => playerFiles.has(path) && !allowed.has(path));
   for (const path of [...paths, ...additional]) {
     if (!existsSync('public' + path)) {
+      // Legacy PNG crests are optional when the user supplies WebP-only assets.
+      if (path.startsWith('/assets/futbol/escudos/') && path.endsWith('.png')) continue;
       result[path] = { version: 'missing', kind: 'missing' };
       continue;
     }

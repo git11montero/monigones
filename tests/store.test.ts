@@ -113,6 +113,7 @@ describe('draft y subasta especial', () => {
     s.contracts = [];
     s.draft.active = true;
     s.draft.finished = false;
+    s.draft.queue = s.players.filter((p) => p.value < 300000000).map((p) => p.id);
     const c = s.clubs[0],
       actor = { userId: c.userId, clubId: c.id, admin: true };
     execute(s, actor, { type: 'nextAuction' });

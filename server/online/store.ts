@@ -121,12 +121,20 @@ export class PostgresStore {
       await this.retry(attempt);
     }
   }
-  async dispatch(user: string, command: Command, key: string) {
+  async dispatch(user: string, command: Command, key: string, generation?: string) {
     invariant(/^[a-zA-Z0-9-]{8,100}$/.test(key), 'Falta una clave de idempotencia válida.');
     const hash = operationHash(command);
+    let firstGeneration: string | undefined;
     for (let attempt = 0; ; attempt++) {
       const snapshot = await this.load(user);
       invariant(snapshot.membership, 'No perteneces a una liga.');
+      const currentGeneration = snapshot.state.resetId || snapshot.state.id;
+      firstGeneration ??= currentGeneration;
+      invariant(
+        firstGeneration === currentGeneration &&
+          (!snapshot.state.resetId || generation === currentGeneration),
+        'La demo ha cambiado. Actualiza la partida antes de volver a enviar esta acción.',
+      );
       const prior = await this.rpc.call<{ hash: string; league: string } | null>('online_receipt', {
         p_user: user,
         p_key: key,

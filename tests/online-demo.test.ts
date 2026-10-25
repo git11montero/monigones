@@ -40,7 +40,9 @@ describe('Fuente de demo, instantáneas y seguridad del CLI', () => {
     execute(s, actor, { type: 'sell', playerId: s.contracts[0].playerId });
     const player = s.players.find((p) => p.id === s.marketPlayers[0])!;
     execute(s, actor, { type: 'bid', playerId: player.id, amount: player.value, salaryBps: 200 });
-    s.chat[0].text = `Referencia histórica ${s.id}`;
+    s.chat = [
+      { id: randomUUID(), clubId: s.clubs[0].id, at: s.now, text: `Referencia histórica ${s.id}` },
+    ];
     const plan = prepareDemo(config(), snapshotOf(s, 'generated-local-demo'), at + 30 * DAY);
     expect(plan.state.chat[0].text).toBe(s.chat[0].text);
     expect(plan.state.bids[0].createdAt).toBe(s.bids[0].createdAt + 30 * DAY);
@@ -70,7 +72,7 @@ describe('Fuente de demo, instantáneas y seguridad del CLI', () => {
         research: c.research,
       })),
     );
-    expect(a.contracts).toHaveLength(72);
+    expect(a.contracts).toHaveLength(58);
     expect(a.chat.map((c) => c.text)).toEqual(local.chat.map((c) => c.text));
   });
   it('distingue inicial sin plantilla/prima de avanzada con el draft demo terminado', () => {
@@ -129,7 +131,10 @@ describe('Fuente de demo, instantáneas y seguridad del CLI', () => {
       const hash = () => createHash('sha256').update(readFileSync(file)).digest('hex');
       const before = hash();
       const result = await exportSqliteDemo(file, state.id);
-      expect(result.state).toEqual(state);
+      expect(result.state).toEqual({
+        ...state,
+        clubs: state.clubs.map((c, i) => (i === 5 ? { ...c, userId: 'demo6' } : c)),
+      });
       expect(hash()).toBe(before);
       expect(JSON.stringify(result)).not.toMatch(/password|sessions|presidente1@crown.local/);
       expect(readSnapshot(result).sha256).toBe(result.sha256);
@@ -154,6 +159,8 @@ describe('Fuente de demo, instantáneas y seguridad del CLI', () => {
     const s = generatedDemo('advanced', at, 'local-demo-v1'),
       c = s.clubs[0];
     const actor = { userId: c.userId, clubId: c.id, admin: true };
+    c.buildings.hq = 1;
+    c.buildings.stadium = 1;
     execute(s, actor, { type: 'build', target: 'hq' });
     const target = s.jobs[0].endsAt;
     reconcile(s, target);

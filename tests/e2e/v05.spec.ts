@@ -4,6 +4,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { createGame } from '../../shared/seed';
 import { FORMATION_CATALOG } from '../../shared/formations';
 import { BUILDINGS } from '../../shared/config';
+import { execute } from '../../shared/engine';
 import type { GameState } from '../../shared/types';
 const root = 'docs/screenshots/v05';
 function fixture(info: TestInfo, change: (state: GameState) => void = () => {}) {
@@ -135,7 +136,15 @@ test('v05: selector táctico: vista previa, bloqueo, filas reales, servidor y re
   page,
 }, info) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  fixture(info);
+  fixture(info, (state) => {
+    const club = state.clubs[0];
+    execute(
+      state,
+      { userId: club.userId, clubId: club.id, admin: true },
+      { type: 'formation', formation: '4-4-2' },
+    );
+    club.facilities.pitch = 0;
+  });
   await login(page);
   await page.goto('/squad');
   await page.getByRole('button', { name: 'Formación 4-4-2', exact: true }).click();
@@ -272,7 +281,7 @@ test('v05: auditoría visual completa, cinco tamaños y consola sin extensiones'
       await shot(page, `${route.replaceAll('/', '-')}-${width}x${height}`);
       if (route === 'squad') {
         await page.getByRole('button', { name: 'Banquillo', exact: true }).click();
-        await expect(page.locator('.bench-summary')).toContainText('nivel 1');
+        await expect(page.locator('.bench-summary')).toContainText('3/3');
         await shot(page, `banquillo-${width}x${height}`);
         await page.getByRole('button', { name: 'Alineación', exact: true }).click();
         await page.getByRole('button', { name: /^Formación / }).click();
@@ -452,7 +461,9 @@ test('v05: ficha de jugador, museo rival y créditos sin desbordamiento', async 
     ]) {
       await page.goto('/' + route);
       await expect(page.locator('.interior-main h1').first()).toBeVisible();
-      const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1);
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth > innerWidth + 1,
+      );
       expect(overflow).toBe(false);
       await shot(page, `${label}-${width}x${height}`);
       audited.push({ route, width, height, overflow });

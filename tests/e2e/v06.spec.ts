@@ -137,7 +137,9 @@ test('v06: consultar formaciones no cambia convocatoria ni mejoras y ofertas con
   const after = await (await page.request.get('/api/state')).json();
   expect(after.state.clubs.find((p: any) => p.id === c.id).selection).toEqual(c.selection);
   await shot(page, 'entrenamiento-390x844');
-  await page.locator('.quality-legend').evaluate((el) => el.scrollIntoView({block:'center',behavior:'instant'}));
+  await page
+    .locator('.quality-legend')
+    .evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
   await shot(page, 'calidades-390x844');
   const free = before.state.players.find((p: any) => before.state.marketPlayers.includes(p.id));
   await page.goto('/player/' + free.id);
@@ -240,6 +242,10 @@ test('v06: escudos recuperan WebP, PNG compatible y neutral sin imágenes oculta
 }, info) => {
   fixture(info);
   await login(page);
+  // Supply a compatible PNG over the test route, without creating or changing user assets.
+  await page.route('**/assets/futbol/escudos/athletic.png*', (route) =>
+    route.fulfill({ path: 'public/assets/futbol/fallback/escudo.png', contentType: 'image/png' }),
+  );
   await page.route('**/assets/futbol/escudos/athletic.webp*', (route) => route.abort());
   await page.goto('/player/athletic-0');
   const image = page.locator('.sports-card .real-club-badge img');

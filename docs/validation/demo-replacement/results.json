@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-25",
+  "task": "Definitive Fantasy demo replacement",
+  "remoteChanges": false,
+  "userSqliteOpened": false,
+  "privateDemoFilesRead": false,
+  "authModified": false,
+  "deployed": false,
+  "source": {
+    "file": "data/demo-fantasy-v06.json",
+    "players": 500,
+    "clubs": 6,
+    "contracts": 58,
+    "pendingIdentities": 0,
+    "Antony": "betis-17 / Porcinos FC / DEL",
+    "Fermin": "barcelona-14 / Cholo ATM / MED"
+  },
+  "typescript": "passed",
+  "eslint": "passed",
+  "unit": {
+    "files": 15,
+    "passed": 210,
+    "failed": 0
+  },
+  "postgres": {
+    "engine": "PostgreSQL 17.11 disposable localhost, minimal Supabase Auth schema/roles",
+    "files": 3,
+    "passed": 49,
+    "failed": 0,
+    "newReplacementCases": 6,
+    "migrations": [
+      "202610230001_crown.sql",
+      "202610240001_online.sql",
+      "202610250001_online_demo.sql",
+      "202610250002_demo_replace.sql"
+    ],
+    "hostedSupabaseServicesTested": false
+  },
+  "browser": {
+    "distinctPassed": 50,
+    "historicalSkipped": 1,
+    "initialRun": {
+      "passed": 46,
+      "failed": 3,
+      "skipped": 1
+    },
+    "followup": {
+      "passed": 3,
+      "newCaseFailedDueToAmbiguousParagraphAndTextareaLocator": 1
+    },
+    "replacementCaseAfterSelectorCorrection": {
+      "passed": 1,
+      "failed": 0
+    },
+    "outstandingFailures": 0,
+    "note": "Results combined across full suite and targeted reruns; not a claim of one uninterrupted green run."
+  },
+  "buildLocal": "passed",
+  "buildOnline": "passed with public fixture config in isolated /tmp output",
+  "vercelBuild": "passed, local build only",
+  "vercelArtifact": {
+    "nativeEsm": true,
+    "node": "24.22.1",
+    "isolatedOutsideRepository": true,
+    "httpChecks": 36,
+    "passed": true,
+    "upstream": "local HTTP fixture only"
+  },
+  "interactiveCli": {
+    "fixtureOnly": true,
+    "replacementRevision": 2,
+    "restorationRevision": 3,
+    "verified": true,
+    "privateBackupAndReportsCreated": true
+  },
+  "assetsPngWebpModified": false,
+  "historicalScreenshotsPreserved": true,
+  "pending": [
+    "Remote migration approval",
+    "Backend/frontend deployment approval",
+    "Real-partida dry-run and review",
+    "Explicit approval before local or remote replacement",
+    "Hosted Auth/Realtime/Cron acceptance"
+  ]
+}

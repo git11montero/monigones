@@ -262,6 +262,7 @@ export interface Archive {
   ranking: { id: string; name: string; points: number }[];
 }
 export interface GameState {
+  resetId?: string;
   privateRng?: string;
   version: number;
   id: string;

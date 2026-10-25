@@ -254,7 +254,7 @@ describe('Importador de demostración: PostgreSQL real y API online', () => {
         value,
       })),
     );
-    expect(s.contracts).toHaveLength(72);
+    expect(s.contracts).toHaveLength(58);
     expect(s.draft.finished).toBe(true);
     expect(s.clubs.map((c) => c.resources)).toEqual(original.state.clubs.map((c) => c.resources));
     expect(s.clubs.map((c) => c.totalPoints)).toEqual(
@@ -464,6 +464,7 @@ describe('Importador de demostración: PostgreSQL real y API online', () => {
     syncAttention(advanced);
     execute(advanced, actor, { type: 'research', target: 'accounting' });
     reconcile(advanced, advanced.jobs[0].endsAt);
+    c.research.works = 1; // El vestuario de la fuente Fantasy ya está en nivel 2.
     execute(advanced, actor, { type: 'facility', target: 'locker' });
     reconcile(advanced, advanced.jobs[0].endsAt);
     reconcile(advanced, advanced.now + 3 * DAY);
@@ -477,7 +478,7 @@ describe('Importador de demostración: PostgreSQL real y API online', () => {
     expect(imported.clubs[0].research).toEqual(c.research);
     expect(imported.clubs[0].facilities).toEqual(c.facilities);
     expect(imported.clubs[0].research.accounting).toBe(1);
-    expect(imported.clubs[0].facilities.locker).toBe(1);
+    expect(imported.clubs[0].facilities.locker).toBe(3);
     expect(imported.clubs[0].totalPoints).toBe(c.totalPoints);
     const settled = advanced.rounds.find((r) => r.settled)!;
     expect(settled).toBeDefined();

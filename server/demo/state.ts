@@ -440,6 +440,29 @@ const timeKeys = new Set([
   'firstSeenAt',
   'resolvedAt',
 ]);
+/** Resume a checkpoint at the new authoritative clock without replaying overdue time. */
+export function rebaseCheckpoint(input: GameState, start: number): GameState {
+  const offset = start - input.now;
+  const days = (Date.parse(dailyKey(start)) - Date.parse(dailyKey(input.now))) / DAY;
+  const state: GameState = walk(structuredClone(input), (v, key) => {
+    if (typeof v === 'number' && timeKeys.has(key) && v !== 0) return v + offset;
+    if (typeof v === 'string' && ['$key', 'offerDay', 'lastPaidDay', 'lastDaily'].includes(key))
+      return v.replace(/\d{4}-\d{2}-\d{2}/g, (d) =>
+        new Date(Date.parse(d) + days * DAY).toISOString().slice(0, 10),
+      );
+    return v;
+  });
+  for (const c of state.clubs)
+    if (c.notificationReads)
+      c.notificationReads = Object.fromEntries(
+        Object.entries(c.notificationReads).map(([k, v]) => [k, v + offset]),
+      );
+  state.now = start;
+  state.timeOffset = 0;
+  state.lastDaily = dailyKey(start);
+  state.nextMarketAt = nextMarket(start);
+  return state;
+}
 /** Rebase a coherent checkpoint; do not replay historical jobs or grant rewards. */
 export function prepareDemo(config: DemoConfig, snapshot: DemoSnapshot, start: number) {
   const source = snapshot.state;

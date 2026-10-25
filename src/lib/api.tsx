@@ -220,6 +220,9 @@ export function GameProvider({ session, children }: { session: Session; children
     return () => clearTimeout(t);
   }, [notice]);
   const pending = useRef(new Map<string, string>());
+  useEffect(() => {
+    pending.current.clear();
+  }, [query.data?.state.resetId]);
   const mutation = useMutation({
     mutationFn: async (cmd: Command) => {
       if (!navigator.onLine || !online) throw Error('Sin conexión. La acción no se ha enviado.');
@@ -235,7 +238,10 @@ export function GameProvider({ session, children }: { session: Session; children
       const result = await request<Game>('/api/command', {
         method: 'POST',
         body: encoded,
-        headers: { 'Idempotency-Key': key },
+        headers: {
+          'Idempotency-Key': key,
+          'X-Monigones-Generation': query.data?.state.resetId || query.data?.state.id || '',
+        },
       });
       pending.current.delete(encoded);
       return result;

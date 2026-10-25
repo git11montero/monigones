@@ -1,0 +1,104 @@
+Vercel CLI 65.2.0
+Warning: Detected "engines": { "node": ">=22.22.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version
+Installing dependencies...
+
+up to date in 522ms
+
+151 packages are looking for funding
+  run `npm fund` for details
+
+> monigones@0.6.0 build:online
+> node scripts/build-online.mjs
+
+
+> monigones@0.6.0 check:online
+> tsc --project tsconfig.online.json
+
+Manifiesto estático: 662 imágenes PNG/WebP con versión de contenido.
+
+> monigones@0.6.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 1846 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/version.json                               0.05 kB │ gzip:   0.07 kB
+dist/manifest.webmanifest                       0.51 kB
+dist/index.html                                 1.02 kB │ gzip:   0.51 kB
+dist/assets/index-_zzMoqkd.css                145.84 kB │ gzip:  35.30 kB
+dist/assets/arrow-up-right-BNwqYQxj.js          0.16 kB │ gzip:   0.16 kB
+dist/assets/heart-BpHt057w.js                   0.24 kB │ gzip:   0.21 kB
+dist/assets/flask-conical-B4l7hT9C.js           0.30 kB │ gzip:   0.23 kB
+dist/assets/gavel-BcP4VGrV.js                   0.30 kB │ gzip:   0.21 kB
+dist/assets/newspaper-DCUiub0j.js               0.34 kB │ gzip:   0.24 kB
+dist/assets/gift-BIhKnE15.js                    0.35 kB │ gzip:   0.25 kB
+dist/assets/UnsavedChanges-CAaU9eTM.js          0.71 kB │ gzip:   0.48 kB
+dist/assets/sprout-C2F4LBwV.js                  0.81 kB │ gzip:   0.46 kB
+dist/assets/MoneyField-euQwtGE5.js              1.12 kB │ gzip:   0.68 kB
+dist/assets/PlayerCard-Dbm8AIOE.js              1.38 kB │ gzip:   0.66 kB
+dist/assets/ResourceVisibility-CKawuR95.js      2.00 kB │ gzip:   0.94 kB
+dist/assets/engine-BuzaRMCZ.js                  3.06 kB │ gzip:   1.47 kB
+dist/assets/FinancePage-Bi46X9UW.js             3.97 kB │ gzip:   1.63 kB
+dist/assets/SquadPage-Mo_XtdJW.js              10.10 kB │ gzip:   3.66 kB
+dist/assets/ResearchPage-BroarDgz.js           10.68 kB │ gzip:   4.34 kB
+dist/assets/SettingsPage-2gBtnfl9.js           11.10 kB │ gzip:   4.63 kB
+dist/assets/LeaguePage-D2gmtr7T.js             12.58 kB │ gzip:   4.33 kB
+dist/assets/MarketPage-B6MMXchX.js             13.50 kB │ gzip:   4.90 kB
+dist/assets/BuildingsPage-Dsn6K1I2.js          15.86 kB │ gzip:   5.84 kB
+dist/assets/CityPage-CZfelHl0.js               16.90 kB │ gzip:   6.63 kB
+dist/assets/SocialPages-ClvX80uc.js            17.21 kB │ gzip:   6.23 kB
+dist/assets/ManagementPages-Cf8FM-qV.js        20.72 kB │ gzip:   7.49 kB
+dist/assets/index-CY72-sCD.js               1,019.93 kB │ gzip: 268.80 kB
+
+(!) Some chunks are larger than 650 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.91s
+
+PWA v1.3.0
+Building src/sw.ts service worker ("iife" format)...
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/sw.js  2.74 kB │ gzip: 1.25 kB
+✓ built in 17ms
+
+PWA v1.3.0
+mode      injectManifest
+format:   iife
+precache  50 entries (9851.00 KiB)
+files generated
+  dist/sw.js
+PWA verificada: 50 recursos; versión coherente y configuración pública presente.
+Warning: Detected "engines": { "node": ">=22.22.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version
+Using TypeScript 5.9.3 (local user-provided)
+{
+  "status": "ok",
+  "outputDir": "/Users/montero/Proyectos/juego-futbol/.vercel/output",
+  "outputDirRelative": ".vercel/output",
+  "target": "production",
+  "message": "Build completed successfully.",
+  "next": [
+    {
+      "command": "vercel deploy",
+      "when": "Deploy the build output"
+    }
+  ]
+}

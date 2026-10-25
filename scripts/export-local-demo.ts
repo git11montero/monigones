@@ -20,6 +20,11 @@ export async function exportSqliteDemo(file: string, league: string) {
     const state = JSON.parse(row.state) as GameState;
     const presidents: Record<string, string> = {};
     for (const c of state.clubs) {
+      if (c.userId.startsWith('reserved-demo:')) {
+        c.userId = 'demo6';
+        presidents.demo6 = 'Plaza reservada';
+        continue;
+      }
       const user = db.prepare('SELECT name FROM users WHERE id=?').get(c.userId) as
         { name: string } | undefined;
       invariant(user, 'Presidente local inexistente.');

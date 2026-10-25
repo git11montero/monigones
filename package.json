@@ -28,7 +28,8 @@
     "test:vercel-artifact": "node scripts/test-vercel-artifact.mjs",
     "verify:vercel": "npx vercel build --prod && npm run test:vercel-artifact",
     "seed:online-demo": "node --import tsx scripts/seed-online-demo.ts",
-    "export:local-demo": "node --import tsx scripts/export-local-demo.ts"
+    "export:local-demo": "node --import tsx scripts/export-local-demo.ts",
+    "demo:replace": "node --import tsx scripts/replace-demo.ts"
   },
   "dependencies": {
     "@noble/hashes": "^2.4.0",

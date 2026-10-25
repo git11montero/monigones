@@ -151,6 +151,7 @@ export function onlineHandler(
             user.id,
             body as Command,
             request.headers.get('idempotency-key') || '',
+            request.headers.get('x-monigones-generation') || undefined,
           ),
         );
       }

@@ -302,6 +302,7 @@ describe('convocatorias y puntuaciones', () => {
       (ct) =>
         ct.clubId === c.id && !c.selection.starters.some((slot) => slot.playerId === ct.playerId),
     )!;
+    c.selection.bench = c.selection.bench.filter((id) => id !== reserve.playerId);
     reserve.happiness = 1;
     c.research.sale = 5;
     const p = s.players.find((p) => p.id === reserve.playerId)!;
@@ -322,6 +323,8 @@ describe('ciudad e investigación', () => {
     expect(c.resources.money).toBe(before - paid + Math.floor(paid / 2));
   });
   it('la sede limita edificios y las instalaciones al estadio', () => {
+    c.buildings.hq = 1;
+    c.buildings.stadium = 1;
     expect(() => cmd({ type: 'build', target: 'stadium' })).toThrow();
     c.buildings.hq = 2;
     cmd({ type: 'build', target: 'stadium' });
@@ -331,6 +334,8 @@ describe('ciudad e investigación', () => {
     expect(() => cmd({ type: 'facility', target: 'stands' })).toThrow();
   });
   it('completa sede central y desbloquea los demás niveles', () => {
+    c.buildings.hq = 1;
+    c.buildings.stadium = 1;
     cmd({ type: 'build', target: 'hq' });
     const end = s.jobs[0].endsAt;
     reconcile(s, end);
@@ -436,7 +441,7 @@ describe('comercio, eventos e historia', () => {
     const ct = s.contracts.find((ct) => ct.clubId === c.id)!;
     ct.clubId = s.clubs[1].id;
     ct.loan = { from: c.id, untilRound: 2 };
-    expect(rosterUsage(s, c)).toBe(12);
+    expect(rosterUsage(s, c)).toBe(14);
   });
   it('impide recoger dos veces un premio de evento', () => {
     s.audit.push(

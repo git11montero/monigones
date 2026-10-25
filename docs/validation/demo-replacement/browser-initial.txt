@@ -1,0 +1,193 @@
+
+> monigones@0.6.0 test:e2e
+> playwright test
+
+[WebServer] (node:1487) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1512) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(node:1466) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 50 tests using 1 worker
+
+(node:1542) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/game.spec.ts:7:1 › acceso, ciudad vertical, navegación y ausencia de desbordamiento (2.6s)
+  ✓   2 tests/e2e/game.spec.ts:26:1 › puja secreta, reserva persistente y retirada (6.4s)
+  ✓   3 tests/e2e/game.spec.ts:53:1 › actividad diaria, recompensa y bloqueo de repetición (4.3s)
+  ✘   4 tests/e2e/game.spec.ts:69:1 › obra, finalización en servidor y cambio del edificio (13.4s)
+(node:1669) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 tests/e2e/game.spec.ts:79:1 › alineación, cierre de jornada e informe persistente (4.5s)
+  ✓   6 tests/e2e/game.spec.ts:96:1 › chat entre dos presidentes y secreto de las pujas (3.8s)
+  ✓   7 tests/e2e/game.spec.ts:117:1 › mantiene columna móvil en escritorio y carga todos los paneles (21.7s)
+  ✓   8 tests/e2e/game.spec.ts:155:1 › consulta caché al perder conexión y recupera operaciones al volver (2.0s)
+  ✓   9 tests/e2e/game.spec.ts:174:1 › PWA de producción: manifest, iconos, service worker y recarga sin conexión (2.8s)
+  ✓  10 tests/e2e/onboarding.spec.ts:2:1 › registro, creación de club, invitación y draft conectados al servidor (5.3s)
+  -  11 tests/e2e/redesign-before.spec.ts:2:1 › archivo visual del diseño anterior
+(node:1669) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✓  12 tests/e2e/redesign.spec.ts:63:1 › cámara: zoom, arrastre sin abrir edificios, teclado y selección táctil (1.4s)
+  ✓  13 tests/e2e/redesign.spec.ts:87:1 › pellizco con dos dedos conserva el mapa y cambia su escala (1.7s)
+  ✓  14 tests/e2e/redesign.spec.ts:112:1 › cinco niveles de arquitectura, estadio e instalaciones ilustradas (7.8s)
+  ✓  15 tests/e2e/redesign.spec.ts:146:1 › obras reales: animación de construcción y evolución persistente (7.0s)
+  ✓  16 tests/e2e/redesign.spec.ts:169:1 › jornada: ambiente normal, inicio real, once, banquillo y cierre (8.2s)
+  ✓  17 tests/e2e/redesign.spec.ts:204:1 › fotografías, emblemas asociados, cartas y alternativa ante error de red (10.9s)
+  ✓  18 tests/e2e/redesign.spec.ts:245:1 › investigaciones por capítulos: tres árboles, ramas y dependencias (3.1s)
+  ✓  19 tests/e2e/redesign.spec.ts:262:1 › audio: gesto, efectos, silencio, preferencias persistentes y movimiento reducido (4.9s)
+  ✓  20 tests/e2e/redesign.spec.ts:298:1 › auditoría de todas las rutas, imágenes sin romper y vertical en móvil y escritorio (48.8s)
+  ✓  21 tests/e2e/redesign.spec.ts:379:1 › Safari WebKit y Chrome Android: acceso, ciudad, cámara y fotos (6.8s)
+  ✓  22 tests/e2e/redesign.spec.ts:416:1 › patrocinio y concierto conservan contratos reales y su ambiente (5.2s)
+  ✓  23 tests/e2e/updates.spec.ts:11:1 › v04: Workbox antiguo retiene configuración obsoleta; siguiente navegación recupera sin borrar sesión (13.6s)
+  ✓  24 tests/e2e/v02.spec.ts:59:1 › avisos: mercado consultado sincroniza entre sesiones; renovación y noticia nuevos reaparecen (5.5s)
+  ✓  25 tests/e2e/v02.spec.ts:94:1 › recursos ocultos persisten al navegar y recargar, sin ocultar el coste de una compra (6.7s)
+  ✓  26 tests/e2e/v02.spec.ts:122:1 › selectores: táctil, teclado, opciones bloqueadas y portal dentro de la pantalla (4.2s)
+  ✓  27 tests/e2e/v02.spec.ts:153:1 › cancelación de obra: volver conserva el trabajo; confirmar muestra y aplica el reembolso real (7.2s)
+  ✓  28 tests/e2e/v02.spec.ts:176:1 › chat integrado: otro presidente recibe, identifica y consulta el mismo mensaje persistente (7.1s)
+  ✓  29 tests/e2e/v02.spec.ts:211:1 › actividad: recompensa manual, reloj del dispositivo sin autoridad y bloqueo tras cobrar (3.3s)
+  ✓  30 tests/e2e/v02.spec.ts:243:1 › investigación: compara porcentajes reales, coste, requisitos y efecto pendiente sin promesas (3.2s)
+  ✓  31 tests/e2e/v02.spec.ts:264:1 › un borrador de identidad pide confirmación al salir; volver conserva los cambios (3.5s)
+  ✓  32 tests/e2e/v03.spec.ts:52:1 › v03: cámara sin controles ni banner, límites por rueda, teclado y arrastre (3.2s)
+  ✓  33 tests/e2e/v03.spec.ts:94:1 › v03: sustitución manual actualiza plantilla, mercado y PWA sin editar catálogo (10.6s)
+  ✓  34 tests/e2e/v03.spec.ts:176:1 › v03: chat multilínea, scroll y compositor con teclado simulado en ruta y periódico (5.2s)
+  ✓  35 tests/e2e/v04.spec.ts:10:1 › v04: recursos contextuales, 15 accesos, preferencia y auditoría de cuatro móviles y escritorio (47.5s)
+  ✓  36 tests/e2e/v04.spec.ts:69:1 › v04: gestos de mapa, scroll de secciones y zoom accesible sin restricción de viewport (3.0s)
+  ✓  37 tests/e2e/v04.spec.ts:133:1 › v04: iOS sin prompt, instrucciones, descarte persistente y standalone (12.7s)
+  ✓  38 tests/e2e/v04.spec.ts:171:1 › v04: Android captura instalación nativa y espera al botón; fallback sin evento (15.4s)
+  ✓  39 tests/e2e/v04.spec.ts:227:1 › v04: audio tras login, contexto único entre rutas y preferencias conservadas (4.3s)
+  ✓  40 tests/e2e/v05.spec.ts:68:1 › v05: jornada previa, directa, liquidada; accesos compartidos y gestos (7.2s)
+  ✘  41 tests/e2e/v05.spec.ts:134:1 › v05: selector táctico: vista previa, bloqueo, filas reales, servidor y recarga (45.6s)
+(node:2784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2784) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✘  42 tests/e2e/v05.spec.ts:182:1 › v05: auditoría visual completa, cinco tamaños y consola sin extensiones (15.0s)
+(node:2847) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2847) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✓  43 tests/e2e/v05.spec.ts:326:1 › v05: formaciones de varias líneas y seis medios legibles en cinco tamaños (1.5m)
+  ✓  44 tests/e2e/v05.spec.ts:375:1 › v05: detalle desplazado de cartas, investigación, convocatoria y jornadas en cinco tamaños (33.5s)
+  ✓  45 tests/e2e/v05.spec.ts:430:1 › v05: ficha de jugador, museo rival y créditos sin desbordamiento (16.4s)
+  ✓  46 tests/e2e/v06.spec.ts:60:1 › v06: barra estable, cabecera, WebP, mapa estático y ayuda en cinco tamaños (26.4s)
+  ✓  47 tests/e2e/v06.spec.ts:119:1 › v06: consultar formaciones no cambia convocatoria ni mejoras y ofertas conservan entrada (6.6s)
+  ✓  48 tests/e2e/v06.spec.ts:157:1 › v06: chat compartido entre dos presidentes, borrador y contexto conservados (4.9s)
+  ✓  49 tests/e2e/v06.spec.ts:187:1 › v06: WebKit y Chromium bloquean gestos exteriores sin bloquear el mapa ni texto de 16px (10.3s)
+  ✓  50 tests/e2e/v06.spec.ts:238:1 › v06: escudos recuperan WebP, PNG compatible y neutral sin imágenes ocultas (6.3s)
+
+
+  1) tests/e2e/game.spec.ts:69:1 › obra, finalización en servidor y cambio del edificio ────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('NIVEL 2 / 5')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('NIVEL 2 / 5') with timeout 10000ms
+      - waiting for getByText('NIVEL 2 / 5')
+
+
+      75 |   await page.getByRole('button', { name: 'Terminar obras e investigación' }).click();
+      76 |   await page.goto('/building/hq');
+    > 77 |   await expect(page.getByText('NIVEL 2 / 5')).toBeVisible();
+         |                                               ^
+      78 | });
+      79 | test('alineación, cierre de jornada e informe persistente', async ({ page }) => {
+      80 |   await login(page);
+        at /Users/montero/Proyectos/juego-futbol/tests/e2e/game.spec.ts:77:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/game-obra-finalización-en-servidor-y-cambio-del-edificio/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/game-obra-finalización-en-servidor-y-cambio-del-edificio/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/game-obra-finalización-en-servidor-y-cambio-del-edificio/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/game-obra-finalización-en-servidor-y-cambio-del-edificio/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/v05.spec.ts:134:1 › v05: selector táctico: vista previa, bloqueo, filas reales, servidor y recarga 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.click: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Formación 4-4-2', exact: true })
+
+
+      139 |   await login(page);
+      140 |   await page.goto('/squad');
+    > 141 |   await page.getByRole('button', { name: 'Formación 4-4-2', exact: true }).click();
+          |                                                                            ^
+      142 |   const dialog = page.getByRole('dialog', { name: 'Tu dibujo táctico' });
+      143 |   await expect(dialog.locator('.formation-choice')).toHaveCount(14);
+      144 |   await dialog.locator('.formation-choice').filter({ hasText: '3-3-4' }).click();
+        at /Users/montero/Proyectos/juego-futbol/tests/e2e/v05.spec.ts:141:76
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/v05-v05-selector-táctico-v-47a09-s-reales-servidor-y-recarga/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/v05-v05-selector-táctico-v-47a09-s-reales-servidor-y-recarga/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/v05-v05-selector-táctico-v-47a09-s-reales-servidor-y-recarga/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/v05-v05-selector-táctico-v-47a09-s-reales-servidor-y-recarga/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/v05.spec.ts:182:1 › v05: auditoría visual completa, cinco tamaños y consola sin extensiones 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('.bench-summary')
+    Expected substring: "nivel 1"
+    Received string:    "3/3Suplentes convocados2Entradas automáticasUn suplente por demarcación. Todos cobran convocatoria; las entradas automáticas esperan al final de su partido.Ampliar banquillo "
+    Timeout: 10000ms
+
+    Call log:
+      - Expect "toContainText" locator('.bench-summary') with timeout 10000ms
+      - waiting for locator('.bench-summary')
+        24 × locator resolved to <div class="bench-summary">…</div>
+           - unexpected value "3/3Suplentes convocados2Entradas automáticasUn suplente por demarcación. Todos cobran convocatoria; las entradas automáticas esperan al final de su partido.Ampliar banquillo "
+
+
+      273 |       if (route === 'squad') {
+      274 |         await page.getByRole('button', { name: 'Banquillo', exact: true }).click();
+    > 275 |         await expect(page.locator('.bench-summary')).toContainText('nivel 1');
+          |                                                      ^
+      276 |         await shot(page, `banquillo-${width}x${height}`);
+      277 |         await page.getByRole('button', { name: 'Alineación', exact: true }).click();
+      278 |         await page.getByRole('button', { name: /^Formación / }).click();
+        at /Users/montero/Proyectos/juego-futbol/tests/e2e/v05.spec.ts:275:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/v05-v05-auditoría-visual-c-a18d2-s-y-consola-sin-extensiones/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/v05-v05-auditoría-visual-c-a18d2-s-y-consola-sin-extensiones/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/v05-v05-auditoría-visual-c-a18d2-s-y-consola-sin-extensiones/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/v05-v05-auditoría-visual-c-a18d2-s-y-consola-sin-extensiones/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests/e2e/game.spec.ts:69:1 › obra, finalización en servidor y cambio del edificio ─────────────
+    tests/e2e/v05.spec.ts:134:1 › v05: selector táctico: vista previa, bloqueo, filas reales, servidor y recarga 
+    tests/e2e/v05.spec.ts:182:1 › v05: auditoría visual completa, cinco tamaños y consola sin extensiones 
+  1 skipped
+  46 passed (10.0m)

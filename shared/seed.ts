@@ -1,6 +1,7 @@
+import { DEFAULT_FANTASY, populateFantasy } from './fantasy.js';
 import { BUILDINGS, DAY, FORMATIONS, RULES, euro } from './config.js';
 import { dailyKey, nextMarket } from './math.js';
-import { mockMatches, REAL_CLUBS, roster } from './sports.js';
+import { mockMatches, roster } from './sports.js';
 import type { Club, GameEvent, GameState, Round, Selection } from './types.js';
 export const uid = () => crypto.randomUUID();
 export function emptySelection(round: number): Selection {
@@ -129,17 +130,13 @@ export function createGame(
   const players = roster(now);
   const clubs = demo
     ? [
-        'Real Corona',
-        'Atlético del Barrio',
-        'Deportivo Aurora',
-        'Sporting Oliva',
-        'Unión del Puerto',
-        'Racing Imperial',
-      ].map((n, i) =>
+        ...DEFAULT_FANTASY.teams.map((t) => ({ name: t.name, favorite: t.favorite })),
+        { name: DEFAULT_FANTASY.reservedName, favorite: 'madrid' },
+      ].map((t, i) =>
         makeClub(
           `demo${i + 1}`,
-          n,
-          REAL_CLUBS[i * 3].id,
+          t.name,
+          t.favorite,
           ['#b5944c', '#b26252', '#758bb4', '#60977a', '#6c9ca2', '#9e759b'][i],
           now,
         ),
@@ -187,59 +184,6 @@ export function createGame(
     processed: [],
     audit: [],
   };
-  if (demo) {
-    for (const club of clubs) {
-      const wanted = [...FORMATIONS['4-4-2'], 'POR' as const];
-      for (const [i, pos] of wanted.entries()) {
-        const p = players
-          .filter((p) => p.position === pos && !s.contracts.some((c) => c.playerId === p.id))
-          .sort((a, b) => a.value - b.value || a.id.localeCompare(b.id))[0];
-        const cost = p.value;
-        club.resources.money -= cost;
-        s.contracts.push({
-          playerId: p.id,
-          clubId: club.id,
-          salaryBps: 200,
-          happiness: 75,
-          missed: 0,
-          clause: p.value * 2,
-          shieldUntil: 0,
-          endsAt: s.seasonEndsAt,
-        });
-        if (i < 11) club.selection.starters[i].playerId = p.id;
-        s.transfers.push({
-          id: uid(),
-          at: now,
-          playerId: p.id,
-          from: null,
-          to: club.id,
-          amount: cost,
-          kind: 'Asignación demo (simulada)',
-        });
-        s.ledger.push({
-          id: uid(),
-          at: now,
-          season: 1,
-          clubId: club.id,
-          resource: 'money',
-          amount: -cost,
-          balance: club.resources.money,
-          reason: 'Plantilla inicial de demostración',
-        });
-      }
-      club.resources.money += RULES.draftGift;
-      s.ledger.push({
-        id: uid(),
-        at: now,
-        season: 1,
-        clubId: club.id,
-        resource: 'money',
-        amount: RULES.draftGift,
-        balance: club.resources.money,
-        reason: 'Prima final del draft (demo)',
-      });
-    }
-  }
   s.marketPlayers = players
     .filter((p) => !s.contracts.some((c) => c.playerId === p.id))
     .sort((a, b) => Number(a.simulated) - Number(b.simulated))
@@ -254,20 +198,6 @@ export function createGame(
       subtitle: `${clubs.length} clubes abren una temporada de ambición en ${name}. Los resultados deportivos de esta partida son simulados.`,
     },
   ];
-  if (demo)
-    s.chat = [
-      {
-        id: uid(),
-        clubId: clubs[1].id,
-        at: now - 180000,
-        text: '¡Bienvenidos! Esta temporada el título se queda en el barrio.',
-      },
-      {
-        id: uid(),
-        clubId: clubs[2].id,
-        at: now - 60000,
-        text: 'Nos vemos en el mercado. Tengo el ojeador preparado 👀',
-      },
-    ];
+  if (demo) populateFantasy(s);
   return s;
 }

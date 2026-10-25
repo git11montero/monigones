@@ -1,0 +1,71 @@
+
+> monigones@0.6.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 1846 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/version.json                             0.05 kB │ gzip:   0.07 kB
+dist/manifest.webmanifest                     0.51 kB
+dist/index.html                               1.02 kB │ gzip:   0.51 kB
+dist/assets/index-_zzMoqkd.css              145.84 kB │ gzip:  35.30 kB
+dist/assets/arrow-up-right-Ds8YJ0lF.js        0.16 kB │ gzip:   0.16 kB
+dist/assets/heart-CUlg0sPT.js                 0.24 kB │ gzip:   0.21 kB
+dist/assets/flask-conical-C2qAkHwV.js         0.30 kB │ gzip:   0.23 kB
+dist/assets/gavel-INUV4bCD.js                 0.30 kB │ gzip:   0.21 kB
+dist/assets/newspaper-DsRjwg7T.js             0.34 kB │ gzip:   0.23 kB
+dist/assets/gift-D7jhn0-7.js                  0.35 kB │ gzip:   0.25 kB
+dist/assets/UnsavedChanges-Nt-4qFDf.js        0.71 kB │ gzip:   0.47 kB
+dist/assets/sprout-D7LV4NVC.js                0.81 kB │ gzip:   0.46 kB
+dist/assets/MoneyField-CXneABED.js            1.12 kB │ gzip:   0.68 kB
+dist/assets/PlayerCard-jlHvNQxk.js            1.38 kB │ gzip:   0.66 kB
+dist/assets/ResourceVisibility-Mi97-7jd.js    2.00 kB │ gzip:   0.94 kB
+dist/assets/engine-Bj4_nl8N.js                3.06 kB │ gzip:   1.47 kB
+dist/assets/FinancePage-D08Z_Nak.js           3.97 kB │ gzip:   1.63 kB
+dist/assets/SquadPage-CV9h1D_C.js            10.10 kB │ gzip:   3.66 kB
+dist/assets/ResearchPage-DNuHnkL6.js         10.68 kB │ gzip:   4.34 kB
+dist/assets/SettingsPage-DXvrXXyd.js         11.10 kB │ gzip:   4.63 kB
+dist/assets/LeaguePage-DQZexcfu.js           12.58 kB │ gzip:   4.33 kB
+dist/assets/MarketPage-yLvfxAgM.js           13.50 kB │ gzip:   4.90 kB
+dist/assets/BuildingsPage-DgPo2t8d.js        15.86 kB │ gzip:   5.84 kB
+dist/assets/CityPage-BqAZeRfS.js             16.90 kB │ gzip:   6.63 kB
+dist/assets/SocialPages-DJ0hiNT_.js          17.21 kB │ gzip:   6.23 kB
+dist/assets/ManagementPages-DehxvvT2.js      20.72 kB │ gzip:   7.49 kB
+dist/assets/index-3KgvuMoe.js               793.52 kB │ gzip: 208.08 kB
+
+(!) Some chunks are larger than 650 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.64s
+
+PWA v1.3.0
+Building src/sw.ts service worker ("iife" format)...
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/sw.js  2.74 kB │ gzip: 1.25 kB
+✓ built in 11ms
+
+PWA v1.3.0
+mode      injectManifest
+format:   iife
+precache  50 entries (9629.90 KiB)
+files generated
+  dist/sw.js

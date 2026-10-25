@@ -18,6 +18,10 @@ function fixture(info: TestInfo, mutate: (s: GameState) => void = () => {}) {
     fresh.id = old.id;
     fresh.invite = old.invite;
     fresh.version = old.version + 1;
+    // These cases exercise first-level costs and locked formations, independent of demo defaults.
+    fresh.clubs[0].buildings.hq = 1;
+    fresh.clubs[0].buildings.stadium = 1;
+    fresh.clubs[0].facilities.pitch = 0;
     // Keep memberships consistent with new club IDs, inside the same transaction.
     for (const c of fresh.clubs)
       db.prepare('UPDATE memberships SET club_id=? WHERE user_id=? AND league_id=?').run(
@@ -193,7 +197,7 @@ test('chat integrado: otro presidente recibe, identifica y consulta el mismo men
     });
     await second.locator('.newspaper-chat-toggle').click();
     await expect(second.getByText(text)).toBeVisible({ timeout: 20000 });
-    await expect(second.getByText('Presidente 1 · Real Corona').first()).toBeVisible();
+    await expect(second.getByText('Presidente 1 · Cholo ATM').first()).toBeVisible();
     await expect(second.locator('.newspaper-chat-toggle .attention-badge')).toHaveCount(0);
     await second.getByRole('button', { name: 'Cerrar chat', exact: true }).click();
     await expect(second.getByRole('heading', { name: /El Balonazo/ })).toBeVisible();

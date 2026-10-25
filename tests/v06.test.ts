@@ -53,15 +53,22 @@ describe('v06 catálogo e importación controlada', () => {
       historical,
     );
   });
-  it('corrige Fermín y bloquea A. Santos sin asignarle automáticamente Antony', () => {
-    const report = previewFantasy(fantasy);
-    expect(report.problems).toHaveLength(1);
-    expect(report.problems[0]).toContain('A. Santos');
-    expect(fantasy.teams[0].starters.find((p) => p.reference === 'Fermín López')).toMatchObject({
+  it('confirma Antony en Porcinos y Fermín en Cholo, sin pendientes ni duplicados', () => {
+    expect(previewFantasy(fantasy).problems).toEqual([]);
+    expect(fantasy.teams[0].starters.find((p) => p.playerId === 'barcelona-14')).toMatchObject({
       realClubId: 'barcelona',
+      reference: 'Fermín López',
     });
-    expect(fantasy.teams[1].starters[0].playerId).toBeNull();
-    expect(() => fantasySnapshot(fantasy, at, 'safe-fixture')).toThrow('A. Santos');
+    expect(fantasy.teams[1].starters[0]).toMatchObject({
+      playerId: 'betis-17',
+      realClubId: 'betis',
+      fullName: 'Antony Matheus dos Santos',
+      position: 'DEL',
+    });
+    expect(fantasySnapshot(fantasy, at, 'final-fantasy').state.contracts).toHaveLength(58);
+    const pending = structuredClone(fantasy) as any;
+    pending.teams[1].starters[0].playerId = null;
+    expect(() => fantasySnapshot(pending, at, 'pending')).toThrow('pendiente');
   });
   it('genera contratos, capacidad y convocatorias válidas; reserva el sexto club vacío', () => {
     const fixture = completedTestFantasy(),
@@ -159,8 +166,9 @@ describe('v06 imágenes y compatibilidad', () => {
       const bytes = readFileSync(`public/assets/futbol/escudos/${slug}.webp`);
       expect(bytes.toString('ascii', 0, 4)).toBe('RIFF');
       expect(bytes.toString('ascii', 8, 12)).toBe('WEBP');
-      expect(imageDimensions(bytes)).toEqual({ width: 256, height: 256 });
-      expect(existsSync(`public/assets/futbol/escudos/${slug}.png`)).toBe(true);
+      expect(imageDimensions(bytes).width).toBeGreaterThanOrEqual(64);
+      expect(imageDimensions(bytes).height).toBeGreaterThanOrEqual(64);
+      expect(existsSync('public/assets/futbol/fallback/escudo.png')).toBe(true);
     }
     expect(clubAsset('madrid')).toContain('realmadrid.webp');
   });

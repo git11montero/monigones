@@ -68,13 +68,16 @@ test('actividad diaria, recompensa y bloqueo de repetición', async ({ page }) =
 });
 test('obra, finalización en servidor y cambio del edificio', async ({ page }) => {
   await login(page);
+  const initial = await (await page.request.get('/api/state')).json();
+  const nextLevel =
+    initial.state.clubs.find((club: { id: string }) => club.id === initial.clubId).buildings.hq + 1;
   await page.goto('/building/hq');
   await page.getByRole('button', { name: 'Comenzar ampliación' }).click();
   await expect(page.getByText('Ampliación en curso')).toBeVisible();
   await page.goto('/settings');
   await page.getByRole('button', { name: 'Terminar obras e investigación' }).click();
   await page.goto('/building/hq');
-  await expect(page.getByText('NIVEL 2 / 5')).toBeVisible();
+  await expect(page.getByText(`NIVEL ${nextLevel} / 5`)).toBeVisible();
 });
 test('alineación, cierre de jornada e informe persistente', async ({ page }) => {
   await login(page);
