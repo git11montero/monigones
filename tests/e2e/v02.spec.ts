@@ -184,21 +184,21 @@ test('chat integrado: otro presidente recibe, identifica y consulta el mismo men
     await login(second, 'demo2');
     await second.goto('/newspaper');
     await page.goto('/newspaper');
-    await page.getByRole('button', { name: 'Abrir chat de la liga' }).click();
+    await page.locator('.newspaper-chat-toggle').click();
     const text = 'El periódico también tiene vestuario ' + crypto.randomUUID();
     await page.getByRole('textbox', { name: 'Mensaje a la liga' }).fill(text);
     await page.getByRole('button', { name: 'Enviar mensaje' }).click();
     await expect(second.locator('.newspaper-chat-toggle .attention-badge')).toBeVisible({
       timeout: 20000,
     });
-    await second.getByRole('button', { name: 'Abrir chat de la liga' }).click();
+    await second.locator('.newspaper-chat-toggle').click();
     await expect(second.getByText(text)).toBeVisible({ timeout: 20000 });
     await expect(second.getByText('Presidente 1 · Real Corona').first()).toBeVisible();
     await expect(second.locator('.newspaper-chat-toggle .attention-badge')).toHaveCount(0);
     await second.getByRole('button', { name: 'Cerrar chat', exact: true }).click();
     await expect(second.getByRole('heading', { name: /El Balonazo/ })).toBeVisible();
     await second.reload();
-    await second.getByRole('button', { name: 'Abrir chat de la liga' }).click();
+    await second.locator('.newspaper-chat-toggle').click();
     await expect(second.getByText(text)).toHaveCount(1);
   } finally {
     await other.close();

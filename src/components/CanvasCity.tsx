@@ -126,20 +126,14 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
   useEffect(() => {
     const el = canvas.current;
     if (!el || !ready) return;
-    const dpr = Math.min(2, devicePixelRatio || 1);
+    const dpr = Math.min(
+      prefs.quality === 'low' ? 1 : prefs.quality === 'medium' ? 1.5 : 2,
+      devicePixelRatio || 1,
+    );
     el.width = Math.round(size.width * dpr);
     el.height = Math.round(size.height * dpr);
     const ctx = el.getContext('2d', { alpha: false })!;
-    let frame = 0,
-      last = 0;
-    const reduced = !prefs.motion || matchMedia('(prefers-reduced-motion: reduce)').matches,
-      animated = prefs.quality !== 'low' && !reduced;
-    function draw(time: number) {
-      if (time - last < 1000 / 30 && animated) {
-        frame = requestAnimationFrame(draw);
-        return;
-      }
-      last = time;
+    const draw = () => {
       const c = cameraRef.current;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.fillStyle = '#506453';
@@ -147,7 +141,7 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
       ctx.translate(c.x, c.y);
       ctx.scale(c.zoom, c.zoom);
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
+      ctx.imageSmoothingQuality = prefs.quality;
       ctx.drawImage(texture('/art/v03/ground.webp'), 0, 0, WORLD.width, WORLD.height);
       const drawProp = (p: (typeof CITY_PROPS)[number]) => {
         ctx.drawImage(
@@ -213,48 +207,8 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
         }
       }
       for (const p of pendingProps) drawProp(p);
-      if (animated) {
-        const count = prefs.quality === 'high' ? 45 + club.buildings.hq * 6 : 20;
-        for (let i = 0; i < count; i++) {
-          const t = ((time / 1000) * (7 + (i % 5)) + i * 37) % 320,
-            area = i % 3,
-            x = area === 0 ? 300 + t : area === 1 ? 1040 + t * 0.7 : 520 + t,
-            y = area === 0 ? 470 + t * 0.08 : area === 1 ? 1320 - t * 0.12 : 1980 + t * 0.12;
-          ctx.fillStyle = '#22303944';
-          ctx.beginPath();
-          ctx.ellipse(x + 3, y + 6, 6, 2, 0, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.fillStyle = ['#c84d40', '#e4e0c9', '#2f5264', '#b58b62'][i % 4];
-          ctx.fillRect(x, y - 9, 5, 10);
-          ctx.fillStyle = '#d8af89';
-          ctx.beginPath();
-          ctx.arc(x + 2.5, y - 11, 2.7, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        for (let i = 0; i < 3 + Math.floor(club.buildings.hq / 2); i++) {
-          const t = ((time / 1000) * 22 + i * 320) % 1600,
-            x = 100 + t * 0.75,
-            y = 2190 - t * 0.2;
-          ctx.save();
-          ctx.translate(x, y);
-          ctx.rotate(-0.18);
-          ctx.fillStyle = '#192a2c66';
-          ctx.fillRect(-1, 3, 40, 16);
-          ctx.fillStyle = ['#e3e5dc', '#325d76', '#bd5946', '#d8c68e'][i % 4];
-          ctx.fillRect(0, 0, 37, 13);
-          ctx.fillStyle = '#29404a';
-          ctx.fillRect(10, 2, 14, 9);
-          ctx.restore();
-        }
-      }
       if (env.live || env.concert) {
         const v = BUILDING_VISUALS.stadium;
-        for (let i = 0; i < (env.live ? 48 : 30); i++) {
-          const angle = i * 2.4,
-            rx = 240 + Math.sin(time / 5000 + i) * 8;
-          ctx.fillStyle = i % 3 ? '#dfd4bf' : '#a82f32';
-          ctx.fillRect(v.x + Math.cos(angle) * rx, v.y + Math.sin(angle) * 55 - 24, 5, 8);
-        }
         ctx.save();
         ctx.globalCompositeOperation = 'screen';
         ctx.fillStyle = env.concert ? '#9ecbff35' : '#fff1b840';
@@ -267,9 +221,8 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
         }
         ctx.restore();
       }
-      if (animated) frame = requestAnimationFrame(draw);
-    }
-    frame = requestAnimationFrame(draw);
+    };
+    const frame = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(frame);
   }, [ready, size, camera, club, state.jobs, env.live, env.concert, prefs]);
   const release = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -308,11 +261,8 @@ export function CanvasCity({ decorative = false }: { decorative?: boolean }) {
       ref={viewport}
       className={`city-map city-viewport canvas-city ${decorative ? 'decorative' : ''}`}
       data-renderer="canvas-2d"
-      data-animated={
-        prefs.motion &&
-        prefs.quality !== 'low' &&
-        !matchMedia('(prefers-reduced-motion: reduce)').matches
-      }
+      data-animated={false}
+      data-ambient-actors="0"
       data-ready={ready}
       data-environment={env.mode}
       data-zoom={camera.zoom.toFixed(3)}

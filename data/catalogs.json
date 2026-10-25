@@ -1,6 +1,6 @@
 {
   "generated": "scripts/export-catalogs.ts; no editar a mano",
-  "version": "2026-10-23.2",
+  "version": "2026-10-25.v06",
   "buildings": [
     {
       "id": "hq",
@@ -15,7 +15,7 @@
     },
     {
       "id": "stadium",
-      "name": "Estadio de la Corona",
+      "name": "Estadio del club",
       "short": "Estadio",
       "description": "Tu casa, tu afición y once motivos para soñar.",
       "icon": "Stadium",
@@ -190,7 +190,7 @@
     {
       "id": "pitch",
       "name": "Césped",
-      "description": "Desbloquea formaciones: 4-3-3, 3-5-2, 3-4-3 y 5-3-2.",
+      "description": "Amplía las alternativas tácticas por niveles, hasta 4-2-4 y 3-3-4 en nivel 4. Sin bonificaciones adicionales.",
       "max": 4
     },
     {
@@ -252,7 +252,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Contabilidad profesional: desarrolla la gestión del club.",
+      "description": "El equipo contable revisa los gastos de cada jornada y reduce el mantenimiento general.",
       "effects": {
         "maintenance": 200
       }
@@ -268,7 +268,7 @@
         "accounting"
       ],
       "buildingLevel": 1,
-      "description": "Gestión salarial: desarrolla la gestión del club.",
+      "description": "Los administradores negocian una menor tasa salarial al convocar a tus futbolistas.",
       "effects": {
         "salary": 30
       }
@@ -284,7 +284,7 @@
         "salary"
       ],
       "buildingLevel": 2,
-      "description": "Venta inteligente: desarrolla la gestión del club.",
+      "description": "El departamento de ventas consigue que el mercado pague una mayor parte del valor de tus jugadores.",
       "effects": {
         "sale": 300
       }
@@ -300,7 +300,7 @@
         "sale"
       ],
       "buildingLevel": 2,
-      "description": "Negociador deportivo: desarrolla la gestión del club.",
+      "description": "Un agente reserva más nombres en tu lista de deseados y devuelve parte de su valor cuando los fichas en el mercado.",
       "effects": {
         "wish": 1,
         "wishDiscount": 50
@@ -317,7 +317,7 @@
         "negotiator"
       ],
       "buildingLevel": 3,
-      "description": "Análisis financiero: desarrolla la gestión del club.",
+      "description": "Las previsiones de tesorería reducen el mantenimiento y dan acceso al observatorio de pujas de las oficinas.",
       "effects": {
         "maintenance": 200
       }
@@ -333,7 +333,7 @@
         "analysis"
       ],
       "buildingLevel": 3,
-      "description": "Convenios bancarios: desarrolla la gestión del club.",
+      "description": "Tu tesorería completa la formación previa a los negocios. Esta tecnología es un requisito de progresión; no reduce intereses ni concede préstamos.",
       "effects": {}
     },
     {
@@ -345,7 +345,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Captación comercial: desarrolla la gestión del club.",
+      "description": "El equipo comercial incrementa el cobro diario de patrocinios y el ingreso de merchandising por jornada.",
       "effects": {
         "sponsor": 200
       }
@@ -361,7 +361,7 @@
         "commercial"
       ],
       "buildingLevel": 1,
-      "description": "Gestión publicitaria: desarrolla la gestión del club.",
+      "description": "Los anuncios aprovechan mejor cada espacio y elevan los ingresos de patrocinio y merchandising.",
       "effects": {
         "sponsor": 200
       }
@@ -377,7 +377,7 @@
         "advertising"
       ],
       "buildingLevel": 2,
-      "description": "Productividad comercial: desarrolla la gestión del club.",
+      "description": "La coordinación de campañas aumenta los ingresos de patrocinio y merchandising.",
       "effects": {
         "sponsor": 200
       }
@@ -393,7 +393,7 @@
         "productivity"
       ],
       "buildingLevel": 2,
-      "description": "Promotor de espectáculos: desarrolla la gestión del club.",
+      "description": "La formación en espectáculos habilita la compra del módulo Conciertos en las oficinas. El módulo se paga por separado.",
       "effects": {
         "concerts": 1
       }
@@ -409,7 +409,7 @@
         "promoter"
       ],
       "buildingLevel": 3,
-      "description": "Gestión de grandes eventos: desarrolla la gestión del club.",
+      "description": "Los grandes eventos mejoran la rentabilidad de patrocinadores y merchandising; no cambian las recompensas de eventos semanales.",
       "effects": {
         "sponsor": 200
       }
@@ -423,7 +423,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Eficiencia de mantenimiento: desarrolla la gestión del club.",
+      "description": "El personal de instalaciones organiza revisiones que reducen el mantenimiento general de cada jornada.",
       "effects": {
         "maintenance": 300
       }
@@ -439,7 +439,7 @@
         "maintenance"
       ],
       "buildingLevel": 1,
-      "description": "Plan de ahorro energético: desarrolla la gestión del club.",
+      "description": "El plan de ahorro aporta una reducción del mantenimiento general. Es independiente de las instalaciones LED y aspersores.",
       "effects": {
         "maintenance": 100
       }
@@ -455,7 +455,7 @@
         "energy"
       ],
       "buildingLevel": 2,
-      "description": "Dirección de obras: desarrolla la gestión del club.",
+      "description": "La dirección técnica acorta todos los nuevos proyectos cotizados: edificios, instalaciones e investigación. Permite instalaciones por encima del nivel 2.",
       "effects": {
         "construction": 300
       }
@@ -471,7 +471,7 @@
         "works"
       ],
       "buildingLevel": 2,
-      "description": "Planificación de proyectos: desarrolla la gestión del club.",
+      "description": "La planificación permite tener dos obras de edificios o instalaciones a la vez. La investigación conserva su propia cola única.",
       "effects": {
         "secondQueue": 1
       }
@@ -489,7 +489,7 @@
         "projects"
       ],
       "buildingLevel": 3,
-      "description": "Dirección económica integral: desarrolla la gestión del club.",
+      "description": "La dirección coordina las tres ramas económicas para reducir todavía más el mantenimiento general.",
       "effects": {
         "maintenance": 200
       }
@@ -503,7 +503,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Análisis táctico: desarrolla el rendimiento del club.",
+      "description": "El análisis del plan de juego añade una bonificación a los puntos positivos de todos los titulares.",
       "effects": {
         "sport": 100
       }
@@ -519,7 +519,7 @@
         "tactics"
       ],
       "buildingLevel": 1,
-      "description": "Defensa organizada: desarrolla el rendimiento del club.",
+      "description": "El trabajo defensivo suma una bonificación general de puntos positivos. También beneficia a mediocampistas y delanteros.",
       "effects": {
         "sport": 100
       }
@@ -535,7 +535,7 @@
         "defense"
       ],
       "buildingLevel": 2,
-      "description": "Control del centro del campo: desarrolla el rendimiento del club.",
+      "description": "Las sesiones del centro del campo aportan una bonificación general a todos los titulares con puntos positivos.",
       "effects": {
         "sport": 100
       }
@@ -551,7 +551,7 @@
         "midfield"
       ],
       "buildingLevel": 2,
-      "description": "Olfato goleador: desarrolla el rendimiento del club.",
+      "description": "La preparación de remates mejora los puntos positivos de todos los titulares; no aumenta goles ni modifica resultados.",
       "effects": {
         "sport": 100
       }
@@ -567,7 +567,7 @@
         "goals"
       ],
       "buildingLevel": 3,
-      "description": "Escuela de porteros: desarrolla el rendimiento del club.",
+      "description": "El aprendizaje de los porteros aporta una bonificación general de puntos positivos para todo el once.",
       "effects": {
         "sport": 100
       }
@@ -583,7 +583,7 @@
         "goalkeepers"
       ],
       "buildingLevel": 3,
-      "description": "Preparación integral: desarrolla el rendimiento del club.",
+      "description": "La preparación conjunta suma otra bonificación general al cerrar la jornada.",
       "effects": {
         "sport": 100
       }
@@ -597,7 +597,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Estudio del rival: desarrolla el rendimiento del club.",
+      "description": "El estudio del rival mejora el multiplicador de puntos positivos del once; no altera el calendario.",
       "effects": {
         "sport": 100
       }
@@ -613,7 +613,7 @@
         "rival"
       ],
       "buildingLevel": 1,
-      "description": "Motivación del vestuario: desarrolla el rendimiento del club.",
+      "description": "El vestuario recupera más felicidad por cada jornada en la que el futbolista es convocado.",
       "effects": {
         "happiness": 1
       }
@@ -629,7 +629,7 @@
         "motivation"
       ],
       "buildingLevel": 2,
-      "description": "Gestión de suplentes: desarrolla el rendimiento del club.",
+      "description": "Los suplentes convocados también reciben más felicidad al cerrar una jornada; no añade plazas al banquillo.",
       "effects": {
         "happiness": 1
       }
@@ -645,7 +645,7 @@
         "subs"
       ],
       "buildingLevel": 2,
-      "description": "Cambios inteligentes I: desarrolla el rendimiento del club.",
+      "description": "El cuerpo técnico puede ordenar un primer cambio manual durante la jornada respetando las reglas de posición y disponibilidad.",
       "effects": {
         "manual": 1
       }
@@ -661,7 +661,7 @@
         "smart1"
       ],
       "buildingLevel": 3,
-      "description": "Cambios inteligentes II: desarrolla el rendimiento del club.",
+      "description": "La gestión avanzada permite un segundo cambio manual por jornada. Los cambios automáticos siguen sus reglas habituales.",
       "effects": {
         "manual": 1
       }
@@ -677,7 +677,7 @@
         "smart2"
       ],
       "buildingLevel": 3,
-      "description": "Adaptación táctica: desarrolla el rendimiento del club.",
+      "description": "Los entrenamientos de adaptación suman bonificación general a los puntos positivos del once.",
       "effects": {
         "sport": 100
       }
@@ -691,7 +691,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Cuerpo técnico especializado: desarrolla el rendimiento del club.",
+      "description": "Los especialistas del cuerpo técnico elevan la bonificación general al liquidar los puntos de jornada.",
       "effects": {
         "sport": 100
       }
@@ -707,7 +707,7 @@
         "staff"
       ],
       "buildingLevel": 1,
-      "description": "Gestión de la fatiga: desarrolla el rendimiento del club.",
+      "description": "El seguimiento de cargas añade felicidad a los futbolistas convocados; no cura lesiones ni cambia minutos.",
       "effects": {
         "happiness": 1
       }
@@ -723,7 +723,7 @@
         "fatigue"
       ],
       "buildingLevel": 2,
-      "description": "Preparación de élite: desarrolla el rendimiento del club.",
+      "description": "La preparación de alto rendimiento completa otra mejora del multiplicador de puntos positivos.",
       "effects": {
         "sport": 100
       }
@@ -739,7 +739,7 @@
         "elite"
       ],
       "buildingLevel": 2,
-      "description": "Desbloqueo de calidad Bronce: desarrolla el rendimiento del club.",
+      "description": "Permite desbloquear calidad Bronce en cada casilla del once. Cada casilla se mejora y paga por separado.",
       "effects": {
         "quality": 1
       }
@@ -755,7 +755,7 @@
         "bronze"
       ],
       "buildingLevel": 3,
-      "description": "Desbloqueo de calidad Plata: desarrolla el rendimiento del club.",
+      "description": "Permite desbloquear calidad Plata en casillas que ya tengan Bronce. La calidad pertenece a la casilla, no al futbolista.",
       "effects": {
         "quality": 2
       }
@@ -771,7 +771,7 @@
         "silver"
       ],
       "buildingLevel": 3,
-      "description": "Desbloqueo de calidad Oro: desarrolla el rendimiento del club.",
+      "description": "Permite desbloquear calidad Oro en casillas que ya tengan Plata. La mejora añade puntos y sobrecoste salarial.",
       "effects": {
         "quality": 3
       }
@@ -785,7 +785,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Viral en redes sociales: desarrolla la identidad del club.",
+      "description": "Las campañas en redes amplían el límite de fama del club. No multiplican la fama de actividades ni cambian probabilidades.",
       "effects": {
         "fameCap": 15
       }
@@ -801,7 +801,7 @@
         "viral"
       ],
       "buildingLevel": 1,
-      "description": "Gabinete de comunicación: desarrolla la identidad del club.",
+      "description": "El gabinete amplía el máximo de fama que puedes conservar; no entrega fama al terminar.",
       "effects": {
         "fameCap": 25
       }
@@ -817,7 +817,7 @@
         "communication"
       ],
       "buildingLevel": 2,
-      "description": "Campañas de imagen: desarrolla la identidad del club.",
+      "description": "Las campañas de imagen aumentan el techo de fama. Necesitarás actividades u otros acontecimientos para llenarlo.",
       "effects": {
         "fameCap": 25
       }
@@ -833,7 +833,7 @@
         "image"
       ],
       "buildingLevel": 2,
-      "description": "Expansión mediática: desarrolla la identidad del club.",
+      "description": "La expansión de medios amplía el techo de fama hasta el límite global; no aumenta la frecuencia de noticias.",
       "effects": {
         "fameCap": 25
       }
@@ -849,7 +849,7 @@
         "media"
       ],
       "buildingLevel": 3,
-      "description": "Identidad corporativa: desarrolla la identidad del club.",
+      "description": "La tecnología reserva la personalización avanzada del escudo. El editor básico de nombre y color ya está disponible; esta mejora adicional no está implementada.",
       "effects": {
         "custom": 1
       }
@@ -865,7 +865,7 @@
         "identity"
       ],
       "buildingLevel": 3,
-      "description": "Diseño de equipaciones: desarrolla la identidad del club.",
+      "description": "La investigación prepara equipaciones especiales. Su editor y su aplicación visual están pendientes; no concede una ventaja activa.",
       "effects": {
         "kits": 1
       }
@@ -879,7 +879,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Fidelización de aficionados: desarrolla la identidad del club.",
+      "description": "La atención a la grada aumenta la satisfacción una sola vez al completar la investigación.",
       "effects": {
         "fans": 2
       }
@@ -895,7 +895,7 @@
         "loyalty"
       ],
       "buildingLevel": 1,
-      "description": "Programa de socios: desarrolla la identidad del club.",
+      "description": "El programa de socios suma satisfacción una sola vez al finalizar; no crea un ingreso periódico.",
       "effects": {
         "fans": 2
       }
@@ -911,7 +911,7 @@
         "members"
       ],
       "buildingLevel": 2,
-      "description": "Relaciones con peñas: desarrolla la identidad del club.",
+      "description": "La reunión con las peñas aumenta la satisfacción una vez al completar esta tecnología.",
       "effects": {
         "fans": 2
       }
@@ -925,7 +925,7 @@
       "maxLevel": 1,
       "requires": [],
       "buildingLevel": 1,
-      "description": "Contactos institucionales: desarrolla la identidad del club.",
+      "description": "Las relaciones institucionales amplían el límite de prestigio. No reducen el riesgo de las decisiones institucionales.",
       "effects": {
         "prestigeCap": 25
       }
@@ -941,7 +941,7 @@
         "contacts"
       ],
       "buildingLevel": 1,
-      "description": "Influencia en medios: desarrolla la identidad del club.",
+      "description": "La presencia en medios amplía el techo de prestigio hasta el límite global de 100.",
       "effects": {
         "prestigeCap": 25
       }
@@ -957,7 +957,7 @@
         "influence"
       ],
       "buildingLevel": 2,
-      "description": "Gestión reputacional: desarrolla la identidad del club.",
+      "description": "La reputación suma suerte una vez al finalizar. La suerte interviene en la asistencia del estadio, no en la adjudicación de pujas.",
       "effects": {
         "luck": 2
       }
@@ -973,7 +973,7 @@
         "reputation"
       ],
       "buildingLevel": 2,
-      "description": "Análisis de oportunidades: desarrolla la identidad del club.",
+      "description": "El análisis suma suerte una vez. Su efecto real mejora la asistencia calculada del estadio, sin alterar sorteos institucionales.",
       "effects": {
         "luck": 3
       }
@@ -989,7 +989,7 @@
         "opportunities"
       ],
       "buildingLevel": 3,
-      "description": "Recuperación de imagen: desarrolla la identidad del club.",
+      "description": "La recuperación de imagen suma satisfacción una sola vez al terminar; no elimina multas ni deudas.",
       "effects": {
         "fans": 2
       }
@@ -1007,7 +1007,7 @@
         "recovery"
       ],
       "buildingLevel": 3,
-      "description": "Reputación internacional: desarrolla la identidad del club.",
+      "description": "La proyección internacional aporta suerte una vez al completar las dependencias; no modifica premios ni salarios.",
       "effects": {
         "luck": 3
       }
@@ -1227,7 +1227,7 @@
     },
     {
       "id": "corona",
-      "name": "CORONA BANK",
+      "name": "GRADA BANK",
       "tag": "La confianza también se entrena.",
       "color": "#a88a49",
       "fame": 75,

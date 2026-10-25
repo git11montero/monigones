@@ -2,6 +2,14 @@ import { effectContribution, RESEARCH_STORIES } from '../../shared/research-guid
 import { RARITIES } from '../../shared/activities';
 import { dailyKey } from '../../shared/math';
 import { GameSelect } from '../components/GameSelect';
+import { Help } from '../components/Help';
+import {
+  FORMATION_CATALOG,
+  formationAllowed,
+  formationRows,
+  selectionFormation,
+  tacticalSlots,
+} from '../../shared/formations';
 import { BUILDINGS } from '../../shared/config';
 import { BuildingArt } from '../components/City';
 import { BRAND } from '../../shared/brand';
@@ -499,14 +507,67 @@ export function AcademyPage() {
 }
 export function TrainingPage() {
   const { club, act } = useGame();
+  const active = selectionFormation(club.selection) || FORMATION_CATALOG[0];
+  const [view, setView] = useState(active.id);
+  const formation = FORMATION_CATALOG.find((f) => f.id === view) || active;
+  const slots = tacticalSlots(club.selection, formation);
   return (
     <>
       <PageTitle
         back
         eyebrow="MEJORAR EL EQUIPO EMPIEZA POR EL CAMPO"
         title="Cada casilla, más fuerte"
-        subtitle="La calidad pertenece a la posición, y permanece cuando cambias de futbolista."
+        subtitle="Once casillas persistentes: conservan su mejora al cambiar de futbolista o dibujo."
       />
+      <div className="padded training-formation">
+        <label>
+          Formación para consultar
+          <GameSelect
+            aria-label="Formación de entrenamiento"
+            value={formation.id}
+            onChange={(event) => {
+              if (formationAllowed(event.target.value, club.facilities.pitch || 0))
+                setView(event.target.value);
+            }}
+          >
+            {FORMATION_CATALOG.map((f) => (
+              <option
+                key={f.id}
+                value={f.id}
+                disabled={!formationAllowed(f.id, club.facilities.pitch || 0)}
+              >
+                {f.id} · {f.pitch ? `Césped ${f.pitch}` : 'Inicial'}
+                {f.id === active.id ? ' · Activa' : ''}
+              </option>
+            ))}
+          </GameSelect>
+        </label>
+        <p>
+          Vista previa {formation.id} · Alineación activa {active.id}. Consultar no cambia el once.
+          <Help topic="slots" />
+        </p>
+        <div
+          className="training-tactical-board"
+          data-formation={formation.id}
+          aria-label={`Casillas de ${formation.id}`}
+        >
+          {formationRows(formation).map((row, i) => (
+            <div key={i} className="training-pitch-row">
+              {row.map((index) => (
+                <a
+                  key={index}
+                  href={`#training-slot-${index}`}
+                  className={`training-slot-dot q-${slots[index].quality}`}
+                  aria-label={`Consultar casilla ${index + 1}, ${slots[index].position}`}
+                >
+                  <b>{index + 1}</b>
+                  <small>{slots[index].position}</small>
+                </a>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="quality-legend">
         {['Básico', 'Bronce', 'Plata', 'Oro'].map((q, i) => (
           <div key={q} className={`quality-badge q-${i}`}>
@@ -517,8 +578,12 @@ export function TrainingPage() {
         ))}
       </div>
       <div className="padded">
-        {club.selection.starters.map((s, i) => (
-          <div className="card" key={i}>
+        {slots.map((s, i) => (
+          <div
+            className={`card training-slot-card q-${s.quality}`}
+            id={`training-slot-${i}`}
+            key={i}
+          >
             <div className="row spread">
               <h3>
                 Casilla {i + 1} · {s.position}
@@ -529,10 +594,21 @@ export function TrainingPage() {
               Desbloqueado: {['Básico', 'Bronce', 'Plata', 'Oro'][s.unlockedQuality]} ·
               Entrenamiento Nv. {club.buildings.training}
             </p>
+            {s.position !== s.activePosition && (
+              <p className="hint">
+                En el once activo esta misma casilla es {s.activePosition}. Su mejora es compartida.
+              </p>
+            )}
+            <p className="quality-effect">
+              Bonificación: +{RULES.qualityBonus[s.quality] / 100}% en puntos positivos · Salario: +
+              {(RULES.qualitySalary[s.quality] / 100).toLocaleString('es-ES')} puntos porcentuales.
+            </p>
             <div className="quality-controls">
               {[0, 1, 2, 3].map((level) => (
                 <Button
                   key={level}
+                  className={`quality-option q-${level} ${s.quality === level ? 'selected' : ''}`}
+                  aria-label={`Casilla ${i + 1}: ${['Básico', 'Bronce', 'Plata', 'Oro'][level]}, +${RULES.qualityBonus[level] / 100}%`}
                   variant={s.quality === level ? 'small' : 'small secondary'}
                   disabled={
                     s.quality === level || club.selection.locked || level > s.unlockedQuality + 1

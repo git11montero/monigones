@@ -2,6 +2,7 @@ import { hmac } from '@noble/hashes/hmac.js';
 import { sha256 } from '@noble/hashes/sha2.js';
 import { utf8ToBytes } from '@noble/hashes/utils.js';
 import { DAY, RULES } from './config.js';
+import { formatMoney } from './money.js';
 import type { Club, GameState, Player, Resource } from './types.js';
 export const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 export function invariant(condition: unknown, message: string): asserts condition {
@@ -88,16 +89,8 @@ export const playerOf = (s: GameState, id: string) => {
   return p;
 };
 export const owned = (s: GameState, c: Club) => s.contracts.filter((x) => x.clubId === c.id);
-export const money = (n: number) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n / 100);
-export const shortMoney = (n: number) =>
-  Math.abs(n) >= 100000000
-    ? `${(n / 100000000).toLocaleString('es-ES', { maximumFractionDigits: 2 })} M€`
-    : money(n);
+export const money = formatMoney;
+export const shortMoney = formatMoney;
 export const resourceName: Record<Resource, string> = {
   money: 'Euros',
   development: 'PD',

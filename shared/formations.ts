@@ -60,3 +60,14 @@ export function formationRows(f: Formation) {
   });
   return [...rows.reverse(), [0]];
 }
+/** Preview only: all drawings address the same eleven persistent slot indexes. */
+export function tacticalSlots(selection: Pick<Selection, 'starters'>, formation: Formation) {
+  if (selection.starters.length !== 11) throw Error('Se requieren once casillas persistentes.');
+  return formation.positions.map((position, index) => ({
+    index,
+    position,
+    quality: selection.starters[index].quality,
+    unlockedQuality: selection.starters[index].unlockedQuality,
+    activePosition: selection.starters[index].position,
+  }));
+}

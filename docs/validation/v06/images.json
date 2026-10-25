@@ -1,0 +1,13 @@
+{
+  "players": 500,
+  "clubs": 20,
+  "placeholders": 500,
+  "licensedPhotos": 0,
+  "userProvided": 0,
+  "activePngs": 522,
+  "expectedPngs": 662,
+  "webpCrests": 20,
+  "historicalPngs": 140,
+  "unexpectedFiles": [],
+  "result": "PASS PNG/WebP signatures, full ImageMagick decode, dimensions and unique paths"
+}

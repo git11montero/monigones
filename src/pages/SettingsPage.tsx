@@ -2,6 +2,7 @@ import {
   ResourceAmount,
   ResourceToggle,
   OperationResources,
+  ResourceHelp,
 } from '../components/ResourceVisibility';
 import { Installation } from '../components/MobileExperience';
 import { shortMoney } from '../../shared/math';
@@ -118,6 +119,7 @@ export default function MorePage() {
           })}
         </div>
         <OperationResources />
+        <ResourceHelp />
       </section>
       <div className="more-links">
         {links.map(([to, label, Icon]) => (
@@ -152,9 +154,6 @@ export function SettingsPage() {
       <PageTitle back eyebrow="TU PARTIDA, A TU MANERA" title="Ajustes del club" />
       <Section title="Tu experiencia de juego">
         <ExperienceSettings />
-        <Link className="card access-link" to="/media">
-          Fotografías, emblemas y créditos →
-        </Link>
       </Section>
       <Section title="Identidad del club">
         <form

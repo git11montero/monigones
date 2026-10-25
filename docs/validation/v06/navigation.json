@@ -1,0 +1,277 @@
+[
+  {
+    "route": "city",
+    "width": 320,
+    "height": 568,
+    "nav": {
+      "x": 0,
+      "y": 493,
+      "width": 320,
+      "height": 75
+    }
+  },
+  {
+    "route": "squad",
+    "width": 320,
+    "height": 568,
+    "nav": {
+      "x": 0,
+      "y": 493,
+      "width": 320,
+      "height": 75
+    }
+  },
+  {
+    "route": "market",
+    "width": 320,
+    "height": 568,
+    "nav": {
+      "x": 0,
+      "y": 493,
+      "width": 320,
+      "height": 75
+    }
+  },
+  {
+    "route": "league",
+    "width": 320,
+    "height": 568,
+    "nav": {
+      "x": 0,
+      "y": 493,
+      "width": 320,
+      "height": 75
+    }
+  },
+  {
+    "route": "more",
+    "width": 320,
+    "height": 568,
+    "nav": {
+      "x": 0,
+      "y": 493,
+      "width": 320,
+      "height": 75
+    }
+  },
+  {
+    "route": "city",
+    "width": 375,
+    "height": 812,
+    "nav": {
+      "x": 0,
+      "y": 737,
+      "width": 375,
+      "height": 75
+    }
+  },
+  {
+    "route": "squad",
+    "width": 375,
+    "height": 812,
+    "nav": {
+      "x": 0,
+      "y": 737,
+      "width": 375,
+      "height": 75
+    }
+  },
+  {
+    "route": "market",
+    "width": 375,
+    "height": 812,
+    "nav": {
+      "x": 0,
+      "y": 737,
+      "width": 375,
+      "height": 75
+    }
+  },
+  {
+    "route": "league",
+    "width": 375,
+    "height": 812,
+    "nav": {
+      "x": 0,
+      "y": 737,
+      "width": 375,
+      "height": 75
+    }
+  },
+  {
+    "route": "more",
+    "width": 375,
+    "height": 812,
+    "nav": {
+      "x": 0,
+      "y": 737,
+      "width": 375,
+      "height": 75
+    }
+  },
+  {
+    "route": "city",
+    "width": 390,
+    "height": 844,
+    "nav": {
+      "x": 0,
+      "y": 769,
+      "width": 390,
+      "height": 75
+    }
+  },
+  {
+    "route": "squad",
+    "width": 390,
+    "height": 844,
+    "nav": {
+      "x": 0,
+      "y": 769,
+      "width": 390,
+      "height": 75
+    }
+  },
+  {
+    "route": "market",
+    "width": 390,
+    "height": 844,
+    "nav": {
+      "x": 0,
+      "y": 769,
+      "width": 390,
+      "height": 75
+    }
+  },
+  {
+    "route": "league",
+    "width": 390,
+    "height": 844,
+    "nav": {
+      "x": 0,
+      "y": 769,
+      "width": 390,
+      "height": 75
+    }
+  },
+  {
+    "route": "more",
+    "width": 390,
+    "height": 844,
+    "nav": {
+      "x": 0,
+      "y": 769,
+      "width": 390,
+      "height": 75
+    }
+  },
+  {
+    "route": "city",
+    "width": 430,
+    "height": 932,
+    "nav": {
+      "x": 0,
+      "y": 857,
+      "width": 430,
+      "height": 75
+    }
+  },
+  {
+    "route": "squad",
+    "width": 430,
+    "height": 932,
+    "nav": {
+      "x": 0,
+      "y": 857,
+      "width": 430,
+      "height": 75
+    }
+  },
+  {
+    "route": "market",
+    "width": 430,
+    "height": 932,
+    "nav": {
+      "x": 0,
+      "y": 857,
+      "width": 430,
+      "height": 75
+    }
+  },
+  {
+    "route": "league",
+    "width": 430,
+    "height": 932,
+    "nav": {
+      "x": 0,
+      "y": 857,
+      "width": 430,
+      "height": 75
+    }
+  },
+  {
+    "route": "more",
+    "width": 430,
+    "height": 932,
+    "nav": {
+      "x": 0,
+      "y": 857,
+      "width": 430,
+      "height": 75
+    }
+  },
+  {
+    "route": "city",
+    "width": 1440,
+    "height": 1000,
+    "nav": {
+      "x": 490,
+      "y": 925,
+      "width": 460,
+      "height": 75
+    }
+  },
+  {
+    "route": "squad",
+    "width": 1440,
+    "height": 1000,
+    "nav": {
+      "x": 490,
+      "y": 925,
+      "width": 460,
+      "height": 75
+    }
+  },
+  {
+    "route": "market",
+    "width": 1440,
+    "height": 1000,
+    "nav": {
+      "x": 490,
+      "y": 925,
+      "width": 460,
+      "height": 75
+    }
+  },
+  {
+    "route": "league",
+    "width": 1440,
+    "height": 1000,
+    "nav": {
+      "x": 490,
+      "y": 925,
+      "width": 460,
+      "height": 75
+    }
+  },
+  {
+    "route": "more",
+    "width": 1440,
+    "height": 1000,
+    "nav": {
+      "x": 490,
+      "y": 925,
+      "width": 460,
+      "height": 75
+    }
+  }
+]

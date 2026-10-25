@@ -1,7 +1,7 @@
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import {
-  FOOTBALL_ASSETS,
+  ALL_FOOTBALL_ASSETS,
   CLUB_SLUGS,
   PLAYER_FALLBACK,
   CLUB_FALLBACK,
@@ -11,14 +11,15 @@ export type MediaStatus = {
   kind: 'placeholder' | 'licensed' | 'provided' | 'missing';
 };
 const paths = [
-  ...FOOTBALL_ASSETS.map((x) => x.photo),
+  ...ALL_FOOTBALL_ASSETS.map((x) => x.photo),
   ...Object.values(CLUB_SLUGS).map((s) => `/assets/futbol/escudos/${s}.png`),
+  ...Object.values(CLUB_SLUGS).map((s) => `/assets/futbol/escudos/${s}.webp`),
   PLAYER_FALLBACK,
   CLUB_FALLBACK,
 ];
 const allowed = new Set(paths),
   playerFiles = new Set(
-    FOOTBALL_ASSETS.flatMap((e) =>
+    ALL_FOOTBALL_ASSETS.flatMap((e) =>
       Object.values(CLUB_SLUGS).map(
         (club) => `/assets/futbol/jugadores/${club}-${e.resourceId}.png`,
       ),
@@ -53,7 +54,7 @@ export function mediaStatus(): Record<string, MediaStatus> {
     let item = cache.get(path);
     if (!item || item.stamp !== stamp) {
       const sha = hash(path),
-        entry = FOOTBALL_ASSETS.find((x) => x.photo === path),
+        entry = ALL_FOOTBALL_ASSETS.find((x) => x.photo === path),
         known = entry ? `assets-source/futbol/authorized-${entry.playerId}.sha256` : '';
       item = {
         stamp,

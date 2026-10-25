@@ -191,9 +191,9 @@ export function createGame(
     for (const club of clubs) {
       const wanted = [...FORMATIONS['4-4-2'], 'POR' as const];
       for (const [i, pos] of wanted.entries()) {
-        const p = players.find(
-          (p) => p.position === pos && p.simulated && !s.contracts.some((c) => c.playerId === p.id),
-        )!;
+        const p = players
+          .filter((p) => p.position === pos && !s.contracts.some((c) => c.playerId === p.id))
+          .sort((a, b) => a.value - b.value || a.id.localeCompare(b.id))[0];
         const cost = p.value;
         club.resources.money -= cost;
         s.contracts.push({

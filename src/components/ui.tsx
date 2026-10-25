@@ -1,4 +1,6 @@
 import { remainingTime, useServerNow } from './GameClock';
+import { Help } from './Help';
+import { helpTopic } from '../../shared/help';
 import { PlayerPortrait, ClubBadge } from './PlayerPortrait';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -40,7 +42,10 @@ export function Section({
       <div className="section-heading">
         <div>
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-          <h2>{title}</h2>
+          <div className="heading-help">
+            <h2>{title}</h2>
+            <Help topic={helpTopic(title)} />
+          </div>
         </div>
         {to && (
           <Link to={to} className="text-link">
@@ -96,7 +101,10 @@ export function PageTitle({
         </button>
       )}
       <div>
-        <h1>{SCREEN_TITLES[title] || title}</h1>
+        <div className="heading-help">
+          <h1>{SCREEN_TITLES[title] || title}</h1>
+          <Help topic={helpTopic(title)} />
+        </div>
         {subtitle && <p>{subtitle}</p>}
       </div>
       {action}
@@ -297,7 +305,10 @@ export function Stat({
     <div className="stat">
       <Icon size={17} />
       <strong>{value}</strong>
-      <span>{label}</span>
+      <span className="heading-help">
+        {label}
+        <Help topic={helpTopic(label)} />
+      </span>
     </div>
   );
 }

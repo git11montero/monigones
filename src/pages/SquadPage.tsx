@@ -2,7 +2,7 @@ import { FormationPicker } from '../components/FormationPicker';
 import { FORMATION_CATALOG, selectionFormation, formationRows } from '../../shared/formations';
 import { BRAND } from '../../shared/brand';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight, Check, CirclePlus, Grip, Shield, Users, X } from 'lucide-react';
 import { RULES } from '../../shared/config';
 import { callCost } from '../../shared/engine';
@@ -19,7 +19,10 @@ import {
 } from '../components/ui';
 export default function SquadPage() {
   const { state, club, act } = useGame();
-  const [tab, setTab] = useState('lineup'),
+  const [params] = useSearchParams();
+  const [tab, setTab] = useState(() =>
+      ['roster', 'bench'].includes(params.get('tab') || '') ? params.get('tab')! : 'lineup',
+    ),
     [slot, setSlot] = useState<number | null>(null);
   const roster = state.contracts
     .filter((ct) => ct.clubId === club.id)

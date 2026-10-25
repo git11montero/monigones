@@ -247,3 +247,8 @@ Antes de publicar, `npm run build:online` verifica también la configuración p�
 La nueva versión incorpora el indicador desplegable de jornada, los accesos de Ciudad compartidos entre Mapa/Secciones y catorce formaciones con desbloqueo por césped. Las selecciones anteriores siguen siendo válidas y los nuevos dibujos se guardan en el estado existente. No requiere migraciones, importaciones, variables ni cambios de Cron. La referencia 3-4-4 se descarta por sumar doce titulares con portero; 3-3-4 y 4-2-4 son las alternativas de nivel 4.
 
 Consulta [el informe v0.5](MONIGONES_V05_DELIVERY.md) y [la galería](screenshots/v05/index.html) para los resultados de las pruebas, las decisiones y el flujo de publicación. La instalación y actualización de la PWA siguen el procedimiento anterior.
+
+
+## Cambios v0.6
+
+Ver [entrega v0.6](MONIGONES_V06_DELIVERY.md), [demo personalizada](DEMO_FANTASY_TEAMS.md) e [imágenes en Vercel](IMAGE_ASSETS_V06.md). No se requiere migración SQL nueva para estos cambios. Las ligas ya guardadas mantienen su catálogo; la nueva fuente personalizada crea otra liga y actualmente impide cargar A. Santos sin identidad confirmada.

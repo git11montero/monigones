@@ -1,0 +1,4502 @@
+[
+  {
+    "playerId": "athletic-0",
+    "clubId": "athletic",
+    "name": "Unai Simón",
+    "resourceId": "unaisimon",
+    "fileName": "athletic-unaisimon.png",
+    "photo": "/assets/futbol/jugadores/athletic-unaisimon.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-1",
+    "clubId": "athletic",
+    "name": "Álex Padilla",
+    "resourceId": "alexpadilla",
+    "fileName": "athletic-alexpadilla.png",
+    "photo": "/assets/futbol/jugadores/athletic-alexpadilla.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-2",
+    "clubId": "athletic",
+    "name": "Jesús Areso",
+    "resourceId": "jesusareso",
+    "fileName": "athletic-jesusareso.png",
+    "photo": "/assets/futbol/jugadores/athletic-jesusareso.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-3",
+    "clubId": "athletic",
+    "name": "Rincón",
+    "resourceId": "rincon",
+    "fileName": "athletic-rincon.png",
+    "photo": "/assets/futbol/jugadores/athletic-rincon.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-4",
+    "clubId": "athletic",
+    "name": "Aymeric Laporte",
+    "resourceId": "aymericlaporte",
+    "fileName": "athletic-aymericlaporte.png",
+    "photo": "/assets/futbol/jugadores/athletic-aymericlaporte.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-5",
+    "clubId": "athletic",
+    "name": "Dani Vivian",
+    "resourceId": "danivivian",
+    "fileName": "athletic-danivivian.png",
+    "photo": "/assets/futbol/jugadores/athletic-danivivian.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-6",
+    "clubId": "athletic",
+    "name": "Yeray",
+    "resourceId": "yeray",
+    "fileName": "athletic-yeray.png",
+    "photo": "/assets/futbol/jugadores/athletic-yeray.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-7",
+    "clubId": "athletic",
+    "name": "Yuri",
+    "resourceId": "yuri",
+    "fileName": "athletic-yuri.png",
+    "photo": "/assets/futbol/jugadores/athletic-yuri.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-8",
+    "clubId": "athletic",
+    "name": "Ruiz de Galarreta",
+    "resourceId": "ruizdegalarreta",
+    "fileName": "athletic-ruizdegalarreta.png",
+    "photo": "/assets/futbol/jugadores/athletic-ruizdegalarreta.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-9",
+    "clubId": "athletic",
+    "name": "Beñat Prados",
+    "resourceId": "benatprados",
+    "fileName": "athletic-benatprados.png",
+    "photo": "/assets/futbol/jugadores/athletic-benatprados.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-10",
+    "clubId": "athletic",
+    "name": "Jauregizar",
+    "resourceId": "jauregizar",
+    "fileName": "athletic-jauregizar.png",
+    "photo": "/assets/futbol/jugadores/athletic-jauregizar.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-11",
+    "clubId": "athletic",
+    "name": "Gerenabarrena",
+    "resourceId": "gerenabarrena",
+    "fileName": "athletic-gerenabarrena.png",
+    "photo": "/assets/futbol/jugadores/athletic-gerenabarrena.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-12",
+    "clubId": "athletic",
+    "name": "Oihan Sancet",
+    "resourceId": "oihansancet",
+    "fileName": "athletic-oihansancet.png",
+    "photo": "/assets/futbol/jugadores/athletic-oihansancet.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-13",
+    "clubId": "athletic",
+    "name": "Canales",
+    "resourceId": "canales",
+    "fileName": "athletic-canales.png",
+    "photo": "/assets/futbol/jugadores/athletic-canales.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-14",
+    "clubId": "athletic",
+    "name": "Nico Williams",
+    "resourceId": "nicowilliams",
+    "fileName": "athletic-nicowilliams.png",
+    "photo": "/assets/futbol/jugadores/athletic-nicowilliams.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-15",
+    "clubId": "athletic",
+    "name": "Álvaro Djaló",
+    "resourceId": "alvarodjalo",
+    "fileName": "athletic-alvarodjalo.png",
+    "photo": "/assets/futbol/jugadores/athletic-alvarodjalo.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-16",
+    "clubId": "athletic",
+    "name": "Maroan Sannadi",
+    "resourceId": "maroansannadi",
+    "fileName": "athletic-maroansannadi.png",
+    "photo": "/assets/futbol/jugadores/athletic-maroansannadi.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-17",
+    "clubId": "athletic",
+    "name": "Gorka Guruzeta",
+    "resourceId": "gorkaguruzeta",
+    "fileName": "athletic-gorkaguruzeta.png",
+    "photo": "/assets/futbol/jugadores/athletic-gorkaguruzeta.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-18",
+    "clubId": "athletic",
+    "name": "Saúl Sierra A",
+    "resourceId": "saulsierraa",
+    "fileName": "athletic-saulsierraa.png",
+    "photo": "/assets/futbol/jugadores/athletic-saulsierraa.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-19",
+    "clubId": "athletic",
+    "name": "Javier Molina A",
+    "resourceId": "javiermolinaa",
+    "fileName": "athletic-javiermolinaa.png",
+    "photo": "/assets/futbol/jugadores/athletic-javiermolinaa.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-20",
+    "clubId": "athletic",
+    "name": "Óscar Vidal A",
+    "resourceId": "oscarvidala",
+    "fileName": "athletic-oscarvidala.png",
+    "photo": "/assets/futbol/jugadores/athletic-oscarvidala.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-21",
+    "clubId": "athletic",
+    "name": "Andrés Prado A",
+    "resourceId": "andrespradoa",
+    "fileName": "athletic-andrespradoa.png",
+    "photo": "/assets/futbol/jugadores/athletic-andrespradoa.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-22",
+    "clubId": "athletic",
+    "name": "Marcos Crespo A",
+    "resourceId": "marcoscrespoa",
+    "fileName": "athletic-marcoscrespoa.png",
+    "photo": "/assets/futbol/jugadores/athletic-marcoscrespoa.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-23",
+    "clubId": "athletic",
+    "name": "Jaime Roca A",
+    "resourceId": "jaimerocaa",
+    "fileName": "athletic-jaimerocaa.png",
+    "photo": "/assets/futbol/jugadores/athletic-jaimerocaa.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "athletic-24",
+    "clubId": "athletic",
+    "name": "Samuel Lago A",
+    "resourceId": "samuellagoa",
+    "fileName": "athletic-samuellagoa.png",
+    "photo": "/assets/futbol/jugadores/athletic-samuellagoa.png",
+    "crest": "/assets/futbol/escudos/athletic.png"
+  },
+  {
+    "playerId": "atletico-0",
+    "clubId": "atletico",
+    "name": "Jan Oblak",
+    "resourceId": "janoblak",
+    "fileName": "atletico-janoblak.png",
+    "photo": "/assets/futbol/jugadores/atletico-janoblak.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-1",
+    "clubId": "atletico",
+    "name": "Juan Musso",
+    "resourceId": "juanmusso",
+    "fileName": "atletico-juanmusso.png",
+    "photo": "/assets/futbol/jugadores/atletico-juanmusso.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-2",
+    "clubId": "atletico",
+    "name": "Alejandro Grimaldo",
+    "resourceId": "alejandrogrimaldo",
+    "fileName": "atletico-alejandrogrimaldo.png",
+    "photo": "/assets/futbol/jugadores/atletico-alejandrogrimaldo.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-3",
+    "clubId": "atletico",
+    "name": "Marc Pubill",
+    "resourceId": "marcpubill",
+    "fileName": "atletico-marcpubill.png",
+    "photo": "/assets/futbol/jugadores/atletico-marcpubill.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-4",
+    "clubId": "atletico",
+    "name": "Dávid Hancko",
+    "resourceId": "davidhancko",
+    "fileName": "atletico-davidhancko.png",
+    "photo": "/assets/futbol/jugadores/atletico-davidhancko.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-5",
+    "clubId": "atletico",
+    "name": "Cuti Romero",
+    "resourceId": "cutiromero",
+    "fileName": "atletico-cutiromero.png",
+    "photo": "/assets/futbol/jugadores/atletico-cutiromero.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-6",
+    "clubId": "atletico",
+    "name": "Marcos Llorente",
+    "resourceId": "marcosllorente",
+    "fileName": "atletico-marcosllorente.png",
+    "photo": "/assets/futbol/jugadores/atletico-marcosllorente.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-7",
+    "clubId": "atletico",
+    "name": "Morten Hjulmand",
+    "resourceId": "mortenhjulmand",
+    "fileName": "atletico-mortenhjulmand.png",
+    "photo": "/assets/futbol/jugadores/atletico-mortenhjulmand.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-8",
+    "clubId": "atletico",
+    "name": "Pablo Barrios",
+    "resourceId": "pablobarrios",
+    "fileName": "atletico-pablobarrios.png",
+    "photo": "/assets/futbol/jugadores/atletico-pablobarrios.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-9",
+    "clubId": "atletico",
+    "name": "Koke",
+    "resourceId": "koke",
+    "fileName": "atletico-koke.png",
+    "photo": "/assets/futbol/jugadores/atletico-koke.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-10",
+    "clubId": "atletico",
+    "name": "Johnny Cardoso",
+    "resourceId": "johnnycardoso",
+    "fileName": "atletico-johnnycardoso.png",
+    "photo": "/assets/futbol/jugadores/atletico-johnnycardoso.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-11",
+    "clubId": "atletico",
+    "name": "Álex Baena",
+    "resourceId": "alexbaena",
+    "fileName": "atletico-alexbaena.png",
+    "photo": "/assets/futbol/jugadores/atletico-alexbaena.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-12",
+    "clubId": "atletico",
+    "name": "Rodrigo Mendoza",
+    "resourceId": "rodrigomendoza",
+    "fileName": "atletico-rodrigomendoza.png",
+    "photo": "/assets/futbol/jugadores/atletico-rodrigomendoza.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-13",
+    "clubId": "atletico",
+    "name": "Obed Vargas",
+    "resourceId": "obedvargas",
+    "fileName": "atletico-obedvargas.png",
+    "photo": "/assets/futbol/jugadores/atletico-obedvargas.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-14",
+    "clubId": "atletico",
+    "name": "Kang-In Lee",
+    "resourceId": "kanginlee",
+    "fileName": "atletico-kanginlee.png",
+    "photo": "/assets/futbol/jugadores/atletico-kanginlee.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-15",
+    "clubId": "atletico",
+    "name": "Julián Álvarez",
+    "resourceId": "julianalvarez",
+    "fileName": "atletico-julianalvarez.png",
+    "photo": "/assets/futbol/jugadores/atletico-julianalvarez.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-16",
+    "clubId": "atletico",
+    "name": "Ademola Lookman",
+    "resourceId": "ademolalookman",
+    "fileName": "atletico-ademolalookman.png",
+    "photo": "/assets/futbol/jugadores/atletico-ademolalookman.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-17",
+    "clubId": "atletico",
+    "name": "Alexander Sørloth",
+    "resourceId": "alexandersrloth",
+    "fileName": "atletico-alexandersrloth.png",
+    "photo": "/assets/futbol/jugadores/atletico-alexandersrloth.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-18",
+    "clubId": "atletico",
+    "name": "Jonathan David",
+    "resourceId": "jonathandavid",
+    "fileName": "atletico-jonathandavid.png",
+    "photo": "/assets/futbol/jugadores/atletico-jonathandavid.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-19",
+    "clubId": "atletico",
+    "name": "Óscar Roca B",
+    "resourceId": "oscarrocab",
+    "fileName": "atletico-oscarrocab.png",
+    "photo": "/assets/futbol/jugadores/atletico-oscarrocab.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-20",
+    "clubId": "atletico",
+    "name": "Andrés Lago B",
+    "resourceId": "andreslagob",
+    "fileName": "atletico-andreslagob.png",
+    "photo": "/assets/futbol/jugadores/atletico-andreslagob.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-21",
+    "clubId": "atletico",
+    "name": "Marcos Robles B",
+    "resourceId": "marcosroblesb",
+    "fileName": "atletico-marcosroblesb.png",
+    "photo": "/assets/futbol/jugadores/atletico-marcosroblesb.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-22",
+    "clubId": "atletico",
+    "name": "Jaime Reina B",
+    "resourceId": "jaimereinab",
+    "fileName": "atletico-jaimereinab.png",
+    "photo": "/assets/futbol/jugadores/atletico-jaimereinab.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-23",
+    "clubId": "atletico",
+    "name": "Samuel Salas B",
+    "resourceId": "samuelsalasb",
+    "fileName": "atletico-samuelsalasb.png",
+    "photo": "/assets/futbol/jugadores/atletico-samuelsalasb.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "atletico-24",
+    "clubId": "atletico",
+    "name": "Nicolás Soto B",
+    "resourceId": "nicolassotob",
+    "fileName": "atletico-nicolassotob.png",
+    "photo": "/assets/futbol/jugadores/atletico-nicolassotob.png",
+    "crest": "/assets/futbol/escudos/atletico.png"
+  },
+  {
+    "playerId": "osasuna-0",
+    "clubId": "osasuna",
+    "name": "Sergio Herrera",
+    "resourceId": "sergioherrera",
+    "fileName": "osasuna-sergioherrera.png",
+    "photo": "/assets/futbol/jugadores/osasuna-sergioherrera.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-1",
+    "clubId": "osasuna",
+    "name": "Aitor Fernández",
+    "resourceId": "aitorfernandez",
+    "fileName": "osasuna-aitorfernandez.png",
+    "photo": "/assets/futbol/jugadores/osasuna-aitorfernandez.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-2",
+    "clubId": "osasuna",
+    "name": "Rosier",
+    "resourceId": "rosier",
+    "fileName": "osasuna-rosier.png",
+    "photo": "/assets/futbol/jugadores/osasuna-rosier.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-3",
+    "clubId": "osasuna",
+    "name": "Abel Bretones",
+    "resourceId": "abelbretones",
+    "fileName": "osasuna-abelbretones.png",
+    "photo": "/assets/futbol/jugadores/osasuna-abelbretones.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-4",
+    "clubId": "osasuna",
+    "name": "Diego Rico",
+    "resourceId": "diegorico",
+    "fileName": "osasuna-diegorico.png",
+    "photo": "/assets/futbol/jugadores/osasuna-diegorico.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-5",
+    "clubId": "osasuna",
+    "name": "Catena",
+    "resourceId": "catena",
+    "fileName": "osasuna-catena.png",
+    "photo": "/assets/futbol/jugadores/osasuna-catena.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-6",
+    "clubId": "osasuna",
+    "name": "Boyomo",
+    "resourceId": "boyomo",
+    "fileName": "osasuna-boyomo.png",
+    "photo": "/assets/futbol/jugadores/osasuna-boyomo.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-7",
+    "clubId": "osasuna",
+    "name": "Herrando",
+    "resourceId": "herrando",
+    "fileName": "osasuna-herrando.png",
+    "photo": "/assets/futbol/jugadores/osasuna-herrando.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-8",
+    "clubId": "osasuna",
+    "name": "Lucas Torró",
+    "resourceId": "lucastorro",
+    "fileName": "osasuna-lucastorro.png",
+    "photo": "/assets/futbol/jugadores/osasuna-lucastorro.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-9",
+    "clubId": "osasuna",
+    "name": "Jon Moncayola",
+    "resourceId": "jonmoncayola",
+    "fileName": "osasuna-jonmoncayola.png",
+    "photo": "/assets/futbol/jugadores/osasuna-jonmoncayola.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-10",
+    "clubId": "osasuna",
+    "name": "Iker Muñoz",
+    "resourceId": "ikermunoz",
+    "fileName": "osasuna-ikermunoz.png",
+    "photo": "/assets/futbol/jugadores/osasuna-ikermunoz.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-11",
+    "clubId": "osasuna",
+    "name": "Rubén García",
+    "resourceId": "rubengarcia",
+    "fileName": "osasuna-rubengarcia.png",
+    "photo": "/assets/futbol/jugadores/osasuna-rubengarcia.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-12",
+    "clubId": "osasuna",
+    "name": "Kike Barja",
+    "resourceId": "kikebarja",
+    "fileName": "osasuna-kikebarja.png",
+    "photo": "/assets/futbol/jugadores/osasuna-kikebarja.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-13",
+    "clubId": "osasuna",
+    "name": "Moi Gómez",
+    "resourceId": "moigomez",
+    "fileName": "osasuna-moigomez.png",
+    "photo": "/assets/futbol/jugadores/osasuna-moigomez.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-14",
+    "clubId": "osasuna",
+    "name": "Aimar Oroz",
+    "resourceId": "aimaroroz",
+    "fileName": "osasuna-aimaroroz.png",
+    "photo": "/assets/futbol/jugadores/osasuna-aimaroroz.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-15",
+    "clubId": "osasuna",
+    "name": "Ante Budimir",
+    "resourceId": "antebudimir",
+    "fileName": "osasuna-antebudimir.png",
+    "photo": "/assets/futbol/jugadores/osasuna-antebudimir.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-16",
+    "clubId": "osasuna",
+    "name": "Raúl García de Haro",
+    "resourceId": "raulgarciadeharo",
+    "fileName": "osasuna-raulgarciadeharo.png",
+    "photo": "/assets/futbol/jugadores/osasuna-raulgarciadeharo.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-17",
+    "clubId": "osasuna",
+    "name": "Dubasin",
+    "resourceId": "dubasin",
+    "fileName": "osasuna-dubasin.png",
+    "photo": "/assets/futbol/jugadores/osasuna-dubasin.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-18",
+    "clubId": "osasuna",
+    "name": "Moro",
+    "resourceId": "moro",
+    "fileName": "osasuna-moro.png",
+    "photo": "/assets/futbol/jugadores/osasuna-moro.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-19",
+    "clubId": "osasuna",
+    "name": "Del Castillo",
+    "resourceId": "delcastillo",
+    "fileName": "osasuna-delcastillo.png",
+    "photo": "/assets/futbol/jugadores/osasuna-delcastillo.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-20",
+    "clubId": "osasuna",
+    "name": "Marcos Soto C",
+    "resourceId": "marcossotoc",
+    "fileName": "osasuna-marcossotoc.png",
+    "photo": "/assets/futbol/jugadores/osasuna-marcossotoc.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-21",
+    "clubId": "osasuna",
+    "name": "Jaime Oliva C",
+    "resourceId": "jaimeolivac",
+    "fileName": "osasuna-jaimeolivac.png",
+    "photo": "/assets/futbol/jugadores/osasuna-jaimeolivac.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-22",
+    "clubId": "osasuna",
+    "name": "Samuel Navas C",
+    "resourceId": "samuelnavasc",
+    "fileName": "osasuna-samuelnavasc.png",
+    "photo": "/assets/futbol/jugadores/osasuna-samuelnavasc.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-23",
+    "clubId": "osasuna",
+    "name": "Nicolás Paz C",
+    "resourceId": "nicolaspazc",
+    "fileName": "osasuna-nicolaspazc.png",
+    "photo": "/assets/futbol/jugadores/osasuna-nicolaspazc.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "osasuna-24",
+    "clubId": "osasuna",
+    "name": "Mateo Mora C",
+    "resourceId": "mateomorac",
+    "fileName": "osasuna-mateomorac.png",
+    "photo": "/assets/futbol/jugadores/osasuna-mateomorac.png",
+    "crest": "/assets/futbol/escudos/osasuna.png"
+  },
+  {
+    "playerId": "celta-0",
+    "clubId": "celta",
+    "name": "Radu",
+    "resourceId": "radu",
+    "fileName": "celta-radu.png",
+    "photo": "/assets/futbol/jugadores/celta-radu.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-1",
+    "clubId": "celta",
+    "name": "Altay Bayindir",
+    "resourceId": "altaybayindir",
+    "fileName": "celta-altaybayindir.png",
+    "photo": "/assets/futbol/jugadores/celta-altaybayindir.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-2",
+    "clubId": "celta",
+    "name": "Iván Villar",
+    "resourceId": "ivanvillar",
+    "fileName": "celta-ivanvillar.png",
+    "photo": "/assets/futbol/jugadores/celta-ivanvillar.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-3",
+    "clubId": "celta",
+    "name": "Javi Rodríguez",
+    "resourceId": "javirodriguez",
+    "fileName": "celta-javirodriguez.png",
+    "photo": "/assets/futbol/jugadores/celta-javirodriguez.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-4",
+    "clubId": "celta",
+    "name": "Starfelt",
+    "resourceId": "starfelt",
+    "fileName": "celta-starfelt.png",
+    "photo": "/assets/futbol/jugadores/celta-starfelt.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-5",
+    "clubId": "celta",
+    "name": "Marcos Alonso",
+    "resourceId": "marcosalonso",
+    "fileName": "celta-marcosalonso.png",
+    "photo": "/assets/futbol/jugadores/celta-marcosalonso.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-6",
+    "clubId": "celta",
+    "name": "Faye",
+    "resourceId": "faye",
+    "fileName": "celta-faye.png",
+    "photo": "/assets/futbol/jugadores/celta-faye.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-7",
+    "clubId": "celta",
+    "name": "Sebastián Cáceres",
+    "resourceId": "sebastiancaceres",
+    "fileName": "celta-sebastiancaceres.png",
+    "photo": "/assets/futbol/jugadores/celta-sebastiancaceres.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-8",
+    "clubId": "celta",
+    "name": "Yoel Lago",
+    "resourceId": "yoellago",
+    "fileName": "celta-yoellago.png",
+    "photo": "/assets/futbol/jugadores/celta-yoellago.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-9",
+    "clubId": "celta",
+    "name": "Álvaro Núñez",
+    "resourceId": "alvaronunez",
+    "fileName": "celta-alvaronunez.png",
+    "photo": "/assets/futbol/jugadores/celta-alvaronunez.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-10",
+    "clubId": "celta",
+    "name": "Miguel Román",
+    "resourceId": "miguelroman",
+    "fileName": "celta-miguelroman.png",
+    "photo": "/assets/futbol/jugadores/celta-miguelroman.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-11",
+    "clubId": "celta",
+    "name": "Ilaix Moriba",
+    "resourceId": "ilaixmoriba",
+    "fileName": "celta-ilaixmoriba.png",
+    "photo": "/assets/futbol/jugadores/celta-ilaixmoriba.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-12",
+    "clubId": "celta",
+    "name": "Aleix Febas",
+    "resourceId": "aleixfebas",
+    "fileName": "celta-aleixfebas.png",
+    "photo": "/assets/futbol/jugadores/celta-aleixfebas.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-13",
+    "clubId": "celta",
+    "name": "Javi Galán",
+    "resourceId": "javigalan",
+    "fileName": "celta-javigalan.png",
+    "photo": "/assets/futbol/jugadores/celta-javigalan.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-14",
+    "clubId": "celta",
+    "name": "Sergio Carreira",
+    "resourceId": "sergiocarreira",
+    "fileName": "celta-sergiocarreira.png",
+    "photo": "/assets/futbol/jugadores/celta-sergiocarreira.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-15",
+    "clubId": "celta",
+    "name": "Iago Aspas",
+    "resourceId": "iagoaspas",
+    "fileName": "celta-iagoaspas.png",
+    "photo": "/assets/futbol/jugadores/celta-iagoaspas.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-16",
+    "clubId": "celta",
+    "name": "Borja Iglesias",
+    "resourceId": "borjaiglesias",
+    "fileName": "celta-borjaiglesias.png",
+    "photo": "/assets/futbol/jugadores/celta-borjaiglesias.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-17",
+    "clubId": "celta",
+    "name": "Swedberg",
+    "resourceId": "swedberg",
+    "fileName": "celta-swedberg.png",
+    "photo": "/assets/futbol/jugadores/celta-swedberg.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-18",
+    "clubId": "celta",
+    "name": "Ferran Jutglà",
+    "resourceId": "ferranjutgla",
+    "fileName": "celta-ferranjutgla.png",
+    "photo": "/assets/futbol/jugadores/celta-ferranjutgla.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-19",
+    "clubId": "celta",
+    "name": "Pablo Durán",
+    "resourceId": "pabloduran",
+    "fileName": "celta-pabloduran.png",
+    "photo": "/assets/futbol/jugadores/celta-pabloduran.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-20",
+    "clubId": "celta",
+    "name": "Couhaib Driouech",
+    "resourceId": "couhaibdriouech",
+    "fileName": "celta-couhaibdriouech.png",
+    "photo": "/assets/futbol/jugadores/celta-couhaibdriouech.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-21",
+    "clubId": "celta",
+    "name": "Samuel Soler D",
+    "resourceId": "samuelsolerd",
+    "fileName": "celta-samuelsolerd.png",
+    "photo": "/assets/futbol/jugadores/celta-samuelsolerd.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-22",
+    "clubId": "celta",
+    "name": "Nicolás Ríos D",
+    "resourceId": "nicolasriosd",
+    "fileName": "celta-nicolasriosd.png",
+    "photo": "/assets/futbol/jugadores/celta-nicolasriosd.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-23",
+    "clubId": "celta",
+    "name": "Mateo Duarte D",
+    "resourceId": "mateoduarted",
+    "fileName": "celta-mateoduarted.png",
+    "photo": "/assets/futbol/jugadores/celta-mateoduarted.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "celta-24",
+    "clubId": "celta",
+    "name": "Lucas Valdés D",
+    "resourceId": "lucasvaldesd",
+    "fileName": "celta-lucasvaldesd.png",
+    "photo": "/assets/futbol/jugadores/celta-lucasvaldesd.png",
+    "crest": "/assets/futbol/escudos/celta.png"
+  },
+  {
+    "playerId": "alaves-0",
+    "clubId": "alaves",
+    "name": "Antonio Sivera",
+    "resourceId": "antoniosivera",
+    "fileName": "alaves-antoniosivera.png",
+    "photo": "/assets/futbol/jugadores/alaves-antoniosivera.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-1",
+    "clubId": "alaves",
+    "name": "Adrián",
+    "resourceId": "adrian",
+    "fileName": "alaves-adrian.png",
+    "photo": "/assets/futbol/jugadores/alaves-adrian.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-2",
+    "clubId": "alaves",
+    "name": "Swiderski",
+    "resourceId": "swiderski",
+    "fileName": "alaves-swiderski.png",
+    "photo": "/assets/futbol/jugadores/alaves-swiderski.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-3",
+    "clubId": "alaves",
+    "name": "Koski",
+    "resourceId": "koski",
+    "fileName": "alaves-koski.png",
+    "photo": "/assets/futbol/jugadores/alaves-koski.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-4",
+    "clubId": "alaves",
+    "name": "Valentini",
+    "resourceId": "valentini",
+    "fileName": "alaves-valentini.png",
+    "photo": "/assets/futbol/jugadores/alaves-valentini.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-5",
+    "clubId": "alaves",
+    "name": "Garcés",
+    "resourceId": "garces",
+    "fileName": "alaves-garces.png",
+    "photo": "/assets/futbol/jugadores/alaves-garces.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-6",
+    "clubId": "alaves",
+    "name": "Xanet",
+    "resourceId": "xanet",
+    "fileName": "alaves-xanet.png",
+    "photo": "/assets/futbol/jugadores/alaves-xanet.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-7",
+    "clubId": "alaves",
+    "name": "Álvaro",
+    "resourceId": "alvaro",
+    "fileName": "alaves-alvaro.png",
+    "photo": "/assets/futbol/jugadores/alaves-alvaro.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-8",
+    "clubId": "alaves",
+    "name": "Antonio Blanco",
+    "resourceId": "antonioblanco",
+    "fileName": "alaves-antonioblanco.png",
+    "photo": "/assets/futbol/jugadores/alaves-antonioblanco.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-9",
+    "clubId": "alaves",
+    "name": "Pablo Ibáñez",
+    "resourceId": "pabloibanez",
+    "fileName": "alaves-pabloibanez.png",
+    "photo": "/assets/futbol/jugadores/alaves-pabloibanez.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-10",
+    "clubId": "alaves",
+    "name": "Denis Suárez",
+    "resourceId": "denissuarez",
+    "fileName": "alaves-denissuarez.png",
+    "photo": "/assets/futbol/jugadores/alaves-denissuarez.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-11",
+    "clubId": "alaves",
+    "name": "Guevara",
+    "resourceId": "guevara",
+    "fileName": "alaves-guevara.png",
+    "photo": "/assets/futbol/jugadores/alaves-guevara.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-12",
+    "clubId": "alaves",
+    "name": "Protesoni",
+    "resourceId": "protesoni",
+    "fileName": "alaves-protesoni.png",
+    "photo": "/assets/futbol/jugadores/alaves-protesoni.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-13",
+    "clubId": "alaves",
+    "name": "Mikel Rodríguez",
+    "resourceId": "mikelrodriguez",
+    "fileName": "alaves-mikelrodriguez.png",
+    "photo": "/assets/futbol/jugadores/alaves-mikelrodriguez.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-14",
+    "clubId": "alaves",
+    "name": "Aleñá",
+    "resourceId": "alena",
+    "fileName": "alaves-alena.png",
+    "photo": "/assets/futbol/jugadores/alaves-alena.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-15",
+    "clubId": "alaves",
+    "name": "Lucas Boyé",
+    "resourceId": "lucasboye",
+    "fileName": "alaves-lucasboye.png",
+    "photo": "/assets/futbol/jugadores/alaves-lucasboye.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-16",
+    "clubId": "alaves",
+    "name": "Toni Martínez",
+    "resourceId": "tonimartinez",
+    "fileName": "alaves-tonimartinez.png",
+    "photo": "/assets/futbol/jugadores/alaves-tonimartinez.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-17",
+    "clubId": "alaves",
+    "name": "Mañas",
+    "resourceId": "manas",
+    "fileName": "alaves-manas.png",
+    "photo": "/assets/futbol/jugadores/alaves-manas.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-18",
+    "clubId": "alaves",
+    "name": "Mariano",
+    "resourceId": "mariano",
+    "fileName": "alaves-mariano.png",
+    "photo": "/assets/futbol/jugadores/alaves-mariano.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-19",
+    "clubId": "alaves",
+    "name": "Jaime Duarte E",
+    "resourceId": "jaimeduartee",
+    "fileName": "alaves-jaimeduartee.png",
+    "photo": "/assets/futbol/jugadores/alaves-jaimeduartee.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-20",
+    "clubId": "alaves",
+    "name": "Samuel Valdés E",
+    "resourceId": "samuelvaldese",
+    "fileName": "alaves-samuelvaldese.png",
+    "photo": "/assets/futbol/jugadores/alaves-samuelvaldese.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-21",
+    "clubId": "alaves",
+    "name": "Nicolás Cano E",
+    "resourceId": "nicolascanoe",
+    "fileName": "alaves-nicolascanoe.png",
+    "photo": "/assets/futbol/jugadores/alaves-nicolascanoe.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-22",
+    "clubId": "alaves",
+    "name": "Mateo Luna E",
+    "resourceId": "mateolunae",
+    "fileName": "alaves-mateolunae.png",
+    "photo": "/assets/futbol/jugadores/alaves-mateolunae.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-23",
+    "clubId": "alaves",
+    "name": "Lucas Gil E",
+    "resourceId": "lucasgile",
+    "fileName": "alaves-lucasgile.png",
+    "photo": "/assets/futbol/jugadores/alaves-lucasgile.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "alaves-24",
+    "clubId": "alaves",
+    "name": "Daniel Vega E",
+    "resourceId": "danielvegae",
+    "fileName": "alaves-danielvegae.png",
+    "photo": "/assets/futbol/jugadores/alaves-danielvegae.png",
+    "crest": "/assets/futbol/escudos/alaves.png"
+  },
+  {
+    "playerId": "elche-0",
+    "clubId": "elche",
+    "name": "Matías Dituro",
+    "resourceId": "matiasdituro",
+    "fileName": "elche-matiasdituro.png",
+    "photo": "/assets/futbol/jugadores/elche-matiasdituro.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-1",
+    "clubId": "elche",
+    "name": "Iturbe",
+    "resourceId": "iturbe",
+    "fileName": "elche-iturbe.png",
+    "photo": "/assets/futbol/jugadores/elche-iturbe.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-2",
+    "clubId": "elche",
+    "name": "Víctor Chust",
+    "resourceId": "victorchust",
+    "fileName": "elche-victorchust.png",
+    "photo": "/assets/futbol/jugadores/elche-victorchust.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-3",
+    "clubId": "elche",
+    "name": "Pedro Bigas",
+    "resourceId": "pedrobigas",
+    "fileName": "elche-pedrobigas.png",
+    "photo": "/assets/futbol/jugadores/elche-pedrobigas.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-4",
+    "clubId": "elche",
+    "name": "Buba Sangaré",
+    "resourceId": "bubasangare",
+    "fileName": "elche-bubasangare.png",
+    "photo": "/assets/futbol/jugadores/elche-bubasangare.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-5",
+    "clubId": "elche",
+    "name": "Tete Morente",
+    "resourceId": "tetemorente",
+    "fileName": "elche-tetemorente.png",
+    "photo": "/assets/futbol/jugadores/elche-tetemorente.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-6",
+    "clubId": "elche",
+    "name": "Germán Valera",
+    "resourceId": "germanvalera",
+    "fileName": "elche-germanvalera.png",
+    "photo": "/assets/futbol/jugadores/elche-germanvalera.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-7",
+    "clubId": "elche",
+    "name": "Revivo",
+    "resourceId": "revivo",
+    "fileName": "elche-revivo.png",
+    "photo": "/assets/futbol/jugadores/elche-revivo.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-8",
+    "clubId": "elche",
+    "name": "Lomónaco",
+    "resourceId": "lomonaco",
+    "fileName": "elche-lomonaco.png",
+    "photo": "/assets/futbol/jugadores/elche-lomonaco.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-9",
+    "clubId": "elche",
+    "name": "Gonzalo Villar",
+    "resourceId": "gonzalovillar",
+    "fileName": "elche-gonzalovillar.png",
+    "photo": "/assets/futbol/jugadores/elche-gonzalovillar.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-10",
+    "clubId": "elche",
+    "name": "Javier Morcillo",
+    "resourceId": "javiermorcillo",
+    "fileName": "elche-javiermorcillo.png",
+    "photo": "/assets/futbol/jugadores/elche-javiermorcillo.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-11",
+    "clubId": "elche",
+    "name": "Buonanotte",
+    "resourceId": "buonanotte",
+    "fileName": "elche-buonanotte.png",
+    "photo": "/assets/futbol/jugadores/elche-buonanotte.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-12",
+    "clubId": "elche",
+    "name": "Thomas Lemar",
+    "resourceId": "thomaslemar",
+    "fileName": "elche-thomaslemar.png",
+    "photo": "/assets/futbol/jugadores/elche-thomaslemar.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-13",
+    "clubId": "elche",
+    "name": "Fer Niño",
+    "resourceId": "fernino",
+    "fileName": "elche-fernino.png",
+    "photo": "/assets/futbol/jugadores/elche-fernino.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-14",
+    "clubId": "elche",
+    "name": "Eze Ponce",
+    "resourceId": "ezeponce",
+    "fileName": "elche-ezeponce.png",
+    "photo": "/assets/futbol/jugadores/elche-ezeponce.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-15",
+    "clubId": "elche",
+    "name": "Óscar Duarte F",
+    "resourceId": "oscarduartef",
+    "fileName": "elche-oscarduartef.png",
+    "photo": "/assets/futbol/jugadores/elche-oscarduartef.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-16",
+    "clubId": "elche",
+    "name": "Andrés Valdés F",
+    "resourceId": "andresvaldesf",
+    "fileName": "elche-andresvaldesf.png",
+    "photo": "/assets/futbol/jugadores/elche-andresvaldesf.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-17",
+    "clubId": "elche",
+    "name": "Marcos Cano F",
+    "resourceId": "marcoscanof",
+    "fileName": "elche-marcoscanof.png",
+    "photo": "/assets/futbol/jugadores/elche-marcoscanof.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-18",
+    "clubId": "elche",
+    "name": "Jaime Luna F",
+    "resourceId": "jaimelunaf",
+    "fileName": "elche-jaimelunaf.png",
+    "photo": "/assets/futbol/jugadores/elche-jaimelunaf.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-19",
+    "clubId": "elche",
+    "name": "Samuel Gil F",
+    "resourceId": "samuelgilf",
+    "fileName": "elche-samuelgilf.png",
+    "photo": "/assets/futbol/jugadores/elche-samuelgilf.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-20",
+    "clubId": "elche",
+    "name": "Nicolás Vega F",
+    "resourceId": "nicolasvegaf",
+    "fileName": "elche-nicolasvegaf.png",
+    "photo": "/assets/futbol/jugadores/elche-nicolasvegaf.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-21",
+    "clubId": "elche",
+    "name": "Mateo León F",
+    "resourceId": "mateoleonf",
+    "fileName": "elche-mateoleonf.png",
+    "photo": "/assets/futbol/jugadores/elche-mateoleonf.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-22",
+    "clubId": "elche",
+    "name": "Lucas Ramos F",
+    "resourceId": "lucasramosf",
+    "fileName": "elche-lucasramosf.png",
+    "photo": "/assets/futbol/jugadores/elche-lucasramosf.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-23",
+    "clubId": "elche",
+    "name": "Daniel Sierra F",
+    "resourceId": "danielsierraf",
+    "fileName": "elche-danielsierraf.png",
+    "photo": "/assets/futbol/jugadores/elche-danielsierraf.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "elche-24",
+    "clubId": "elche",
+    "name": "Álvaro Molina F",
+    "resourceId": "alvaromolinaf",
+    "fileName": "elche-alvaromolinaf.png",
+    "photo": "/assets/futbol/jugadores/elche-alvaromolinaf.png",
+    "crest": "/assets/futbol/escudos/elche.png"
+  },
+  {
+    "playerId": "barcelona-0",
+    "clubId": "barcelona",
+    "name": "Joan García",
+    "resourceId": "joangarcia",
+    "fileName": "barcelona-joangarcia.png",
+    "photo": "/assets/futbol/jugadores/barcelona-joangarcia.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-1",
+    "clubId": "barcelona",
+    "name": "Szczesny",
+    "resourceId": "szczesny",
+    "fileName": "barcelona-szczesny.png",
+    "photo": "/assets/futbol/jugadores/barcelona-szczesny.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-2",
+    "clubId": "barcelona",
+    "name": "Dominik Livakovic",
+    "resourceId": "dominiklivakovic",
+    "fileName": "barcelona-dominiklivakovic.png",
+    "photo": "/assets/futbol/jugadores/barcelona-dominiklivakovic.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-3",
+    "clubId": "barcelona",
+    "name": "Pau Cubarsí",
+    "resourceId": "paucubarsi",
+    "fileName": "barcelona-paucubarsi.png",
+    "photo": "/assets/futbol/jugadores/barcelona-paucubarsi.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-4",
+    "clubId": "barcelona",
+    "name": "Gerard Martín",
+    "resourceId": "gerardmartin",
+    "fileName": "barcelona-gerardmartin.png",
+    "photo": "/assets/futbol/jugadores/barcelona-gerardmartin.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-5",
+    "clubId": "barcelona",
+    "name": "Christensen",
+    "resourceId": "christensen",
+    "fileName": "barcelona-christensen.png",
+    "photo": "/assets/futbol/jugadores/barcelona-christensen.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-6",
+    "clubId": "barcelona",
+    "name": "Eric García",
+    "resourceId": "ericgarcia",
+    "fileName": "barcelona-ericgarcia.png",
+    "photo": "/assets/futbol/jugadores/barcelona-ericgarcia.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-7",
+    "clubId": "barcelona",
+    "name": "Jules Koundé",
+    "resourceId": "juleskounde",
+    "fileName": "barcelona-juleskounde.png",
+    "photo": "/assets/futbol/jugadores/barcelona-juleskounde.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-8",
+    "clubId": "barcelona",
+    "name": "João Cancelo",
+    "resourceId": "joaocancelo",
+    "fileName": "barcelona-joaocancelo.png",
+    "photo": "/assets/futbol/jugadores/barcelona-joaocancelo.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-9",
+    "clubId": "barcelona",
+    "name": "Alejandro Balde",
+    "resourceId": "alejandrobalde",
+    "fileName": "barcelona-alejandrobalde.png",
+    "photo": "/assets/futbol/jugadores/barcelona-alejandrobalde.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-10",
+    "clubId": "barcelona",
+    "name": "Pedri",
+    "resourceId": "pedri",
+    "fileName": "barcelona-pedri.png",
+    "photo": "/assets/futbol/jugadores/barcelona-pedri.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-11",
+    "clubId": "barcelona",
+    "name": "Rodri",
+    "resourceId": "rodri",
+    "fileName": "barcelona-rodri.png",
+    "photo": "/assets/futbol/jugadores/barcelona-rodri.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-12",
+    "clubId": "barcelona",
+    "name": "Frenkie de Jong",
+    "resourceId": "frenkiedejong",
+    "fileName": "barcelona-frenkiedejong.png",
+    "photo": "/assets/futbol/jugadores/barcelona-frenkiedejong.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-13",
+    "clubId": "barcelona",
+    "name": "Dani Olmo",
+    "resourceId": "daniolmo",
+    "fileName": "barcelona-daniolmo.png",
+    "photo": "/assets/futbol/jugadores/barcelona-daniolmo.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-14",
+    "clubId": "barcelona",
+    "name": "Fermín López",
+    "resourceId": "ferminlopez",
+    "fileName": "barcelona-ferminlopez.png",
+    "photo": "/assets/futbol/jugadores/barcelona-ferminlopez.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-15",
+    "clubId": "barcelona",
+    "name": "Marc Bernal",
+    "resourceId": "marcbernal",
+    "fileName": "barcelona-marcbernal.png",
+    "photo": "/assets/futbol/jugadores/barcelona-marcbernal.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-16",
+    "clubId": "barcelona",
+    "name": "Gavi",
+    "resourceId": "gavi",
+    "fileName": "barcelona-gavi.png",
+    "photo": "/assets/futbol/jugadores/barcelona-gavi.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-17",
+    "clubId": "barcelona",
+    "name": "Lamine Yamal",
+    "resourceId": "lamineyamal",
+    "fileName": "barcelona-lamineyamal.png",
+    "photo": "/assets/futbol/jugadores/barcelona-lamineyamal.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-18",
+    "clubId": "barcelona",
+    "name": "Raphinha",
+    "resourceId": "raphinha",
+    "fileName": "barcelona-raphinha.png",
+    "photo": "/assets/futbol/jugadores/barcelona-raphinha.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-19",
+    "clubId": "barcelona",
+    "name": "Anthony Gordon",
+    "resourceId": "anthonygordon",
+    "fileName": "barcelona-anthonygordon.png",
+    "photo": "/assets/futbol/jugadores/barcelona-anthonygordon.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-20",
+    "clubId": "barcelona",
+    "name": "Karim Adeyemi",
+    "resourceId": "karimadeyemi",
+    "fileName": "barcelona-karimadeyemi.png",
+    "photo": "/assets/futbol/jugadores/barcelona-karimadeyemi.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-21",
+    "clubId": "barcelona",
+    "name": "Gabriel Jesús",
+    "resourceId": "gabrieljesus",
+    "fileName": "barcelona-gabrieljesus.png",
+    "photo": "/assets/futbol/jugadores/barcelona-gabrieljesus.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-22",
+    "clubId": "barcelona",
+    "name": "Daniel Prado G",
+    "resourceId": "danielpradog",
+    "fileName": "barcelona-danielpradog.png",
+    "photo": "/assets/futbol/jugadores/barcelona-danielpradog.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-23",
+    "clubId": "barcelona",
+    "name": "Álvaro Crespo G",
+    "resourceId": "alvarocrespog",
+    "fileName": "barcelona-alvarocrespog.png",
+    "photo": "/assets/futbol/jugadores/barcelona-alvarocrespog.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "barcelona-24",
+    "clubId": "barcelona",
+    "name": "Hugo Roca G",
+    "resourceId": "hugorocag",
+    "fileName": "barcelona-hugorocag.png",
+    "photo": "/assets/futbol/jugadores/barcelona-hugorocag.png",
+    "crest": "/assets/futbol/escudos/barcelona.png"
+  },
+  {
+    "playerId": "getafe-0",
+    "clubId": "getafe",
+    "name": "David Soria",
+    "resourceId": "davidsoria",
+    "fileName": "getafe-davidsoria.png",
+    "photo": "/assets/futbol/jugadores/getafe-davidsoria.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-1",
+    "clubId": "getafe",
+    "name": "Djené",
+    "resourceId": "djene",
+    "fileName": "getafe-djene.png",
+    "photo": "/assets/futbol/jugadores/getafe-djene.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-2",
+    "clubId": "getafe",
+    "name": "Saba Sazonov",
+    "resourceId": "sabasazonov",
+    "fileName": "getafe-sabasazonov.png",
+    "photo": "/assets/futbol/jugadores/getafe-sabasazonov.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-3",
+    "clubId": "getafe",
+    "name": "Zaid Romero",
+    "resourceId": "zaidromero",
+    "fileName": "getafe-zaidromero.png",
+    "photo": "/assets/futbol/jugadores/getafe-zaidromero.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-4",
+    "clubId": "getafe",
+    "name": "Andrés García",
+    "resourceId": "andresgarcia",
+    "fileName": "getafe-andresgarcia.png",
+    "photo": "/assets/futbol/jugadores/getafe-andresgarcia.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-5",
+    "clubId": "getafe",
+    "name": "Johan Mojica",
+    "resourceId": "johanmojica",
+    "fileName": "getafe-johanmojica.png",
+    "photo": "/assets/futbol/jugadores/getafe-johanmojica.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-6",
+    "clubId": "getafe",
+    "name": "Sebastián Boselli",
+    "resourceId": "sebastianboselli",
+    "fileName": "getafe-sebastianboselli.png",
+    "photo": "/assets/futbol/jugadores/getafe-sebastianboselli.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-7",
+    "clubId": "getafe",
+    "name": "Mario Martín",
+    "resourceId": "mariomartin",
+    "fileName": "getafe-mariomartin.png",
+    "photo": "/assets/futbol/jugadores/getafe-mariomartin.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-8",
+    "clubId": "getafe",
+    "name": "Nemanja Gudelj",
+    "resourceId": "nemanjagudelj",
+    "fileName": "getafe-nemanjagudelj.png",
+    "photo": "/assets/futbol/jugadores/getafe-nemanjagudelj.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-9",
+    "clubId": "getafe",
+    "name": "Orel Mangala",
+    "resourceId": "orelmangala",
+    "fileName": "getafe-orelmangala.png",
+    "photo": "/assets/futbol/jugadores/getafe-orelmangala.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-10",
+    "clubId": "getafe",
+    "name": "Ramón Terrats",
+    "resourceId": "ramonterrats",
+    "fileName": "getafe-ramonterrats.png",
+    "photo": "/assets/futbol/jugadores/getafe-ramonterrats.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-11",
+    "clubId": "getafe",
+    "name": "Francho Serrano",
+    "resourceId": "franchoserrano",
+    "fileName": "getafe-franchoserrano.png",
+    "photo": "/assets/futbol/jugadores/getafe-franchoserrano.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-12",
+    "clubId": "getafe",
+    "name": "Martín Satriano",
+    "resourceId": "martinsatriano",
+    "fileName": "getafe-martinsatriano.png",
+    "photo": "/assets/futbol/jugadores/getafe-martinsatriano.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-13",
+    "clubId": "getafe",
+    "name": "Enes Ünal",
+    "resourceId": "enesunal",
+    "fileName": "getafe-enesunal.png",
+    "photo": "/assets/futbol/jugadores/getafe-enesunal.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-14",
+    "clubId": "getafe",
+    "name": "Iván Azón",
+    "resourceId": "ivanazon",
+    "fileName": "getafe-ivanazon.png",
+    "photo": "/assets/futbol/jugadores/getafe-ivanazon.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-15",
+    "clubId": "getafe",
+    "name": "Borja Mayoral",
+    "resourceId": "borjamayoral",
+    "fileName": "getafe-borjamayoral.png",
+    "photo": "/assets/futbol/jugadores/getafe-borjamayoral.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-16",
+    "clubId": "getafe",
+    "name": "Christantus Uche",
+    "resourceId": "christantusuche",
+    "fileName": "getafe-christantusuche.png",
+    "photo": "/assets/futbol/jugadores/getafe-christantusuche.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-17",
+    "clubId": "getafe",
+    "name": "Samuel Vidal H",
+    "resourceId": "samuelvidalh",
+    "fileName": "getafe-samuelvidalh.png",
+    "photo": "/assets/futbol/jugadores/getafe-samuelvidalh.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-18",
+    "clubId": "getafe",
+    "name": "Nicolás Prado H",
+    "resourceId": "nicolaspradoh",
+    "fileName": "getafe-nicolaspradoh.png",
+    "photo": "/assets/futbol/jugadores/getafe-nicolaspradoh.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-19",
+    "clubId": "getafe",
+    "name": "Mateo Crespo H",
+    "resourceId": "mateocrespoh",
+    "fileName": "getafe-mateocrespoh.png",
+    "photo": "/assets/futbol/jugadores/getafe-mateocrespoh.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-20",
+    "clubId": "getafe",
+    "name": "Lucas Roca H",
+    "resourceId": "lucasrocah",
+    "fileName": "getafe-lucasrocah.png",
+    "photo": "/assets/futbol/jugadores/getafe-lucasrocah.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-21",
+    "clubId": "getafe",
+    "name": "Daniel Lago H",
+    "resourceId": "daniellagoh",
+    "fileName": "getafe-daniellagoh.png",
+    "photo": "/assets/futbol/jugadores/getafe-daniellagoh.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-22",
+    "clubId": "getafe",
+    "name": "Álvaro Robles H",
+    "resourceId": "alvaroroblesh",
+    "fileName": "getafe-alvaroroblesh.png",
+    "photo": "/assets/futbol/jugadores/getafe-alvaroroblesh.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-23",
+    "clubId": "getafe",
+    "name": "Hugo Reina H",
+    "resourceId": "hugoreinah",
+    "fileName": "getafe-hugoreinah.png",
+    "photo": "/assets/futbol/jugadores/getafe-hugoreinah.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "getafe-24",
+    "clubId": "getafe",
+    "name": "Bruno Salas H",
+    "resourceId": "brunosalash",
+    "fileName": "getafe-brunosalash.png",
+    "photo": "/assets/futbol/jugadores/getafe-brunosalash.png",
+    "crest": "/assets/futbol/escudos/getafe.png"
+  },
+  {
+    "playerId": "levante-0",
+    "clubId": "levante",
+    "name": "Mathew Ryan",
+    "resourceId": "mathewryan",
+    "fileName": "levante-mathewryan.png",
+    "photo": "/assets/futbol/jugadores/levante-mathewryan.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-1",
+    "clubId": "levante",
+    "name": "Aïssa Mandi",
+    "resourceId": "aissamandi",
+    "fileName": "levante-aissamandi.png",
+    "photo": "/assets/futbol/jugadores/levante-aissamandi.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-2",
+    "clubId": "levante",
+    "name": "Tape",
+    "resourceId": "tape",
+    "fileName": "levante-tape.png",
+    "photo": "/assets/futbol/jugadores/levante-tape.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-3",
+    "clubId": "levante",
+    "name": "Toljan",
+    "resourceId": "toljan",
+    "fileName": "levante-toljan.png",
+    "photo": "/assets/futbol/jugadores/levante-toljan.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-4",
+    "clubId": "levante",
+    "name": "Dela",
+    "resourceId": "dela",
+    "fileName": "levante-dela.png",
+    "photo": "/assets/futbol/jugadores/levante-dela.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-5",
+    "clubId": "levante",
+    "name": "Manu Sánchez",
+    "resourceId": "manusanchez",
+    "fileName": "levante-manusanchez.png",
+    "photo": "/assets/futbol/jugadores/levante-manusanchez.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-6",
+    "clubId": "levante",
+    "name": "Hugo Sotelo",
+    "resourceId": "hugosotelo",
+    "fileName": "levante-hugosotelo.png",
+    "photo": "/assets/futbol/jugadores/levante-hugosotelo.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-7",
+    "clubId": "levante",
+    "name": "Jon Olasagasti",
+    "resourceId": "jonolasagasti",
+    "fileName": "levante-jonolasagasti.png",
+    "photo": "/assets/futbol/jugadores/levante-jonolasagasti.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-8",
+    "clubId": "levante",
+    "name": "Enzo Bardeli",
+    "resourceId": "enzobardeli",
+    "fileName": "levante-enzobardeli.png",
+    "photo": "/assets/futbol/jugadores/levante-enzobardeli.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-9",
+    "clubId": "levante",
+    "name": "Dani Requena",
+    "resourceId": "danirequena",
+    "fileName": "levante-danirequena.png",
+    "photo": "/assets/futbol/jugadores/levante-danirequena.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-10",
+    "clubId": "levante",
+    "name": "Musuayi",
+    "resourceId": "musuayi",
+    "fileName": "levante-musuayi.png",
+    "photo": "/assets/futbol/jugadores/levante-musuayi.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-11",
+    "clubId": "levante",
+    "name": "Etta Eyong",
+    "resourceId": "ettaeyong",
+    "fileName": "levante-ettaeyong.png",
+    "photo": "/assets/futbol/jugadores/levante-ettaeyong.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-12",
+    "clubId": "levante",
+    "name": "Iván Romero",
+    "resourceId": "ivanromero",
+    "fileName": "levante-ivanromero.png",
+    "photo": "/assets/futbol/jugadores/levante-ivanromero.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-13",
+    "clubId": "levante",
+    "name": "Brugué",
+    "resourceId": "brugue",
+    "fileName": "levante-brugue.png",
+    "photo": "/assets/futbol/jugadores/levante-brugue.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-14",
+    "clubId": "levante",
+    "name": "Thiago Fernández",
+    "resourceId": "thiagofernandez",
+    "fileName": "levante-thiagofernandez.png",
+    "photo": "/assets/futbol/jugadores/levante-thiagofernandez.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-15",
+    "clubId": "levante",
+    "name": "Ratkov",
+    "resourceId": "ratkov",
+    "fileName": "levante-ratkov.png",
+    "photo": "/assets/futbol/jugadores/levante-ratkov.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-16",
+    "clubId": "levante",
+    "name": "Samuel Roca I",
+    "resourceId": "samuelrocai",
+    "fileName": "levante-samuelrocai.png",
+    "photo": "/assets/futbol/jugadores/levante-samuelrocai.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-17",
+    "clubId": "levante",
+    "name": "Nicolás Lago I",
+    "resourceId": "nicolaslagoi",
+    "fileName": "levante-nicolaslagoi.png",
+    "photo": "/assets/futbol/jugadores/levante-nicolaslagoi.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-18",
+    "clubId": "levante",
+    "name": "Mateo Robles I",
+    "resourceId": "mateoroblesi",
+    "fileName": "levante-mateoroblesi.png",
+    "photo": "/assets/futbol/jugadores/levante-mateoroblesi.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-19",
+    "clubId": "levante",
+    "name": "Lucas Reina I",
+    "resourceId": "lucasreinai",
+    "fileName": "levante-lucasreinai.png",
+    "photo": "/assets/futbol/jugadores/levante-lucasreinai.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-20",
+    "clubId": "levante",
+    "name": "Daniel Salas I",
+    "resourceId": "danielsalasi",
+    "fileName": "levante-danielsalasi.png",
+    "photo": "/assets/futbol/jugadores/levante-danielsalasi.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-21",
+    "clubId": "levante",
+    "name": "Álvaro Soto I",
+    "resourceId": "alvarosotoi",
+    "fileName": "levante-alvarosotoi.png",
+    "photo": "/assets/futbol/jugadores/levante-alvarosotoi.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-22",
+    "clubId": "levante",
+    "name": "Hugo Oliva I",
+    "resourceId": "hugoolivai",
+    "fileName": "levante-hugoolivai.png",
+    "photo": "/assets/futbol/jugadores/levante-hugoolivai.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-23",
+    "clubId": "levante",
+    "name": "Bruno Navas I",
+    "resourceId": "brunonavasi",
+    "fileName": "levante-brunonavasi.png",
+    "photo": "/assets/futbol/jugadores/levante-brunonavasi.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "levante-24",
+    "clubId": "levante",
+    "name": "Pablo Paz I",
+    "resourceId": "pablopazi",
+    "fileName": "levante-pablopazi.png",
+    "photo": "/assets/futbol/jugadores/levante-pablopazi.png",
+    "crest": "/assets/futbol/escudos/levante.png"
+  },
+  {
+    "playerId": "malaga-0",
+    "clubId": "malaga",
+    "name": "Alfonso Herrero",
+    "resourceId": "alfonsoherrero",
+    "fileName": "malaga-alfonsoherrero.png",
+    "photo": "/assets/futbol/jugadores/malaga-alfonsoherrero.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-1",
+    "clubId": "malaga",
+    "name": "Carlos López",
+    "resourceId": "carloslopez",
+    "fileName": "malaga-carloslopez.png",
+    "photo": "/assets/futbol/jugadores/malaga-carloslopez.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-2",
+    "clubId": "malaga",
+    "name": "Andrés Céspedes",
+    "resourceId": "andrescespedes",
+    "fileName": "malaga-andrescespedes.png",
+    "photo": "/assets/futbol/jugadores/malaga-andrescespedes.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-3",
+    "clubId": "malaga",
+    "name": "Galilea",
+    "resourceId": "galilea",
+    "fileName": "malaga-galilea.png",
+    "photo": "/assets/futbol/jugadores/malaga-galilea.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-4",
+    "clubId": "malaga",
+    "name": "Ángel Recio",
+    "resourceId": "angelrecio",
+    "fileName": "malaga-angelrecio.png",
+    "photo": "/assets/futbol/jugadores/malaga-angelrecio.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-5",
+    "clubId": "malaga",
+    "name": "Puga",
+    "resourceId": "puga",
+    "fileName": "malaga-puga.png",
+    "photo": "/assets/futbol/jugadores/malaga-puga.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-6",
+    "clubId": "malaga",
+    "name": "Salinas",
+    "resourceId": "salinas",
+    "fileName": "malaga-salinas.png",
+    "photo": "/assets/futbol/jugadores/malaga-salinas.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-7",
+    "clubId": "malaga",
+    "name": "Adam Aznou",
+    "resourceId": "adamaznou",
+    "fileName": "malaga-adamaznou.png",
+    "photo": "/assets/futbol/jugadores/malaga-adamaznou.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-8",
+    "clubId": "malaga",
+    "name": "Berrocal",
+    "resourceId": "berrocal",
+    "fileName": "malaga-berrocal.png",
+    "photo": "/assets/futbol/jugadores/malaga-berrocal.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-9",
+    "clubId": "malaga",
+    "name": "Rafita",
+    "resourceId": "rafita",
+    "fileName": "malaga-rafita.png",
+    "photo": "/assets/futbol/jugadores/malaga-rafita.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-10",
+    "clubId": "malaga",
+    "name": "Dani Lorenzo",
+    "resourceId": "danilorenzo",
+    "fileName": "malaga-danilorenzo.png",
+    "photo": "/assets/futbol/jugadores/malaga-danilorenzo.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-11",
+    "clubId": "malaga",
+    "name": "Izan Merino",
+    "resourceId": "izanmerino",
+    "fileName": "malaga-izanmerino.png",
+    "photo": "/assets/futbol/jugadores/malaga-izanmerino.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-12",
+    "clubId": "malaga",
+    "name": "Carlos Dotor",
+    "resourceId": "carlosdotor",
+    "fileName": "malaga-carlosdotor.png",
+    "photo": "/assets/futbol/jugadores/malaga-carlosdotor.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-13",
+    "clubId": "malaga",
+    "name": "Pablo Martínez",
+    "resourceId": "pablomartinez",
+    "fileName": "malaga-pablomartinez.png",
+    "photo": "/assets/futbol/jugadores/malaga-pablomartinez.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-14",
+    "clubId": "malaga",
+    "name": "Jens Cajuste",
+    "resourceId": "jenscajuste",
+    "fileName": "malaga-jenscajuste.png",
+    "photo": "/assets/futbol/jugadores/malaga-jenscajuste.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-15",
+    "clubId": "malaga",
+    "name": "Chupe",
+    "resourceId": "chupe",
+    "fileName": "malaga-chupe.png",
+    "photo": "/assets/futbol/jugadores/malaga-chupe.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-16",
+    "clubId": "malaga",
+    "name": "Adrián Niño",
+    "resourceId": "adriannino",
+    "fileName": "malaga-adriannino.png",
+    "photo": "/assets/futbol/jugadores/malaga-adriannino.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-17",
+    "clubId": "malaga",
+    "name": "Larrubia",
+    "resourceId": "larrubia",
+    "fileName": "malaga-larrubia.png",
+    "photo": "/assets/futbol/jugadores/malaga-larrubia.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-18",
+    "clubId": "malaga",
+    "name": "Joaquín Muñoz",
+    "resourceId": "joaquinmunoz",
+    "fileName": "malaga-joaquinmunoz.png",
+    "photo": "/assets/futbol/jugadores/malaga-joaquinmunoz.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-19",
+    "clubId": "malaga",
+    "name": "Aarón Ochoa",
+    "resourceId": "aaronochoa",
+    "fileName": "malaga-aaronochoa.png",
+    "photo": "/assets/futbol/jugadores/malaga-aaronochoa.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-20",
+    "clubId": "malaga",
+    "name": "Juan Cruz",
+    "resourceId": "juancruz",
+    "fileName": "malaga-juancruz.png",
+    "photo": "/assets/futbol/jugadores/malaga-juancruz.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-21",
+    "clubId": "malaga",
+    "name": "Jauregi",
+    "resourceId": "jauregi",
+    "fileName": "malaga-jauregi.png",
+    "photo": "/assets/futbol/jugadores/malaga-jauregi.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-22",
+    "clubId": "malaga",
+    "name": "Bruno Soler J",
+    "resourceId": "brunosolerj",
+    "fileName": "malaga-brunosolerj.png",
+    "photo": "/assets/futbol/jugadores/malaga-brunosolerj.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-23",
+    "clubId": "malaga",
+    "name": "Pablo Ríos J",
+    "resourceId": "pabloriosj",
+    "fileName": "malaga-pabloriosj.png",
+    "photo": "/assets/futbol/jugadores/malaga-pabloriosj.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "malaga-24",
+    "clubId": "malaga",
+    "name": "Sergio Duarte J",
+    "resourceId": "sergioduartej",
+    "fileName": "malaga-sergioduartej.png",
+    "photo": "/assets/futbol/jugadores/malaga-sergioduartej.png",
+    "crest": "/assets/futbol/escudos/malaga.png"
+  },
+  {
+    "playerId": "racing-0",
+    "clubId": "racing",
+    "name": "Julen Agirrezabala",
+    "resourceId": "julenagirrezabala",
+    "fileName": "racing-julenagirrezabala.png",
+    "photo": "/assets/futbol/jugadores/racing-julenagirrezabala.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-1",
+    "clubId": "racing",
+    "name": "Simon Eriksson",
+    "resourceId": "simoneriksson",
+    "fileName": "racing-simoneriksson.png",
+    "photo": "/assets/futbol/jugadores/racing-simoneriksson.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-2",
+    "clubId": "racing",
+    "name": "Jorge Salinas",
+    "resourceId": "jorgesalinas",
+    "fileName": "racing-jorgesalinas.png",
+    "photo": "/assets/futbol/jugadores/racing-jorgesalinas.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-3",
+    "clubId": "racing",
+    "name": "Aarón Martín",
+    "resourceId": "aaronmartin",
+    "fileName": "racing-aaronmartin.png",
+    "photo": "/assets/futbol/jugadores/racing-aaronmartin.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-4",
+    "clubId": "racing",
+    "name": "Facu González",
+    "resourceId": "facugonzalez",
+    "fileName": "racing-facugonzalez.png",
+    "photo": "/assets/futbol/jugadores/racing-facugonzalez.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-5",
+    "clubId": "racing",
+    "name": "Belocian",
+    "resourceId": "belocian",
+    "fileName": "racing-belocian.png",
+    "photo": "/assets/futbol/jugadores/racing-belocian.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-6",
+    "clubId": "racing",
+    "name": "Pedro Felipe",
+    "resourceId": "pedrofelipe",
+    "fileName": "racing-pedrofelipe.png",
+    "photo": "/assets/futbol/jugadores/racing-pedrofelipe.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-7",
+    "clubId": "racing",
+    "name": "Sergio Canales",
+    "resourceId": "sergiocanales",
+    "fileName": "racing-sergiocanales.png",
+    "photo": "/assets/futbol/jugadores/racing-sergiocanales.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-8",
+    "clubId": "racing",
+    "name": "Iván Martín",
+    "resourceId": "ivanmartin",
+    "fileName": "racing-ivanmartin.png",
+    "photo": "/assets/futbol/jugadores/racing-ivanmartin.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-9",
+    "clubId": "racing",
+    "name": "Prati",
+    "resourceId": "prati",
+    "fileName": "racing-prati.png",
+    "photo": "/assets/futbol/jugadores/racing-prati.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-10",
+    "clubId": "racing",
+    "name": "Iñigo Vicente",
+    "resourceId": "inigovicente",
+    "fileName": "racing-inigovicente.png",
+    "photo": "/assets/futbol/jugadores/racing-inigovicente.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-11",
+    "clubId": "racing",
+    "name": "Andrés Martín",
+    "resourceId": "andresmartin",
+    "fileName": "racing-andresmartin.png",
+    "photo": "/assets/futbol/jugadores/racing-andresmartin.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-12",
+    "clubId": "racing",
+    "name": "Juan Carlos Arana",
+    "resourceId": "juancarlosarana",
+    "fileName": "racing-juancarlosarana.png",
+    "photo": "/assets/futbol/jugadores/racing-juancarlosarana.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-13",
+    "clubId": "racing",
+    "name": "Asier Villalibre",
+    "resourceId": "asiervillalibre",
+    "fileName": "racing-asiervillalibre.png",
+    "photo": "/assets/futbol/jugadores/racing-asiervillalibre.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-14",
+    "clubId": "racing",
+    "name": "Zabiri",
+    "resourceId": "zabiri",
+    "fileName": "racing-zabiri.png",
+    "photo": "/assets/futbol/jugadores/racing-zabiri.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-15",
+    "clubId": "racing",
+    "name": "Iker Luque",
+    "resourceId": "ikerluque",
+    "fileName": "racing-ikerluque.png",
+    "photo": "/assets/futbol/jugadores/racing-ikerluque.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-16",
+    "clubId": "racing",
+    "name": "Pablo García",
+    "resourceId": "pablogarcia",
+    "fileName": "racing-pablogarcia.png",
+    "photo": "/assets/futbol/jugadores/racing-pablogarcia.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-17",
+    "clubId": "racing",
+    "name": "Lucas Mora K",
+    "resourceId": "lucasmorak",
+    "fileName": "racing-lucasmorak.png",
+    "photo": "/assets/futbol/jugadores/racing-lucasmorak.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-18",
+    "clubId": "racing",
+    "name": "Daniel Soler K",
+    "resourceId": "danielsolerk",
+    "fileName": "racing-danielsolerk.png",
+    "photo": "/assets/futbol/jugadores/racing-danielsolerk.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-19",
+    "clubId": "racing",
+    "name": "Álvaro Ríos K",
+    "resourceId": "alvaroriosk",
+    "fileName": "racing-alvaroriosk.png",
+    "photo": "/assets/futbol/jugadores/racing-alvaroriosk.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-20",
+    "clubId": "racing",
+    "name": "Hugo Duarte K",
+    "resourceId": "hugoduartek",
+    "fileName": "racing-hugoduartek.png",
+    "photo": "/assets/futbol/jugadores/racing-hugoduartek.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-21",
+    "clubId": "racing",
+    "name": "Bruno Valdés K",
+    "resourceId": "brunovaldesk",
+    "fileName": "racing-brunovaldesk.png",
+    "photo": "/assets/futbol/jugadores/racing-brunovaldesk.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-22",
+    "clubId": "racing",
+    "name": "Pablo Cano K",
+    "resourceId": "pablocanok",
+    "fileName": "racing-pablocanok.png",
+    "photo": "/assets/futbol/jugadores/racing-pablocanok.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-23",
+    "clubId": "racing",
+    "name": "Sergio Luna K",
+    "resourceId": "sergiolunak",
+    "fileName": "racing-sergiolunak.png",
+    "photo": "/assets/futbol/jugadores/racing-sergiolunak.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "racing-24",
+    "clubId": "racing",
+    "name": "Adrián Gil K",
+    "resourceId": "adriangilk",
+    "fileName": "racing-adriangilk.png",
+    "photo": "/assets/futbol/jugadores/racing-adriangilk.png",
+    "crest": "/assets/futbol/escudos/racing.png"
+  },
+  {
+    "playerId": "deportivo-0",
+    "clubId": "deportivo",
+    "name": "Leo Román",
+    "resourceId": "leoroman",
+    "fileName": "deportivo-leoroman.png",
+    "photo": "/assets/futbol/jugadores/deportivo-leoroman.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-1",
+    "clubId": "deportivo",
+    "name": "Germán Parreño",
+    "resourceId": "germanparreno",
+    "fileName": "deportivo-germanparreno.png",
+    "photo": "/assets/futbol/jugadores/deportivo-germanparreno.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-2",
+    "clubId": "deportivo",
+    "name": "Álvaro Ferllo",
+    "resourceId": "alvaroferllo",
+    "fileName": "deportivo-alvaroferllo.png",
+    "photo": "/assets/futbol/jugadores/deportivo-alvaroferllo.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-3",
+    "clubId": "deportivo",
+    "name": "Angeliño",
+    "resourceId": "angelino",
+    "fileName": "deportivo-angelino.png",
+    "photo": "/assets/futbol/jugadores/deportivo-angelino.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-4",
+    "clubId": "deportivo",
+    "name": "Quagliata",
+    "resourceId": "quagliata",
+    "fileName": "deportivo-quagliata.png",
+    "photo": "/assets/futbol/jugadores/deportivo-quagliata.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-5",
+    "clubId": "deportivo",
+    "name": "Ximo",
+    "resourceId": "ximo",
+    "fileName": "deportivo-ximo.png",
+    "photo": "/assets/futbol/jugadores/deportivo-ximo.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-6",
+    "clubId": "deportivo",
+    "name": "Altimira",
+    "resourceId": "altimira",
+    "fileName": "deportivo-altimira.png",
+    "photo": "/assets/futbol/jugadores/deportivo-altimira.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-7",
+    "clubId": "deportivo",
+    "name": "Bright Ede",
+    "resourceId": "brightede",
+    "fileName": "deportivo-brightede.png",
+    "photo": "/assets/futbol/jugadores/deportivo-brightede.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-8",
+    "clubId": "deportivo",
+    "name": "José María Giménez",
+    "resourceId": "josemariagimenez",
+    "fileName": "deportivo-josemariagimenez.png",
+    "photo": "/assets/futbol/jugadores/deportivo-josemariagimenez.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-9",
+    "clubId": "deportivo",
+    "name": "Loureiro",
+    "resourceId": "loureiro",
+    "fileName": "deportivo-loureiro.png",
+    "photo": "/assets/futbol/jugadores/deportivo-loureiro.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-10",
+    "clubId": "deportivo",
+    "name": "Noubi",
+    "resourceId": "noubi",
+    "fileName": "deportivo-noubi.png",
+    "photo": "/assets/futbol/jugadores/deportivo-noubi.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-11",
+    "clubId": "deportivo",
+    "name": "Diego Villares",
+    "resourceId": "diegovillares",
+    "fileName": "deportivo-diegovillares.png",
+    "photo": "/assets/futbol/jugadores/deportivo-diegovillares.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-12",
+    "clubId": "deportivo",
+    "name": "Mario Soriano",
+    "resourceId": "mariosoriano",
+    "fileName": "deportivo-mariosoriano.png",
+    "photo": "/assets/futbol/jugadores/deportivo-mariosoriano.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-13",
+    "clubId": "deportivo",
+    "name": "Teun Gijselhart",
+    "resourceId": "teungijselhart",
+    "fileName": "deportivo-teungijselhart.png",
+    "photo": "/assets/futbol/jugadores/deportivo-teungijselhart.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-14",
+    "clubId": "deportivo",
+    "name": "Lorenzo Amatucci",
+    "resourceId": "lorenzoamatucci",
+    "fileName": "deportivo-lorenzoamatucci.png",
+    "photo": "/assets/futbol/jugadores/deportivo-lorenzoamatucci.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-15",
+    "clubId": "deportivo",
+    "name": "Asp Jensen",
+    "resourceId": "aspjensen",
+    "fileName": "deportivo-aspjensen.png",
+    "photo": "/assets/futbol/jugadores/deportivo-aspjensen.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-16",
+    "clubId": "deportivo",
+    "name": "Marc Casadó",
+    "resourceId": "marccasado",
+    "fileName": "deportivo-marccasado.png",
+    "photo": "/assets/futbol/jugadores/deportivo-marccasado.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-17",
+    "clubId": "deportivo",
+    "name": "Luismi Cruz",
+    "resourceId": "luismicruz",
+    "fileName": "deportivo-luismicruz.png",
+    "photo": "/assets/futbol/jugadores/deportivo-luismicruz.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-18",
+    "clubId": "deportivo",
+    "name": "David Mella",
+    "resourceId": "davidmella",
+    "fileName": "deportivo-davidmella.png",
+    "photo": "/assets/futbol/jugadores/deportivo-davidmella.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-19",
+    "clubId": "deportivo",
+    "name": "Yeremay",
+    "resourceId": "yeremay",
+    "fileName": "deportivo-yeremay.png",
+    "photo": "/assets/futbol/jugadores/deportivo-yeremay.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-20",
+    "clubId": "deportivo",
+    "name": "Aubameyang",
+    "resourceId": "aubameyang",
+    "fileName": "deportivo-aubameyang.png",
+    "photo": "/assets/futbol/jugadores/deportivo-aubameyang.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-21",
+    "clubId": "deportivo",
+    "name": "Nsongo",
+    "resourceId": "nsongo",
+    "fileName": "deportivo-nsongo.png",
+    "photo": "/assets/futbol/jugadores/deportivo-nsongo.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-22",
+    "clubId": "deportivo",
+    "name": "Eddahchouri",
+    "resourceId": "eddahchouri",
+    "fileName": "deportivo-eddahchouri.png",
+    "photo": "/assets/futbol/jugadores/deportivo-eddahchouri.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-23",
+    "clubId": "deportivo",
+    "name": "Adama Traoré",
+    "resourceId": "adamatraore",
+    "fileName": "deportivo-adamatraore.png",
+    "photo": "/assets/futbol/jugadores/deportivo-adamatraore.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "deportivo-24",
+    "clubId": "deportivo",
+    "name": "Iván Sierra L",
+    "resourceId": "ivansierral",
+    "fileName": "deportivo-ivansierral.png",
+    "photo": "/assets/futbol/jugadores/deportivo-ivansierral.png",
+    "crest": "/assets/futbol/escudos/deportivo.png"
+  },
+  {
+    "playerId": "espanyol-0",
+    "clubId": "espanyol",
+    "name": "Dmitrovic",
+    "resourceId": "dmitrovic",
+    "fileName": "espanyol-dmitrovic.png",
+    "photo": "/assets/futbol/jugadores/espanyol-dmitrovic.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-1",
+    "clubId": "espanyol",
+    "name": "Fortuño",
+    "resourceId": "fortuno",
+    "fileName": "espanyol-fortuno.png",
+    "photo": "/assets/futbol/jugadores/espanyol-fortuno.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-2",
+    "clubId": "espanyol",
+    "name": "Unai Núñez",
+    "resourceId": "unainunez",
+    "fileName": "espanyol-unainunez.png",
+    "photo": "/assets/futbol/jugadores/espanyol-unainunez.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-3",
+    "clubId": "espanyol",
+    "name": "Drkusic",
+    "resourceId": "drkusic",
+    "fileName": "espanyol-drkusic.png",
+    "photo": "/assets/futbol/jugadores/espanyol-drkusic.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-4",
+    "clubId": "espanyol",
+    "name": "Gorosabel",
+    "resourceId": "gorosabel",
+    "fileName": "espanyol-gorosabel.png",
+    "photo": "/assets/futbol/jugadores/espanyol-gorosabel.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-5",
+    "clubId": "espanyol",
+    "name": "El Hilali",
+    "resourceId": "elhilali",
+    "fileName": "espanyol-elhilali.png",
+    "photo": "/assets/futbol/jugadores/espanyol-elhilali.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-6",
+    "clubId": "espanyol",
+    "name": "Hartman",
+    "resourceId": "hartman",
+    "fileName": "espanyol-hartman.png",
+    "photo": "/assets/futbol/jugadores/espanyol-hartman.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-7",
+    "clubId": "espanyol",
+    "name": "Hinojo",
+    "resourceId": "hinojo",
+    "fileName": "espanyol-hinojo.png",
+    "photo": "/assets/futbol/jugadores/espanyol-hinojo.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-8",
+    "clubId": "espanyol",
+    "name": "Calatrava",
+    "resourceId": "calatrava",
+    "fileName": "espanyol-calatrava.png",
+    "photo": "/assets/futbol/jugadores/espanyol-calatrava.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-9",
+    "clubId": "espanyol",
+    "name": "Edu Expósito",
+    "resourceId": "eduexposito",
+    "fileName": "espanyol-eduexposito.png",
+    "photo": "/assets/futbol/jugadores/espanyol-eduexposito.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-10",
+    "clubId": "espanyol",
+    "name": "Urko",
+    "resourceId": "urko",
+    "fileName": "espanyol-urko.png",
+    "photo": "/assets/futbol/jugadores/espanyol-urko.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-11",
+    "clubId": "espanyol",
+    "name": "Pol Lozano",
+    "resourceId": "pollozano",
+    "fileName": "espanyol-pollozano.png",
+    "photo": "/assets/futbol/jugadores/espanyol-pollozano.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-12",
+    "clubId": "espanyol",
+    "name": "Moscardo",
+    "resourceId": "moscardo",
+    "fileName": "espanyol-moscardo.png",
+    "photo": "/assets/futbol/jugadores/espanyol-moscardo.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-13",
+    "clubId": "espanyol",
+    "name": "Bryan Zaragoza",
+    "resourceId": "bryanzaragoza",
+    "fileName": "espanyol-bryanzaragoza.png",
+    "photo": "/assets/futbol/jugadores/espanyol-bryanzaragoza.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-14",
+    "clubId": "espanyol",
+    "name": "Puado",
+    "resourceId": "puado",
+    "fileName": "espanyol-puado.png",
+    "photo": "/assets/futbol/jugadores/espanyol-puado.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-15",
+    "clubId": "espanyol",
+    "name": "Kike García",
+    "resourceId": "kikegarcia",
+    "fileName": "espanyol-kikegarcia.png",
+    "photo": "/assets/futbol/jugadores/espanyol-kikegarcia.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-16",
+    "clubId": "espanyol",
+    "name": "Marcos Fernández",
+    "resourceId": "marcosfernandez",
+    "fileName": "espanyol-marcosfernandez.png",
+    "photo": "/assets/futbol/jugadores/espanyol-marcosfernandez.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-17",
+    "clubId": "espanyol",
+    "name": "Roberto Fernández",
+    "resourceId": "robertofernandez",
+    "fileName": "espanyol-robertofernandez.png",
+    "photo": "/assets/futbol/jugadores/espanyol-robertofernandez.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-18",
+    "clubId": "espanyol",
+    "name": "Pere Milla",
+    "resourceId": "peremilla",
+    "fileName": "espanyol-peremilla.png",
+    "photo": "/assets/futbol/jugadores/espanyol-peremilla.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-19",
+    "clubId": "espanyol",
+    "name": "Bruno Ramos M",
+    "resourceId": "brunoramosm",
+    "fileName": "espanyol-brunoramosm.png",
+    "photo": "/assets/futbol/jugadores/espanyol-brunoramosm.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-20",
+    "clubId": "espanyol",
+    "name": "Pablo Sierra M",
+    "resourceId": "pablosierram",
+    "fileName": "espanyol-pablosierram.png",
+    "photo": "/assets/futbol/jugadores/espanyol-pablosierram.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-21",
+    "clubId": "espanyol",
+    "name": "Sergio Molina M",
+    "resourceId": "sergiomolinam",
+    "fileName": "espanyol-sergiomolinam.png",
+    "photo": "/assets/futbol/jugadores/espanyol-sergiomolinam.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-22",
+    "clubId": "espanyol",
+    "name": "Adrián Vidal M",
+    "resourceId": "adrianvidalm",
+    "fileName": "espanyol-adrianvidalm.png",
+    "photo": "/assets/futbol/jugadores/espanyol-adrianvidalm.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-23",
+    "clubId": "espanyol",
+    "name": "Iván Prado M",
+    "resourceId": "ivanpradom",
+    "fileName": "espanyol-ivanpradom.png",
+    "photo": "/assets/futbol/jugadores/espanyol-ivanpradom.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "espanyol-24",
+    "clubId": "espanyol",
+    "name": "Mario Crespo M",
+    "resourceId": "mariocrespom",
+    "fileName": "espanyol-mariocrespom.png",
+    "photo": "/assets/futbol/jugadores/espanyol-mariocrespom.png",
+    "crest": "/assets/futbol/escudos/espanyol.png"
+  },
+  {
+    "playerId": "betis-0",
+    "clubId": "betis",
+    "name": "Álvaro Valles",
+    "resourceId": "alvarovalles",
+    "fileName": "betis-alvarovalles.png",
+    "photo": "/assets/futbol/jugadores/betis-alvarovalles.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-1",
+    "clubId": "betis",
+    "name": "Diego Conde",
+    "resourceId": "diegoconde",
+    "fileName": "betis-diegoconde.png",
+    "photo": "/assets/futbol/jugadores/betis-diegoconde.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-2",
+    "clubId": "betis",
+    "name": "Manu González",
+    "resourceId": "manugonzalez",
+    "fileName": "betis-manugonzalez.png",
+    "photo": "/assets/futbol/jugadores/betis-manugonzalez.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-3",
+    "clubId": "betis",
+    "name": "Fran García",
+    "resourceId": "frangarcia",
+    "fileName": "betis-frangarcia.png",
+    "photo": "/assets/futbol/jugadores/betis-frangarcia.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-4",
+    "clubId": "betis",
+    "name": "Bellerín",
+    "resourceId": "bellerin",
+    "fileName": "betis-bellerin.png",
+    "photo": "/assets/futbol/jugadores/betis-bellerin.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-5",
+    "clubId": "betis",
+    "name": "Bartra",
+    "resourceId": "bartra",
+    "fileName": "betis-bartra.png",
+    "photo": "/assets/futbol/jugadores/betis-bartra.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-6",
+    "clubId": "betis",
+    "name": "Diego Llorente",
+    "resourceId": "diegollorente",
+    "fileName": "betis-diegollorente.png",
+    "photo": "/assets/futbol/jugadores/betis-diegollorente.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-7",
+    "clubId": "betis",
+    "name": "Natan",
+    "resourceId": "natan",
+    "fileName": "betis-natan.png",
+    "photo": "/assets/futbol/jugadores/betis-natan.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-8",
+    "clubId": "betis",
+    "name": "Ortiz",
+    "resourceId": "ortiz",
+    "fileName": "betis-ortiz.png",
+    "photo": "/assets/futbol/jugadores/betis-ortiz.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-9",
+    "clubId": "betis",
+    "name": "Aitor Ruibal",
+    "resourceId": "aitorruibal",
+    "fileName": "betis-aitorruibal.png",
+    "photo": "/assets/futbol/jugadores/betis-aitorruibal.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-10",
+    "clubId": "betis",
+    "name": "Facundo Bernal",
+    "resourceId": "facundobernal",
+    "fileName": "betis-facundobernal.png",
+    "photo": "/assets/futbol/jugadores/betis-facundobernal.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-11",
+    "clubId": "betis",
+    "name": "Dani Ceballos",
+    "resourceId": "daniceballos",
+    "fileName": "betis-daniceballos.png",
+    "photo": "/assets/futbol/jugadores/betis-daniceballos.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-12",
+    "clubId": "betis",
+    "name": "Pablo Fornals",
+    "resourceId": "pablofornals",
+    "fileName": "betis-pablofornals.png",
+    "photo": "/assets/futbol/jugadores/betis-pablofornals.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-13",
+    "clubId": "betis",
+    "name": "Isco",
+    "resourceId": "isco",
+    "fileName": "betis-isco.png",
+    "photo": "/assets/futbol/jugadores/betis-isco.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-14",
+    "clubId": "betis",
+    "name": "Marc Roca",
+    "resourceId": "marcroca",
+    "fileName": "betis-marcroca.png",
+    "photo": "/assets/futbol/jugadores/betis-marcroca.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-15",
+    "clubId": "betis",
+    "name": "Troy Parrott",
+    "resourceId": "troyparrott",
+    "fileName": "betis-troyparrott.png",
+    "photo": "/assets/futbol/jugadores/betis-troyparrott.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-16",
+    "clubId": "betis",
+    "name": "Cucho Hernández",
+    "resourceId": "cuchohernandez",
+    "fileName": "betis-cuchohernandez.png",
+    "photo": "/assets/futbol/jugadores/betis-cuchohernandez.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-17",
+    "clubId": "betis",
+    "name": "Antony",
+    "resourceId": "antony",
+    "fileName": "betis-antony.png",
+    "photo": "/assets/futbol/jugadores/betis-antony.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-18",
+    "clubId": "betis",
+    "name": "Abde",
+    "resourceId": "abde",
+    "fileName": "betis-abde.png",
+    "photo": "/assets/futbol/jugadores/betis-abde.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-19",
+    "clubId": "betis",
+    "name": "Rodrigo Riquelme",
+    "resourceId": "rodrigoriquelme",
+    "fileName": "betis-rodrigoriquelme.png",
+    "photo": "/assets/futbol/jugadores/betis-rodrigoriquelme.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-20",
+    "clubId": "betis",
+    "name": "Sergio Crespo N",
+    "resourceId": "sergiocrespon",
+    "fileName": "betis-sergiocrespon.png",
+    "photo": "/assets/futbol/jugadores/betis-sergiocrespon.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-21",
+    "clubId": "betis",
+    "name": "Adrián Roca N",
+    "resourceId": "adrianrocan",
+    "fileName": "betis-adrianrocan.png",
+    "photo": "/assets/futbol/jugadores/betis-adrianrocan.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-22",
+    "clubId": "betis",
+    "name": "Iván Lago N",
+    "resourceId": "ivanlagon",
+    "fileName": "betis-ivanlagon.png",
+    "photo": "/assets/futbol/jugadores/betis-ivanlagon.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-23",
+    "clubId": "betis",
+    "name": "Mario Robles N",
+    "resourceId": "marioroblesn",
+    "fileName": "betis-marioroblesn.png",
+    "photo": "/assets/futbol/jugadores/betis-marioroblesn.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "betis-24",
+    "clubId": "betis",
+    "name": "Leo Reina N",
+    "resourceId": "leoreinan",
+    "fileName": "betis-leoreinan.png",
+    "photo": "/assets/futbol/jugadores/betis-leoreinan.png",
+    "crest": "/assets/futbol/escudos/betis.png"
+  },
+  {
+    "playerId": "madrid-0",
+    "clubId": "madrid",
+    "name": "Thibaut Courtois",
+    "resourceId": "thibautcourtois",
+    "fileName": "realmadrid-thibautcourtois.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-thibautcourtois.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-1",
+    "clubId": "madrid",
+    "name": "Trent Alexander-Arnold",
+    "resourceId": "trentalexanderarnold",
+    "fileName": "realmadrid-trentalexanderarnold.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-trentalexanderarnold.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-2",
+    "clubId": "madrid",
+    "name": "Dean Huijsen",
+    "resourceId": "deanhuijsen",
+    "fileName": "realmadrid-deanhuijsen.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-deanhuijsen.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-3",
+    "clubId": "madrid",
+    "name": "Álvaro Carreras",
+    "resourceId": "alvarocarreras",
+    "fileName": "realmadrid-alvarocarreras.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-alvarocarreras.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-4",
+    "clubId": "madrid",
+    "name": "Denzel Dumfries",
+    "resourceId": "denzeldumfries",
+    "fileName": "realmadrid-denzeldumfries.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-denzeldumfries.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-5",
+    "clubId": "madrid",
+    "name": "Ibrahima Konaté",
+    "resourceId": "ibrahimakonate",
+    "fileName": "realmadrid-ibrahimakonate.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-ibrahimakonate.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-6",
+    "clubId": "madrid",
+    "name": "Marc Cucurella",
+    "resourceId": "marccucurella",
+    "fileName": "realmadrid-marccucurella.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-marccucurella.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-7",
+    "clubId": "madrid",
+    "name": "Éder Militão",
+    "resourceId": "edermilitao",
+    "fileName": "realmadrid-edermilitao.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-edermilitao.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-8",
+    "clubId": "madrid",
+    "name": "Jude Bellingham",
+    "resourceId": "judebellingham",
+    "fileName": "realmadrid-judebellingham.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-judebellingham.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-9",
+    "clubId": "madrid",
+    "name": "Federico Valverde",
+    "resourceId": "federicovalverde",
+    "fileName": "realmadrid-federicovalverde.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-federicovalverde.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-10",
+    "clubId": "madrid",
+    "name": "Aurélien Tchouaméni",
+    "resourceId": "aurelientchouameni",
+    "fileName": "realmadrid-aurelientchouameni.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-aurelientchouameni.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-11",
+    "clubId": "madrid",
+    "name": "Bernardo Silva",
+    "resourceId": "bernardosilva",
+    "fileName": "realmadrid-bernardosilva.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-bernardosilva.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-12",
+    "clubId": "madrid",
+    "name": "Eduardo Camavinga",
+    "resourceId": "eduardocamavinga",
+    "fileName": "realmadrid-eduardocamavinga.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-eduardocamavinga.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-13",
+    "clubId": "madrid",
+    "name": "Kylian Mbappé",
+    "resourceId": "mbappe",
+    "fileName": "realmadrid-mbappe.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-mbappe.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-14",
+    "clubId": "madrid",
+    "name": "Vinícius Júnior",
+    "resourceId": "vinicius",
+    "fileName": "realmadrid-vinicius.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-vinicius.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-15",
+    "clubId": "madrid",
+    "name": "Yan Diomande",
+    "resourceId": "yandiomande",
+    "fileName": "realmadrid-yandiomande.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-yandiomande.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-16",
+    "clubId": "madrid",
+    "name": "Carlos Espí",
+    "resourceId": "carlosespi",
+    "fileName": "realmadrid-carlosespi.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-carlosespi.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-17",
+    "clubId": "madrid",
+    "name": "Endrick",
+    "resourceId": "endrick",
+    "fileName": "realmadrid-endrick.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-endrick.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-18",
+    "clubId": "madrid",
+    "name": "Pablo Lago O",
+    "resourceId": "pablolagoo",
+    "fileName": "realmadrid-pablolagoo.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-pablolagoo.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-19",
+    "clubId": "madrid",
+    "name": "Sergio Robles O",
+    "resourceId": "sergiorobleso",
+    "fileName": "realmadrid-sergiorobleso.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-sergiorobleso.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-20",
+    "clubId": "madrid",
+    "name": "Adrián Reina O",
+    "resourceId": "adrianreinao",
+    "fileName": "realmadrid-adrianreinao.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-adrianreinao.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-21",
+    "clubId": "madrid",
+    "name": "Iván Salas O",
+    "resourceId": "ivansalaso",
+    "fileName": "realmadrid-ivansalaso.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-ivansalaso.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-22",
+    "clubId": "madrid",
+    "name": "Mario Soto O",
+    "resourceId": "mariosotoo",
+    "fileName": "realmadrid-mariosotoo.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-mariosotoo.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-23",
+    "clubId": "madrid",
+    "name": "Leo Oliva O",
+    "resourceId": "leoolivao",
+    "fileName": "realmadrid-leoolivao.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-leoolivao.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "madrid-24",
+    "clubId": "madrid",
+    "name": "Martín Navas O",
+    "resourceId": "martinnavaso",
+    "fileName": "realmadrid-martinnavaso.png",
+    "photo": "/assets/futbol/jugadores/realmadrid-martinnavaso.png",
+    "crest": "/assets/futbol/escudos/realmadrid.png"
+  },
+  {
+    "playerId": "sociedad-0",
+    "clubId": "sociedad",
+    "name": "Álex Remiro",
+    "resourceId": "alexremiro",
+    "fileName": "realsociedad-alexremiro.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-alexremiro.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-1",
+    "clubId": "sociedad",
+    "name": "Unai Marrero",
+    "resourceId": "unaimarrero",
+    "fileName": "realsociedad-unaimarrero.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-unaimarrero.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-2",
+    "clubId": "sociedad",
+    "name": "Sergio Gómez",
+    "resourceId": "sergiogomez",
+    "fileName": "realsociedad-sergiogomez.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-sergiogomez.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-3",
+    "clubId": "sociedad",
+    "name": "Jon Martín",
+    "resourceId": "jonmartin",
+    "fileName": "realsociedad-jonmartin.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-jonmartin.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-4",
+    "clubId": "sociedad",
+    "name": "Jon Aramburu",
+    "resourceId": "jonaramburu",
+    "fileName": "realsociedad-jonaramburu.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-jonaramburu.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-5",
+    "clubId": "sociedad",
+    "name": "Igor Zubeldía",
+    "resourceId": "igorzubeldia",
+    "fileName": "realsociedad-igorzubeldia.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-igorzubeldia.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-6",
+    "clubId": "sociedad",
+    "name": "Sarr",
+    "resourceId": "sarr",
+    "fileName": "realsociedad-sarr.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-sarr.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-7",
+    "clubId": "sociedad",
+    "name": "Héctor Fort",
+    "resourceId": "hectorfort",
+    "fileName": "realsociedad-hectorfort.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-hectorfort.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-8",
+    "clubId": "sociedad",
+    "name": "Jon Gorrotxategi",
+    "resourceId": "jongorrotxategi",
+    "fileName": "realsociedad-jongorrotxategi.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-jongorrotxategi.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-9",
+    "clubId": "sociedad",
+    "name": "Beñat Turrientes",
+    "resourceId": "benatturrientes",
+    "fileName": "realsociedad-benatturrientes.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-benatturrientes.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-10",
+    "clubId": "sociedad",
+    "name": "Carlos Soler",
+    "resourceId": "carlossoler",
+    "fileName": "realsociedad-carlossoler.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-carlossoler.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-11",
+    "clubId": "sociedad",
+    "name": "Luka Sucic",
+    "resourceId": "lukasucic",
+    "fileName": "realsociedad-lukasucic.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-lukasucic.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-12",
+    "clubId": "sociedad",
+    "name": "Yangel Herrera",
+    "resourceId": "yangelherrera",
+    "fileName": "realsociedad-yangelherrera.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-yangelherrera.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-13",
+    "clubId": "sociedad",
+    "name": "Goti",
+    "resourceId": "goti",
+    "fileName": "realsociedad-goti.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-goti.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-14",
+    "clubId": "sociedad",
+    "name": "Arsen Zakharyan",
+    "resourceId": "arsenzakharyan",
+    "fileName": "realsociedad-arsenzakharyan.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-arsenzakharyan.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-15",
+    "clubId": "sociedad",
+    "name": "Mikel Oyarzabal",
+    "resourceId": "mikeloyarzabal",
+    "fileName": "realsociedad-mikeloyarzabal.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-mikeloyarzabal.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-16",
+    "clubId": "sociedad",
+    "name": "Óskarsson",
+    "resourceId": "oskarsson",
+    "fileName": "realsociedad-oskarsson.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-oskarsson.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-17",
+    "clubId": "sociedad",
+    "name": "Gonçalo Guedes",
+    "resourceId": "goncaloguedes",
+    "fileName": "realsociedad-goncaloguedes.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-goncaloguedes.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-18",
+    "clubId": "sociedad",
+    "name": "Take Kubo",
+    "resourceId": "takekubo",
+    "fileName": "realsociedad-takekubo.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-takekubo.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-19",
+    "clubId": "sociedad",
+    "name": "Ander Barrenetxea",
+    "resourceId": "anderbarrenetxea",
+    "fileName": "realsociedad-anderbarrenetxea.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-anderbarrenetxea.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-20",
+    "clubId": "sociedad",
+    "name": "Ochieng",
+    "resourceId": "ochieng",
+    "fileName": "realsociedad-ochieng.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-ochieng.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-21",
+    "clubId": "sociedad",
+    "name": "Carrera",
+    "resourceId": "carrera",
+    "fileName": "realsociedad-carrera.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-carrera.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-22",
+    "clubId": "sociedad",
+    "name": "Leo Mora P",
+    "resourceId": "leomorap",
+    "fileName": "realsociedad-leomorap.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-leomorap.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-23",
+    "clubId": "sociedad",
+    "name": "Martín Soler P",
+    "resourceId": "martinsolerp",
+    "fileName": "realsociedad-martinsolerp.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-martinsolerp.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sociedad-24",
+    "clubId": "sociedad",
+    "name": "Diego Ríos P",
+    "resourceId": "diegoriosp",
+    "fileName": "realsociedad-diegoriosp.png",
+    "photo": "/assets/futbol/jugadores/realsociedad-diegoriosp.png",
+    "crest": "/assets/futbol/escudos/realsociedad.png"
+  },
+  {
+    "playerId": "sevilla-0",
+    "clubId": "sevilla",
+    "name": "Vlachodimos",
+    "resourceId": "vlachodimos",
+    "fileName": "sevilla-vlachodimos.png",
+    "photo": "/assets/futbol/jugadores/sevilla-vlachodimos.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-1",
+    "clubId": "sevilla",
+    "name": "Fran González",
+    "resourceId": "frangonzalez",
+    "fileName": "sevilla-frangonzalez.png",
+    "photo": "/assets/futbol/jugadores/sevilla-frangonzalez.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-2",
+    "clubId": "sevilla",
+    "name": "Juan Iglesias",
+    "resourceId": "juaniglesias",
+    "fileName": "sevilla-juaniglesias.png",
+    "photo": "/assets/futbol/jugadores/sevilla-juaniglesias.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-3",
+    "clubId": "sevilla",
+    "name": "Julio Díaz",
+    "resourceId": "juliodiaz",
+    "fileName": "sevilla-juliodiaz.png",
+    "photo": "/assets/futbol/jugadores/sevilla-juliodiaz.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-4",
+    "clubId": "sevilla",
+    "name": "Suazo",
+    "resourceId": "suazo",
+    "fileName": "sevilla-suazo.png",
+    "photo": "/assets/futbol/jugadores/sevilla-suazo.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-5",
+    "clubId": "sevilla",
+    "name": "Sangante",
+    "resourceId": "sangante",
+    "fileName": "sevilla-sangante.png",
+    "photo": "/assets/futbol/jugadores/sevilla-sangante.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-6",
+    "clubId": "sevilla",
+    "name": "Kike Salas",
+    "resourceId": "kikesalas",
+    "fileName": "sevilla-kikesalas.png",
+    "photo": "/assets/futbol/jugadores/sevilla-kikesalas.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-7",
+    "clubId": "sevilla",
+    "name": "Kochorashvili",
+    "resourceId": "kochorashvili",
+    "fileName": "sevilla-kochorashvili.png",
+    "photo": "/assets/futbol/jugadores/sevilla-kochorashvili.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-8",
+    "clubId": "sevilla",
+    "name": "Nico Guillén",
+    "resourceId": "nicoguillen",
+    "fileName": "sevilla-nicoguillen.png",
+    "photo": "/assets/futbol/jugadores/sevilla-nicoguillen.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-9",
+    "clubId": "sevilla",
+    "name": "Fofana",
+    "resourceId": "fofana",
+    "fileName": "sevilla-fofana.png",
+    "photo": "/assets/futbol/jugadores/sevilla-fofana.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-10",
+    "clubId": "sevilla",
+    "name": "Agoumé",
+    "resourceId": "agoume",
+    "fileName": "sevilla-agoume.png",
+    "photo": "/assets/futbol/jugadores/sevilla-agoume.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-11",
+    "clubId": "sevilla",
+    "name": "Isaac Romero",
+    "resourceId": "isaacromero",
+    "fileName": "sevilla-isaacromero.png",
+    "photo": "/assets/futbol/jugadores/sevilla-isaacromero.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-12",
+    "clubId": "sevilla",
+    "name": "Ure",
+    "resourceId": "ure",
+    "fileName": "sevilla-ure.png",
+    "photo": "/assets/futbol/jugadores/sevilla-ure.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-13",
+    "clubId": "sevilla",
+    "name": "Peque",
+    "resourceId": "peque",
+    "fileName": "sevilla-peque.png",
+    "photo": "/assets/futbol/jugadores/sevilla-peque.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-14",
+    "clubId": "sevilla",
+    "name": "Vargas",
+    "resourceId": "vargas",
+    "fileName": "sevilla-vargas.png",
+    "photo": "/assets/futbol/jugadores/sevilla-vargas.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-15",
+    "clubId": "sevilla",
+    "name": "Alfon",
+    "resourceId": "alfon",
+    "fileName": "sevilla-alfon.png",
+    "photo": "/assets/futbol/jugadores/sevilla-alfon.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-16",
+    "clubId": "sevilla",
+    "name": "Stassin",
+    "resourceId": "stassin",
+    "fileName": "sevilla-stassin.png",
+    "photo": "/assets/futbol/jugadores/sevilla-stassin.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-17",
+    "clubId": "sevilla",
+    "name": "Correia",
+    "resourceId": "correia",
+    "fileName": "sevilla-correia.png",
+    "photo": "/assets/futbol/jugadores/sevilla-correia.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-18",
+    "clubId": "sevilla",
+    "name": "Adrián Mora Q",
+    "resourceId": "adrianmoraq",
+    "fileName": "sevilla-adrianmoraq.png",
+    "photo": "/assets/futbol/jugadores/sevilla-adrianmoraq.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-19",
+    "clubId": "sevilla",
+    "name": "Iván Soler Q",
+    "resourceId": "ivansolerq",
+    "fileName": "sevilla-ivansolerq.png",
+    "photo": "/assets/futbol/jugadores/sevilla-ivansolerq.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-20",
+    "clubId": "sevilla",
+    "name": "Mario Ríos Q",
+    "resourceId": "marioriosq",
+    "fileName": "sevilla-marioriosq.png",
+    "photo": "/assets/futbol/jugadores/sevilla-marioriosq.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-21",
+    "clubId": "sevilla",
+    "name": "Leo Duarte Q",
+    "resourceId": "leoduarteq",
+    "fileName": "sevilla-leoduarteq.png",
+    "photo": "/assets/futbol/jugadores/sevilla-leoduarteq.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-22",
+    "clubId": "sevilla",
+    "name": "Martín Valdés Q",
+    "resourceId": "martinvaldesq",
+    "fileName": "sevilla-martinvaldesq.png",
+    "photo": "/assets/futbol/jugadores/sevilla-martinvaldesq.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-23",
+    "clubId": "sevilla",
+    "name": "Diego Cano Q",
+    "resourceId": "diegocanoq",
+    "fileName": "sevilla-diegocanoq.png",
+    "photo": "/assets/futbol/jugadores/sevilla-diegocanoq.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "sevilla-24",
+    "clubId": "sevilla",
+    "name": "Rafael Luna Q",
+    "resourceId": "rafaellunaq",
+    "fileName": "sevilla-rafaellunaq.png",
+    "photo": "/assets/futbol/jugadores/sevilla-rafaellunaq.png",
+    "crest": "/assets/futbol/escudos/sevilla.png"
+  },
+  {
+    "playerId": "valencia-0",
+    "clubId": "valencia",
+    "name": "Stole Dimitrievski",
+    "resourceId": "stoledimitrievski",
+    "fileName": "valencia-stoledimitrievski.png",
+    "photo": "/assets/futbol/jugadores/valencia-stoledimitrievski.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-1",
+    "clubId": "valencia",
+    "name": "Pablo Maffeo",
+    "resourceId": "pablomaffeo",
+    "fileName": "valencia-pablomaffeo.png",
+    "photo": "/assets/futbol/jugadores/valencia-pablomaffeo.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-2",
+    "clubId": "valencia",
+    "name": "Arnau Martínez",
+    "resourceId": "arnaumartinez",
+    "fileName": "valencia-arnaumartinez.png",
+    "photo": "/assets/futbol/jugadores/valencia-arnaumartinez.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-3",
+    "clubId": "valencia",
+    "name": "Gayà",
+    "resourceId": "gaya",
+    "fileName": "valencia-gaya.png",
+    "photo": "/assets/futbol/jugadores/valencia-gaya.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-4",
+    "clubId": "valencia",
+    "name": "Jesús Vázquez",
+    "resourceId": "jesusvazquez",
+    "fileName": "valencia-jesusvazquez.png",
+    "photo": "/assets/futbol/jugadores/valencia-jesusvazquez.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-5",
+    "clubId": "valencia",
+    "name": "Copete",
+    "resourceId": "copete",
+    "fileName": "valencia-copete.png",
+    "photo": "/assets/futbol/jugadores/valencia-copete.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-6",
+    "clubId": "valencia",
+    "name": "De Haas",
+    "resourceId": "dehaas",
+    "fileName": "valencia-dehaas.png",
+    "photo": "/assets/futbol/jugadores/valencia-dehaas.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-7",
+    "clubId": "valencia",
+    "name": "Diakhaby",
+    "resourceId": "diakhaby",
+    "fileName": "valencia-diakhaby.png",
+    "photo": "/assets/futbol/jugadores/valencia-diakhaby.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-8",
+    "clubId": "valencia",
+    "name": "César Tárrega",
+    "resourceId": "cesartarrega",
+    "fileName": "valencia-cesartarrega.png",
+    "photo": "/assets/futbol/jugadores/valencia-cesartarrega.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-9",
+    "clubId": "valencia",
+    "name": "Guido Rodríguez",
+    "resourceId": "guidorodriguez",
+    "fileName": "valencia-guidorodriguez.png",
+    "photo": "/assets/futbol/jugadores/valencia-guidorodriguez.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-10",
+    "clubId": "valencia",
+    "name": "Dieng",
+    "resourceId": "dieng",
+    "fileName": "valencia-dieng.png",
+    "photo": "/assets/futbol/jugadores/valencia-dieng.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-11",
+    "clubId": "valencia",
+    "name": "Pepelu",
+    "resourceId": "pepelu",
+    "fileName": "valencia-pepelu.png",
+    "photo": "/assets/futbol/jugadores/valencia-pepelu.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-12",
+    "clubId": "valencia",
+    "name": "Ugrinic",
+    "resourceId": "ugrinic",
+    "fileName": "valencia-ugrinic.png",
+    "photo": "/assets/futbol/jugadores/valencia-ugrinic.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-13",
+    "clubId": "valencia",
+    "name": "Javi Guerra",
+    "resourceId": "javiguerra",
+    "fileName": "valencia-javiguerra.png",
+    "photo": "/assets/futbol/jugadores/valencia-javiguerra.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-14",
+    "clubId": "valencia",
+    "name": "Luis Rioja",
+    "resourceId": "luisrioja",
+    "fileName": "valencia-luisrioja.png",
+    "photo": "/assets/futbol/jugadores/valencia-luisrioja.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-15",
+    "clubId": "valencia",
+    "name": "Diego López",
+    "resourceId": "diegolopez",
+    "fileName": "valencia-diegolopez.png",
+    "photo": "/assets/futbol/jugadores/valencia-diegolopez.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-16",
+    "clubId": "valencia",
+    "name": "Elliott",
+    "resourceId": "elliott",
+    "fileName": "valencia-elliott.png",
+    "photo": "/assets/futbol/jugadores/valencia-elliott.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-17",
+    "clubId": "valencia",
+    "name": "Danjuma",
+    "resourceId": "danjuma",
+    "fileName": "valencia-danjuma.png",
+    "photo": "/assets/futbol/jugadores/valencia-danjuma.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-18",
+    "clubId": "valencia",
+    "name": "Umar Sadiq",
+    "resourceId": "umarsadiq",
+    "fileName": "valencia-umarsadiq.png",
+    "photo": "/assets/futbol/jugadores/valencia-umarsadiq.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-19",
+    "clubId": "valencia",
+    "name": "Hugo Duro",
+    "resourceId": "hugoduro",
+    "fileName": "valencia-hugoduro.png",
+    "photo": "/assets/futbol/jugadores/valencia-hugoduro.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-20",
+    "clubId": "valencia",
+    "name": "Leo Luna R",
+    "resourceId": "leolunar",
+    "fileName": "valencia-leolunar.png",
+    "photo": "/assets/futbol/jugadores/valencia-leolunar.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-21",
+    "clubId": "valencia",
+    "name": "Martín Gil R",
+    "resourceId": "martingilr",
+    "fileName": "valencia-martingilr.png",
+    "photo": "/assets/futbol/jugadores/valencia-martingilr.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-22",
+    "clubId": "valencia",
+    "name": "Diego Vega R",
+    "resourceId": "diegovegar",
+    "fileName": "valencia-diegovegar.png",
+    "photo": "/assets/futbol/jugadores/valencia-diegovegar.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-23",
+    "clubId": "valencia",
+    "name": "Rafael León R",
+    "resourceId": "rafaelleonr",
+    "fileName": "valencia-rafaelleonr.png",
+    "photo": "/assets/futbol/jugadores/valencia-rafaelleonr.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "valencia-24",
+    "clubId": "valencia",
+    "name": "Enzo Ramos R",
+    "resourceId": "enzoramosr",
+    "fileName": "valencia-enzoramosr.png",
+    "photo": "/assets/futbol/jugadores/valencia-enzoramosr.png",
+    "crest": "/assets/futbol/escudos/valencia.png"
+  },
+  {
+    "playerId": "villarreal-0",
+    "clubId": "villarreal",
+    "name": "Luiz Júnior",
+    "resourceId": "luizjunior",
+    "fileName": "villarreal-luizjunior.png",
+    "photo": "/assets/futbol/jugadores/villarreal-luizjunior.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-1",
+    "clubId": "villarreal",
+    "name": "Péter Gulácsi",
+    "resourceId": "petergulacsi",
+    "fileName": "villarreal-petergulacsi.png",
+    "photo": "/assets/futbol/jugadores/villarreal-petergulacsi.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-2",
+    "clubId": "villarreal",
+    "name": "Juan Foyth",
+    "resourceId": "juanfoyth",
+    "fileName": "villarreal-juanfoyth.png",
+    "photo": "/assets/futbol/jugadores/villarreal-juanfoyth.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-3",
+    "clubId": "villarreal",
+    "name": "Logan Costa",
+    "resourceId": "logancosta",
+    "fileName": "villarreal-logancosta.png",
+    "photo": "/assets/futbol/jugadores/villarreal-logancosta.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-4",
+    "clubId": "villarreal",
+    "name": "Santiago Mouriño",
+    "resourceId": "santiagomourino",
+    "fileName": "villarreal-santiagomourino.png",
+    "photo": "/assets/futbol/jugadores/villarreal-santiagomourino.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-5",
+    "clubId": "villarreal",
+    "name": "Renato Veiga",
+    "resourceId": "renatoveiga",
+    "fileName": "villarreal-renatoveiga.png",
+    "photo": "/assets/futbol/jugadores/villarreal-renatoveiga.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-6",
+    "clubId": "villarreal",
+    "name": "Carlos Romero",
+    "resourceId": "carlosromero",
+    "fileName": "villarreal-carlosromero.png",
+    "photo": "/assets/futbol/jugadores/villarreal-carlosromero.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-7",
+    "clubId": "villarreal",
+    "name": "Pau Navarro",
+    "resourceId": "paunavarro",
+    "fileName": "villarreal-paunavarro.png",
+    "photo": "/assets/futbol/jugadores/villarreal-paunavarro.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-8",
+    "clubId": "villarreal",
+    "name": "Sergi Cardona",
+    "resourceId": "sergicardona",
+    "fileName": "villarreal-sergicardona.png",
+    "photo": "/assets/futbol/jugadores/villarreal-sergicardona.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-9",
+    "clubId": "villarreal",
+    "name": "Pape Gueye",
+    "resourceId": "papegueye",
+    "fileName": "villarreal-papegueye.png",
+    "photo": "/assets/futbol/jugadores/villarreal-papegueye.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-10",
+    "clubId": "villarreal",
+    "name": "Santi Comesaña",
+    "resourceId": "santicomesana",
+    "fileName": "villarreal-santicomesana.png",
+    "photo": "/assets/futbol/jugadores/villarreal-santicomesana.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-11",
+    "clubId": "villarreal",
+    "name": "Alberto Moleiro",
+    "resourceId": "albertomoleiro",
+    "fileName": "villarreal-albertomoleiro.png",
+    "photo": "/assets/futbol/jugadores/villarreal-albertomoleiro.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-12",
+    "clubId": "villarreal",
+    "name": "Nicolas Pépé",
+    "resourceId": "nicolaspepe",
+    "fileName": "villarreal-nicolaspepe.png",
+    "photo": "/assets/futbol/jugadores/villarreal-nicolaspepe.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-13",
+    "clubId": "villarreal",
+    "name": "Tajon Buchanan",
+    "resourceId": "tajonbuchanan",
+    "fileName": "villarreal-tajonbuchanan.png",
+    "photo": "/assets/futbol/jugadores/villarreal-tajonbuchanan.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-14",
+    "clubId": "villarreal",
+    "name": "Ilias Akhomach",
+    "resourceId": "iliasakhomach",
+    "fileName": "villarreal-iliasakhomach.png",
+    "photo": "/assets/futbol/jugadores/villarreal-iliasakhomach.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-15",
+    "clubId": "villarreal",
+    "name": "Nathan Saliba",
+    "resourceId": "nathansaliba",
+    "fileName": "villarreal-nathansaliba.png",
+    "photo": "/assets/futbol/jugadores/villarreal-nathansaliba.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-16",
+    "clubId": "villarreal",
+    "name": "Gerard Moreno",
+    "resourceId": "gerardmoreno",
+    "fileName": "villarreal-gerardmoreno.png",
+    "photo": "/assets/futbol/jugadores/villarreal-gerardmoreno.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-17",
+    "clubId": "villarreal",
+    "name": "Georges Mikautadze",
+    "resourceId": "georgesmikautadze",
+    "fileName": "villarreal-georgesmikautadze.png",
+    "photo": "/assets/futbol/jugadores/villarreal-georgesmikautadze.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-18",
+    "clubId": "villarreal",
+    "name": "Ayoze Pérez",
+    "resourceId": "ayozeperez",
+    "fileName": "villarreal-ayozeperez.png",
+    "photo": "/assets/futbol/jugadores/villarreal-ayozeperez.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-19",
+    "clubId": "villarreal",
+    "name": "Tani Oluwaseyi",
+    "resourceId": "tanioluwaseyi",
+    "fileName": "villarreal-tanioluwaseyi.png",
+    "photo": "/assets/futbol/jugadores/villarreal-tanioluwaseyi.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-20",
+    "clubId": "villarreal",
+    "name": "Martín Ramos S",
+    "resourceId": "martinramoss",
+    "fileName": "villarreal-martinramoss.png",
+    "photo": "/assets/futbol/jugadores/villarreal-martinramoss.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-21",
+    "clubId": "villarreal",
+    "name": "Diego Sierra S",
+    "resourceId": "diegosierras",
+    "fileName": "villarreal-diegosierras.png",
+    "photo": "/assets/futbol/jugadores/villarreal-diegosierras.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-22",
+    "clubId": "villarreal",
+    "name": "Rafael Molina S",
+    "resourceId": "rafaelmolinas",
+    "fileName": "villarreal-rafaelmolinas.png",
+    "photo": "/assets/futbol/jugadores/villarreal-rafaelmolinas.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-23",
+    "clubId": "villarreal",
+    "name": "Enzo Vidal S",
+    "resourceId": "enzovidals",
+    "fileName": "villarreal-enzovidals.png",
+    "photo": "/assets/futbol/jugadores/villarreal-enzovidals.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "villarreal-24",
+    "clubId": "villarreal",
+    "name": "Gael Prado S",
+    "resourceId": "gaelprados",
+    "fileName": "villarreal-gaelprados.png",
+    "photo": "/assets/futbol/jugadores/villarreal-gaelprados.png",
+    "crest": "/assets/futbol/escudos/villarreal.png"
+  },
+  {
+    "playerId": "rayo-0",
+    "clubId": "rayo",
+    "name": "Batalla",
+    "resourceId": "batalla",
+    "fileName": "rayo-batalla.png",
+    "photo": "/assets/futbol/jugadores/rayo-batalla.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-1",
+    "clubId": "rayo",
+    "name": "Cárdenas",
+    "resourceId": "cardenas",
+    "fileName": "rayo-cardenas.png",
+    "photo": "/assets/futbol/jugadores/rayo-cardenas.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-2",
+    "clubId": "rayo",
+    "name": "Adri Molina",
+    "resourceId": "adrimolina",
+    "fileName": "rayo-adrimolina.png",
+    "photo": "/assets/futbol/jugadores/rayo-adrimolina.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-3",
+    "clubId": "rayo",
+    "name": "Emil Audero",
+    "resourceId": "emilaudero",
+    "fileName": "rayo-emilaudero.png",
+    "photo": "/assets/futbol/jugadores/rayo-emilaudero.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-4",
+    "clubId": "rayo",
+    "name": "Luiz Felipe",
+    "resourceId": "luizfelipe",
+    "fileName": "rayo-luizfelipe.png",
+    "photo": "/assets/futbol/jugadores/rayo-luizfelipe.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-5",
+    "clubId": "rayo",
+    "name": "Marash Kumbulla",
+    "resourceId": "marashkumbulla",
+    "fileName": "rayo-marashkumbulla.png",
+    "photo": "/assets/futbol/jugadores/rayo-marashkumbulla.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-6",
+    "clubId": "rayo",
+    "name": "Mujaid Sadick",
+    "resourceId": "mujaidsadick",
+    "fileName": "rayo-mujaidsadick.png",
+    "photo": "/assets/futbol/jugadores/rayo-mujaidsadick.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-7",
+    "clubId": "rayo",
+    "name": "Adrià Pedrosa",
+    "resourceId": "adriapedrosa",
+    "fileName": "rayo-adriapedrosa.png",
+    "photo": "/assets/futbol/jugadores/rayo-adriapedrosa.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-8",
+    "clubId": "rayo",
+    "name": "Ratiu",
+    "resourceId": "ratiu",
+    "fileName": "rayo-ratiu.png",
+    "photo": "/assets/futbol/jugadores/rayo-ratiu.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-9",
+    "clubId": "rayo",
+    "name": "Lejeune",
+    "resourceId": "lejeune",
+    "fileName": "rayo-lejeune.png",
+    "photo": "/assets/futbol/jugadores/rayo-lejeune.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-10",
+    "clubId": "rayo",
+    "name": "Unai López",
+    "resourceId": "unailopez",
+    "fileName": "rayo-unailopez.png",
+    "photo": "/assets/futbol/jugadores/rayo-unailopez.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-11",
+    "clubId": "rayo",
+    "name": "Pedro Díaz",
+    "resourceId": "pedrodiaz",
+    "fileName": "rayo-pedrodiaz.png",
+    "photo": "/assets/futbol/jugadores/rayo-pedrodiaz.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-12",
+    "clubId": "rayo",
+    "name": "Óscar Valentín",
+    "resourceId": "oscarvalentin",
+    "fileName": "rayo-oscarvalentin.png",
+    "photo": "/assets/futbol/jugadores/rayo-oscarvalentin.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-13",
+    "clubId": "rayo",
+    "name": "Pathé Ciss",
+    "resourceId": "patheciss",
+    "fileName": "rayo-patheciss.png",
+    "photo": "/assets/futbol/jugadores/rayo-patheciss.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-14",
+    "clubId": "rayo",
+    "name": "Gnangoro Bouaré",
+    "resourceId": "gnangorobouare",
+    "fileName": "rayo-gnangorobouare.png",
+    "photo": "/assets/futbol/jugadores/rayo-gnangorobouare.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-15",
+    "clubId": "rayo",
+    "name": "Isi Palazón",
+    "resourceId": "isipalazon",
+    "fileName": "rayo-isipalazon.png",
+    "photo": "/assets/futbol/jugadores/rayo-isipalazon.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-16",
+    "clubId": "rayo",
+    "name": "De Frutos",
+    "resourceId": "defrutos",
+    "fileName": "rayo-defrutos.png",
+    "photo": "/assets/futbol/jugadores/rayo-defrutos.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-17",
+    "clubId": "rayo",
+    "name": "Álvaro García",
+    "resourceId": "alvarogarcia",
+    "fileName": "rayo-alvarogarcia.png",
+    "photo": "/assets/futbol/jugadores/rayo-alvarogarcia.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-18",
+    "clubId": "rayo",
+    "name": "Fran Pérez",
+    "resourceId": "franperez",
+    "fileName": "rayo-franperez.png",
+    "photo": "/assets/futbol/jugadores/rayo-franperez.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-19",
+    "clubId": "rayo",
+    "name": "Nteka",
+    "resourceId": "nteka",
+    "fileName": "rayo-nteka.png",
+    "photo": "/assets/futbol/jugadores/rayo-nteka.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-20",
+    "clubId": "rayo",
+    "name": "Alemão",
+    "resourceId": "alemao",
+    "fileName": "rayo-alemao.png",
+    "photo": "/assets/futbol/jugadores/rayo-alemao.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-21",
+    "clubId": "rayo",
+    "name": "Sergio Camello",
+    "resourceId": "sergiocamello",
+    "fileName": "rayo-sergiocamello.png",
+    "photo": "/assets/futbol/jugadores/rayo-sergiocamello.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-22",
+    "clubId": "rayo",
+    "name": "Giorgi Tsitaishvili",
+    "resourceId": "giorgitsitaishvili",
+    "fileName": "rayo-giorgitsitaishvili.png",
+    "photo": "/assets/futbol/jugadores/rayo-giorgitsitaishvili.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-23",
+    "clubId": "rayo",
+    "name": "Gael Lago T",
+    "resourceId": "gaellagot",
+    "fileName": "rayo-gaellagot.png",
+    "photo": "/assets/futbol/jugadores/rayo-gaellagot.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  },
+  {
+    "playerId": "rayo-24",
+    "clubId": "rayo",
+    "name": "Saúl Robles T",
+    "resourceId": "saulroblest",
+    "fileName": "rayo-saulroblest.png",
+    "photo": "/assets/futbol/jugadores/rayo-saulroblest.png",
+    "crest": "/assets/futbol/escudos/rayo.png"
+  }
+]

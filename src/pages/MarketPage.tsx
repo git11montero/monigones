@@ -1,12 +1,14 @@
 import { UnsavedChanges } from '../components/UnsavedChanges';
+import { MoneyField } from '../components/MoneyField';
+import { Help } from '../components/Help';
+import { parseMoneyInput } from '../../shared/money';
 import { AttentionBadge, ReadAttention } from '../components/Attention';
 import { ResourceAmount } from '../components/ResourceVisibility';
 import { GameSelect } from '../components/GameSelect';
 import { PlayerCard } from '../components/PlayerCard';
-import { PhotoCredit } from '../components/PlayerPortrait';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Heart, Info, ShieldCheck, Star } from 'lucide-react';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { ArrowRight, ArrowUpRight, Heart, ShieldCheck, Star } from 'lucide-react';
 import { shortMoney } from '../../shared/math';
 import { clubById } from '../../shared/sports';
 import { useGame } from '../lib/api';
@@ -23,7 +25,10 @@ import {
 } from '../components/ui';
 export default function MarketPage() {
   const { state, club, act, available } = useGame();
-  const [tab, setTab] = useState('agents'),
+  const [params] = useSearchParams();
+  const [tab, setTab] = useState(() =>
+      ['bids', 'scout'].includes(params.get('tab') || '') ? params.get('tab')! : 'agents',
+    ),
     [position, setPosition] = useState('Todos'),
     [search, setSearch] = useState('');
   const [withdraw, setWithdraw] = useState<string | null>(null);
@@ -230,7 +235,7 @@ export default function MarketPage() {
         </div>
       )}
       <div className="info-note">
-        <Info size={16} />
+        <Help topic="rejection" />
         <p>
           Ofertas secretas hasta el cierre. El jugador puede rechazarlas; el atractivo combina
           dinero, salario y fama.
@@ -241,9 +246,17 @@ export default function MarketPage() {
 }
 export function PlayerPage() {
   const { id } = useParams();
-  const { state, club, act, effects } = useGame();
+  const { state, club, act, effects, available } = useGame();
   const p = state.players.find((p) => p.id === id);
-  const [offer, setOffer] = useState(''),
+  const [offer, setOffer] = useState(() =>
+      String(
+        (state.bids.find((b) => b.playerId === id && b.clubId === club.id && b.status === 'open')
+          ?.amount ??
+          p?.value ??
+          0) / 100,
+      ),
+    ),
+    [amountError, setAmountError] = useState(''),
     [salary, setSalary] = useState(
       () =>
         state.bids.find((b) => b.playerId === id && b.clubId === club.id && b.status === 'open')
@@ -261,7 +274,12 @@ export function PlayerPage() {
   const bid = state.bids.find(
     (b) => b.playerId === p.id && b.clubId === club.id && b.status === 'open',
   );
-  const amount = offer ? Math.round(Number(offer) * 100) : bid?.amount || p.value;
+  const amount = parseMoneyInput(offer).cents;
+  const bidBudget = available + (bid?.amount || 0);
+  const changeOffer = (value: string) => {
+    setOffer(value);
+    setAmountError('');
+  };
   const history = p.valueHistory.slice(-15),
     min = Math.min(...history.map((x) => x.value)) * 0.96,
     max = Math.max(...history.map((x) => x.value)) * 1.04;
@@ -271,7 +289,7 @@ export function PlayerPage() {
         dirty={
           free
             ? amount !== (bid?.amount || p.value) || salary !== (bid?.salaryBps || 200)
-            : trade && (!!offer || !!offered || loan > 0)
+            : trade && (amount !== p.value || !!offered || loan > 0)
         }
         label="Oferta por el futbolista"
       />
@@ -288,7 +306,6 @@ export function PlayerPage() {
           happiness={ct?.happiness}
           points={state.rounds.find((r) => r.number === state.currentRound)?.scores[p.id]?.points}
         />
-        <PhotoCredit player={p} />
         <h1>{p.name}</h1>
         <p>
           {clubById(p.realClubId).name} · {p.position}
@@ -296,13 +313,13 @@ export function PlayerPage() {
         <Badge kind="gold">FICHA DEL FUTBOLISTA</Badge>
         <div className="player-hero-stats">
           <span>
-            <strong>{shortMoney(p.value)}</strong>Valor de mercado
+            <strong>{shortMoney(p.value)}</strong>Valor de mercado <Help topic="value" />
           </span>
           <span>
-            <strong>{ct ? `${ct.happiness}%` : '—'}</strong>Felicidad
+            <strong>{ct ? `${ct.happiness}%` : '—'}</strong>Felicidad <Help topic="happiness" />
           </span>
           <span>
-            <strong>{ct ? `${ct.salaryBps / 100}%` : '2%'}</strong>Salario
+            <strong>{ct ? `${ct.salaryBps / 100}%` : '2%'}</strong>Salario <Help topic="salary" />
           </span>
         </div>
       </div>
@@ -346,25 +363,27 @@ export function PlayerPage() {
         >
           <form
             className="card"
+            noValidate
             onSubmit={(e) => {
               e.preventDefault();
+              const parsed = parseMoneyInput(offer, { min: p.value, available: bidBudget });
+              setAmountError(parsed.error);
+              if (parsed.error) return;
               void act(
-                { type: 'bid', playerId: p.id, amount, salaryBps: salary },
+                { type: 'bid', playerId: p.id, amount: parsed.cents, salaryBps: salary },
                 'Oferta secreta guardada. El importe queda reservado.',
+                setAmountError,
               );
             }}
           >
-            <label>
-              Importe de la puja (€)
-              <input
-                type="number"
-                min={p.value / 100}
-                step="1000"
-                value={offer || amount / 100}
-                onChange={(e) => setOffer(e.target.value)}
-                required
-              />
-            </label>
+            <MoneyField
+              label="Importe de la puja (€)"
+              value={offer}
+              onChange={changeOffer}
+              min={p.value}
+              available={bidBudget}
+              error={amountError}
+            />
             <label>
               Salario por convocatoria <b>{salary / 100} %</b>
               <input
@@ -460,31 +479,34 @@ export function PlayerPage() {
             </Button>
             {trade && (
               <form
+                noValidate
                 onSubmit={(e) => {
                   e.preventDefault();
+                  const parsed = parseMoneyInput(offer, { available });
+                  setAmountError(parsed.error);
+                  if (parsed.error) return;
                   void act(
                     {
                       type: 'negotiate',
                       playerId: p.id,
-                      amount,
+                      amount: parsed.cents,
                       offeredPlayerId: offered || undefined,
                       loanRounds: loan || undefined,
                     },
                     'Propuesta enviada al presidente rival.',
-                  );
-                  setTrade(false);
+                    setAmountError,
+                  ).then((ok) => {
+                    if (ok) setTrade(false);
+                  });
                 }}
               >
-                <label>
-                  Dinero ofrecido (€)
-                  <input
-                    type="number"
-                    min="0"
-                    value={offer}
-                    placeholder={String(p.value / 100)}
-                    onChange={(e) => setOffer(e.target.value)}
-                  />
-                </label>
+                <MoneyField
+                  label="Dinero ofrecido (€)"
+                  value={offer}
+                  onChange={changeOffer}
+                  available={available}
+                  error={amountError}
+                />
                 <label>
                   Futbolista de intercambio
                   <GameSelect value={offered} onChange={(e) => setOffered(e.target.value)}>

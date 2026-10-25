@@ -1,4 +1,6 @@
 import { AttentionBadge, ReadAttention } from './components/Attention';
+import { LeagueChatProvider, HeaderChat } from './components/LeagueChat';
+import { useGameViewport } from './lib/viewport';
 import { Installation, RouteRecovery, UpdateNotice } from './components/MobileExperience';
 import { BRAND } from '../shared/brand';
 import { AudioToggle, DepartmentScene, Experience } from './components/Experience';
@@ -7,10 +9,9 @@ import { NavLink, Navigate, Route, Routes, useLocation, Link } from 'react-route
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getSupabase, isOnlineBackend } from './lib/supabase';
 import { Bell, Shield, Landmark, ShoppingBag, Trophy, Users } from 'lucide-react';
-import { GameProvider, sessionQuery, useGame, clearOnlineCache, type Session } from './lib/api';
+import { GameProvider, sessionQuery, clearOnlineCache, type Session } from './lib/api';
 import { Crest } from './components/ui';
 import AuthPage, { OnboardingPage } from './pages/AuthPage';
-const MediaCredits = lazy(() => import('./components/MediaCredits'));
 const CityPage = lazy(() => import('./pages/CityPage'));
 const BuildingsPage = lazy(() => import('./pages/BuildingsPage'));
 const ResearchPage = lazy(() => import('./pages/ResearchPage'));
@@ -53,8 +54,8 @@ const NewspaperPage = social('NewspaperPage'),
   DraftPage = social('DraftPage'),
   TradesPage = social('TradesPage');
 function Layout() {
-  const { club, state } = useGame();
   const location = useLocation();
+  useGameViewport(location.pathname);
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [location.pathname]);
@@ -69,36 +70,6 @@ function Layout() {
     if (header) resize.observe(header);
     return () => resize.disconnect();
   }, []);
-  useEffect(() => {
-    let baseline = window.innerHeight;
-    const update = () => {
-      const vv = window.visualViewport,
-        height = vv?.height || window.innerHeight;
-      baseline = Math.max(baseline, window.innerHeight);
-      // Keep the compressed layout while focus moves to Send: restoring navigation
-      // between pointerdown and click would move the button away from the pointer.
-      const composing =
-        document.activeElement?.matches('.chat-compose textarea') ||
-        (document.querySelector('.chat-compose') &&
-          document.documentElement.dataset.keyboard === 'open');
-      const keyboard = !!composing && (height < baseline - 100 || height < 550);
-      document.documentElement.style.setProperty('--viewport-height', `${height}px`);
-      document.documentElement.dataset.keyboard = keyboard ? 'open' : 'closed';
-    };
-    window.visualViewport?.addEventListener('resize', update);
-    window.visualViewport?.addEventListener('scroll', update);
-    window.addEventListener('resize', update);
-    document.addEventListener('focusin', update);
-    document.addEventListener('focusout', update);
-    update();
-    return () => {
-      window.visualViewport?.removeEventListener('resize', update);
-      window.visualViewport?.removeEventListener('scroll', update);
-      window.removeEventListener('resize', update);
-      document.removeEventListener('focusin', update);
-      document.removeEventListener('focusout', update);
-    };
-  }, []);
   const nav = [
     ['/city', 'Ciudad', Landmark],
     ['/squad', 'Equipo', Users],
@@ -107,7 +78,7 @@ function Layout() {
     ['/more', 'Mi club', Shield],
   ] as const;
   return (
-    <>
+    <LeagueChatProvider>
       <Experience />
       <Installation />
       {!['/newspaper', '/chat', '/market'].includes(location.pathname) && (
@@ -119,17 +90,7 @@ function Layout() {
             <Crest size={28} />
             <strong>{BRAND.name}</strong>
           </Link>
-          <Link className="header-club" to="/more">
-            <span>{club.name}</span>
-            <Crest
-              size={24}
-              color={club.color}
-              label={club.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')}
-            />
-          </Link>
+          <HeaderChat />
           <AudioToggle />
           <Link className="header-notification" to="/newspaper" aria-label="Noticias de la liga">
             <Bell size={20} />
@@ -154,7 +115,7 @@ function Layout() {
           >
             <Routes>
               <Route path="/city" element={<CityPage />} />
-              <Route path="/media" element={<MediaCredits />} />
+              <Route path="/media" element={<Navigate to="/settings" replace />} />
               <Route path="/building/:id" element={<BuildingsPage />} />
               <Route path="/research" element={<ResearchPage />} />
               <Route path="/market" element={<MarketPage />} />
@@ -195,7 +156,7 @@ function Layout() {
           </NavLink>
         ))}
       </nav>
-    </>
+    </LeagueChatProvider>
   );
 }
 export default function App() {

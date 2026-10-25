@@ -1,3 +1,5 @@
+import { Help } from '../components/Help';
+import type { HelpTopic } from '../../shared/help';
 import { OperationResources } from '../components/ResourceVisibility';
 import { AttentionBadge } from '../components/Attention';
 import { BuildingBenefits } from '../components/BuildingBenefits';
@@ -11,9 +13,68 @@ import { capacity, seasonDay, shortMoney } from '../../shared/math';
 import { useGame } from '../lib/api';
 import { BuildingArt, WorkQueue } from '../components/City';
 import { Badge, Button, Countdown, Empty, PageTitle, Progress, Section } from '../components/ui';
+const OFFICE_MODULES: Record<
+  string,
+  { to: string; action: string; description: string; help: HelpTopic }
+> = {
+  contracts: {
+    to: '/squad?tab=roster',
+    action: 'Abrir contratos',
+    description: 'Consulta a tus futbolistas y abre sus fichas contractuales.',
+    help: 'salary',
+  },
+  trades: {
+    to: '/trades',
+    action: 'Abrir negociaciones',
+    description: 'Traspasos, intercambios y propuestas entre presidentes.',
+    help: 'bids',
+  },
+  bidhistory: {
+    to: '/market?tab=bids',
+    action: 'Consultar mis ofertas',
+    description: 'Consulta tu historial de pujas sin revelar ofertas ajenas.',
+    help: 'bids',
+  },
+  loans: {
+    to: '/trades',
+    action: 'Abrir cesiones y acuerdos',
+    description: 'Negocia cesiones desde la ficha de un futbolista rival.',
+    help: 'loans',
+  },
+  clauses: {
+    to: '/market?tab=scout',
+    action: 'Buscar futbolista rival',
+    description: 'Ejecuta cláusulas cuando el contrato y el calendario lo permitan.',
+    help: 'clauses',
+  },
+  shield: {
+    to: '/squad?tab=roster',
+    action: 'Gestionar blindajes',
+    description: 'Protege un contrato propio desde la ficha del futbolista.',
+    help: 'shield',
+  },
+  renegotiate: {
+    to: '/squad?tab=roster',
+    action: 'Renegociar contratos',
+    description: 'Reduce el salario contractual pagando el coste indicado en su ficha.',
+    help: 'salary',
+  },
+  concerts: {
+    to: '/concerts',
+    action: 'Abrir conciertos',
+    description: 'Consulta artistas, requisitos y organización de un concierto.',
+    help: 'concerts',
+  },
+  administration: {
+    to: '/finance',
+    action: 'Consultar movimientos',
+    description: 'Revisa ingresos, gastos, reservas y compromisos pendientes.',
+    help: 'money',
+  },
+};
 export default function BuildingsPage() {
   const { id } = useParams();
-  const { state, club, act } = useGame();
+  const { state, club, act, available } = useGame();
   const b = BUILDINGS.find((b) => b.id === id);
   if (!b) return <Empty title="Edificio no encontrado" />;
   const job = state.jobs.find(
@@ -178,60 +239,72 @@ export default function BuildingsPage() {
       {b.id === 'offices' && (
         <Section eyebrow="MÓDULOS INDEPENDIENTES" title="El club, bien gestionado">
           {MODULES.map((m) => {
-            const open = club.modules.includes(m.id);
+            const open = club.modules.includes(m.id),
+              info = OFFICE_MODULES[m.id];
+            const requirement =
+              seasonDay(state) < m.day
+                ? `Disponible desde el día ${m.day}; hoy es el ${seasonDay(state)}.`
+                : m.research && !club.research[m.research]
+                  ? `Requiere ${RESEARCH.find((r) => r.id === m.research)?.name}.`
+                  : available < m.cost
+                    ? `Faltan fondos: necesitas ${shortMoney(m.cost)} y dispones de ${shortMoney(available)}.`
+                    : '';
             return (
-              <div className="card module-card" key={m.id}>
+              <div className="card module-card" data-module={m.id} key={m.id}>
                 <div className="row">
                   <span className={`icon-badge ${open ? '' : 'gray'}`}>
                     {open ? <Check size={20} /> : <LockKeyhole size={19} />}
                   </span>
                   <div className="grow">
-                    <h3>{m.name}</h3>
-                    <p>
-                      {open
-                        ? 'Módulo operativo'
-                        : m.day > seasonDay(state)
-                          ? `Disponible el día ${m.day}`
-                          : m.research && !club.research[m.research]
-                            ? `Requiere ${RESEARCH.find((r) => r.id === m.research)?.name}`
-                            : shortMoney(m.cost)}
-                    </p>
+                    <div className="heading-help">
+                      <h3>{m.name}</h3>
+                      <Help topic={info.help} />
+                    </div>
+                    <p>{info.description}</p>
                   </div>
                 </div>
+                <p className="module-status">Estado: {open ? 'Desbloqueado' : 'Bloqueado'}</p>
                 {!open && (
-                  <Button
-                    variant="secondary"
-                    onClick={() =>
-                      void act({ type: 'unlockModule', id: m.id }, 'Módulo desbloqueado.')
-                    }
-                    disabled={
-                      seasonDay(state) < m.day || !!(m.research && !club.research[m.research])
-                    }
-                  >
-                    Desbloquear
-                  </Button>
+                  <>
+                    <p>{requirement || 'Requisitos cumplidos.'}</p>
+                    <p className="hint">
+                      Coste: {shortMoney(m.cost)}.
+                      {m.research
+                        ? ` Investigación: ${RESEARCH.find((r) => r.id === m.research)?.name}.`
+                        : ' Sin investigación previa.'}
+                      {m.day > 0 && ` Día mínimo: ${m.day}.`}
+                    </p>
+                    <Button
+                      variant="secondary"
+                      disabled={!!requirement}
+                      onClick={() =>
+                        void act({ type: 'unlockModule', id: m.id }, 'Módulo desbloqueado.')
+                      }
+                    >
+                      Desbloquear {m.name}
+                    </Button>
+                    {m.research && !club.research[m.research] && (
+                      <Link className="text-link" to="/research">
+                        Ir a la investigación →
+                      </Link>
+                    )}
+                    {!requirement.startsWith('Disponible') && available < m.cost && (
+                      <Link className="text-link" to="/finance">
+                        Consultar financiación →
+                      </Link>
+                    )}
+                  </>
+                )}
+                {open && (
+                  <Link className="button secondary" to={info.to}>
+                    <AttentionBadge to={info.to.split('?')[0]} />
+                    {info.action}
+                    <ArrowRight size={16} />
+                  </Link>
                 )}
               </div>
             );
           })}
-          <div className="link-grid">
-            <Link to="/squad">
-              <AttentionBadge to="/squad" />
-              Contratos <ArrowRight size={16} />
-            </Link>
-            <Link to="/trades">
-              <AttentionBadge to="/trades" />
-              Negociaciones <ArrowRight size={16} />
-            </Link>
-            <Link to="/concerts">
-              <AttentionBadge to="/concerts" />
-              Conciertos <ArrowRight size={16} />
-            </Link>
-            <Link to="/finance">
-              <AttentionBadge to="/finance" />
-              Movimientos <ArrowRight size={16} />
-            </Link>
-          </div>
         </Section>
       )}
       {(routes[b.id] || []).map(([to, label]) => (

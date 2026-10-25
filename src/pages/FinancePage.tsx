@@ -1,4 +1,4 @@
-import { ResourceAmount } from '../components/ResourceVisibility';
+import { ResourceAmount, ResourceHelp } from '../components/ResourceVisibility';
 import { GameSelect } from '../components/GameSelect';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -60,6 +60,7 @@ export default function FinancePage() {
         </div>
       </div>
       <Section title="El flujo de tu temporada">
+        <ResourceHelp />
         <div className="income-expense">
           <div>
             <ArrowDownLeft size={19} />

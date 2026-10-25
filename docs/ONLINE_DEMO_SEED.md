@@ -1,5 +1,7 @@
 # Demostración online de Monigones
 
+**v0.6:** la nueva modalidad de cinco equipos personalizados y sexta plaza vacía se documenta en [DEMO_FANTASY_TEAMS.md](DEMO_FANTASY_TEAMS.md). Usa `fantasyTeams` en modo avanzado y añade `--offline-preview`, sin credenciales ni red. A. Santos continúa pendiente y bloquea su importación. El catálogo nuevo tiene 500 jugadores reales; las instantáneas completas de v0.5 siguen admitidas sin reescribirlas. Las cifras de jugadores ficticios más abajo describen el catálogo histórico.
+
 El importador reutiliza el motor del juego local. No lee tu partida personal por defecto, no copia contraseñas o sesiones y no crea cuentas Auth. La preparación y las pruebas se realizan localmente; los comandos de producción de este documento son pasos posteriores para el propietario.
 
 ## Archivos

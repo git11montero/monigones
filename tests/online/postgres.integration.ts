@@ -257,6 +257,7 @@ describe('PostgreSQL real: atomicidad y reintentos concurrentes', () => {
     expect(after.activityDays?.[run.offerDay].completed).toBe(1);
   });
   it('pujas simultáneas no sobrepasan el saldo reservado; pujas inválidas no crean recibos', async () => {
+    let bidAmount = 0;
     await mutate((s) => {
       s.draft.active = false;
       s.marketPlayers = s.players
@@ -264,12 +265,15 @@ describe('PostgreSQL real: atomicidad y reintentos concurrentes', () => {
         .sort((a, b) => a.value - b.value)
         .slice(0, 2)
         .map((p) => p.id);
-      s.clubs[0].resources.money = euro(2000000);
+      bidAmount = Math.max(
+        ...s.marketPlayers.map((id) => s.players.find((p) => p.id === id)!.value),
+      );
+      s.clubs[0].resources.money = bidAmount + euro(500000);
     });
     const state = await store.getState(users[0].id);
     const results = await Promise.allSettled(
       state.state.marketPlayers.map((id) =>
-        command(0, { type: 'bid', playerId: id, amount: euro(1500000), salaryBps: 200 }),
+        command(0, { type: 'bid', playerId: id, amount: bidAmount, salaryBps: 200 }),
       ),
     );
     expect(results.filter((r) => r.status === 'fulfilled')).toHaveLength(1);

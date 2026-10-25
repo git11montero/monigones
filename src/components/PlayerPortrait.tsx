@@ -1,14 +1,14 @@
 import { useState, type CSSProperties } from 'react';
 import type { Player } from '../../shared/types';
 import { clubById } from '../../shared/sports';
-import { sportsAsset } from '../../shared/sports-assets';
 import {
   playerAsset,
   clubAsset,
+  legacyClubAsset,
   PLAYER_FALLBACK,
   CLUB_FALLBACK,
 } from '../../shared/football-assets';
-import { useFootballMedia } from '../lib/football-media';
+import { useFootballMedia, useFootballCatalog } from '../lib/football-media';
 export function LocalFootballImage({
   path,
   fallback,
@@ -16,27 +16,34 @@ export function LocalFootballImage({
   className,
 }: {
   path: string;
-  fallback: string;
+  fallback: string | string[];
   alt: string;
   className?: string;
 }) {
-  const { src, kind } = useFootballMedia(path),
-    [failed, setFailed] = useState('');
+  const query = useFootballCatalog(),
+    [failures, setFailures] = useState<string[]>([]);
+  const paths = [path, ...(typeof fallback === 'string' ? [fallback] : fallback)];
+  const versioned = paths.map((p) => (query.data?.[p] ? `${p}?v=${query.data[p].version}` : p));
+  const index = versioned.findIndex((p) => !failures.includes(p));
+  const src =
+    index >= 0
+      ? versioned[index]
+      : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64"%3E%3Crect width="64" height="64" rx="12" fill="%233b4550"/%3E%3C/svg%3E';
   return (
     <img
       className={className}
-      src={failed === src ? fallback : src}
+      src={src}
       alt={alt}
       loading="lazy"
       decoding="async"
-      data-asset-state={failed === src ? 'fallback' : kind || 'local'}
-      onError={(e) => {
-        if (failed !== src) setFailed(src);
-        else e.currentTarget.style.visibility = 'hidden';
+      data-asset-state={index === 0 ? query.data?.[path]?.kind || 'local' : 'fallback'}
+      onError={() => {
+        if (index >= 0) setFailures((old) => [...old, src]);
       }}
     />
   );
 }
+
 export function ClubBadge({ clubId, size = 26 }: { clubId: string; size?: number }) {
   const club = clubById(clubId);
   return (
@@ -48,7 +55,7 @@ export function ClubBadge({ clubId, size = 26 }: { clubId: string; size?: number
     >
       <LocalFootballImage
         path={clubAsset(clubId)}
-        fallback={CLUB_FALLBACK}
+        fallback={[legacyClubAsset(clubId), CLUB_FALLBACK]}
         alt={`Escudo de ${club.name}`}
       />
     </span>
@@ -70,31 +77,5 @@ export function PlayerPortrait({ player, size = 58 }: { player: Player; size?: n
         alt={`Imagen de ${player.name}`}
       />
     </span>
-  );
-}
-export function PhotoCredit({ player }: { player: Player }) {
-  const media = useFootballMedia(playerAsset(player).photo),
-    photo = sportsAsset(player).photo;
-  if (media.kind === 'licensed' && photo)
-    return (
-      <p className="photo-credit">
-        Foto:{' '}
-        <a href={photo.source} target="_blank" rel="noreferrer">
-          {photo.author}
-        </a>{' '}
-        ·{' '}
-        <a href={photo.licenseUrl} target="_blank" rel="noreferrer">
-          {photo.license}
-        </a>{' '}
-        · Copia PNG adaptada; licencia del original.
-      </p>
-    );
-  return (
-    <p className="photo-credit">
-      {media.kind === 'provided'
-        ? 'Imagen aportada por el usuario.'
-        : 'Imagen provisional del catálogo local.'}{' '}
-      Los PNG se pueden sustituir conservando su nombre.
-    </p>
   );
 }

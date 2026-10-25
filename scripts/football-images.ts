@@ -10,7 +10,7 @@ import {
 import { createHash } from 'node:crypto';
 import { inflateSync } from 'node:zlib';
 import { roster, REAL_CLUBS } from '../shared/sports';
-import { CLUB_SLUGS } from '../shared/football-assets';
+import { CLUB_SLUGS, ALL_FOOTBALL_ASSETS } from '../shared/football-assets';
 import { AUTHORIZED_PHOTOS } from '../shared/sports-assets';
 const root = 'public/assets/futbol',
   players = roster(0),
@@ -36,9 +36,13 @@ type Entry = {
   crest: string;
 };
 const existing = JSON.parse(readFileSync('shared/football-assets.json', 'utf8')) as Entry[];
-const reservedResources = new Set(existing.map((e) => e.resourceId));
+const legacyEntries = JSON.parse(
+  readFileSync('data/sports/football-assets-v05.json', 'utf8'),
+) as Entry[];
+const reservedResources = new Set(ALL_FOOTBALL_ASSETS.map((e) => e.resourceId));
 const entries: Entry[] = players.map((p) => {
-  const old = existing.find((x) => x.playerId === p.id),
+  const old =
+      legacyEntries.find((x) => x.playerId === p.id) || existing.find((x) => x.playerId === p.id),
     proposed = overrides[p.id] || slug(p.name);
   const resourceId =
     old?.resourceId || (reservedResources.has(proposed) ? `${proposed}-${slug(p.id)}` : proposed);
@@ -51,7 +55,7 @@ const entries: Entry[] = players.map((p) => {
     resourceId,
     fileName,
     photo: `/assets/futbol/jugadores/${fileName}`,
-    crest: `/assets/futbol/escudos/${CLUB_SLUGS[p.realClubId]}.png`,
+    crest: `/assets/futbol/escudos/${CLUB_SLUGS[p.realClubId]}.webp`,
   };
 });
 for (const e of entries)
@@ -78,6 +82,24 @@ if (make) {
   for (const c of REAL_CLUBS)
     if (!existsSync(`${root}/escudos/${CLUB_SLUGS[c.id]}.png`))
       copyFileSync(`${root}/fallback/escudo.png`, `${root}/escudos/${CLUB_SLUGS[c.id]}.png`);
+  for (const c of REAL_CLUBS) {
+    const base = `${root}/escudos/${CLUB_SLUGS[c.id]}`;
+    if (!existsSync(base + '.webp') || process.argv.includes('--refresh-crests'))
+      execFileSync('magick', [
+        base + '.png',
+        '-resize',
+        '256x256',
+        '-background',
+        'none',
+        '-gravity',
+        'center',
+        '-extent',
+        '256x256',
+        '-define',
+        'webp:lossless=true',
+        base + '.webp',
+      ]);
+  }
   writeFileSync('shared/football-assets.json', JSON.stringify(entries, null, 2) + '\n');
 }
 const decodedHashes = new Set<string>();
@@ -157,8 +179,27 @@ function readSafeHash(id: string) {
   return existsSync(f) ? readFileSync(f, 'utf8').trim() : '';
 }
 for (const c of REAL_CLUBS) {
-  const file = `${CLUB_SLUGS[c.id]}.png`,
-    image = png(`${root}/escudos/${file}`);
+  const file = `${CLUB_SLUGS[c.id]}.webp`;
+  const bytes = readFileSync(`${root}/escudos/${file}`);
+  if (bytes.toString('ascii', 0, 4) !== 'RIFF' || bytes.toString('ascii', 8, 12) !== 'WEBP')
+    throw Error(`No es WebP: ${file}`);
+  const dimensions = execFileSync(
+    'magick',
+    ['identify', '-format', '%w %h', `${root}/escudos/${file}`],
+    { encoding: 'utf8' },
+  )
+    .trim()
+    .split(' ')
+    .map(Number);
+  if (dimensions[0] !== 256 || dimensions[1] !== 256)
+    throw Error(`Dimensiones inconsistentes: ${file}`);
+  execFileSync('magick', [`${root}/escudos/${file}`, '-regard-warnings', 'null:']);
+  const image = {
+    w: dimensions[0],
+    h: dimensions[1],
+    hash: createHash('sha256').update(bytes).digest('hex'),
+  };
+  png(`${root}/escudos/${CLUB_SLUGS[c.id]}.png`);
   rows.push([
     'Escudo',
     c.id,
@@ -170,6 +211,22 @@ for (const c of REAL_CLUBS) {
       ? 'Placeholder genérico'
       : 'Aportado por el usuario (derechos no verificados)',
     `${image.w}x${image.h}`,
+  ]);
+}
+const historical = ALL_FOOTBALL_ASSETS.filter(
+  (e) => !entries.some((p) => p.playerId === e.playerId),
+);
+for (const e of historical) {
+  const image = png('public' + e.photo);
+  rows.push([
+    'Jugador histórico',
+    e.playerId,
+    e.clubId,
+    e.name,
+    e.fileName,
+    e.photo,
+    'Compatibilidad con partidas anteriores',
+    `${image.w}x${image.h}; recurso ${e.resourceId}`,
   ]);
 }
 const csv = (row: string[]) => row.map((v) => '"' + v.replaceAll('"', '""') + '"').join(',');
@@ -197,11 +254,16 @@ const report = {
   placeholders,
   licensedPhotos: licensed,
   userProvided: provided,
-  expectedPngs: entries.length + REAL_CLUBS.length + 2,
+  activePngs: entries.length + REAL_CLUBS.length + 2,
+  expectedPngs: entries.length + historical.length + REAL_CLUBS.length + 2,
+  webpCrests: REAL_CLUBS.length,
+  historicalPngs: ALL_FOOTBALL_ASSETS.filter((x) => !entries.some((e) => e.playerId === x.playerId))
+    .length,
   unexpectedFiles: readdirSync(root + '/jugadores').filter(
-    (f) => !entries.some((e) => e.fileName === f),
+    (f) => !ALL_FOOTBALL_ASSETS.some((e) => e.fileName === f),
   ),
-  result: 'PASS PNG signatures, full ImageMagick decode, dimensions and unique paths',
+  result: 'PASS PNG/WebP signatures, full ImageMagick decode, dimensions and unique paths',
 };
-writeFileSync('docs/validation/v03/images.json', JSON.stringify(report, null, 2) + '\n');
+mkdirSync('docs/validation/v06', { recursive: true });
+writeFileSync('docs/validation/v06/images.json', JSON.stringify(report, null, 2) + '\n');
 console.log(report);

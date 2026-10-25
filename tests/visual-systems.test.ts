@@ -1,3 +1,5 @@
+import historicalPhotos from '../docs/provenance/retired-photos-v05.json';
+import historicalPlayers from '../data/sports/legacy-v05.json';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -81,9 +83,11 @@ describe('fotografías e identidades estables', () => {
       expect(players.find((p) => p.id === photo.playerId)?.name).toBe(photo.identity);
     }
   });
-  it('nunca asigna una foto real a las 110 identidades ficticias', () => {
+  it('retira las fotografías y sustituye las 110 identidades ficticias del catálogo nuevo', () => {
     const fictitious = players.filter((p) => p.simulated);
-    expect(fictitious).toHaveLength(110);
+    expect(fictitious).toHaveLength(0);
+    expect(AUTHORIZED_PHOTOS).toHaveLength(0);
+    expect(historicalPlayers.filter((p) => p.simulated)).toHaveLength(110);
     for (const p of fictitious) {
       expect(sportsAsset(p).photo).toBeUndefined();
       expect(sportsAsset(p).availability).toBe('fictional-portrait');
@@ -101,7 +105,7 @@ describe('fotografías e identidades estables', () => {
   it('rechaza paquetes con ID, identidad, club, licencia o duplicados incorrectos', () => {
     const base = {
       season: '2026/27',
-      photos: [{ ...AUTHORIZED_PHOTOS[0], clubId: 'madrid', sha256: 'a'.repeat(64) }],
+      photos: [{ ...historicalPhotos[0], clubId: 'madrid', sha256: 'a'.repeat(64) }],
     };
     expect(() => validateMediaPackage(base, players)).not.toThrow();
     for (const patch of [
@@ -117,14 +121,14 @@ describe('fotografías e identidades estables', () => {
     expect(() =>
       validateMediaPackage({ ...base, photos: [base.photos[0], base.photos[0]] }, players),
     ).toThrow();
-    const f = players.find((p) => p.simulated)!;
+    const f = { ...players[0], simulated: true };
     expect(() =>
       validateMediaPackage(
         {
           ...base,
           photos: [{ ...base.photos[0], playerId: f.id, identity: f.name, clubId: f.realClubId }],
         },
-        players,
+        [f],
       ),
     ).toThrow();
   });

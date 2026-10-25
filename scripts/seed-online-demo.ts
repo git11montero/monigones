@@ -1,3 +1,4 @@
+import { fantasySnapshot, previewFantasy } from '../server/demo/fantasy.js';
 import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { parseArgs } from 'node:util';
@@ -55,6 +56,7 @@ export async function main(args = process.argv.slice(2)) {
       config: { type: 'string' },
       'env-file': { type: 'string' },
       'dry-run': { type: 'boolean' },
+      'offline-preview': { type: 'boolean' },
       apply: { type: 'boolean' },
       status: { type: 'boolean' },
       verify: { type: 'boolean' },
@@ -65,18 +67,49 @@ export async function main(args = process.argv.slice(2)) {
   });
   if (values.help || !args.length) {
     console.log(
-      'seed:online-demo --config ARCHIVO --dry-run | --apply | --status | --verify [--bind-users] [--env-file ARCHIVO]\nSin --apply no se escribe. --apply exige TTY y confirmación del proyecto y la liga.',
+      'seed:online-demo --config ARCHIVO --offline-preview | --dry-run | --apply | --status | --verify [--bind-users] [--env-file ARCHIVO]\nSin --apply no se escribe. --apply exige TTY y confirmación del proyecto y la liga.',
     );
     return;
   }
   invariant(
-    [values['dry-run'], values.apply, values.status, values.verify].filter(Boolean).length === 1,
+    [
+      values['dry-run'],
+      values['offline-preview'],
+      values.apply,
+      values.status,
+      values.verify,
+    ].filter(Boolean).length === 1,
     'Elige exactamente una acción.',
   );
   invariant(values.config, 'Falta --config.');
-  if (values['env-file']) process.loadEnvFile(values['env-file']);
   const file = resolve(values.config),
     config = configSchema.parse(JSON.parse(readFileSync(file, 'utf8')));
+  const fantasy = config.fantasyTeams
+    ? JSON.parse(readFileSync(resolve(dirname(file), config.fantasyTeams), 'utf8'))
+    : undefined;
+  if (values['offline-preview']) {
+    invariant(fantasy, '--offline-preview requiere fantasyTeams.');
+    const report = previewFantasy(fantasy);
+    console.log(JSON.stringify(report, null, 2));
+    invariant(
+      report.complete,
+      'Plantilla incompleta. No se ha leído ninguna credencial ni conectado con servicios.',
+    );
+    const source = fantasySnapshot(fantasy, Date.parse(config.sourceAt!), config.seed);
+    console.log(
+      JSON.stringify(
+        { snapshotHash: source.sha256, contracts: source.state.contracts.length },
+        null,
+        2,
+      ),
+    );
+    return;
+  }
+  // Validate custom identities before loading secrets or making any remote read.
+  if (fantasy && !values.status)
+    fantasySnapshot(fantasy, Date.parse(config.sourceAt!), config.seed);
+  if (values['env-file']) process.loadEnvFile(values['env-file']);
+
   const url = validateTarget(
     config,
     process.env.MONIGONES_DEMO_SUPABASE_URL || '',
@@ -100,12 +133,14 @@ export async function main(args = process.argv.slice(2)) {
     console.log(JSON.stringify(await service.status(config.leagueId), null, 2));
     return;
   }
-  const source = config.snapshot
-    ? readSnapshot(JSON.parse(readFileSync(resolve(dirname(file), config.snapshot), 'utf8')))
-    : snapshotOf(
-        generatedDemo(config.mode, Date.parse(config.sourceAt!), config.seed),
-        'generated-local-demo',
-      );
+  const source = fantasy
+    ? fantasySnapshot(fantasy, Date.parse(config.sourceAt!), config.seed)
+    : config.snapshot
+      ? readSnapshot(JSON.parse(readFileSync(resolve(dirname(file), config.snapshot), 'utf8')))
+      : snapshotOf(
+          generatedDemo(config.mode, Date.parse(config.sourceAt!), config.seed),
+          'generated-local-demo',
+        );
   const preview = await service.preview(config, source, values['bind-users']);
   console.log(
     JSON.stringify(

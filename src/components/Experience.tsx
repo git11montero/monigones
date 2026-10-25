@@ -86,13 +86,13 @@ export function ExperienceSettings() {
           value={p.quality}
           onChange={(e) => update({ quality: e.target.value as Preferences['quality'] })}
         >
-          <option value="high">Alta · ciudad con toda su actividad</option>
-          <option value="medium">Media · menos personajes ambientales</option>
-          <option value="low">Baja · sin entidades ambientales</option>
+          <option value="high">Alta · máxima resolución</option>
+          <option value="medium">Media · resolución equilibrada</option>
+          <option value="low">Baja · menor resolución</option>
         </GameSelect>
       </label>
       <label className="switch-row">
-        Animaciones ambientales
+        Animaciones de interfaz
         <input
           type="checkbox"
           checked={p.motion}

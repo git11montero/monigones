@@ -1,4 +1,7 @@
+import { useLeagueChat } from '../components/LeagueChat';
 import { UnsavedChanges } from '../components/UnsavedChanges';
+import { MoneyField } from '../components/MoneyField';
+import { parseMoneyInput } from '../../shared/money';
 import { AttentionBadge, ReadAttention } from '../components/Attention';
 import { GameSelect } from '../components/GameSelect';
 import { BRAND } from '../../shared/brand';
@@ -34,7 +37,7 @@ import {
 } from '../components/ui';
 export function NewspaperPage() {
   const { state } = useGame();
-  const [chatOpen, setChatOpen] = useState(false);
+  const { open: chatOpen, show: showChat } = useLeagueChat();
   const editions = [...new Set(state.news.map((n) => dayKey(n.at)))].sort().reverse();
   const [edition, setEdition] = useState(editions[0]),
     [category, setCategory] = useState('Todo'),
@@ -49,7 +52,7 @@ export function NewspaperPage() {
       {!chatOpen && <ReadAttention to="/newspaper" only={stories.map((n) => `news:${n.id}`)} />}
       <button
         className="newspaper-chat-toggle"
-        onClick={() => setChatOpen(true)}
+        onClick={showChat}
         aria-label="Abrir chat de la liga"
       >
         <MessageCircle size={20} /> Vestuario <AttentionBadge to="/chat" />
@@ -209,27 +212,6 @@ export function NewspaperPage() {
           </article>
         </div>
       )}
-      {chatOpen && (
-        <div className="modal-backdrop newspaper-chat-backdrop" onClick={() => setChatOpen(false)}>
-          <section
-            className="modal newspaper-chat-panel"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Chat de la liga"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="modal-close"
-              aria-label="Cerrar chat"
-              onClick={() => setChatOpen(false)}
-            >
-              <X />
-            </button>
-            <h2>El vestuario</h2>
-            <ChatPanel embedded />
-          </section>
-        </div>
-      )}
       <footer className="newspaper-bottom">
         Todos los artículos nacen del registro de esta partida.
         <br />
@@ -241,7 +223,7 @@ export function NewspaperPage() {
 export function ChatPage() {
   return <ChatPanel />;
 }
-function ChatPanel({ embedded = false }: { embedded?: boolean }) {
+export function ChatPanel({ embedded = false }: { embedded?: boolean }) {
   const { state, club, act, admin } = useGame();
   const draftKey = `monigones-chat-draft:${state.id}:${club.id}`;
   const [message, setMessage] = useState(() => sessionStorage.getItem(draftKey) || '');
@@ -454,8 +436,9 @@ export function EventsPage() {
   );
 }
 export function DraftPage() {
-  const { state, club, act, admin } = useGame();
-  const [amount, setAmount] = useState(''),
+  const { state, club, act, admin, available } = useGame();
+  const [amount, setAmount] = useState<Record<string, string>>({}),
+    [errors, setErrors] = useState<Record<string, string>>({}),
     [pick, setPick] = useState('');
   const auctions = state.auctions.filter((a) => a.status === 'open');
   const draftActive = state.draft.active;
@@ -505,30 +488,44 @@ export function DraftPage() {
                 <strong>{a.highest ? shortMoney(a.highest) : 'Abre la puja'}</strong>
               </div>
               <form
+                noValidate
                 onSubmit={(e) => {
                   e.preventDefault();
+                  const parsed = parseMoneyInput(amount[a.id] ?? String(minimum / 100), {
+                    min: minimum,
+                    available: available + (a.clubId === club.id ? a.highest : 0),
+                  });
+                  setErrors((current) => ({ ...current, [a.id]: parsed.error }));
+                  if (parsed.error) return;
                   void act(
                     {
                       type: 'auctionBid',
                       id: a.id,
-                      amount: Math.round(Number(amount || minimum / 100) * 100),
+                      amount: parsed.cents,
                     },
                     'Puja pública aceptada.',
-                  );
-                  setAmount('');
+                    (error) => setErrors((current) => ({ ...current, [a.id]: error })),
+                  ).then((ok) => {
+                    if (ok)
+                      setAmount((current) => {
+                        const next = { ...current };
+                        delete next[a.id];
+                        return next;
+                      });
+                  });
                 }}
               >
-                <label>
-                  Tu puja (€)
-                  <input
-                    type="number"
-                    min={minimum / 100}
-                    step="1000"
-                    value={amount || minimum / 100}
-                    onChange={(e) => setAmount(e.target.value)}
-                    required
-                  />
-                </label>
+                <MoneyField
+                  label="Tu puja (€)"
+                  value={amount[a.id] ?? String(minimum / 100)}
+                  min={minimum}
+                  available={available + (a.clubId === club.id ? a.highest : 0)}
+                  error={errors[a.id]}
+                  onChange={(value) => {
+                    setAmount((current) => ({ ...current, [a.id]: value }));
+                    setErrors((current) => ({ ...current, [a.id]: '' }));
+                  }}
+                />
                 <Button type="submit">
                   Pujar <Gavel size={18} />
                 </Button>
@@ -643,6 +640,7 @@ function capacityFor(c: { facilities: Record<string, number> }) {
 export function TradesPage() {
   const { state, club, act } = useGame();
   const [counter, setCounter] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const trades = state.negotiations;
   const [reject, setReject] = useState<string | null>(null);
   return (
@@ -718,28 +716,32 @@ export function TradesPage() {
                       </Button>
                     </div>
                     <form
+                      noValidate
                       onSubmit={(e) => {
                         e.preventDefault();
+                        const parsed = parseMoneyInput(counter[n.id] || '');
+                        setErrors((current) => ({ ...current, [n.id]: parsed.error }));
+                        if (parsed.error) return;
                         void act(
                           {
                             type: 'counterTrade',
                             id: n.id,
-                            amount: Math.round(Number(counter[n.id]) * 100),
+                            amount: parsed.cents,
                           },
                           'Contraoferta enviada.',
+                          (error) => setErrors((current) => ({ ...current, [n.id]: error })),
                         );
                       }}
                     >
-                      <label>
-                        Contraoferta en euros
-                        <input
-                          type="number"
-                          value={counter[n.id] || ''}
-                          min="0"
-                          required
-                          onChange={(e) => setCounter({ ...counter, [n.id]: e.target.value })}
-                        />
-                      </label>
+                      <MoneyField
+                        label="Contraoferta en euros"
+                        value={counter[n.id] || ''}
+                        error={errors[n.id]}
+                        onChange={(value) => {
+                          setCounter((current) => ({ ...current, [n.id]: value }));
+                          setErrors((current) => ({ ...current, [n.id]: '' }));
+                        }}
+                      />
                       <Button type="submit" variant="secondary">
                         Proponer importe
                       </Button>

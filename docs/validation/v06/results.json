@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-25",
+  "version": "0.6.0",
+  "remoteChanges": false,
+  "userSqliteOpened": false,
+  "newMigration": false,
+  "typescript": {
+    "command": "npm run check",
+    "status": "passed"
+  },
+  "eslint": {
+    "command": "npm run lint",
+    "status": "passed"
+  },
+  "unit": {
+    "command": "npm test",
+    "files": 14,
+    "passed": 203,
+    "failed": 0
+  },
+  "postgres": {
+    "command": "npm run test:postgres",
+    "files": 2,
+    "passed": 43,
+    "failed": 0,
+    "engine": "PostgreSQL 17.11; isolated disposable loopback cluster",
+    "migrations": [
+      "202610230001_crown.sql",
+      "202610240001_online.sql",
+      "202610250001_online_demo.sql"
+    ],
+    "realSupabaseServices": false
+  },
+  "browser": {
+    "distinctPassed": 49,
+    "historicalSkipped": 1,
+    "unresolvedFailures": 0,
+    "engines": [
+      "Chromium",
+      "WebKit"
+    ],
+    "physicalDevices": false,
+    "runs": [
+      {
+        "scope": "full existing suite",
+        "passed": 39,
+        "failed": 5,
+        "skipped": 1
+      },
+      {
+        "scope": "affected existing and initial v06 cases",
+        "passed": 7,
+        "failed": 2
+      },
+      {
+        "scope": "v06 and portrait fallback recheck",
+        "passed": 5,
+        "failed": 1
+      },
+      {
+        "scope": "final chat, keyboard and gesture checks after 16px correction",
+        "passed": 3,
+        "failed": 0
+      },
+      {
+        "scope": "final training contrast and formation check",
+        "passed": 1,
+        "failed": 0
+      }
+    ],
+    "resolvedFailures": [
+      "catalog reloads during first run",
+      "duplicate chat access locator",
+      "versioned fallback URL assertion",
+      "route load synchronization in new test",
+      "chat textarea still 14px due to CSS specificity"
+    ],
+    "sizes": [
+      "320x568",
+      "375x812",
+      "390x844",
+      "430x932",
+      "1440x1000"
+    ],
+    "screenshots": 39
+  },
+  "builds": {
+    "local": "passed; vite + PWA",
+    "online": "passed; Vercel production build + PWA",
+    "pwaPrecachedResources": 50,
+    "finalLocalDist": "dist/ rebuilt in local mode; .vercel/output retains the online prebuilt artifact"
+  },
+  "artifact": {
+    "runtime": "v24.22.1",
+    "handler": "api/[...path].js",
+    "isolated": true,
+    "nativeEsm": true,
+    "httpChecks": 36,
+    "profile204": true,
+    "parsedAndConsumedBodies": true,
+    "membershipAndGame": true,
+    "supabase": "local HTTP fixture; no remote requests",
+    "status": "passed"
+  },
+  "demoPreview": {
+    "status": "blocked-as-designed",
+    "exitCode": 1,
+    "reason": "A. Santos identity pending; no automatic Antony assignment",
+    "credentialsLoaded": false,
+    "network": false
+  },
+  "productionValidation": "pending authorization; not deployed",
+  "securityRegression": "Insufficient buyer funds error discloses no balance or secret reservations to the seller; regression unit test passed."
+}

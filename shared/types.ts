@@ -12,6 +12,7 @@ export interface Player {
   id: string;
   name: string;
   fullName?: string;
+  season?: string;
   realClubId: string;
   position: Position;
   value: number;

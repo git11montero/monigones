@@ -1,4 +1,5 @@
 import { activityOffers, activityDay } from './activities.js';
+import { amountProblem, formatMoney, type MoneyLimits } from './money.js';
 import { formationAllowed, selectionFormation } from './formations.js';
 import { notifications } from './attention.js';
 import { economicRandom } from './math.js';
@@ -136,7 +137,7 @@ function spend(s: GameState, c: Club, n: number, reason: string, except?: string
   invariant(Number.isSafeInteger(n) && n >= 0, 'Importe inválido.');
   invariant(
     available(s, c, except) >= n,
-    'Saldo insuficiente: parte del dinero puede estar reservado en pujas.',
+    `No tienes suficiente dinero. Dispones de ${formatMoney(available(s, c, except))} y has introducido ${formatMoney(n)}. Parte del saldo puede estar reservado en pujas.`,
   );
   resource(s, c, 'money', -n, reason);
 }
@@ -836,6 +837,11 @@ const num = (cmd: Command, key: string, min = 0, max = 1e12) => {
   );
   return x;
 };
+const economicAmount = (cmd: Command, limits: MoneyLimits = {}) => {
+  const error = amountProblem(cmd.amount, limits);
+  invariant(!error, error);
+  return cmd.amount as number;
+};
 export function execute(s: GameState, actor: Actor, cmd: Command) {
   const c = s.clubs.find((c) => c.id === actor.clubId && c.userId === actor.userId);
   invariant(c, 'No puedes operar sobre otro club.');
@@ -854,7 +860,6 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
       const p = playerOf(s, id);
       invariant(!s.contracts.some((x) => x.playerId === id), 'El futbolista ya tiene propietario.');
       invariant(rosterUsage(s, c) < capacity(c), 'Plantilla completa.');
-      const amount = num(cmd, 'amount', p.value);
       const salary = num(cmd, 'salaryBps', 200, 1000);
       const old = s.bids.find(
         (b) =>
@@ -863,10 +868,7 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
           b.marketId === s.marketId &&
           b.status === 'open',
       );
-      invariant(
-        available(s, c, old?.id) >= amount,
-        'Saldo insuficiente para reservar esta oferta.',
-      );
+      const amount = economicAmount(cmd, { min: p.value, available: available(s, c, old?.id) });
       if (old) {
         old.amount = amount;
         old.salaryBps = salary;
@@ -1146,7 +1148,10 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
       tradable(s, id);
       const ct = s.contracts.find((ct) => ct.playerId === id && ct.clubId !== c.id);
       invariant(ct, 'Contrato rival no encontrado.');
-      invariant(ct.shieldUntil <= s.now, 'El futbolista está blindado.');
+      invariant(
+        ct.shieldUntil <= s.now,
+        `No puedes ejecutar esta cláusula porque el futbolista está blindado hasta ${new Date(ct.shieldUntil).toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })} (Madrid).`,
+      );
       invariant(rosterUsage(s, c) < capacity(c), 'Plantilla completa.');
       const seller = s.clubs.find((x) => x.id === ct.clubId)!;
       spend(s, c, ct.clause, 'Clausulazo');
@@ -1457,7 +1462,7 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
       tradable(s, id);
       const ct = s.contracts.find((ct) => ct.playerId === id);
       invariant(ct && ct.clubId !== c.id, 'Debes negociar por un futbolista rival.');
-      const amount = num(cmd, 'amount', 0);
+      const amount = economicAmount(cmd, { available: available(s, c) });
       const offered = cmd.offeredPlayerId ? str(cmd, 'offeredPlayerId') : undefined;
       if (offered) {
         invariant(
@@ -1466,7 +1471,6 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
         );
         tradable(s, offered);
       }
-      invariant(available(s, c) >= amount, 'Saldo insuficiente.');
       const loanRounds = cmd.loanRounds ? num(cmd, 'loanRounds', 1, 3) : undefined;
       if (loanRounds)
         invariant(
@@ -1511,6 +1515,11 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
         'El comprador no tiene plazas.',
       );
       if (offered) invariant(rosterUsage(s, c) <= capacity(c), 'El vendedor no tiene plazas.');
+      // The seller must not learn the buyer's balance or secret reservations from an error.
+      invariant(
+        available(s, buyer) >= n.amount,
+        'El comprador no tiene dinero disponible suficiente para completar este acuerdo.',
+      );
       spend(s, buyer, n.amount, 'Acuerdo entre clubes');
       resource(s, c, 'money', n.amount, 'Acuerdo entre clubes');
       ct.clubId = buyer.id;
@@ -1553,7 +1562,7 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
         (n) => n.id === str(cmd, 'id') && n.status === 'open' && n.to === c.id,
       );
       invariant(n, 'Negociación no disponible.');
-      n.amount = num(cmd, 'amount', 0);
+      n.amount = economicAmount(cmd);
       n.status = 'countered';
       break;
     }
@@ -1574,12 +1583,10 @@ export function execute(s: GameState, actor: Actor, cmd: Command) {
       const a = s.auctions.find((a) => a.id === str(cmd, 'id') && a.status === 'open');
       invariant(a && a.endsAt > s.now, 'La subasta ha terminado.');
       invariant(rosterUsage(s, c) < capacity(c), 'Plantilla completa.');
-      const amount = num(
-        cmd,
-        'amount',
-        Math.max(playerOf(s, a.playerId).value, a.highest + euro(100000)),
-      );
-      invariant(available(s, c, a.id) >= amount, 'Presupuesto insuficiente.');
+      const amount = economicAmount(cmd, {
+        min: Math.max(playerOf(s, a.playerId).value, a.highest + euro(100000)),
+        available: available(s, c, a.id),
+      });
       a.highest = amount;
       a.clubId = c.id;
       a.bids.push({ clubId: c.id, amount, at: s.now });

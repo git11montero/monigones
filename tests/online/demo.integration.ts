@@ -1,3 +1,6 @@
+import { completedTestFantasy } from '../fixtures/fantasy';
+import { fantasySnapshot } from '../../server/demo/fantasy';
+import { FORMATION_CATALOG } from '../../shared/formations';
 import { beforeEach, afterAll, describe, it, expect } from 'vitest';
 import { Pool } from 'pg';
 import { randomUUID } from 'node:crypto';
@@ -507,6 +510,49 @@ describe('Importador de demostración: PostgreSQL real y API online', () => {
     expect(s.ledger).toHaveLength(source().state.ledger.length);
     expect(s.seasonEndsAt - s.seasonStartedAt).toBe(266 * DAY);
     expect((await service.status(c.leagueId)).demo?.modified).toBe(false);
+  });
+  it('v06 importa la fuente personalizada completa solo de prueba y conserva las once mejoras tras cambios concurrentes', async () => {
+    const config = configuration();
+    const fixture = completedTestFantasy();
+    const source = fantasySnapshot(fixture, sourceAt, config.seed);
+    const preview = await service.preview(config, source);
+    expect(preview.problems).toEqual([]);
+    await service.apply(config, source);
+    await service.apply(config, source);
+    let current = await load(config.leagueId);
+    expect(current.state.contracts).toHaveLength(58);
+    expect(current.state.clubs[5].name).toBe('Plaza reservada');
+    expect(current.state.contracts.some((c) => c.clubId === current.state.clubs[5].id)).toBe(false);
+    const club = current.state.clubs[0];
+    club.facilities.pitch = 4;
+    club.selection.starters.forEach((p, i) => {
+      p.quality = i % 4;
+      p.unlockedQuality = i % 4;
+    });
+    // Persist controlled fixture through the authoritative revision transaction.
+    await db.query('update monigones_private.games set state=$1 where league_id=$2', [
+      current.state,
+      config.leagueId,
+    ]);
+    const actors = current.state.clubs
+      .slice(0, 2)
+      .map((c) => ({ userId: c.userId, clubId: c.id, admin: c.userId === config.adminUserId }));
+    for (const f of FORMATION_CATALOG) {
+      await Promise.all(
+        actors.map((actor) =>
+          store.dispatch(actor.userId, { type: 'formation', formation: f.id }, randomUUID()),
+        ),
+      );
+      current = await load(config.leagueId);
+      expect(current.state.clubs[0].selection.starters.map((p) => p.quality)).toEqual(
+        Array.from({ length: 11 }, (_, i) => i % 4),
+      );
+      expect(current.state.clubs[0].selection.starters.map((p) => p.unlockedQuality)).toEqual(
+        Array.from({ length: 11 }, (_, i) => i % 4),
+      );
+      expect(current.state.contracts).toHaveLength(58);
+    }
+    expect((await service.preview(config, source)).problems).toContain('DEMO_MODIFIED');
   });
   it('RLS y privilegios impiden leer o ejecutar el importador desde anon/authenticated y aíslan ligas', async () => {
     const c = configuration();

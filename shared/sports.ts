@@ -1,3 +1,4 @@
+import catalog from '../data/sports/laliga-2026-27.json' with { type: 'json' };
 import { z } from 'zod';
 import { euro } from './config.js';
 import { hash, random } from './math.js';
@@ -31,445 +32,27 @@ export const REAL_CLUBS: RealClub[] = [
   source: 'https://www.laliga.com/laliga-easports/clubes',
 }));
 export const clubById = (id: string) => REAL_CLUBS.find((c) => c.id === id)!;
-export const SPORTS_VERSION = '2026-10-23.2';
-// Exclusivamente altas verificadas en las páginas citadas. Los valores y estados son del simulador.
-const verified: Record<string, Record<Position, string[]>> = {
-  barcelona: {
-    POR: ['Joan García', 'Szczesny', 'Dominik Livakovic'],
-    DEF: [
-      'Pau Cubarsí',
-      'Gerard Martín',
-      'Christensen',
-      'Eric García',
-      'Jules Koundé',
-      'João Cancelo',
-      'Alejandro Balde',
-    ],
-    MED: ['Pedri', 'Rodri', 'Frenkie de Jong', 'Dani Olmo', 'Fermín López', 'Marc Bernal', 'Gavi'],
-    DEL: ['Lamine Yamal', 'Raphinha', 'Anthony Gordon', 'Karim Adeyemi', 'Gabriel Jesús'],
-  },
-  madrid: {
-    POR: ['Thibaut Courtois'],
-    DEF: [
-      'Trent Alexander-Arnold',
-      'Dean Huijsen',
-      'Álvaro Carreras',
-      'Denzel Dumfries',
-      'Ibrahima Konaté',
-      'Marc Cucurella',
-      'Éder Militão',
-    ],
-    MED: [
-      'Jude Bellingham',
-      'Federico Valverde',
-      'Aurélien Tchouaméni',
-      'Bernardo Silva',
-      'Eduardo Camavinga',
-    ],
-    DEL: ['Kylian Mbappé', 'Vinícius Júnior', 'Yan Diomande', 'Carlos Espí', 'Endrick'],
-  },
-  atletico: {
-    POR: ['Jan Oblak', 'Juan Musso'],
-    DEF: ['Alejandro Grimaldo', 'Marc Pubill', 'Dávid Hancko', 'Cuti Romero', 'Marcos Llorente'],
-    MED: [
-      'Morten Hjulmand',
-      'Pablo Barrios',
-      'Koke',
-      'Johnny Cardoso',
-      'Álex Baena',
-      'Rodrigo Mendoza',
-      'Obed Vargas',
-      'Kang-In Lee',
-    ],
-    DEL: ['Julián Álvarez', 'Ademola Lookman', 'Alexander Sørloth', 'Jonathan David'],
-  },
-  villarreal: {
-    POR: ['Luiz Júnior', 'Péter Gulácsi'],
-    DEF: [
-      'Juan Foyth',
-      'Logan Costa',
-      'Santiago Mouriño',
-      'Renato Veiga',
-      'Carlos Romero',
-      'Pau Navarro',
-      'Sergi Cardona',
-    ],
-    MED: [
-      'Pape Gueye',
-      'Santi Comesaña',
-      'Alberto Moleiro',
-      'Nicolas Pépé',
-      'Tajon Buchanan',
-      'Ilias Akhomach',
-      'Nathan Saliba',
-    ],
-    DEL: ['Gerard Moreno', 'Georges Mikautadze', 'Ayoze Pérez', 'Tani Oluwaseyi'],
-  },
-};
-Object.assign(verified, {
-  betis: {
-    POR: ['Álvaro Valles', 'Diego Conde', 'Manu González'],
-    DEF: ['Fran García', 'Bellerín', 'Bartra', 'Diego Llorente', 'Natan', 'Ortiz', 'Aitor Ruibal'],
-    MED: ['Facundo Bernal', 'Dani Ceballos', 'Pablo Fornals', 'Isco', 'Marc Roca'],
-    DEL: ['Troy Parrott', 'Cucho Hernández', 'Antony', 'Abde', 'Rodrigo Riquelme'],
-  },
-  celta: {
-    POR: ['Radu', 'Altay Bayindir', 'Iván Villar'],
-    DEF: [
-      'Javi Rodríguez',
-      'Starfelt',
-      'Marcos Alonso',
-      'Faye',
-      'Sebastián Cáceres',
-      'Yoel Lago',
-      'Álvaro Núñez',
-    ],
-    MED: ['Miguel Román', 'Ilaix Moriba', 'Aleix Febas', 'Javi Galán', 'Sergio Carreira'],
-    DEL: [
-      'Iago Aspas',
-      'Borja Iglesias',
-      'Swedberg',
-      'Ferran Jutglà',
-      'Pablo Durán',
-      'Couhaib Driouech',
-    ],
-  },
-  getafe: {
-    POR: ['David Soria'],
-    DEF: [
-      'Djené',
-      'Saba Sazonov',
-      'Zaid Romero',
-      'Andrés García',
-      'Johan Mojica',
-      'Sebastián Boselli',
-    ],
-    MED: ['Mario Martín', 'Nemanja Gudelj', 'Orel Mangala', 'Ramón Terrats', 'Francho Serrano'],
-    DEL: ['Martín Satriano', 'Enes Ünal', 'Iván Azón', 'Borja Mayoral', 'Christantus Uche'],
-  },
-  rayo: {
-    POR: ['Batalla', 'Cárdenas', 'Adri Molina', 'Emil Audero'],
-    DEF: ['Luiz Felipe', 'Marash Kumbulla', 'Mujaid Sadick', 'Adrià Pedrosa', 'Ratiu', 'Lejeune'],
-    MED: [
-      'Unai López',
-      'Pedro Díaz',
-      'Óscar Valentín',
-      'Pathé Ciss',
-      'Gnangoro Bouaré',
-      'Isi Palazón',
-    ],
-    DEL: [
-      'De Frutos',
-      'Álvaro García',
-      'Fran Pérez',
-      'Nteka',
-      'Alemão',
-      'Sergio Camello',
-      'Giorgi Tsitaishvili',
-    ],
-  },
-  valencia: {
-    POR: ['Stole Dimitrievski'],
-    DEF: [
-      'Pablo Maffeo',
-      'Arnau Martínez',
-      'Gayà',
-      'Jesús Vázquez',
-      'Copete',
-      'De Haas',
-      'Diakhaby',
-      'César Tárrega',
-    ],
-    MED: [
-      'Guido Rodríguez',
-      'Dieng',
-      'Pepelu',
-      'Ugrinic',
-      'Javi Guerra',
-      'Luis Rioja',
-      'Diego López',
-      'Elliott',
-    ],
-    DEL: ['Danjuma', 'Umar Sadiq', 'Hugo Duro'],
-  },
-  sociedad: {
-    POR: ['Álex Remiro', 'Unai Marrero'],
-    DEF: ['Sergio Gómez', 'Jon Martín', 'Jon Aramburu', 'Igor Zubeldía', 'Sarr', 'Héctor Fort'],
-    MED: [
-      'Jon Gorrotxategi',
-      'Beñat Turrientes',
-      'Carlos Soler',
-      'Luka Sucic',
-      'Yangel Herrera',
-      'Goti',
-      'Arsen Zakharyan',
-    ],
-    DEL: [
-      'Mikel Oyarzabal',
-      'Óskarsson',
-      'Gonçalo Guedes',
-      'Take Kubo',
-      'Ander Barrenetxea',
-      'Ochieng',
-      'Carrera',
-    ],
-  },
-  espanyol: {
-    POR: ['Dmitrovic', 'Fortuño'],
-    DEF: ['Unai Núñez', 'Drkusic', 'Gorosabel', 'El Hilali', 'Hartman', 'Hinojo'],
-    MED: ['Calatrava', 'Edu Expósito', 'Urko', 'Pol Lozano', 'Moscardo', 'Bryan Zaragoza'],
-    DEL: ['Puado', 'Kike García', 'Marcos Fernández', 'Roberto Fernández', 'Pere Milla'],
-  },
-  athletic: {
-    POR: ['Unai Simón', 'Álex Padilla'],
-    DEF: ['Jesús Areso', 'Rincón', 'Aymeric Laporte', 'Dani Vivian', 'Yeray', 'Yuri'],
-    MED: [
-      'Ruiz de Galarreta',
-      'Beñat Prados',
-      'Jauregizar',
-      'Gerenabarrena',
-      'Oihan Sancet',
-      'Canales',
-    ],
-    DEL: ['Nico Williams', 'Álvaro Djaló', 'Maroan Sannadi', 'Gorka Guruzeta'],
-  },
-  sevilla: {
-    POR: ['Vlachodimos', 'Fran González'],
-    DEF: ['Juan Iglesias', 'Julio Díaz', 'Suazo', 'Sangante', 'Kike Salas'],
-    MED: ['Kochorashvili', 'Nico Guillén', 'Fofana', 'Agoumé'],
-    DEL: ['Isaac Romero', 'Ure', 'Peque', 'Vargas', 'Alfon', 'Stassin', 'Correia'],
-  },
-  alaves: {
-    POR: ['Antonio Sivera', 'Adrián', 'Swiderski'],
-    DEF: ['Koski', 'Valentini', 'Garcés', 'Xanet', 'Álvaro'],
-    MED: [
-      'Antonio Blanco',
-      'Pablo Ibáñez',
-      'Denis Suárez',
-      'Guevara',
-      'Protesoni',
-      'Mikel Rodríguez',
-      'Aleñá',
-    ],
-    DEL: ['Lucas Boyé', 'Toni Martínez', 'Mañas', 'Mariano'],
-  },
-  elche: {
-    POR: ['Matías Dituro', 'Iturbe'],
-    DEF: [
-      'Víctor Chust',
-      'Pedro Bigas',
-      'Buba Sangaré',
-      'Tete Morente',
-      'Germán Valera',
-      'Revivo',
-      'Lomónaco',
-    ],
-    MED: ['Gonzalo Villar', 'Javier Morcillo', 'Buonanotte', 'Thomas Lemar'],
-    DEL: ['Fer Niño', 'Eze Ponce'],
-  },
-  levante: {
-    POR: ['Mathew Ryan'],
-    DEF: ['Aïssa Mandi', 'Tape', 'Toljan', 'Dela', 'Manu Sánchez'],
-    MED: ['Hugo Sotelo', 'Jon Olasagasti', 'Enzo Bardeli', 'Dani Requena'],
-    DEL: ['Musuayi', 'Etta Eyong', 'Iván Romero', 'Brugué', 'Thiago Fernández', 'Ratkov'],
-  },
-  osasuna: {
-    POR: ['Sergio Herrera', 'Aitor Fernández'],
-    DEF: ['Rosier', 'Abel Bretones', 'Diego Rico', 'Catena', 'Boyomo', 'Herrando'],
-    MED: [
-      'Lucas Torró',
-      'Jon Moncayola',
-      'Iker Muñoz',
-      'Rubén García',
-      'Kike Barja',
-      'Moi Gómez',
-      'Aimar Oroz',
-    ],
-    DEL: ['Ante Budimir', 'Raúl García de Haro', 'Dubasin', 'Moro', 'Del Castillo'],
-  },
-  racing: {
-    POR: ['Julen Agirrezabala', 'Simon Eriksson'],
-    DEF: ['Jorge Salinas', 'Aarón Martín', 'Facu González', 'Belocian', 'Pedro Felipe'],
-    MED: ['Sergio Canales', 'Iván Martín', 'Prati'],
-    DEL: [
-      'Iñigo Vicente',
-      'Andrés Martín',
-      'Juan Carlos Arana',
-      'Asier Villalibre',
-      'Zabiri',
-      'Iker Luque',
-      'Pablo García',
-    ],
-  },
-  deportivo: {
-    POR: ['Leo Román', 'Germán Parreño', 'Álvaro Ferllo'],
-    DEF: [
-      'Angeliño',
-      'Quagliata',
-      'Ximo',
-      'Altimira',
-      'Bright Ede',
-      'José María Giménez',
-      'Loureiro',
-      'Noubi',
-    ],
-    MED: [
-      'Diego Villares',
-      'Mario Soriano',
-      'Teun Gijselhart',
-      'Lorenzo Amatucci',
-      'Asp Jensen',
-      'Marc Casadó',
-    ],
-    DEL: [
-      'Luismi Cruz',
-      'David Mella',
-      'Yeremay',
-      'Aubameyang',
-      'Nsongo',
-      'Eddahchouri',
-      'Adama Traoré',
-    ],
-  },
-  malaga: {
-    POR: ['Alfonso Herrero', 'Carlos López', 'Andrés Céspedes'],
-    DEF: ['Galilea', 'Ángel Recio', 'Puga', 'Salinas', 'Adam Aznou', 'Berrocal', 'Rafita'],
-    MED: ['Dani Lorenzo', 'Izan Merino', 'Carlos Dotor', 'Pablo Martínez', 'Jens Cajuste'],
-    DEL: [
-      'Chupe',
-      'Adrián Niño',
-      'Larrubia',
-      'Joaquín Muñoz',
-      'Aarón Ochoa',
-      'Juan Cruz',
-      'Jauregi',
-    ],
-  },
-});
-const sourceSlug: Record<string, string> = {
-  barcelona: 'fc-barcelona',
-  madrid: 'real-madrid',
-  atletico: 'atletico-de-madrid',
-  villarreal: 'villarreal',
-  betis: 'real-betis',
-  celta: 'celta-de-vigo',
-  getafe: 'getafe-fc',
-  rayo: 'rayo-vallecano',
-  valencia: 'valencia',
-  sociedad: 'real-sociedad',
-  espanyol: 'espanyol',
-  athletic: 'athletic-club',
-  sevilla: 'sevilla',
-  alaves: 'alaves',
-  elche: 'elche',
-  levante: 'levante',
-  osasuna: 'osasuna',
-  racing: 'racing-de-santander',
-  deportivo: 'deportivo-de-a-coruna',
-  malaga: 'malaga-cf',
-};
+export const SPORTS_VERSION = catalog.version;
+/** Verified identities; prices and match points remain deterministic simulator values. */
 export function roster(now: number): Player[] {
-  const players: Player[] = [];
-  const first = [
-    'Nicolás',
-    'Mateo',
-    'Lucas',
-    'Daniel',
-    'Álvaro',
-    'Hugo',
-    'Bruno',
-    'Pablo',
-    'Sergio',
-    'Adrián',
-    'Iván',
-    'Mario',
-    'Leo',
-    'Martín',
-    'Diego',
-    'Rafael',
-    'Enzo',
-    'Gael',
-    'Saúl',
-    'Javier',
-    'Óscar',
-    'Andrés',
-    'Marcos',
-    'Jaime',
-    'Samuel',
-  ];
-  const last = [
-    'Robles',
-    'Sierra',
-    'Valdés',
-    'Oliva',
-    'Crespo',
-    'Vega',
-    'Soler',
-    'Reina',
-    'Molina',
-    'Cano',
-    'Navas',
-    'Roca',
-    'León',
-    'Ríos',
-    'Salas',
-    'Vidal',
-    'Luna',
-    'Paz',
-    'Lago',
-    'Ramos',
-    'Duarte',
-    'Soto',
-    'Prado',
-    'Gil',
-    'Mora',
-  ];
-  for (const [ci, club] of REAL_CLUBS.entries()) {
-    let count = 0;
-    const positions: Position[] = ['POR', 'DEF', 'MED', 'DEL'];
-    for (const position of positions) {
-      for (const name of verified[club.id]?.[position] || []) {
-        const id = `${club.id}-${count++}`;
-        const value = euro(1_500_000 + (hash(name) % 18_000_000));
-        players.push({
-          id,
-          name,
-          realClubId: club.id,
-          position,
-          value,
-          valueHistory: [{ at: now, value }],
-          simulated: false,
-          source: `https://as.com/futbol/primera/${sourceSlug[club.id]}-en-laliga-ea-sports-202627-plantilla-fichajes-bajas-figuras-y-claves-de-la-temporada-f202608-n/`,
-          verifiedAt: '2026-10-23',
-          status: 'available',
-        });
-      }
-    }
-    while (count < 25) {
-      const i = count++;
-      const counts = Object.fromEntries(
-        positions.map((pos) => [
-          pos,
-          players.filter((p) => p.realClubId === club.id && p.position === pos).length,
-        ]),
-      );
-      const targets = { POR: 3, DEF: 8, MED: 8, DEL: 6 };
-      const position = positions.find((pos) => counts[pos] < targets[pos]) || 'DEL';
-      const id = `${club.id}-${i}`;
-      const value = euro(350000 + (hash(id) % 2_500_000));
-      players.push({
-        id,
-        name: `${first[(ci + i) % 25]} ${last[(ci * 3 + i * 7) % 25]} ${String.fromCharCode(65 + ci)}`,
-        realClubId: club.id,
-        position,
-        value,
-        valueHistory: [{ at: now, value }],
-        simulated: true,
-        status: 'available',
-      });
-    }
-  }
-  return players;
+  return catalog.players.map((p) => {
+    const value = euro(1_500_000 + (hash(p.name) % 18_000_000));
+    return {
+      id: p.id,
+      name: p.name,
+      fullName: p.fullName,
+      realClubId: p.realClubId,
+      position: p.position as Position,
+      externalIds: p.externalIds,
+      season: p.season,
+      value,
+      valueHistory: [{ at: now, value }],
+      simulated: false,
+      source: p.source,
+      verifiedAt: p.verifiedAt,
+      status: 'available',
+    };
+  });
 }
 export interface CoachData {
   id: string;
@@ -599,10 +182,10 @@ export class MockSportsProvider implements SportsProvider {
     return COACHES;
   }
   async syncRoster() {
-    return { version: SPORTS_VERSION, updatedAt: '2026-10-23' };
+    return { version: SPORTS_VERSION, updatedAt: '2026-10-25' };
   }
   async getLastUpdated() {
-    return '2026-10-23';
+    return '2026-10-25';
   }
 }
 export const ImportSchema = z
@@ -619,6 +202,9 @@ export const ImportSchema = z
           simulated: z.boolean(),
           source: z.url().optional(),
           verifiedAt: z.string().optional(),
+          fullName: z.string().min(2).max(150).optional(),
+          season: z.string().optional(),
+          externalIds: z.record(z.string(), z.string()).optional(),
         }),
       )
       .max(5000),

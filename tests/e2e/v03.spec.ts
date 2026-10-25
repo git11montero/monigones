@@ -212,11 +212,11 @@ test('v03: chat multilínea, scroll y compositor con teclado simulado en ruta y 
     await page.locator('.chat-messages').evaluate((el) => el.scrollHeight > el.clientHeight),
   ).toBe(true);
   await page.goto('/newspaper');
-  await page.getByRole('button', { name: /Abrir chat/ }).click();
+  await page.locator('.newspaper-chat-toggle').click();
   await expect(page.getByRole('dialog', { name: 'Chat de la liga' })).toBeVisible();
   await textarea.fill('Borrador del periódico');
   await page.getByRole('button', { name: 'Cerrar chat' }).click();
-  await page.getByRole('button', { name: /Abrir chat/ }).click();
+  await page.locator('.newspaper-chat-toggle').click();
   await expect(textarea).toHaveValue('Borrador del periódico');
   await page.screenshot({ path: `${root}/chat-newspaper-390x844.png`, scale: 'css' });
   await textarea.focus();

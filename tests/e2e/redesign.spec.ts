@@ -238,7 +238,7 @@ test('fotografías, emblemas asociados, cartas y alternativa ante error de red',
   await expect(page.locator('.sports-card [data-asset-state="fallback"]')).toBeVisible();
   await expect(page.locator('.sports-card .player-avatar img')).toHaveAttribute(
     'src',
-    '/assets/futbol/fallback/jugador.png',
+    /^\/assets\/futbol\/fallback\/jugador\.png(?:\?v=[a-f0-9]+)?$/,
   );
   await snapshot(page, { path: `${root}/retrato-alternativo.png`, fullPage: true, scale: 'css' });
 });
@@ -283,7 +283,7 @@ test('audio: gesto, efectos, silencio, preferencias persistentes y movimiento re
   await page.getByLabel('Volumen', { exact: true }).fill('20');
   await page.getByRole('combobox', { name: 'Calidad gráfica' }).click();
   await page.getByRole('option', { name: /Baja/ }).click();
-  await page.getByLabel('Animaciones ambientales').uncheck();
+  await page.getByLabel('Animaciones de interfaz').uncheck();
   await page.reload();
   await expect(page.getByLabel('Música ambiental')).toBeChecked();
   await expect(page.getByLabel('Efectos sonoros')).not.toBeChecked();

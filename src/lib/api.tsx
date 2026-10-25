@@ -125,7 +125,7 @@ function saveSnapshot(key: string, data: Game) {
 }
 interface GameContextValue extends Game {
   club: Game['state']['clubs'][number];
-  act: (cmd: Command, message?: string) => Promise<boolean>;
+  act: (cmd: Command, message?: string, onError?: (message: string) => void) => Promise<boolean>;
   busy: boolean;
   online: boolean;
   toast: (text: string) => void;
@@ -247,7 +247,11 @@ export function GameProvider({ session, children }: { session: Session; children
       saveSnapshot(key, data);
     },
   });
-  async function act(cmd: Command, message = 'Operación completada') {
+  async function act(
+    cmd: Command,
+    message = 'Operación completada',
+    onError?: (message: string) => void,
+  ) {
     try {
       await mutation.mutateAsync(cmd);
       if (message) setNotice(message);
@@ -270,9 +274,10 @@ export function GameProvider({ session, children }: { session: Session; children
       if (sounds[cmd.type]) emitFeedback(sounds[cmd.type], message);
       return true;
     } catch (e) {
-      setNotice(
-        e instanceof Error ? e.message : 'No se pudo confirmar. Actualiza antes de reintentar.',
-      );
+      const message =
+        e instanceof Error ? e.message : 'No se pudo confirmar. Actualiza antes de reintentar.';
+      setNotice(message);
+      onError?.(message);
       return false;
     }
   }

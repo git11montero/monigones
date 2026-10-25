@@ -1,3 +1,4 @@
+import legacyCatalog from '../../data/sports/legacy-v05.json' with { type: 'json' };
 import { createHash } from 'node:crypto';
 import { z } from 'zod';
 import { BUILDINGS, FACILITIES, RESEARCH, DAY } from '../../shared/config.js';
@@ -22,6 +23,7 @@ export const configSchema = z
     startAt: z.union([z.literal('now'), z.string().datetime({ offset: true })]),
     users: z.partialRecord(z.enum(slots), uuid),
     snapshot: z.string().min(1).optional(),
+    fantasyTeams: z.string().min(1).optional(),
   })
   .strict()
   .superRefine((c, ctx) => {
@@ -32,6 +34,11 @@ export const configSchema = z
       ctx.addIssue({ code: 'custom', message: 'Un usuario no puede ocupar dos clubes.' });
     if (!c.snapshot && !c.sourceAt)
       ctx.addIssue({ code: 'custom', message: 'Indica sourceAt o una instantánea explícita.' });
+    if (c.fantasyTeams && (c.mode !== 'advanced' || c.snapshot))
+      ctx.addIssue({
+        code: 'custom',
+        message: 'fantasyTeams exige modo advanced y no se combina con snapshot.',
+      });
     if (c.snapshot && c.mode !== 'advanced')
       ctx.addIssue({ code: 'custom', message: 'Las instantáneas solo se usan en modo avanzado.' });
   });
@@ -246,7 +253,28 @@ export function validateDemo(input: unknown): asserts input is GameState {
     clubs.size === 6 && players.size === 500 && s.players.length === 500,
     'Clubes o catálogo duplicados/incompletos.',
   );
-  const catalog = roster(s.now);
+  // Accept complete historical snapshots without reassigning or rewriting their player identities.
+  const current = roster(s.now);
+  const matches = (
+    catalog: {
+      id: string;
+      name: string;
+      position: string;
+      realClubId: string;
+      simulated: boolean;
+    }[],
+  ) =>
+    s.players.every((p) =>
+      catalog.some(
+        (o) =>
+          o.id === p.id &&
+          o.name === p.name &&
+          o.position === p.position &&
+          o.realClubId === p.realClubId &&
+          o.simulated === p.simulated,
+      ),
+    );
+  const catalog = matches(current) ? current : matches(legacyCatalog) ? legacyCatalog : [];
   for (const p of s.players) {
     const original = catalog.find((c) => c.id === p.id);
     invariant(

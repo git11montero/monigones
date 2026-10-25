@@ -1,4 +1,6 @@
-# Cómo añadir imágenes a Monigones v0.3
+# Cómo añadir imágenes a Monigones v0.6
+
+Guía vigente de formatos, Vercel, versiones y fallbacks: [IMAGE_ASSETS_V06.md](IMAGE_ASSETS_V06.md). Los retratos siguen en PNG; los escudos activos ahora son WebP y sus PNG se conservan como respaldo. Las siete fotografías anteriores se han retirado.
 
 No necesitas programar para cambiar una imagen. El juego ya incluye el archivo de cada uno de sus 500 futbolistas y 20 clubes.
 
@@ -21,14 +23,14 @@ Ejemplos:
 | Pedri          | `public/assets/futbol/jugadores/barcelona-pedri.png`       |
 | Lamine Yamal   | `public/assets/futbol/jugadores/barcelona-lamineyamal.png` |
 | Isco           | `public/assets/futbol/jugadores/betis-isco.png`            |
-| Real Madrid    | `public/assets/futbol/escudos/realmadrid.png`              |
-| Betis          | `public/assets/futbol/escudos/betis.png`                   |
+| Real Madrid    | `public/assets/futbol/escudos/realmadrid.webp`              |
+| Betis          | `public/assets/futbol/escudos/betis.webp`                   |
 
 Los escudos son de los clubes reales del catálogo. El emblema personal del club fantasy mantiene su editor y su identidad independiente.
 
 ## 2. Prepara tu PNG
 
-Recomendamos **512 × 512 píxeles** para jugadores y **256 × 256** para escudos. El validador admite de 64 a 4096 píxeles por lado. Exporta realmente como PNG: cambiar la extensión de un JPG no lo convierte en PNG.
+Recomendamos **512 × 512 píxeles PNG** para jugadores y **256 × 256 WebP** para escudos. El validador admite de 64 a 4096 píxeles por lado. Exporta realmente como PNG: cambiar la extensión de un JPG no lo convierte en PNG.
 
 Puedes utilizar transparencia. Centra el rostro y el torso, deja algo de margen y evita estirar la fotografía para hacerla cuadrada: amplía el lienzo con transparencia. El juego conserva la proporción y muestra la imagen completa dentro de la tarjeta. No añadas texto diminuto.
 
@@ -39,9 +41,9 @@ Puedes utilizar transparencia. Centra el rostro y el torso, deja algo de margen 
 3. Mantén el juego abierto y conectado al servidor. En unos **5 segundos**, las pantallas abiertas detectan el contenido nuevo; también puedes recargar.
 4. Comprueba Plantilla, Mercado o la ficha del futbolista. Todas comparten el mismo componente y la misma ruta.
 
-No cambies TypeScript, JSON, base de datos, URLs ni componentes para esta operación. No ejecutes una importación ni reconstruyas el frontend por cada fotografía. Los nombres siempre están en minúsculas, sin tildes ni espacios y terminan en `.png`; algunos apellidos compuestos se unen en el identificador de recurso. Usa el inventario en lugar de adivinar.
+No cambies TypeScript, JSON, base de datos, URLs ni componentes para esta operación. No ejecutes una importación de jugadores para cambiar una imagen. En local basta con sustituir el archivo. En Vercel debes regenerar el manifiesto, construir y publicar los archivos como explica la guía v0.6. Los nombres siempre están en minúsculas, sin tildes ni espacios y terminan en `.png`; algunos apellidos compuestos se unen en el identificador de recurso. Usa el inventario en lugar de adivinar.
 
-El servidor local publica los archivos de `public/assets/futbol` incluso en producción. Si alojas el juego en otro ordenador o servidor, sustituye allí los archivos; cambiar una copia local no modifica un alojamiento remoto. El directorio debe ser persistente en un despliegue por contenedores. Un hosting estático aislado no ofrece la detección automática del backend.
+El servidor local publica los archivos de `public/assets/futbol` incluso en producción. Si alojas el juego en otro ordenador o servidor, sustituye allí los archivos; cambiar una copia local no modifica un alojamiento remoto. El directorio debe ser persistente en un despliegue por contenedores. En Vercel el manifiesto estático se genera durante el build y el cliente consulta su versión cada 60 segundos; los archivos se actualizan con cada publicación. No se escriben archivos permanentes desde Functions.
 
 ## 4. Si no aparece
 
